@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Food Brand Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐾 Pet Food Brand Scraper</h1>
+            <p>Extract brand information from pet food product pages</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'scraper-tab')">Scraper</button>
+            <button class="tab-button" onclick="openTab(event, 'data-tab')">Stored Data</button>
+        </div>
+
+        <!-- Scraper Tab -->
+        <div id="scraper-tab" class="tab-content active">
+            <div class="scraper-section">
+                <h2>Scrape Brand Information</h2>
+                <div class="input-group">
+                    <input type="url" id="url-input" placeholder="Enter product URL (e.g., https://example.com/pet-food-product)" />
+                    <button id="scrape-btn" onclick="scrapeUrl()">Scrape Brand</button>
+                    <button id="clear-btn" onclick="clearSearch()" class="clear-btn">Clear</button>
+                </div>
+                
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Scraping website...</p>
+                </div>
+
+                <div id="result" class="result hidden">
+                    <h3>Result:</h3>
+                    <div class="result-card">
+                        <div class="result-item">
+                            <strong>URL:</strong> <span id="result-url"></span>
+                        </div>
+                        <div class="result-item">
+                            <strong>Brand:</strong> <span id="result-brand"></span>
+                        </div>
+                        <div class="result-item">
+                            <strong>Status:</strong> <span class="success">Successfully scraped!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error" class="error hidden">
+                    <h3>Error:</h3>
+                    <p id="error-message"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Tab -->
+        <div id="data-tab" class="tab-content">
+            <div class="data-section">
+                <h2>Stored Scraped Data</h2>
+                <div class="data-controls">
+                    <button onclick="loadStoredData()" class="refresh-btn">Refresh Data</button>
+                    <span id="data-count" class="data-count">0 items</span>
+                </div>
+                
+                <div id="data-loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Loading data...</p>
+                </div>
+
+                <div id="data-list" class="data-list">
+                    <p class="no-data">No data available. Start scraping some URLs!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html> 
