@@ -73,10 +73,26 @@ async function scrapeUrl() {
 function showResult(data) {
     const result = document.getElementById('result');
     const error = document.getElementById('error');
+    const debugInfo = document.getElementById('debug-info');
     
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
     document.getElementById('result-image').textContent = data.imageURL;
+    
+    // Show debug info if brand or image not found
+    if (data.brand === 'Brand not found' || data.imageURL === 'Image not found') {
+        let debugText = [];
+        if (data.brand === 'Brand not found') {
+            debugText.push('💡 Tip: Try a different product page or check if the brand name is visible in the URL');
+        }
+        if (data.imageURL === 'Image not found') {
+            debugText.push('🖼️ Tip: Some sites load images with JavaScript - try a direct product page URL');
+        }
+        document.getElementById('debug-details').textContent = debugText.join(' | ');
+        debugInfo.style.display = 'block';
+    } else {
+        debugInfo.style.display = 'none';
+    }
     
     result.classList.remove('hidden');
     error.classList.add('hidden');
@@ -182,6 +198,7 @@ function clearSearch() {
     const result = document.getElementById('result');
     const error = document.getElementById('error');
     const loading = document.getElementById('loading');
+    const debugInfo = document.getElementById('debug-info');
     
     // Clear input field
     urlInput.value = '';
@@ -190,6 +207,7 @@ function clearSearch() {
     result.classList.add('hidden');
     error.classList.add('hidden');
     loading.classList.add('hidden');
+    debugInfo.style.display = 'none';
     
     // Focus back on input for better UX
     urlInput.focus();

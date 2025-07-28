@@ -1,10 +1,42 @@
 [
   {
     "id": 1,
-    "url": "https://vivarawpets.com/products/beef-for-cats",
-    "brand": "Viva Raw",
-    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Beef_Cat_Bowl_176b5067-d71f-4643-ac4e-5853f22e3cfb.png?v=1719491284&width=2048",
-    "timestamp": "2025-07-28T13:59:07.213389",
-    "domain": "vivarawpets.com"
+    "url": "https://instinctpetfood.com/cat/",
+    "brand": "Brand not found",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T14:20:28.622118",
+    "domain": "instinctpetfood.com"
+  },
+  {
+    "id": 2,
+    "url": "https://instinctpetfood.com/products/raw-meals-freeze-dried-kitten-chicken-cat-food/",
+    "brand": "Brand not found",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T14:20:52.364321",
+    "domain": "instinctpetfood.com"
+  },
+  {
+    "id": 3,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Brand not found",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T14:21:34.294251",
+    "domain": "instinctpetfood.com"
+  },
+  {
+    "id": 4,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T14:25:29.156128",
+    "domain": "instinctpetfood.com"
+  },
+  {
+    "id": 5,
+    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T14:26:12.241768",
+    "domain": "applaws.com"
   }
 ]

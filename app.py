@@ -5,7 +5,8 @@ import json
 import os
 from datetime import datetime
 import re
-from urllib.parse import urlparse
+import time
+from urllib.parse import urlparse, urljoin
 
 app = Flask(__name__)
 
@@ -47,10 +48,13 @@ def extract_brand(soup, url):
         lambda: soup.find('div', class_=re.compile(r'brand', re.I)),
         
         # Look for text patterns
-        lambda: soup.find(text=re.compile(r'brand:', re.I)),
+        lambda: soup.find(string=re.compile(r'brand:', re.I)),
         
         # Look in title or headings
         lambda: extract_from_title(soup),
+        
+        # Extract from URL as fallback
+        lambda: extract_brand_from_url(url),
     ]
     
     for strategy in strategies:
@@ -64,12 +68,66 @@ def extract_brand(soup, url):
                 else:
                     brand = str(result)
                 
-                if brand and brand.strip():
+                if brand and brand.strip() and brand.strip().lower() not in ['brand not found', 'not found']:
                     return brand.strip()
         except Exception:
             continue
     
     return "Brand not found"
+
+def extract_brand_from_url(url):
+    """Extract brand name from the URL itself"""
+    try:
+        # Common pet food brands to look for in URLs
+        pet_brands = [
+            'purina', 'hills', 'hill', 'royal-canin', 'royal canin', 'blue-buffalo', 'blue buffalo',
+            'wellness', 'orijen', 'acana', 'merrick', 'taste-of-the-wild', 'taste of the wild',
+            'instinct', 'nutro', 'iams', 'pedigree', 'science-diet', 'science diet',
+            'pro-plan', 'pro plan', 'beneful', 'fancy-feast', 'fancy feast', 'friskies',
+            'whiskas', 'temptations', 'greenies', 'dentastix', 'cesar', 'sheba',
+            'viva-raw', 'viva raw', 'stella-chewy', 'stella chewy', 'ziwi-peak', 'ziwi peak',
+            'fromm', 'canidae', 'diamond', 'kirkland', 'costco', 'rachael-ray', 'rachael ray',
+            'blue-wilderness', 'blue wilderness', 'nulo', 'earthborn', 'solid-gold', 'solid gold'
+        ]
+        
+        # Clean URL for analysis
+        url_lower = url.lower()
+        url_parts = url_lower.replace('https://', '').replace('http://', '').replace('www.', '')
+        
+        # Look for brand in domain name
+        for brand in pet_brands:
+            brand_clean = brand.replace('-', '').replace(' ', '')
+            if brand_clean in url_parts.replace('-', '').replace('/', '').replace('.', ''):
+                # Format brand name properly
+                return brand.replace('-', ' ').title()
+        
+        # Extract potential brand from URL path segments
+        path_segments = url_parts.split('/')
+        for segment in path_segments:
+            # Clean segment
+            segment = segment.replace('-', ' ').replace('_', ' ')
+            # Look for brand patterns in segments
+            for brand in pet_brands:
+                if brand.replace('-', ' ').lower() in segment.lower():
+                    return brand.replace('-', ' ').title()
+            
+            # Look for common brand patterns in segment names
+            if any(keyword in segment for keyword in ['brand', 'manufacturer', 'company']):
+                # Try to extract brand name from the segment
+                words = segment.split('-')
+                if len(words) >= 2:
+                    potential_brand = ' '.join(words[:-1]) if words[-1] in ['brand', 'pet', 'food'] else segment
+                    return potential_brand.replace('-', ' ').title()
+        
+        # Extract from domain name
+        domain = url_parts.split('/')[0].split('.')[0]
+        if domain and len(domain) > 3 and domain not in ['www', 'shop', 'store', 'pet', 'dog', 'cat']:
+            return domain.replace('-', ' ').title()
+            
+    except Exception:
+        pass
+    
+    return None
 
 def extract_image_url(soup, url):
     """Extract product image URL from the webpage"""
@@ -91,6 +149,12 @@ def extract_image_url(soup, url):
         
         # Look for images in product containers
         lambda: soup.select('.product img, .product-image img, .main-image img, .hero-image img'),
+        
+        # Look for common e-commerce image patterns
+        lambda: soup.select('img[src*="product"], img[src*="item"], img[alt*="product"], img[alt*="item"]'),
+        
+        # Look for first non-small image
+        lambda: find_first_product_image(soup),
         
         # Look for the largest image (likely product image)
         lambda: find_largest_image(soup),
@@ -115,10 +179,8 @@ def extract_image_url(soup, url):
                     if image_url.startswith('//'):
                         image_url = 'https:' + image_url
                     elif image_url.startswith('/'):
-                        from urllib.parse import urljoin
                         image_url = urljoin(url, image_url)
                     elif not image_url.startswith(('http://', 'https://')):
-                        from urllib.parse import urljoin
                         image_url = urljoin(url, image_url)
                     
                     return image_url.strip()
@@ -156,6 +218,48 @@ def find_largest_image(soup):
             continue
     
     return largest_img
+
+def find_first_product_image(soup):
+    """Find the first reasonably-sized image that's likely a product image"""
+    images = soup.find_all('img', src=True)
+    
+    for img in images:
+        try:
+            src = img.get('src', '')
+            alt = img.get('alt', '').lower()
+            class_name = ' '.join(img.get('class', [])).lower()
+            
+            # Skip obvious non-product images
+            if any(keyword in src.lower() for keyword in ['icon', 'logo', 'banner', 'header', 'footer', 'nav', 'menu']):
+                continue
+            if any(keyword in alt for keyword in ['logo', 'icon', 'banner', 'navigation']):
+                continue
+            if any(keyword in class_name for keyword in ['logo', 'icon', 'banner', 'nav', 'header', 'footer']):
+                continue
+            
+            # Look for product-related keywords
+            if any(keyword in src.lower() for keyword in ['product', 'item', 'detail', 'main', 'primary']):
+                return img
+            if any(keyword in alt for keyword in ['product', 'item', 'food', 'treat', 'dog', 'cat', 'pet']):
+                return img
+            if any(keyword in class_name for keyword in ['product', 'item', 'main', 'primary', 'detail']):
+                return img
+            
+            # Check if image seems large enough (avoid thumbnails)
+            width = img.get('width')
+            height = img.get('height')
+            if width and height:
+                try:
+                    w, h = int(width), int(height)
+                    if w >= 200 and h >= 200:  # Reasonable product image size
+                        return img
+                except ValueError:
+                    continue
+                    
+        except Exception:
+            continue
+    
+    return None
 
 def extract_from_json_ld(soup, field_type='brand'):
     """Extract brand or image from JSON-LD structured data"""
@@ -218,14 +322,55 @@ def scrape_url():
         if not parsed.netloc:
             return jsonify({'error': 'Invalid URL format'}), 400
         
-        # Set up headers to mimic a real browser
+        # Set up comprehensive headers to mimic a real browser
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Cache-Control': 'max-age=0'
         }
         
-        # Make request
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
+        # Make request with retry logic
+        session = requests.Session()
+        session.headers.update(headers)
+        
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                # Add a small delay to be more polite
+                if attempt > 0:
+                    time.sleep(2)
+                
+                response = session.get(url, timeout=15, allow_redirects=True)
+                response.raise_for_status()
+                break
+                
+            except requests.exceptions.HTTPError as e:
+                if e.response.status_code == 403:
+                    if attempt < max_retries - 1:
+                        # Try with a different user agent
+                        alternate_agents = [
+                            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15',
+                            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                        ]
+                        session.headers.update({'User-Agent': alternate_agents[attempt]})
+                        continue
+                    else:
+                        return jsonify({'error': f'Access denied by website (403). This site may be blocking automated requests. Try a different URL or the site may require authentication.'}), 400
+                else:
+                    raise
+            except requests.exceptions.RequestException:
+                if attempt == max_retries - 1:
+                    raise
         
         # Parse HTML
         soup = BeautifulSoup(response.content, 'html.parser')

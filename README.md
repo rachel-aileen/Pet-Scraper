@@ -10,11 +10,14 @@ A web-based application that scrapes brand information from pet food product URL
   - JSON-LD structured data
   - CSS class patterns
   - Common pet food brand recognition
+  - **URL-based extraction** - extracts brand names directly from URLs as fallback
 - **Smart Image Detection**: Extracts product images using:
   - Open Graph and Twitter meta tags
   - Structured data (JSON-LD)
   - Product image CSS classes
-  - Largest image analysis
+  - Product-related image attributes (alt text, src patterns)
+  - Intelligent size filtering to avoid icons/thumbnails
+  - Largest image analysis as fallback
 - **Data Storage**: All scraped data is automatically saved with timestamps
 - **App Export**: Format and export data in app-ready JavaScript object format
 - **Data Management**: View, browse, and delete stored data entries
@@ -116,17 +119,37 @@ The scraper uses multiple methods to find brand information:
 - The page doesn't contain standard brand markup
 - The site uses JavaScript to load content dynamically
 - The brand information is in images or non-text elements
+- **Note**: The scraper now extracts brands from URLs as a fallback - if the brand name appears in the URL (like "instinctpetfood.com" → "Instinct"), it should be detected automatically
 
 **Network errors**: Check that:
 - The URL is accessible
 - Your internet connection is working
 - The target site isn't blocking automated requests
 
+**403 Forbidden errors**: Some sites block automated requests:
+- The scraper tries multiple user agents and retry attempts
+- Try different product pages on the same site
+- Some e-commerce sites have strong anti-bot protection
+- Government, educational, and smaller business sites often work better
+
 ### Improving Results
 For better brand detection, try:
 - Using the main product page URL
 - Checking if the site has structured data
 - Looking for alternative product pages on the same site
+
+### Sites That Work Well
+The scraper works best with:
+- Pet specialty stores and smaller retailers
+- Sites with standard e-commerce structure
+- Pages with clear product information
+- Sites that don't require JavaScript for content loading
+
+### Sites That May Be Challenging
+- Large e-commerce platforms with anti-bot protection
+- Sites requiring user accounts or authentication
+- JavaScript-heavy single-page applications
+- Sites with aggressive rate limiting
 
 ## Dependencies
 
