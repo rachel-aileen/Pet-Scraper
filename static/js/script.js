@@ -76,6 +76,7 @@ function showResult(data) {
     
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
+    document.getElementById('result-image').textContent = data.imageURL;
     
     result.classList.remove('hidden');
     error.classList.add('hidden');
@@ -135,6 +136,7 @@ function displayData(data) {
                     <button class="delete-btn" onclick="deleteDataItem(${item.id})">Delete</button>
                 </div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
+                <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
                     <span class="data-item-timestamp">${formattedDate}</span>
                     <span class="data-item-domain">${escapeHtml(item.domain)}</span>
@@ -192,6 +194,75 @@ function clearSearch() {
     // Focus back on input for better UX
     urlInput.focus();
 }
+
+// Export functionality
+async function exportForApp() {
+    try {
+        const response = await fetch('/data');
+        const data = await response.json();
+        
+        if (data.length === 0) {
+            alert('No data to export. Please scrape some URLs first.');
+            return;
+        }
+        
+        // Format data for app use - brand and imageURL fields
+        const formattedData = data.map((item, index) => {
+            const isLast = index === data.length - 1;
+            const comma = isLast ? '' : ',';
+            return `{\n  brand: '${item.brand}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
+        }).join('\n\n');
+        
+        // Show the formatted data in modal
+        document.getElementById('export-data').textContent = formattedData;
+        document.getElementById('export-modal').classList.remove('hidden');
+        
+    } catch (err) {
+        alert('Error loading data for export: ' + err.message);
+    }
+}
+
+function closeExportModal() {
+    document.getElementById('export-modal').classList.add('hidden');
+}
+
+async function copyToClipboard() {
+    const exportData = document.getElementById('export-data');
+    const copyBtn = document.querySelector('.copy-btn');
+    
+    try {
+        await navigator.clipboard.writeText(exportData.textContent);
+        
+        // Visual feedback
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.classList.remove('copied');
+        }, 2000);
+        
+    } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = exportData.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        alert('Data copied to clipboard!');
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('export-modal');
+    if (e.target === modal) {
+        closeExportModal();
+    }
+});
 
 // Enter key support for URL input
 document.addEventListener('DOMContentLoaded', function() {

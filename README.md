@@ -4,13 +4,19 @@ A web-based application that scrapes brand information from pet food product URL
 
 ## Features
 
-- **URL Scraping**: Enter any pet food product URL to extract brand information
+- **URL Scraping**: Enter any pet food product URL to extract brand and image information
 - **Smart Brand Detection**: Uses multiple strategies to find brand names including:
   - Meta tags (product:brand, brand, itemprop)
   - JSON-LD structured data
   - CSS class patterns
   - Common pet food brand recognition
+- **Smart Image Detection**: Extracts product images using:
+  - Open Graph and Twitter meta tags
+  - Structured data (JSON-LD)
+  - Product image CSS classes
+  - Largest image analysis
 - **Data Storage**: All scraped data is automatically saved with timestamps
+- **App Export**: Format and export data in app-ready JavaScript object format
 - **Data Management**: View, browse, and delete stored data entries
 - **Responsive Design**: Works on desktop and mobile devices
 
@@ -44,7 +50,23 @@ A web-based application that scrapes brand information from pet food product URL
 1. Switch to the **Stored Data** tab
 2. View all previously scraped entries with timestamps and domains
 3. Use the "Refresh Data" button to reload the list
-4. Delete individual entries using the red "Delete" button
+4. Click "Export for App" to get formatted data for your application
+5. Delete individual entries using the red "Delete" button
+
+### Exporting Data for Apps
+The "Export for App" feature formats your scraped data perfectly for use in applications:
+```javascript
+{
+  brand: 'Viva Raw',
+  imageURL: 'https://example.com/product-image.jpg',
+},
+
+{
+  brand: 'Hill\'s Science Diet',
+  imageURL: 'https://example.com/hills-product.jpg',
+}
+```
+The export modal includes a "Copy to Clipboard" button for easy integration.
 
 ## Project Structure
 

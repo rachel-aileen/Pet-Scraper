@@ -39,7 +39,7 @@ def extract_brand(soup, url):
         lambda: soup.find('meta', {'itemprop': 'brand'}),
         
         # Look for structured data (JSON-LD)
-        lambda: extract_from_json_ld(soup),
+        lambda: extract_from_json_ld(soup, 'brand'),
         
         # Look for common class names and patterns
         lambda: soup.find(class_=re.compile(r'brand', re.I)),
@@ -71,8 +71,94 @@ def extract_brand(soup, url):
     
     return "Brand not found"
 
-def extract_from_json_ld(soup):
-    """Extract brand from JSON-LD structured data"""
+def extract_image_url(soup, url):
+    """Extract product image URL from the webpage"""
+    image_url = None
+    
+    # Common image extraction strategies
+    strategies = [
+        # Look for Open Graph image
+        lambda: soup.find('meta', {'property': 'og:image'}),
+        lambda: soup.find('meta', {'property': 'product:image'}),
+        lambda: soup.find('meta', {'name': 'twitter:image'}),
+        
+        # Look for structured data (JSON-LD)
+        lambda: extract_from_json_ld(soup, 'image'),
+        
+        # Look for common product image classes
+        lambda: soup.find('img', class_=re.compile(r'product.*image|main.*image|hero.*image', re.I)),
+        lambda: soup.find('img', {'itemprop': 'image'}),
+        
+        # Look for images in product containers
+        lambda: soup.select('.product img, .product-image img, .main-image img, .hero-image img'),
+        
+        # Look for the largest image (likely product image)
+        lambda: find_largest_image(soup),
+    ]
+    
+    for strategy in strategies:
+        try:
+            result = strategy()
+            if result:
+                if hasattr(result, 'get'):
+                    # Meta tag
+                    image_url = result.get('content')
+                elif isinstance(result, list) and result:
+                    # List of images, take the first one
+                    image_url = result[0].get('src') if result[0] else None
+                elif hasattr(result, 'get') and 'src' in result.attrs:
+                    # Single img tag
+                    image_url = result.get('src')
+                
+                if image_url and image_url.strip():
+                    # Convert relative URLs to absolute
+                    if image_url.startswith('//'):
+                        image_url = 'https:' + image_url
+                    elif image_url.startswith('/'):
+                        from urllib.parse import urljoin
+                        image_url = urljoin(url, image_url)
+                    elif not image_url.startswith(('http://', 'https://')):
+                        from urllib.parse import urljoin
+                        image_url = urljoin(url, image_url)
+                    
+                    return image_url.strip()
+        except Exception:
+            continue
+    
+    return "Image not found"
+
+def find_largest_image(soup):
+    """Find the largest image on the page (likely a product image)"""
+    images = soup.find_all('img', src=True)
+    largest_img = None
+    max_size = 0
+    
+    for img in images:
+        try:
+            # Skip small images, icons, logos
+            src = img.get('src', '')
+            if any(keyword in src.lower() for keyword in ['icon', 'logo', 'thumb', 'avatar', 'sprite']):
+                continue
+            
+            # Try to get image dimensions
+            width = img.get('width', 0)
+            height = img.get('height', 0)
+            
+            if width and height:
+                try:
+                    size = int(width) * int(height)
+                    if size > max_size:
+                        max_size = size
+                        largest_img = img
+                except ValueError:
+                    continue
+        except Exception:
+            continue
+    
+    return largest_img
+
+def extract_from_json_ld(soup, field_type='brand'):
+    """Extract brand or image from JSON-LD structured data"""
     scripts = soup.find_all('script', type='application/ld+json')
     for script in scripts:
         try:
@@ -80,11 +166,19 @@ def extract_from_json_ld(soup):
             if isinstance(data, list):
                 data = data[0]
             
-            if 'brand' in data:
+            if field_type == 'brand' and 'brand' in data:
                 brand = data['brand']
                 if isinstance(brand, dict):
                     return brand.get('name', '')
                 return str(brand)
+            elif field_type == 'image' and 'image' in data:
+                image = data['image']
+                if isinstance(image, list) and image:
+                    return image[0] if isinstance(image[0], str) else image[0].get('url', '')
+                elif isinstance(image, dict):
+                    return image.get('url', '')
+                elif isinstance(image, str):
+                    return image
         except (json.JSONDecodeError, KeyError):
             continue
     return None
@@ -136,8 +230,9 @@ def scrape_url():
         # Parse HTML
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        # Extract brand
+        # Extract brand and image
         brand = extract_brand(soup, url)
+        image_url = extract_image_url(soup, url)
         
         # Save to data file
         data = load_data()
@@ -145,6 +240,7 @@ def scrape_url():
             'id': len(data) + 1,
             'url': url,
             'brand': brand,
+            'imageURL': image_url,
             'timestamp': datetime.now().isoformat(),
             'domain': parsed.netloc
         }
@@ -154,6 +250,7 @@ def scrape_url():
         return jsonify({
             'success': True,
             'brand': brand,
+            'imageURL': image_url,
             'url': url,
             'id': new_entry['id']
         })

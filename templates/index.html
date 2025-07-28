@@ -43,6 +43,9 @@
                             <strong>Brand:</strong> <span id="result-brand"></span>
                         </div>
                         <div class="result-item">
+                            <strong>Image URL:</strong> <span id="result-image" class="image-url"></span>
+                        </div>
+                        <div class="result-item">
                             <strong>Status:</strong> <span class="success">Successfully scraped!</span>
                         </div>
                     </div>
@@ -61,6 +64,7 @@
                 <h2>Stored Scraped Data</h2>
                 <div class="data-controls">
                     <button onclick="loadStoredData()" class="refresh-btn">Refresh Data</button>
+                    <button onclick="exportForApp()" class="export-btn">Export for App</button>
                     <span id="data-count" class="data-count">0 items</span>
                 </div>
                 
@@ -71,6 +75,23 @@
 
                 <div id="data-list" class="data-list">
                     <p class="no-data">No data available. Start scraping some URLs!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export Data for App</h3>
+                <button class="close-btn" onclick="closeExportModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Copy this formatted data for your app:</p>
+                <div class="export-container">
+                    <pre id="export-data" class="export-code"></pre>
+                    <button onclick="copyToClipboard()" class="copy-btn">Copy to Clipboard</button>
                 </div>
             </div>
         </div>
