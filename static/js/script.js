@@ -79,15 +79,23 @@ function showResult(data) {
     document.getElementById('result-brand').textContent = data.brand;
     document.getElementById('result-image').textContent = data.imageURL;
     
-    // Show debug info if brand or image not found
-    if (data.brand === 'Brand not found' || data.imageURL === 'Image not found') {
+    // Show debug info if brand or image not found, or if it's a direct image URL
+    const showDebug = data.brand === 'Brand not found' || data.imageURL === 'Image not found' || (data.debug_info && data.debug_info.includes('Direct image'));
+    
+    if (showDebug) {
         let debugText = [];
         if (data.brand === 'Brand not found') {
-            debugText.push('💡 Tip: Try a different product page or check if the brand name is visible in the URL');
+            debugText.push('💡 Brand: Try a different product page or check if brand name is visible in the URL');
         }
         if (data.imageURL === 'Image not found') {
-            debugText.push('🖼️ Tip: Some sites load images with JavaScript - try a direct product page URL');
+            debugText.push('🖼️ Image: Try right-clicking an image on this site → "Open image in new tab" → use that direct image URL');
         }
+        
+        // Add debug info about images found
+        if (data.debug_info) {
+            debugText.push(`📊 ${data.debug_info}`);
+        }
+        
         document.getElementById('debug-details').textContent = debugText.join(' | ');
         debugInfo.style.display = 'block';
     } else {

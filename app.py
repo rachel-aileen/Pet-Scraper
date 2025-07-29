@@ -119,9 +119,17 @@ def extract_brand_from_url(url):
                     potential_brand = ' '.join(words[:-1]) if words[-1] in ['brand', 'pet', 'food'] else segment
                     return potential_brand.replace('-', ' ').title()
         
+        # For image URLs, also try to extract from filename
+        if any(url.lower().endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp', '.svg', '.pdf']):
+            # Try to get brand from filename
+            filename = url_parts.split('/')[-1].replace('%20', ' ')
+            for brand in pet_brands:
+                if brand.replace('-', ' ').lower() in filename.lower():
+                    return brand.replace('-', ' ').title()
+        
         # Extract from domain name
         domain = url_parts.split('/')[0].split('.')[0]
-        if domain and len(domain) > 3 and domain not in ['www', 'shop', 'store', 'pet', 'dog', 'cat']:
+        if domain and len(domain) > 3 and domain not in ['www', 'shop', 'store', 'pet', 'dog', 'cat', 'images', 'img', 'cdn', 'assets']:
             return domain.replace('-', ' ').title()
             
     except Exception:
@@ -129,35 +137,60 @@ def extract_brand_from_url(url):
     
     return None
 
+def find_best_og_image(soup):
+    """Find the best Open Graph image from potentially multiple og:image tags"""
+    # Look for all og:image meta tags
+    og_images = soup.find_all('meta', {'property': 'og:image'})
+    
+    if not og_images:
+        # Try alternative formats
+        og_images = soup.find_all('meta', attrs={'property': lambda x: x and x.lower() == 'og:image'})
+    
+    if og_images:
+        # If multiple og:image tags, prefer ones that look like product images
+        for og_img in og_images:
+            content = og_img.get('content', '')
+            if content:
+                # Prefer images with 'product', 'main', or larger dimensions in the URL
+                if any(keyword in content.lower() for keyword in ['product', 'main', '1200', '800', '600']):
+                    return og_img
+        
+        # If no preferred image found, return the first one
+        return og_images[0]
+    
+    return None
+
 def extract_image_url(soup, url):
-    """Extract product image URL from the webpage"""
+    """Extract image URL from the webpage - prioritizes first reasonable image"""
     image_url = None
     
-    # Common image extraction strategies
+    # Simple and effective image extraction strategies
     strategies = [
-        # Look for Open Graph image
-        lambda: soup.find('meta', {'property': 'og:image'}),
+        # Look for Open Graph image first (most reliable) - try multiple variations
+        lambda: find_best_og_image(soup),
         lambda: soup.find('meta', {'property': 'product:image'}),
         lambda: soup.find('meta', {'name': 'twitter:image'}),
         
         # Look for structured data (JSON-LD)
         lambda: extract_from_json_ld(soup, 'image'),
         
-        # Look for common product image classes
-        lambda: soup.find('img', class_=re.compile(r'product.*image|main.*image|hero.*image', re.I)),
-        lambda: soup.find('img', {'itemprop': 'image'}),
+        # Just find the first reasonable image on the page
+        lambda: find_first_reasonable_image(soup),
         
-        # Look for images in product containers
-        lambda: soup.select('.product img, .product-image img, .main-image img, .hero-image img'),
+        # Fallback to any image that's not tiny
+        lambda: find_any_decent_image(soup),
         
-        # Look for common e-commerce image patterns
-        lambda: soup.select('img[src*="product"], img[src*="item"], img[alt*="product"], img[alt*="item"]'),
+        # Look for images in CSS background-image properties
+        lambda: find_background_images(soup),
         
-        # Look for first non-small image
-        lambda: find_first_product_image(soup),
+        # Look for images in JavaScript or data attributes
+        lambda: find_script_images(soup),
         
-        # Look for the largest image (likely product image)
-        lambda: find_largest_image(soup),
+        # AGGRESSIVE: Search entire HTML for any image-like URLs
+        lambda: find_any_image_url_in_html(soup),
+        
+        # SUPER AGGRESSIVE: Direct regex search for og:image in HTML text
+        lambda: find_og_image_in_raw_html(soup),
     ]
     
     for strategy in strategies:
@@ -176,6 +209,7 @@ def extract_image_url(soup, url):
                 
                 if image_url and image_url.strip():
                     # Convert relative URLs to absolute
+                    image_url = image_url.strip()
                     if image_url.startswith('//'):
                         image_url = 'https:' + image_url
                     elif image_url.startswith('/'):
@@ -183,44 +217,16 @@ def extract_image_url(soup, url):
                     elif not image_url.startswith(('http://', 'https://')):
                         image_url = urljoin(url, image_url)
                     
-                    return image_url.strip()
+                    return image_url
         except Exception:
             continue
     
     return "Image not found"
 
-def find_largest_image(soup):
-    """Find the largest image on the page (likely a product image)"""
-    images = soup.find_all('img', src=True)
-    largest_img = None
-    max_size = 0
-    
-    for img in images:
-        try:
-            # Skip small images, icons, logos
-            src = img.get('src', '')
-            if any(keyword in src.lower() for keyword in ['icon', 'logo', 'thumb', 'avatar', 'sprite']):
-                continue
-            
-            # Try to get image dimensions
-            width = img.get('width', 0)
-            height = img.get('height', 0)
-            
-            if width and height:
-                try:
-                    size = int(width) * int(height)
-                    if size > max_size:
-                        max_size = size
-                        largest_img = img
-                except ValueError:
-                    continue
-        except Exception:
-            continue
-    
-    return largest_img
 
-def find_first_product_image(soup):
-    """Find the first reasonably-sized image that's likely a product image"""
+
+def find_first_reasonable_image(soup):
+    """Find the first image that's not obviously a logo/icon"""
     images = soup.find_all('img', src=True)
     
     for img in images:
@@ -229,36 +235,235 @@ def find_first_product_image(soup):
             alt = img.get('alt', '').lower()
             class_name = ' '.join(img.get('class', [])).lower()
             
-            # Skip obvious non-product images
-            if any(keyword in src.lower() for keyword in ['icon', 'logo', 'banner', 'header', 'footer', 'nav', 'menu']):
+            # Skip only obvious logos, icons, and navigation elements
+            skip_keywords = ['logo', 'icon', 'nav', 'menu', 'header', 'footer', 'sprite']
+            
+            if any(keyword in src.lower() for keyword in skip_keywords):
                 continue
-            if any(keyword in alt for keyword in ['logo', 'icon', 'banner', 'navigation']):
+            if any(keyword in alt for keyword in skip_keywords):
                 continue
-            if any(keyword in class_name for keyword in ['logo', 'icon', 'banner', 'nav', 'header', 'footer']):
+            if any(keyword in class_name for keyword in skip_keywords):
                 continue
             
-            # Look for product-related keywords
-            if any(keyword in src.lower() for keyword in ['product', 'item', 'detail', 'main', 'primary']):
-                return img
-            if any(keyword in alt for keyword in ['product', 'item', 'food', 'treat', 'dog', 'cat', 'pet']):
-                return img
-            if any(keyword in class_name for keyword in ['product', 'item', 'main', 'primary', 'detail']):
-                return img
-            
-            # Check if image seems large enough (avoid thumbnails)
+            # Skip very small images (likely icons)
             width = img.get('width')
             height = img.get('height')
             if width and height:
                 try:
                     w, h = int(width), int(height)
-                    if w >= 200 and h >= 200:  # Reasonable product image size
-                        return img
+                    if w < 50 or h < 50:  # Skip tiny images
+                        continue
                 except ValueError:
-                    continue
+                    pass
+            
+            # This looks like a reasonable image, return it
+            return img
                     
         except Exception:
             continue
     
+    return None
+
+def find_any_decent_image(soup):
+    """Find any image that has a reasonable src (fallback)"""
+    images = soup.find_all('img', src=True)
+    
+    for img in images:
+        try:
+            src = img.get('src', '')
+            
+            # Skip data URLs and empty sources
+            if not src or src.startswith('data:') or len(src) < 10:
+                continue
+            
+            # Skip common small/icon patterns
+            if any(pattern in src.lower() for pattern in ['1x1', 'pixel', 'spacer', 'blank']):
+                continue
+                
+            # Return the first image that looks like it has a real URL
+            return img
+                    
+        except Exception:
+            continue
+    
+    # If no good img tags, try to find ANY img tag even without src
+    all_images = soup.find_all('img')
+    for img in all_images:
+        # Check all possible src attributes
+        for attr in ['src', 'data-src', 'data-original', 'data-lazy', 'data-srcset']:
+            if img.get(attr):
+                fake_img = soup.new_tag('img')
+                fake_img['src'] = img.get(attr)
+                return fake_img
+    
+    return None
+
+def find_background_images(soup):
+    """Look for images in CSS background-image properties"""
+    try:
+        # Look for inline styles with background-image
+        elements_with_bg = soup.find_all(style=True)
+        for element in elements_with_bg:
+            style = element.get('style', '')
+            if 'background-image' in style.lower():
+                # Extract URL from background-image: url(...)
+                import re
+                matches = re.search(r'background-image:\s*url\(["\']?([^"\')]+)["\']?\)', style, re.I)
+                if matches:
+                    img_url = matches.group(1)
+                    # Create a fake img element to return
+                    fake_img = soup.new_tag('img')
+                    fake_img['src'] = img_url
+                    return fake_img
+        
+        # Look for CSS with background images
+        style_tags = soup.find_all('style')
+        for style_tag in style_tags:
+            if style_tag.string:
+                matches = re.findall(r'background-image:\s*url\(["\']?([^"\')]+)["\']?\)', style_tag.string, re.I)
+                if matches:
+                    img_url = matches[0]
+                    fake_img = soup.new_tag('img')
+                    fake_img['src'] = img_url
+                    return fake_img
+                    
+    except Exception:
+        pass
+    return None
+
+def find_script_images(soup):
+    """Look for image URLs in JavaScript or data attributes"""
+    try:
+        # Look for data-src attributes (lazy loading)
+        img_with_data_src = soup.find('img', {'data-src': True})
+        if img_with_data_src:
+            # Create a proper img tag with the data-src as src
+            fake_img = soup.new_tag('img')
+            fake_img['src'] = img_with_data_src['data-src']
+            return fake_img
+            
+        # Look for data-image attributes
+        elements_with_data_image = soup.find_all(attrs={'data-image': True})
+        if elements_with_data_image:
+            fake_img = soup.new_tag('img')
+            fake_img['src'] = elements_with_data_image[0]['data-image']
+            return fake_img
+            
+        # Look for common image URLs in script tags
+        script_tags = soup.find_all('script')
+        for script in script_tags:
+            if script.string:
+                # Look for image URLs in JavaScript
+                import re
+                image_patterns = [
+                    r'["\']([^"\']*\.(?:jpg|jpeg|png|gif|webp|bmp)[^"\']*)["\']',
+                    r'image["\']?\s*:\s*["\']([^"\']+)["\']',
+                    r'src["\']?\s*:\s*["\']([^"\']+\.(?:jpg|jpeg|png|gif|webp|bmp)[^"\']*)["\']'
+                ]
+                
+                for pattern in image_patterns:
+                    matches = re.findall(pattern, script.string, re.I)
+                    if matches:
+                        img_url = matches[0]
+                        if img_url and not any(skip in img_url.lower() for skip in ['icon', 'logo', 'sprite']):
+                            fake_img = soup.new_tag('img')
+                            fake_img['src'] = img_url
+                            return fake_img
+                            
+    except Exception:
+        pass
+    return None
+
+def find_any_image_url_in_html(soup):
+    """AGGRESSIVE: Search entire HTML content for any image-like URLs"""
+    try:
+        import re
+        # Get the entire HTML content as text
+        html_text = str(soup)
+        
+        # Super aggressive patterns to find image URLs
+        image_patterns = [
+            # Standard image URLs
+            r'https?://[^\s"\'<>]+\.(?:jpg|jpeg|png|gif|webp|bmp)(?:\?[^\s"\'<>]*)?',
+            r'//[^\s"\'<>]+\.(?:jpg|jpeg|png|gif|webp|bmp)(?:\?[^\s"\'<>]*)?',
+            r'/[^\s"\'<>]+\.(?:jpg|jpeg|png|gif|webp|bmp)(?:\?[^\s"\'<>]*)?',
+            
+            # CDN and Shopify patterns
+            r'https?://cdn\.shopify\.com/[^\s"\'<>]+',
+            r'https?://[^\s"\'<>]*\.shopifycdn\.com/[^\s"\'<>]+',
+            r'https?://[^\s"\'<>]*amazonaws\.com/[^\s"\'<>]+\.(?:jpg|jpeg|png|gif|webp)',
+            
+            # Common CMS patterns
+            r'https?://[^\s"\'<>]*\.(?:cloudinary|imgix|cloudfront)\.com/[^\s"\'<>]+',
+            
+            # Look for any URL with 'image' in the path
+            r'https?://[^\s"\'<>]*image[^\s"\'<>]*\.(?:jpg|jpeg|png|gif|webp|bmp)',
+            r'https?://[^\s"\'<>]*/images?/[^\s"\'<>]+\.(?:jpg|jpeg|png|gif|webp|bmp)',
+            
+            # Look for data-src and other lazy loading attributes
+            r'data-src=["\'](https?://[^"\']+\.(?:jpg|jpeg|png|gif|webp|bmp)[^"\']*)["\']',
+            r'data-original=["\'](https?://[^"\']+\.(?:jpg|jpeg|png|gif|webp|bmp)[^"\']*)["\']',
+        ]
+        
+        for pattern in image_patterns:
+            matches = re.findall(pattern, html_text, re.I)
+            if matches:
+                # Return the first reasonable match
+                for match in matches:
+                    # Clean up the match (remove quotes if captured)
+                    clean_match = match.strip('\'"')
+                    
+                    # Skip tiny/icon images and common excludes
+                    if not any(skip in clean_match.lower() for skip in [
+                        'icon', 'favicon', 'logo', '16x16', '32x32', '64x64', 'sprite', 
+                        'placeholder', 'loading', 'blank', '1x1', 'pixel',
+                        'badge', 'button', 'arrow', 'star'
+                    ]):
+                        # Prefer larger or product-related images
+                        if any(good in clean_match.lower() for good in [
+                            'product', 'main', 'large', 'hero', 'feature', 'detail',
+                            'shopify', 'cdn', '_1024', '_800', '_600', 'x600', 'x800'
+                        ]):
+                            fake_img = soup.new_tag('img')
+                            fake_img['src'] = clean_match
+                            return fake_img
+                            
+                        # If no preferred patterns, take any reasonable image
+                        if len(clean_match) > 50:  # Longer URLs are usually more legitimate
+                            fake_img = soup.new_tag('img')
+                            fake_img['src'] = clean_match
+                            return fake_img
+                        
+    except Exception:
+        pass
+    return None
+
+def find_og_image_in_raw_html(soup):
+    """SUPER AGGRESSIVE: Direct regex search for og:image in raw HTML"""
+    try:
+        import re
+        html_text = str(soup)
+        
+        # Look for og:image meta tags directly in the HTML text
+        patterns = [
+            r'<meta[^>]*property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\'][^>]*>',
+            r'<meta[^>]*content=["\']([^"\']+)["\'][^>]*property=["\']og:image["\'][^>]*>',
+            r'property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\']',
+            r'content=["\']([^"\']+)["\'][^>]*property=["\']og:image["\']'
+        ]
+        
+        for pattern in patterns:
+            matches = re.findall(pattern, html_text, re.I)
+            if matches:
+                image_url = matches[0]
+                if image_url and len(image_url) > 10:
+                    # Create a fake img tag to return
+                    fake_img = soup.new_tag('img')
+                    fake_img['src'] = image_url
+                    return fake_img
+                    
+    except Exception:
+        pass
     return None
 
 def extract_from_json_ld(soup, field_type='brand'):
@@ -327,7 +532,7 @@ def scrape_url():
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Encoding': 'gzip, deflate',
             'DNT': '1',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
@@ -372,12 +577,50 @@ def scrape_url():
                 if attempt == max_retries - 1:
                     raise
         
-        # Parse HTML
-        soup = BeautifulSoup(response.content, 'html.parser')
+        # Check if this is a direct image URL
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp', '.svg', '.pdf']
+        # Handle URLs with query parameters by checking the path part
+        parsed_url = urlparse(url.lower())
+        url_path = parsed_url.path
         
-        # Extract brand and image
-        brand = extract_brand(soup, url)
-        image_url = extract_image_url(soup, url)
+        # Check both the full URL and the path without query parameters
+        is_direct_image = (
+            any(url_path.endswith(ext) for ext in image_extensions) or 
+            any(url.lower().endswith(ext) for ext in image_extensions) or
+            # Also check if the path contains image extensions before query params
+            any(ext in url_path for ext in image_extensions) or
+            # Super aggressive: check if URL contains 'photo' and image domain
+            ('photo' in url.lower() and any(domain in url.lower() for domain in ['images.', 'image.', 'img.', 'static.', 'cdn.']))
+        )
+        
+        if is_direct_image:
+            # This is a direct image URL
+            brand = extract_brand_from_url(url) or "Brand not found"
+            image_url = url
+        else:
+            # Parse HTML for regular web pages
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Extract brand and image
+            brand = extract_brand(soup, url)
+            image_url = extract_image_url(soup, url)
+        
+        # Debug: Count total images found on page
+        if is_direct_image:
+            total_images = 1
+            images_with_src = 1
+            images_with_data_src = 0
+            debug_message = "Direct image URL detected"
+        else:
+            total_images = len(soup.find_all('img'))
+            images_with_src = len(soup.find_all('img', src=True))
+            images_with_data_src = len(soup.find_all('img', {'data-src': True}))
+            total_image_sources = images_with_src + images_with_data_src
+            
+            if total_image_sources == 0:
+                debug_message = f'Found {total_image_sources}/{total_images} images - trying advanced detection (CSS, JavaScript, data attributes)'
+            else:
+                debug_message = f'Found {total_image_sources}/{total_images} images on page (including data-src)'
         
         # Save to data file
         data = load_data()
@@ -387,7 +630,12 @@ def scrape_url():
             'brand': brand,
             'imageURL': image_url,
             'timestamp': datetime.now().isoformat(),
-            'domain': parsed.netloc
+            'domain': parsed.netloc,
+            'debug_info': {
+                'total_images': total_images,
+                'images_with_src': images_with_src + images_with_data_src,
+                'extraction_method': 'direct_image' if is_direct_image else 'html_parsing'
+            }
         }
         data.append(new_entry)
         save_data(data)
@@ -397,7 +645,8 @@ def scrape_url():
             'brand': brand,
             'imageURL': image_url,
             'url': url,
-            'id': new_entry['id']
+            'id': new_entry['id'],
+            'debug_info': debug_message
         })
         
     except requests.exceptions.RequestException as e:

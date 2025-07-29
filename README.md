@@ -4,20 +4,20 @@ A web-based application that scrapes brand information from pet food product URL
 
 ## Features
 
-- **URL Scraping**: Enter any pet food product URL to extract brand and image information
+- **URL Scraping**: Enter any pet food product URL OR direct image URL to extract brand and image information
 - **Smart Brand Detection**: Uses multiple strategies to find brand names including:
   - Meta tags (product:brand, brand, itemprop)
   - JSON-LD structured data
   - CSS class patterns
   - Common pet food brand recognition
   - **URL-based extraction** - extracts brand names directly from URLs as fallback
-- **Smart Image Detection**: Extracts product images using:
-  - Open Graph and Twitter meta tags
+- **Smart Image Detection**: Finds the first reasonable image using:
+  - **Direct image URL support** - handles .jpg, .png, .gif, .webp, .pdf URLs directly
+  - Open Graph and Twitter meta tags (highest priority)
   - Structured data (JSON-LD)
-  - Product image CSS classes
-  - Product-related image attributes (alt text, src patterns)
-  - Intelligent size filtering to avoid icons/thumbnails
-  - Largest image analysis as fallback
+  - **First reasonable image on page** - skips only obvious logos/icons
+  - Automatic filtering of tiny images and common icon patterns
+  - Converts relative URLs to absolute URLs automatically
 - **Data Storage**: All scraped data is automatically saved with timestamps
 - **App Export**: Format and export data in app-ready JavaScript object format
 - **Data Management**: View, browse, and delete stored data entries
@@ -44,10 +44,12 @@ A web-based application that scrapes brand information from pet food product URL
 
 ### Scraping URLs
 1. Navigate to the **Scraper** tab
-2. Enter a pet food product URL in the input field
+2. Enter a pet food product URL OR direct image URL (.jpg, .png, .pdf, etc.) in the input field
 3. Click "Scrape Brand" or press Enter
-4. View the extracted brand information in the results
+4. View the extracted brand and image information in the results
 5. Use the "Clear" button to reset the search and start fresh
+
+**Tip**: You can right-click any image → "Open image in new tab" and use that direct image URL!
 
 ### Managing Data
 1. Switch to the **Stored Data** tab
@@ -125,6 +127,13 @@ The scraper uses multiple methods to find brand information:
 - The URL is accessible
 - Your internet connection is working
 - The target site isn't blocking automated requests
+
+**"Image not found"**: The scraper now includes multiple advanced detection methods:
+- Open Graph meta tags (`og:image`)
+- CSS background images
+- JavaScript and data attributes
+- Aggressive pattern matching
+- **Fixed**: Content compression issues that previously prevented image detection
 
 **403 Forbidden errors**: Some sites block automated requests:
 - The scraper tries multiple user agents and retry attempts

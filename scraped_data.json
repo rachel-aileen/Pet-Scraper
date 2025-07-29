@@ -1,42 +1,310 @@
 [
   {
     "id": 1,
-    "url": "https://instinctpetfood.com/cat/",
-    "brand": "Brand not found",
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
     "imageURL": "Image not found",
-    "timestamp": "2025-07-28T14:20:28.622118",
-    "domain": "instinctpetfood.com"
+    "timestamp": "2025-07-28T14:31:01.677515",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0
+    }
   },
   {
     "id": 2,
-    "url": "https://instinctpetfood.com/products/raw-meals-freeze-dried-kitten-chicken-cat-food/",
-    "brand": "Brand not found",
+    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
     "imageURL": "Image not found",
-    "timestamp": "2025-07-28T14:20:52.364321",
-    "domain": "instinctpetfood.com"
+    "timestamp": "2025-07-28T14:31:18.754969",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0
+    }
   },
   {
     "id": 3,
-    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
-    "brand": "Brand not found",
+    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
     "imageURL": "Image not found",
-    "timestamp": "2025-07-28T14:21:34.294251",
-    "domain": "instinctpetfood.com"
+    "timestamp": "2025-07-28T16:47:07.106433",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0
+    }
   },
   {
     "id": 4,
     "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
     "brand": "Instinct",
     "imageURL": "Image not found",
-    "timestamp": "2025-07-28T14:25:29.156128",
-    "domain": "instinctpetfood.com"
+    "timestamp": "2025-07-28T16:53:13.349640",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0
+    }
   },
   {
     "id": 5,
     "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
     "brand": "Applaws",
     "imageURL": "Image not found",
-    "timestamp": "2025-07-28T14:26:12.241768",
-    "domain": "applaws.com"
+    "timestamp": "2025-07-28T16:59:06.328797",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 6,
+    "url": "https://vivarawpets.com/products/beef-for-cats",
+    "brand": "Viva Raw",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T16:59:31.540493",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 7,
+    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:03:20.818819",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 8,
+    "url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "brand": "Brand not found",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:05:27.491861",
+    "domain": "images.unsplash.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 9,
+    "url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "brand": "Brand not found",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:07:46.369115",
+    "domain": "images.unsplash.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 10,
+    "url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "brand": "Brand not found",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:08:39.290841",
+    "domain": "images.unsplash.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 11,
+    "url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "brand": "Brand not found",
+    "imageURL": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "timestamp": "2025-07-28T17:09:11.483626",
+    "domain": "images.unsplash.com",
+    "debug_info": {
+      "total_images": 1,
+      "images_with_src": 1,
+      "extraction_method": "direct_image"
+    }
+  },
+  {
+    "id": 12,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:09:31.190248",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 13,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:10:22.664398",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 14,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:11:05.725773",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 15,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:12:19.707207",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 16,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:12:52.074683",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 17,
+    "url": "https://httpbin.org/html",
+    "brand": "Httpbin",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:13:01.946570",
+    "domain": "httpbin.org",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 18,
+    "url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "brand": "Brand not found",
+    "imageURL": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500",
+    "timestamp": "2025-07-28T17:13:09.282642",
+    "domain": "images.unsplash.com",
+    "debug_info": {
+      "total_images": 1,
+      "images_with_src": 1,
+      "extraction_method": "direct_image"
+    }
+  },
+  {
+    "id": 19,
+    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:14:06.396538",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 20,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "Image not found",
+    "timestamp": "2025-07-28T17:15:47.542138",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 21,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--dtTNFloX--/neuphhtg8e1iiygfudcd.jpg",
+    "timestamp": "2025-07-28T17:19:33.280486",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 23,
+      "images_with_src": 23,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 22,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--dtTNFloX--/neuphhtg8e1iiygfudcd.jpg",
+    "timestamp": "2025-07-28T17:20:04.870504",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 23,
+      "images_with_src": 23,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 23,
+    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/4041US-A_FOP_3000px.png",
+    "timestamp": "2025-07-28T17:20:30.479719",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 24,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--dtTNFloX--/neuphhtg8e1iiygfudcd.jpg",
+    "timestamp": "2025-07-28T17:21:00.374271",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 23,
+      "images_with_src": 23,
+      "extraction_method": "html_parsing"
+    }
   }
 ]
