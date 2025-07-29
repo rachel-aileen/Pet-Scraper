@@ -77,6 +77,7 @@ function showResult(data) {
     
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
+    document.getElementById('result-pet-type').textContent = data.petType || 'unknown';
     document.getElementById('result-image').textContent = data.imageURL;
     
     // Show debug info if brand or image not found, or if it's a direct image URL
@@ -159,6 +160,7 @@ function displayData(data) {
                     <div class="data-item-brand">Brand: ${escapeHtml(item.brand)}</div>
                     <button class="delete-btn" onclick="deleteDataItem(${item.id})">Delete</button>
                 </div>
+                <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
                 <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
@@ -232,11 +234,11 @@ async function exportForApp() {
             return;
         }
         
-        // Format data for app use - brand and imageURL fields
+        // Format data for app use - brand, petType, and imageURL fields
         const formattedData = data.map((item, index) => {
             const isLast = index === data.length - 1;
             const comma = isLast ? '' : ',';
-            return `{\n  brand: '${item.brand}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

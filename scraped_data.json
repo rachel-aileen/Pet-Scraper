@@ -306,5 +306,47 @@
       "images_with_src": 23,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 25,
+    "url": "https://instinctpetfood.com/products/raw-frozen-chicken-bites-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--dtTNFloX--/neuphhtg8e1iiygfudcd.jpg",
+    "petType": "cat",
+    "timestamp": "2025-07-28T17:41:55.927972",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 23,
+      "images_with_src": 23,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 26,
+    "url": "https://vivarawpets.com/products/turkey-for-cats",
+    "brand": "Viva Raw",
+    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Turkey_Cat_Bowl_1af27e0a-bcd6-4233-b393-e1f92da6f571.png?v=1719491285&width=2048",
+    "petType": "cat",
+    "timestamp": "2025-07-28T17:47:33.978531",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 23,
+      "images_with_src": 23,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 27,
+    "url": "https://httpbin.org/html",
+    "brand": "Httpbin",
+    "imageURL": "Image not found",
+    "petType": "unknown",
+    "timestamp": "2025-07-28T17:47:56.582056",
+    "domain": "httpbin.org",
+    "debug_info": {
+      "total_images": 0,
+      "images_with_src": 0,
+      "extraction_method": "html_parsing"
+    }
   }
 ]

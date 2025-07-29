@@ -137,6 +137,108 @@ def extract_brand_from_url(url):
     
     return None
 
+def extract_pet_type(soup, url):
+    """Extract pet type (cat or dog) from URL and page content"""
+    try:
+        # Convert to lowercase for easier matching
+        url_lower = url.lower()
+        
+        # Define keywords for each pet type
+        cat_keywords = ['cat', 'feline', 'kitten', 'kitty']
+        dog_keywords = ['dog', 'canine', 'puppy', 'pup']
+        
+        # Check URL path first (most reliable)
+        for keyword in cat_keywords:
+            if keyword in url_lower:
+                return 'cat'
+        
+        for keyword in dog_keywords:
+            if keyword in url_lower:
+                return 'dog'
+        
+        # Check page title
+        title_tag = soup.find('title')
+        if title_tag:
+            title_text = title_tag.get_text('').lower()
+            for keyword in cat_keywords:
+                if keyword in title_text:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in title_text:
+                    return 'dog'
+        
+        # Check meta description
+        meta_desc = soup.find('meta', attrs={'name': 'description'})
+        if meta_desc:
+            desc_content = meta_desc.get('content', '').lower()
+            for keyword in cat_keywords:
+                if keyword in desc_content:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in desc_content:
+                    return 'dog'
+        
+        # Check Open Graph title and description
+        og_title = soup.find('meta', {'property': 'og:title'})
+        if og_title:
+            og_title_content = og_title.get('content', '').lower()
+            for keyword in cat_keywords:
+                if keyword in og_title_content:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in og_title_content:
+                    return 'dog'
+        
+        og_desc = soup.find('meta', {'property': 'og:description'})
+        if og_desc:
+            og_desc_content = og_desc.get('content', '').lower()
+            for keyword in cat_keywords:
+                if keyword in og_desc_content:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in og_desc_content:
+                    return 'dog'
+        
+        # Check first few headings
+        headings = soup.find_all(['h1', 'h2', 'h3'], limit=5)
+        for heading in headings:
+            heading_text = heading.get_text('').lower()
+            for keyword in cat_keywords:
+                if keyword in heading_text:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in heading_text:
+                    return 'dog'
+        
+        # Default fallback - could not determine
+        return 'unknown'
+        
+    except Exception:
+        return 'unknown'
+
+def extract_pet_type_from_url(url):
+    """Extract pet type from URL only (for direct image URLs)"""
+    try:
+        url_lower = url.lower()
+        
+        # Define keywords for each pet type
+        cat_keywords = ['cat', 'feline', 'kitten', 'kitty']
+        dog_keywords = ['dog', 'canine', 'puppy', 'pup']
+        
+        # Check URL for keywords
+        for keyword in cat_keywords:
+            if keyword in url_lower:
+                return 'cat'
+        
+        for keyword in dog_keywords:
+            if keyword in url_lower:
+                return 'dog'
+        
+        return 'unknown'
+        
+    except Exception:
+        return 'unknown'
+
 def find_best_og_image(soup):
     """Find the best Open Graph image from potentially multiple og:image tags"""
     # Look for all og:image meta tags
@@ -597,13 +699,16 @@ def scrape_url():
             # This is a direct image URL
             brand = extract_brand_from_url(url) or "Brand not found"
             image_url = url
+            # For direct images, only extract pet type from URL
+            pet_type = extract_pet_type_from_url(url)
         else:
             # Parse HTML for regular web pages
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Extract brand and image
+            # Extract brand, image, and pet type
             brand = extract_brand(soup, url)
             image_url = extract_image_url(soup, url)
+            pet_type = extract_pet_type(soup, url)
         
         # Debug: Count total images found on page
         if is_direct_image:
@@ -629,6 +734,7 @@ def scrape_url():
             'url': url,
             'brand': brand,
             'imageURL': image_url,
+            'petType': pet_type,
             'timestamp': datetime.now().isoformat(),
             'domain': parsed.netloc,
             'debug_info': {
@@ -644,6 +750,7 @@ def scrape_url():
             'success': True,
             'brand': brand,
             'imageURL': image_url,
+            'petType': pet_type,
             'url': url,
             'id': new_entry['id'],
             'debug_info': debug_message

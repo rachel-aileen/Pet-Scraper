@@ -11,6 +11,11 @@ A web-based application that scrapes brand information from pet food product URL
   - CSS class patterns
   - Common pet food brand recognition
   - **URL-based extraction** - extracts brand names directly from URLs as fallback
+- **Pet Type Detection**: Automatically determines whether products are for cats or dogs based on:
+  - URL analysis (keywords like 'cat', 'dog', 'canine', 'feline')
+  - Page title and meta descriptions
+  - Open Graph metadata
+  - Content headings analysis
 - **Smart Image Detection**: Finds the first reasonable image using:
   - **Direct image URL support** - handles .jpg, .png, .gif, .webp, .pdf URLs directly
   - Open Graph and Twitter meta tags (highest priority)
@@ -63,11 +68,13 @@ The "Export for App" feature formats your scraped data perfectly for use in appl
 ```javascript
 {
   brand: 'Viva Raw',
+  petType: 'dog',
   imageURL: 'https://example.com/product-image.jpg',
 },
 
 {
   brand: 'Hill\'s Science Diet',
+  petType: 'cat',
   imageURL: 'https://example.com/hills-product.jpg',
 }
 ```

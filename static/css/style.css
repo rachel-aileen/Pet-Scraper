@@ -311,6 +311,13 @@ header p {
     color: #333;
 }
 
+.data-item-pet-type {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 5px;
+}
+
 .data-item-url, .data-item-image {
     font-size: 0.9rem;
     color: #666;
