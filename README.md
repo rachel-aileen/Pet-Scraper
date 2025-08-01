@@ -16,6 +16,10 @@ A web-based application that scrapes brand information from pet food product URL
   - Page title and meta descriptions
   - Open Graph metadata
   - Content headings analysis
+- **Food Type Classification**: Automatically classifies food as wet, dry, raw, or treats based on:
+  - URL keywords ('wet', 'canned', 'dry', 'kibble', 'raw', 'frozen', 'treat', 'snack')
+  - Page content analysis
+  - Product descriptions and titles
 - **Smart Image Detection**: Finds the first reasonable image using:
   - **Direct image URL support** - handles .jpg, .png, .gif, .webp, .pdf URLs directly
   - Open Graph and Twitter meta tags (highest priority)
@@ -69,12 +73,14 @@ The "Export for App" feature formats your scraped data perfectly for use in appl
 {
   brand: 'Viva Raw',
   petType: 'dog',
+  foodType: 'raw',
   imageURL: 'https://example.com/product-image.jpg',
 },
 
 {
   brand: 'Hill\'s Science Diet',
   petType: 'cat',
+  foodType: 'dry',
   imageURL: 'https://example.com/hills-product.jpg',
 }
 ```

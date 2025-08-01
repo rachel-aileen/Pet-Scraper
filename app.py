@@ -216,6 +216,158 @@ def extract_pet_type(soup, url):
     except Exception:
         return 'unknown'
 
+def extract_food_type(soup, url):
+    """Extract food type (wet, dry, raw, treats) from URL and page content"""
+    try:
+        # Convert to lowercase for easier matching
+        url_lower = url.lower()
+        
+        # Define keywords for each food type
+        wet_keywords = ['wet', 'canned', 'pate', 'gravy', 'sauce', 'stew', 'chunks', 'shreds', 'morsels']
+        dry_keywords = ['dry', 'kibble', 'pellets', 'biscuits', 'crunch', 'formula']
+        raw_keywords = ['raw', 'freeze-dried', 'frozen', 'fresh', 'refrigerated']
+        treat_keywords = ['treat', 'snack', 'chew', 'jerky', 'dental', 'training', 'reward', 'biscuit']
+        
+        # Check URL path first (most reliable)
+        for keyword in treat_keywords:
+            if keyword in url_lower:
+                return 'treats'
+        
+        for keyword in raw_keywords:
+            if keyword in url_lower:
+                return 'raw'
+        
+        for keyword in wet_keywords:
+            if keyword in url_lower:
+                return 'wet'
+        
+        for keyword in dry_keywords:
+            if keyword in url_lower:
+                return 'dry'
+        
+        # Check page title
+        title_tag = soup.find('title')
+        if title_tag:
+            title_text = title_tag.get_text('').lower()
+            for keyword in treat_keywords:
+                if keyword in title_text:
+                    return 'treats'
+            for keyword in raw_keywords:
+                if keyword in title_text:
+                    return 'raw'
+            for keyword in wet_keywords:
+                if keyword in title_text:
+                    return 'wet'
+            for keyword in dry_keywords:
+                if keyword in title_text:
+                    return 'dry'
+        
+        # Check meta description
+        meta_desc = soup.find('meta', attrs={'name': 'description'})
+        if meta_desc:
+            desc_content = meta_desc.get('content', '').lower()
+            for keyword in treat_keywords:
+                if keyword in desc_content:
+                    return 'treats'
+            for keyword in raw_keywords:
+                if keyword in desc_content:
+                    return 'raw'
+            for keyword in wet_keywords:
+                if keyword in desc_content:
+                    return 'wet'
+            for keyword in dry_keywords:
+                if keyword in desc_content:
+                    return 'dry'
+        
+        # Check Open Graph title and description
+        og_title = soup.find('meta', {'property': 'og:title'})
+        if og_title:
+            og_title_content = og_title.get('content', '').lower()
+            for keyword in treat_keywords:
+                if keyword in og_title_content:
+                    return 'treats'
+            for keyword in raw_keywords:
+                if keyword in og_title_content:
+                    return 'raw'
+            for keyword in wet_keywords:
+                if keyword in og_title_content:
+                    return 'wet'
+            for keyword in dry_keywords:
+                if keyword in og_title_content:
+                    return 'dry'
+        
+        og_desc = soup.find('meta', {'property': 'og:description'})
+        if og_desc:
+            og_desc_content = og_desc.get('content', '').lower()
+            for keyword in treat_keywords:
+                if keyword in og_desc_content:
+                    return 'treats'
+            for keyword in raw_keywords:
+                if keyword in og_desc_content:
+                    return 'raw'
+            for keyword in wet_keywords:
+                if keyword in og_desc_content:
+                    return 'wet'
+            for keyword in dry_keywords:
+                if keyword in og_desc_content:
+                    return 'dry'
+        
+        # Check first few headings
+        headings = soup.find_all(['h1', 'h2', 'h3'], limit=5)
+        for heading in headings:
+            heading_text = heading.get_text('').lower()
+            for keyword in treat_keywords:
+                if keyword in heading_text:
+                    return 'treats'
+            for keyword in raw_keywords:
+                if keyword in heading_text:
+                    return 'raw'
+            for keyword in wet_keywords:
+                if keyword in heading_text:
+                    return 'wet'
+            for keyword in dry_keywords:
+                if keyword in heading_text:
+                    return 'dry'
+        
+        # Default fallback - could not determine
+        return 'unknown'
+        
+    except Exception:
+        return 'unknown'
+
+def extract_food_type_from_url(url):
+    """Extract food type from URL only (for direct image URLs)"""
+    try:
+        url_lower = url.lower()
+        
+        # Define keywords for each food type
+        wet_keywords = ['wet', 'canned', 'pate', 'gravy', 'sauce', 'stew', 'chunks', 'shreds', 'morsels']
+        dry_keywords = ['dry', 'kibble', 'pellets', 'biscuits', 'crunch', 'formula']
+        raw_keywords = ['raw', 'freeze-dried', 'frozen', 'fresh', 'refrigerated']
+        treat_keywords = ['treat', 'snack', 'chew', 'jerky', 'dental', 'training', 'reward', 'biscuit']
+        
+        # Check URL for keywords (priority order: treats, raw, wet, dry)
+        for keyword in treat_keywords:
+            if keyword in url_lower:
+                return 'treats'
+        
+        for keyword in raw_keywords:
+            if keyword in url_lower:
+                return 'raw'
+        
+        for keyword in wet_keywords:
+            if keyword in url_lower:
+                return 'wet'
+        
+        for keyword in dry_keywords:
+            if keyword in url_lower:
+                return 'dry'
+        
+        return 'unknown'
+        
+    except Exception:
+        return 'unknown'
+
 def extract_pet_type_from_url(url):
     """Extract pet type from URL only (for direct image URLs)"""
     try:
@@ -699,16 +851,18 @@ def scrape_url():
             # This is a direct image URL
             brand = extract_brand_from_url(url) or "Brand not found"
             image_url = url
-            # For direct images, only extract pet type from URL
+            # For direct images, only extract pet type and food type from URL
             pet_type = extract_pet_type_from_url(url)
+            food_type = extract_food_type_from_url(url)
         else:
             # Parse HTML for regular web pages
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Extract brand, image, and pet type
+            # Extract brand, image, pet type, and food type
             brand = extract_brand(soup, url)
             image_url = extract_image_url(soup, url)
             pet_type = extract_pet_type(soup, url)
+            food_type = extract_food_type(soup, url)
         
         # Debug: Count total images found on page
         if is_direct_image:
@@ -735,6 +889,7 @@ def scrape_url():
             'brand': brand,
             'imageURL': image_url,
             'petType': pet_type,
+            'foodType': food_type,
             'timestamp': datetime.now().isoformat(),
             'domain': parsed.netloc,
             'debug_info': {
@@ -751,6 +906,7 @@ def scrape_url():
             'brand': brand,
             'imageURL': image_url,
             'petType': pet_type,
+            'foodType': food_type,
             'url': url,
             'id': new_entry['id'],
             'debug_info': debug_message

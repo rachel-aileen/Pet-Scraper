@@ -46,6 +46,9 @@
                             <strong>Pet Type:</strong> <span id="result-pet-type"></span>
                         </div>
                         <div class="result-item">
+                            <strong>Food Type:</strong> <span id="result-food-type"></span>
+                        </div>
+                        <div class="result-item">
                             <strong>Image URL:</strong> <span id="result-image" class="image-url"></span>
                         </div>
                         <div class="result-item">
@@ -72,6 +75,18 @@
                     <button onclick="loadStoredData()" class="refresh-btn">Refresh Data</button>
                     <button onclick="exportForApp()" class="export-btn">Export for App</button>
                     <span id="data-count" class="data-count">0 items</span>
+                </div>
+                
+                <div class="bulk-controls hidden" id="bulk-controls">
+                    <div class="bulk-selection">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="select-all" onchange="toggleSelectAll()">
+                            <span class="checkmark"></span>
+                            Select All
+                        </label>
+                        <span class="selected-count" id="selected-count">0 selected</span>
+                    </div>
+                    <button onclick="deleteSelected()" class="delete-selected-btn" id="delete-selected-btn" disabled>Delete Selected</button>
                 </div>
                 
                 <div id="data-loading" class="loading hidden">

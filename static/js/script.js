@@ -78,6 +78,7 @@ function showResult(data) {
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
     document.getElementById('result-pet-type').textContent = data.petType || 'unknown';
+    document.getElementById('result-food-type').textContent = data.foodType || 'unknown';
     document.getElementById('result-image').textContent = data.imageURL;
     
     // Show debug info if brand or image not found, or if it's a direct image URL
@@ -157,10 +158,17 @@ function displayData(data) {
         return `
             <div class="data-item">
                 <div class="data-item-header">
-                    <div class="data-item-brand">Brand: ${escapeHtml(item.brand)}</div>
+                    <div class="data-item-left">
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="item-checkbox" data-id="${item.id}" onchange="updateSelectionCount()">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="data-item-brand">Brand: ${escapeHtml(item.brand)}</div>
+                    </div>
                     <button class="delete-btn" onclick="deleteDataItem(${item.id})">Delete</button>
                 </div>
                 <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
+                <div class="data-item-food-type">Food Type: ${escapeHtml(item.foodType || 'unknown')}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
                 <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
@@ -172,6 +180,17 @@ function displayData(data) {
     }).join('');
     
     dataList.innerHTML = html;
+    
+    // Show bulk controls if there's data
+    const bulkControls = document.getElementById('bulk-controls');
+    if (data.length > 0) {
+        bulkControls.classList.remove('hidden');
+    } else {
+        bulkControls.classList.add('hidden');
+    }
+    
+    // Reset bulk selection state
+    updateSelectionCount();
 }
 
 async function deleteDataItem(itemId) {
@@ -234,11 +253,11 @@ async function exportForApp() {
             return;
         }
         
-        // Format data for app use - brand, petType, and imageURL fields
+        // Format data for app use - brand, petType, foodType, and imageURL fields
         const formattedData = data.map((item, index) => {
             const isLast = index === data.length - 1;
             const comma = isLast ? '' : ',';
-            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: '${item.foodType || 'unknown'}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal
@@ -304,4 +323,77 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load data on page load
     loadStoredData();
-}); 
+});
+
+// Bulk selection functions
+function toggleSelectAll() {
+    const selectAllCheckbox = document.getElementById('select-all');
+    const itemCheckboxes = document.querySelectorAll('.item-checkbox');
+    
+    itemCheckboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+    });
+    
+    updateSelectionCount();
+}
+
+function updateSelectionCount() {
+    const itemCheckboxes = document.querySelectorAll('.item-checkbox');
+    const selectedCheckboxes = document.querySelectorAll('.item-checkbox:checked');
+    const selectAllCheckbox = document.getElementById('select-all');
+    const selectedCountSpan = document.getElementById('selected-count');
+    const deleteSelectedBtn = document.getElementById('delete-selected-btn');
+    
+    const selectedCount = selectedCheckboxes.length;
+    const totalCount = itemCheckboxes.length;
+    
+    // Update selected count display
+    selectedCountSpan.textContent = `${selectedCount} selected`;
+    
+    // Update "Select All" checkbox state
+    if (selectedCount === 0) {
+        selectAllCheckbox.indeterminate = false;
+        selectAllCheckbox.checked = false;
+    } else if (selectedCount === totalCount) {
+        selectAllCheckbox.indeterminate = false;
+        selectAllCheckbox.checked = true;
+    } else {
+        selectAllCheckbox.indeterminate = true;
+    }
+    
+    // Enable/disable delete button
+    deleteSelectedBtn.disabled = selectedCount === 0;
+}
+
+async function deleteSelected() {
+    const selectedCheckboxes = document.querySelectorAll('.item-checkbox:checked');
+    const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.dataset.id));
+    
+    if (selectedIds.length === 0) {
+        alert('No items selected for deletion.');
+        return;
+    }
+    
+    const confirmMessage = `Are you sure you want to delete ${selectedIds.length} selected item${selectedIds.length > 1 ? 's' : ''}? This action cannot be undone.`;
+    
+    if (!confirm(confirmMessage)) {
+        return;
+    }
+    
+    try {
+        // Delete each selected item
+        const deletePromises = selectedIds.map(id => 
+            fetch(`/data/${id}`, { method: 'DELETE' })
+        );
+        
+        await Promise.all(deletePromises);
+        
+        // Reload the data to show updated list
+        await loadStoredData();
+        
+        alert(`Successfully deleted ${selectedIds.length} item${selectedIds.length > 1 ? 's' : ''}.`);
+        
+    } catch (error) {
+        alert('Error deleting selected items: ' + error.message);
+    }
+} 
