@@ -11,6 +11,7 @@ A web-based application that scrapes brand information from pet food product URL
   - CSS class patterns
   - Common pet food brand recognition
   - **URL-based extraction** - extracts brand names directly from URLs as fallback
+  - **Brand exceptions** - automatically formats "Friskies" as "Purina Friskies"
 - **Pet Type Detection**: Automatically determines whether products are for cats or dogs based on:
   - URL analysis (keywords like 'cat', 'dog', 'canine', 'feline')
   - Page title and meta descriptions

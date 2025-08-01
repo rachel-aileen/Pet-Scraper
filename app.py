@@ -69,7 +69,25 @@ def extract_brand(soup, url):
                     brand = str(result)
                 
                 if brand and brand.strip() and brand.strip().lower() not in ['brand not found', 'not found']:
-                    return brand.strip()
+                    brand = brand.strip()
+                    # Handle Purina Friskies brand exception
+                    brand_lower = brand.lower()
+                    url_lower = url.lower()
+                    
+                    # Case 1: Brand is just "Friskies" → make it "Purina Friskies"
+                    if "friskies" in brand_lower and "purina" not in brand_lower:
+                        # Find Friskies with original case
+                        friskies_match = re.search(r'friskies', brand, re.IGNORECASE)
+                        if friskies_match:
+                            friskies_text = friskies_match.group()
+                            # Replace with Purina prefix
+                            brand = re.sub(r'\bfriskies\b', f'Purina {friskies_text}', brand, flags=re.IGNORECASE)
+                    
+                    # Case 2: Brand is "Purina" but URL contains "friskies" → make it "Purina Friskies"
+                    elif brand_lower == "purina" and "friskies" in url_lower:
+                        brand = "Purina Friskies"
+                    
+                    return brand
         except Exception:
             continue
     
@@ -83,7 +101,7 @@ def extract_brand_from_url(url):
             'purina', 'hills', 'hill', 'royal-canin', 'royal canin', 'blue-buffalo', 'blue buffalo',
             'wellness', 'orijen', 'acana', 'merrick', 'taste-of-the-wild', 'taste of the wild',
             'instinct', 'nutro', 'iams', 'pedigree', 'science-diet', 'science diet',
-            'pro-plan', 'pro plan', 'beneful', 'fancy-feast', 'fancy feast', 'friskies',
+            'pro-plan', 'pro plan', 'beneful', 'fancy-feast', 'fancy feast',
             'whiskas', 'temptations', 'greenies', 'dentastix', 'cesar', 'sheba',
             'viva-raw', 'viva raw', 'stella-chewy', 'stella chewy', 'ziwi-peak', 'ziwi peak',
             'fromm', 'canidae', 'diamond', 'kirkland', 'costco', 'rachael-ray', 'rachael ray',
@@ -94,12 +112,20 @@ def extract_brand_from_url(url):
         url_lower = url.lower()
         url_parts = url_lower.replace('https://', '').replace('http://', '').replace('www.', '')
         
+        # Special check for Friskies first (since it's always Purina Friskies)
+        if 'friskies' in url_parts:
+            return "Purina Friskies"
+        
         # Look for brand in domain name
         for brand in pet_brands:
             brand_clean = brand.replace('-', '').replace(' ', '')
             if brand_clean in url_parts.replace('-', '').replace('/', '').replace('.', ''):
                 # Format brand name properly
-                return brand.replace('-', ' ').title()
+                brand_formatted = brand.replace('-', ' ').title()
+                # Handle Purina Friskies brand exception
+                if "friskies" in brand_formatted.lower() and "purina" not in brand_formatted.lower():
+                    brand_formatted = f"Purina {brand_formatted}"
+                return brand_formatted
         
         # Extract potential brand from URL path segments
         path_segments = url_parts.split('/')
@@ -109,7 +135,11 @@ def extract_brand_from_url(url):
             # Look for brand patterns in segments
             for brand in pet_brands:
                 if brand.replace('-', ' ').lower() in segment.lower():
-                    return brand.replace('-', ' ').title()
+                    brand_formatted = brand.replace('-', ' ').title()
+                    # Handle Purina Friskies brand exception
+                    if "friskies" in brand_formatted.lower() and "purina" not in brand_formatted.lower():
+                        brand_formatted = f"Purina {brand_formatted}"
+                    return brand_formatted
             
             # Look for common brand patterns in segment names
             if any(keyword in segment for keyword in ['brand', 'manufacturer', 'company']):
@@ -125,7 +155,11 @@ def extract_brand_from_url(url):
             filename = url_parts.split('/')[-1].replace('%20', ' ')
             for brand in pet_brands:
                 if brand.replace('-', ' ').lower() in filename.lower():
-                    return brand.replace('-', ' ').title()
+                    brand_formatted = brand.replace('-', ' ').title()
+                    # Handle Purina Friskies brand exception
+                    if "friskies" in brand_formatted.lower() and "purina" not in brand_formatted.lower():
+                        brand_formatted = f"Purina {brand_formatted}"
+                    return brand_formatted
         
         # Extract from domain name
         domain = url_parts.split('/')[0].split('.')[0]
