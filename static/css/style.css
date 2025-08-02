@@ -319,10 +319,15 @@ header p {
 }
 
 .data-item-food-type {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #666;
-    margin-bottom: 5px;
+    color: #e67e22;
+    font-size: 0.85em;
+    margin-left: 10px;
+}
+
+.data-item-life-stage {
+    color: #9b59b6;
+    font-size: 0.85em;
+    margin-left: 10px;
 }
 
 .data-item-url, .data-item-image {

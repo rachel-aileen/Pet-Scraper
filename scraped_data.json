@@ -1,226 +1,129 @@
 [
   {
     "id": 1,
-    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
+    "url": "https://applaws.com/us/products/natural-wet-kitten-food-tuna-fillet-salmon-in-broth/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1058US-A_FOP_3000px.png",
     "petType": "cat",
     "foodType": "wet",
-    "timestamp": "2025-08-01T10:02:03.146823",
-    "domain": "www.purina.com",
+    "lifeStage": "kitten",
+    "timestamp": "2025-08-01T14:05:27.503898",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 127,
-      "images_with_src": 127,
+      "total_images": 26,
+      "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 2,
-    "url": "https://httpbin.org/html",
-    "brand": "Httpbin",
-    "imageURL": "Image not found",
-    "petType": "unknown",
-    "foodType": "unknown",
-    "timestamp": "2025-08-01T10:06:33.338444",
-    "domain": "httpbin.org",
+    "url": "https://vivarawpets.com/products/beef-for-cats",
+    "brand": "Viva Raw",
+    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Beef_Cat_Bowl_176b5067-d71f-4643-ac4e-5853f22e3cfb.png",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "timestamp": "2025-08-01T14:09:36.735902",
+    "domain": "vivarawpets.com",
     "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
+      "total_images": 23,
+      "images_with_src": 23,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 3,
-    "url": "https://httpbin.org/anything/friskies-wet-food",
-    "brand": "Purina Friskies",
-    "imageURL": "Image not found",
-    "petType": "unknown",
-    "foodType": "wet",
-    "timestamp": "2025-08-01T10:07:14.850013",
-    "domain": "httpbin.org",
+    "url": "https://vivarawpets.com/products/beef-for-cats",
+    "brand": "Viva Raw",
+    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Beef_Cat_Bowl_176b5067-d71f-4643-ac4e-5853f22e3cfb.png",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "timestamp": "2025-08-01T18:14:29.000883",
+    "domain": "vivarawpets.com",
     "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
+      "total_images": 23,
+      "images_with_src": 23,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 4,
-    "url": "https://httpbin.org/anything/purina-friskies-dry-food",
-    "brand": "Purina",
-    "imageURL": "Image not found",
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
     "petType": "unknown",
-    "foodType": "dry",
-    "timestamp": "2025-08-01T10:07:33.483559",
-    "domain": "httpbin.org",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "timestamp": "2025-08-01T18:15:04.450743",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
+      "total_images": 27,
+      "images_with_src": 31,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 5,
-    "url": "https://httpbin.org/json",
-    "brand": "Httpbin",
-    "imageURL": "Image not found",
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
     "petType": "unknown",
-    "foodType": "unknown",
-    "timestamp": "2025-08-01T10:08:25.167073",
-    "domain": "httpbin.org",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "timestamp": "2025-08-01T18:15:34.320818",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
+      "total_images": 27,
+      "images_with_src": 31,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 6,
-    "url": "https://httpbin.org/image/jpeg?filename=friskies-product.jpg",
-    "brand": "Friskies",
-    "imageURL": "https://httpbin.org/image/jpeg?filename=friskies-product.jpg",
-    "petType": "unknown",
-    "foodType": "unknown",
-    "timestamp": "2025-08-01T10:08:58.895360",
-    "domain": "httpbin.org",
+    "url": "https://vivarawpets.com/products/beef-for-cats",
+    "brand": "Viva Raw",
+    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Beef_Cat_Bowl_176b5067-d71f-4643-ac4e-5853f22e3cfb.png",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "all",
+    "timestamp": "2025-08-01T18:18:24.232286",
+    "domain": "vivarawpets.com",
     "debug_info": {
-      "total_images": 1,
-      "images_with_src": 1,
-      "extraction_method": "direct_image"
+      "total_images": 23,
+      "images_with_src": 23,
+      "extraction_method": "html_parsing"
     }
   },
   {
     "id": 7,
-    "url": "https://httpbin.org/image/jpeg?filename=friskies-product.jpg",
+    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
     "brand": "Purina Friskies",
-    "imageURL": "https://httpbin.org/image/jpeg?filename=friskies-product.jpg",
-    "petType": "unknown",
-    "foodType": "unknown",
-    "timestamp": "2025-08-01T10:10:09.731164",
-    "domain": "httpbin.org",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "kitten",
+    "timestamp": "2025-08-01T18:19:00.942599",
+    "domain": "www.purina.com",
     "debug_info": {
-      "total_images": 1,
-      "images_with_src": 1,
-      "extraction_method": "direct_image"
+      "total_images": 127,
+      "images_with_src": 127,
+      "extraction_method": "html_parsing"
     }
   },
   {
     "id": 8,
-    "url": "https://httpbin.org/anything/friskies-treats",
-    "brand": "Purina Friskies",
-    "imageURL": "Image not found",
-    "petType": "unknown",
-    "foodType": "treats",
-    "timestamp": "2025-08-01T10:10:41.570548",
-    "domain": "httpbin.org",
-    "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 9,
-    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
     "petType": "cat",
     "foodType": "wet",
-    "timestamp": "2025-08-01T10:11:43.290859",
-    "domain": "www.purina.com",
+    "lifeStage": "kitten",
+    "timestamp": "2025-08-01T18:19:26.787991",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 127,
-      "images_with_src": 127,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 10,
-    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
-    "petType": "cat",
-    "foodType": "wet",
-    "timestamp": "2025-08-01T10:13:32.811122",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 127,
-      "images_with_src": 127,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 11,
-    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
-    "petType": "cat",
-    "foodType": "wet",
-    "timestamp": "2025-08-01T10:16:33.583140",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 127,
-      "images_with_src": 127,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 12,
-    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
-    "petType": "cat",
-    "foodType": "wet",
-    "timestamp": "2025-08-01T10:17:17.906696",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 127,
-      "images_with_src": 127,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 13,
-    "url": "https://httpbin.org/anything/friskies-treats",
-    "brand": "Purina Friskies",
-    "imageURL": "Image not found",
-    "petType": "unknown",
-    "foodType": "treats",
-    "timestamp": "2025-08-01T10:17:30.365086",
-    "domain": "httpbin.org",
-    "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 14,
-    "url": "https://httpbin.org/anything/purina-friskies-product",
-    "brand": "Purina Friskies",
-    "imageURL": "Image not found",
-    "petType": "unknown",
-    "foodType": "unknown",
-    "timestamp": "2025-08-01T10:17:43.276135",
-    "domain": "httpbin.org",
-    "debug_info": {
-      "total_images": 0,
-      "images_with_src": 0,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 15,
-    "url": "https://www.purina.com/cats/shop/friskies-gravy-sensations-ocean-whitefish-tuna-in-gravy-wet-cat-food",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/friskies-gravy-sensations-ocean-whitefish-tuna-gravy.jpg?h=c8ae330f&itok=axDNshq2",
-    "petType": "cat",
-    "foodType": "wet",
-    "timestamp": "2025-08-01T10:18:12.236356",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 127,
-      "images_with_src": 127,
+      "total_images": 27,
+      "images_with_src": 31,
       "extraction_method": "html_parsing"
     }
   }

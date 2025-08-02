@@ -71,41 +71,25 @@ async function scrapeUrl() {
 }
 
 function showResult(data) {
-    const result = document.getElementById('result');
-    const error = document.getElementById('error');
-    const debugInfo = document.getElementById('debug-info');
+    hideLoading();
+    hideError();
     
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
-    document.getElementById('result-pet-type').textContent = data.petType || 'unknown';
-    document.getElementById('result-food-type').textContent = data.foodType || 'unknown';
+    document.getElementById('result-pet-type').textContent = data.petType;
+    document.getElementById('result-food-type').textContent = data.foodType;
+    document.getElementById('result-life-stage').textContent = data.lifeStage;
     document.getElementById('result-image').textContent = data.imageURL;
     
-    // Show debug info if brand or image not found, or if it's a direct image URL
-    const showDebug = data.brand === 'Brand not found' || data.imageURL === 'Image not found' || (data.debug_info && data.debug_info.includes('Direct image'));
-    
-    if (showDebug) {
-        let debugText = [];
-        if (data.brand === 'Brand not found') {
-            debugText.push('💡 Brand: Try a different product page or check if brand name is visible in the URL');
-        }
-        if (data.imageURL === 'Image not found') {
-            debugText.push('🖼️ Image: Try right-clicking an image on this site → "Open image in new tab" → use that direct image URL');
-        }
-        
-        // Add debug info about images found
-        if (data.debug_info) {
-            debugText.push(`📊 ${data.debug_info}`);
-        }
-        
-        document.getElementById('debug-details').textContent = debugText.join(' | ');
-        debugInfo.style.display = 'block';
-    } else {
-        debugInfo.style.display = 'none';
+    // Show debug info if available
+    if (data.debug_info) {
+        const debugDiv = document.getElementById('debug-info');
+        const debugDetails = document.getElementById('debug-details');
+        debugDetails.textContent = data.debug_info;
+        debugDiv.style.display = 'block';
     }
     
-    result.classList.remove('hidden');
-    error.classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
 }
 
 function showError(message) {
@@ -116,6 +100,20 @@ function showError(message) {
     
     error.classList.remove('hidden');
     result.classList.add('hidden');
+}
+
+function hideLoading() {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.classList.add('hidden');
+    }
+}
+
+function hideError() {
+    const error = document.getElementById('error');
+    if (error) {
+        error.classList.add('hidden');
+    }
 }
 
 // Data management functionality
@@ -169,6 +167,7 @@ function displayData(data) {
                 </div>
                 <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
                 <div class="data-item-food-type">Food Type: ${escapeHtml(item.foodType || 'unknown')}</div>
+                <div class="data-item-life-stage">Life Stage: ${escapeHtml(item.lifeStage || 'adult')}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
                 <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
@@ -223,23 +222,22 @@ function escapeHtml(text) {
 
 // Clear search functionality
 function clearSearch() {
-    const urlInput = document.getElementById('url-input');
-    const result = document.getElementById('result');
-    const error = document.getElementById('error');
-    const loading = document.getElementById('loading');
-    const debugInfo = document.getElementById('debug-info');
+    // Clear input
+    document.getElementById('url-input').value = '';
     
-    // Clear input field
-    urlInput.value = '';
+    // Hide result, error, loading, and debug info
+    document.getElementById('result').classList.add('hidden');
+    document.getElementById('error').classList.add('hidden');
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('debug-info').style.display = 'none';
     
-    // Hide all result containers
-    result.classList.add('hidden');
-    error.classList.add('hidden');
-    loading.classList.add('hidden');
-    debugInfo.style.display = 'none';
-    
-    // Focus back on input for better UX
-    urlInput.focus();
+    // Clear all result fields
+    document.getElementById('result-url').textContent = '';
+    document.getElementById('result-brand').textContent = '';
+    document.getElementById('result-pet-type').textContent = '';
+    document.getElementById('result-food-type').textContent = '';
+    document.getElementById('result-life-stage').textContent = '';
+    document.getElementById('result-image').textContent = '';
 }
 
 // Export functionality
@@ -257,7 +255,7 @@ async function exportForApp() {
         const formattedData = data.map((item, index) => {
             const isLast = index === data.length - 1;
             const comma = isLast ? '' : ',';
-            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: '${item.foodType || 'unknown'}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: '${item.foodType || 'unknown'}',\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

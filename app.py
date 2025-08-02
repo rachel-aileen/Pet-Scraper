@@ -177,9 +177,9 @@ def extract_pet_type(soup, url):
         # Convert to lowercase for easier matching
         url_lower = url.lower()
         
-        # Define keywords for each pet type
-        cat_keywords = ['cat', 'feline', 'kitten', 'kitty']
-        dog_keywords = ['dog', 'canine', 'puppy', 'pup']
+        # Define keywords for each pet type (expanded list)
+        cat_keywords = ['cat', 'cats', 'feline', 'felines', 'kitten', 'kittens', 'kitty', 'kitties']
+        dog_keywords = ['dog', 'dogs', 'canine', 'canines', 'puppy', 'puppies', 'pup', 'pups']
         
         # Check URL path first (most reliable)
         for keyword in cat_keywords:
@@ -233,8 +233,8 @@ def extract_pet_type(soup, url):
                 if keyword in og_desc_content:
                     return 'dog'
         
-        # Check first few headings
-        headings = soup.find_all(['h1', 'h2', 'h3'], limit=5)
+        # Check all headings (more comprehensive)
+        headings = soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
         for heading in headings:
             heading_text = heading.get_text('').lower()
             for keyword in cat_keywords:
@@ -242,6 +242,40 @@ def extract_pet_type(soup, url):
                     return 'cat'
             for keyword in dog_keywords:
                 if keyword in heading_text:
+                    return 'dog'
+        
+        # Check product breadcrumbs and navigation
+        breadcrumbs = soup.find_all(['nav', 'ol', 'ul'], class_=lambda x: x and ('breadcrumb' in x.lower() or 'nav' in x.lower()))
+        for breadcrumb in breadcrumbs:
+            breadcrumb_text = breadcrumb.get_text('').lower()
+            for keyword in cat_keywords:
+                if keyword in breadcrumb_text:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in breadcrumb_text:
+                    return 'dog'
+        
+        # Check main content areas
+        main_content = soup.find_all(['main', 'article', 'section'], limit=3)
+        for content in main_content:
+            content_text = content.get_text('').lower()
+            for keyword in cat_keywords:
+                if keyword in content_text:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in content_text:
+                    return 'dog'
+        
+        # Last resort: Search entire page body text (limited to avoid noise)
+        body = soup.find('body')
+        if body:
+            # Get first 2000 characters of body text to avoid too much noise
+            body_text = body.get_text('')[:2000].lower()
+            for keyword in cat_keywords:
+                if keyword in body_text:
+                    return 'cat'
+            for keyword in dog_keywords:
+                if keyword in body_text:
                     return 'dog'
         
         # Default fallback - could not determine
@@ -407,9 +441,9 @@ def extract_pet_type_from_url(url):
     try:
         url_lower = url.lower()
         
-        # Define keywords for each pet type
-        cat_keywords = ['cat', 'feline', 'kitten', 'kitty']
-        dog_keywords = ['dog', 'canine', 'puppy', 'pup']
+        # Define keywords for each pet type (expanded list - same as main function)
+        cat_keywords = ['cat', 'cats', 'feline', 'felines', 'kitten', 'kittens', 'kitty', 'kitties']
+        dog_keywords = ['dog', 'dogs', 'canine', 'canines', 'puppy', 'puppies', 'pup', 'pups']
         
         # Check URL for keywords
         for keyword in cat_keywords:
@@ -448,43 +482,93 @@ def find_best_og_image(soup):
     
     return None
 
+def convert_to_full_size_image(image_url):
+    """Convert thumbnail/social share image URLs to full-size versions"""
+    if not image_url:
+        return image_url
+    
+    # For Purina URLs, try multiple conversion patterns
+    if 'purina.com' in image_url.lower():
+        # Try different patterns that might work for Purina
+        original_url = image_url
+        
+        # Pattern 1: Remove social_share path but keep the rest
+        if '/styles/social_share/' in image_url:
+            # Try: /sites/default/files/styles/social_share/public/products/image.jpg
+            # To: /sites/default/files/public/products/image.jpg
+            test_url = image_url.replace('/styles/social_share/', '/')
+            # We could test this URL here, but for now let's be conservative
+            # and return original since we know it works
+            
+        # Pattern 2: Try without query parameters
+        if '?' in image_url:
+            base_url = image_url.split('?')[0]
+            # Again, could test this but being conservative for now
+            
+        # For now, keep the working social share images for Purina
+        # TODO: Could implement URL testing here to verify alternatives work
+        return original_url
+    
+    # Handle other Drupal-style paths for non-Purina sites
+    if '/styles/social_share/' in image_url and 'purina.com' not in image_url.lower():
+        return image_url.replace('/styles/social_share/', '/')
+    
+    if '/styles/thumbnail/' in image_url:
+        return image_url.replace('/styles/thumbnail/', '/')
+    
+    if '/styles/medium/' in image_url:
+        return image_url.replace('/styles/medium/', '/')
+    
+    if '/styles/small/' in image_url:
+        return image_url.replace('/styles/small/', '/')
+    
+    # Remove query parameters that might indicate resizing (but be careful)
+    if '?' in image_url and any(param in image_url.lower() for param in ['w=', 'h=', 'width=', 'height=', 'resize']) and 'purina.com' not in image_url.lower():
+        return image_url.split('?')[0]
+    
+    return image_url
+
+
 def extract_image_url(soup, url):
     """Extract image URL from the webpage - prioritizes first reasonable image"""
     image_url = None
     
     # Simple and effective image extraction strategies
     strategies = [
-        # Look for Open Graph image first (most reliable) - try multiple variations
-        lambda: find_best_og_image(soup),
-        lambda: soup.find('meta', {'property': 'product:image'}),
-        lambda: soup.find('meta', {'name': 'twitter:image'}),
+        # Prioritize full-size product images first
+        ('find_first_reasonable_image', lambda: find_first_reasonable_image(soup)),
         
         # Look for structured data (JSON-LD)
-        lambda: extract_from_json_ld(soup, 'image'),
+        ('extract_from_json_ld', lambda: extract_from_json_ld(soup, 'image')),
         
-        # Just find the first reasonable image on the page
-        lambda: find_first_reasonable_image(soup),
+        # Look for Open Graph image (often cropped for social sharing)
+        ('find_best_og_image', lambda: find_best_og_image(soup)),
+        ('product:image meta', lambda: soup.find('meta', {'property': 'product:image'})),
+        ('twitter:image meta', lambda: soup.find('meta', {'name': 'twitter:image'})),
         
         # Fallback to any image that's not tiny
-        lambda: find_any_decent_image(soup),
+        ('find_any_decent_image', lambda: find_any_decent_image(soup)),
         
         # Look for images in CSS background-image properties
-        lambda: find_background_images(soup),
+        ('find_background_images', lambda: find_background_images(soup)),
         
         # Look for images in JavaScript or data attributes
-        lambda: find_script_images(soup),
+        ('find_script_images', lambda: find_script_images(soup)),
         
         # AGGRESSIVE: Search entire HTML for any image-like URLs
-        lambda: find_any_image_url_in_html(soup),
+        ('find_any_image_url_in_html', lambda: find_any_image_url_in_html(soup)),
         
         # SUPER AGGRESSIVE: Direct regex search for og:image in HTML text
-        lambda: find_og_image_in_raw_html(soup),
+        ('find_og_image_in_raw_html', lambda: find_og_image_in_raw_html(soup)),
     ]
     
-    for strategy in strategies:
+    for strategy_name, strategy in strategies:
         try:
             result = strategy()
             if result:
+                # Store successful strategy for debug info
+                extract_image_url._last_strategy = strategy_name
+                
                 if hasattr(result, 'get'):
                     # Meta tag
                     image_url = result.get('content')
@@ -505,26 +589,90 @@ def extract_image_url(soup, url):
                     elif not image_url.startswith(('http://', 'https://')):
                         image_url = urljoin(url, image_url)
                     
+                    # Convert social share/thumbnail URLs to full-size versions
+                    full_size_url = convert_to_full_size_image(image_url)
+                    if full_size_url != image_url:
+                        image_url = full_size_url
+                    
                     return image_url
-        except Exception:
+        except Exception as e:
             continue
     
+    extract_image_url._last_strategy = 'none_successful'
     return "Image not found"
 
 
 
 def find_first_reasonable_image(soup):
-    """Find the first image that's not obviously a logo/icon"""
+    """Find the first image that's not obviously a logo/icon, prioritizing full-size images"""
     images = soup.find_all('img', src=True)
     
+    # First pass: Look for full-size images (avoid thumbnail/social share versions)
     for img in images:
         try:
             src = img.get('src', '')
             alt = img.get('alt', '').lower()
             class_name = ' '.join(img.get('class', [])).lower()
             
+            # Skip data URLs, empty sources, and very short URLs (like SVG placeholders)
+            if not src or src.startswith('data:') or len(src) < 15:
+                continue
+            
+            # Skip obvious logos, icons, and navigation elements
+            skip_keywords = ['logo', 'icon', 'nav', 'menu', 'header', 'footer', 'sprite', 'svg']
+            
+            if any(keyword in src.lower() for keyword in skip_keywords):
+                continue
+            if any(keyword in alt for keyword in skip_keywords):
+                continue
+            if any(keyword in class_name for keyword in skip_keywords):
+                continue
+            
+            # Skip thumbnail/social share images (prioritize full-size)
+            thumbnail_indicators = [
+                '/styles/social_share/',  # Only filter out social share specifically for now
+            ]
+            
+            if any(indicator in src.lower() for indicator in thumbnail_indicators):
+                continue
+            
+            # Skip very small images (likely icons)
+            width = img.get('width')
+            height = img.get('height')
+            if width and height:
+                try:
+                    w, h = int(width), int(height)
+                    if w < 50 or h < 50:  # Reduced from 100 to 50 for better success rate
+                        continue
+                except ValueError:
+                    pass
+            
+            # Prioritize images that look like product images
+            product_indicators = ['product', 'item', 'package', 'bag', 'can', 'food']
+            
+            # This looks like a product image - prioritize it
+            if any(indicator in src.lower() for indicator in product_indicators):
+                return img
+            
+            # This looks like a full-size image, return it
+            return img
+                    
+        except Exception as e:
+            continue
+    
+    # Second pass: Accept any reasonable image including thumbnails (fallback)
+    for img in images:
+        try:
+            src = img.get('src', '')
+            alt = img.get('alt', '').lower()
+            class_name = ' '.join(img.get('class', [])).lower()
+            
+            # Skip data URLs, empty sources, and very short URLs
+            if not src or src.startswith('data:') or len(src) < 15:
+                continue
+            
             # Skip only obvious logos, icons, and navigation elements
-            skip_keywords = ['logo', 'icon', 'nav', 'menu', 'header', 'footer', 'sprite']
+            skip_keywords = ['logo', 'icon', 'nav', 'menu', 'header', 'footer', 'sprite', 'svg']
             
             if any(keyword in src.lower() for keyword in skip_keywords):
                 continue
@@ -792,6 +940,107 @@ def extract_from_title(soup):
                 return brand.title()
     return None
 
+def extract_life_stage(soup, url):
+    """Extract life stage from the webpage content and URL"""
+    try:
+        # Get text content from various sources
+        url_lower = url.lower()
+        title = soup.find('title')
+        title_text = title.get_text().lower() if title else ""
+        
+        # Get meta description
+        meta_desc = soup.find('meta', {'name': 'description'})
+        desc_text = meta_desc.get('content', '').lower() if meta_desc else ""
+        
+        # Get Open Graph data
+        og_title = soup.find('meta', {'property': 'og:title'})
+        og_title_text = og_title.get('content', '').lower() if og_title else ""
+        
+        og_desc = soup.find('meta', {'property': 'og:description'})
+        og_desc_text = og_desc.get('content', '').lower() if og_desc else ""
+        
+        # Get main heading content
+        headings = soup.find_all(['h1', 'h2', 'h3'])
+        heading_text = ' '.join([h.get_text().lower() for h in headings[:5]])  # First 5 headings
+        
+        # Get main content areas for more comprehensive search
+        main_content = soup.find_all(['main', 'article', 'section', 'div'], limit=5)
+        content_text = ' '.join([content.get_text()[:500].lower() for content in main_content])  # First 500 chars each
+        
+        # Get entire page body text (limited to avoid noise) for thorough search
+        body = soup.find('body')
+        body_text = body.get_text()[:3000].lower() if body else ""  # First 3000 characters
+        
+        # Combine all text sources
+        all_text = f"{url_lower} {title_text} {desc_text} {og_title_text} {og_desc_text} {heading_text} {content_text} {body_text}"
+        
+        # Life stage keywords (expanded and more specific)
+        kitten_keywords = ['kitten', 'kittens']
+        puppy_keywords = ['puppy', 'puppies'] 
+        senior_keywords = ['senior', 'seniors', 'mature', 'aged', '7+', '8+', '9+', '10+', '11+', '12+']
+        all_stages_keywords = [
+            'all life stages', 'all ages', 'all stages', 'life stages', 'any age', 'every stage',
+            'aafco cat food nutrient profiles for all life stages',
+            'aafco dog food nutrient profiles for all life stages',
+            'formulated for all life stages',
+            'complete and balanced for all life stages',
+            'suitable for all life stages'
+        ]
+        
+        # Check for all life stages first (most specific) - be more thorough
+        for keyword in all_stages_keywords:
+            if keyword in all_text:
+                return "all"
+        
+        # Check for specific life stages
+        for keyword in kitten_keywords:
+            if keyword in all_text:
+                return "kitten"
+        
+        for keyword in puppy_keywords:
+            if keyword in all_text:
+                return "puppy"
+            
+        for keyword in senior_keywords:
+            if keyword in all_text:
+                return "senior"
+        
+        # Default to adult if no specific life stage found
+        return "adult"
+        
+    except Exception as e:
+        return "adult"
+
+
+def extract_life_stage_from_url(url):
+    """Extract life stage from direct image URLs based on filename"""
+    try:
+        url_lower = url.lower()
+        
+        # Life stage keywords
+        kitten_keywords = ['kitten', 'kittens']
+        puppy_keywords = ['puppy', 'puppies'] 
+        senior_keywords = ['senior', 'seniors', 'mature', 'aged']
+        all_stages_keywords = ['all-life-stages', 'all-ages', 'all-stages', 'life-stages']
+        
+        # Check URL for life stage indicators
+        if any(keyword in url_lower for keyword in all_stages_keywords):
+            return "all"
+        
+        if any(keyword in url_lower for keyword in kitten_keywords):
+            return "kitten"
+        
+        if any(keyword in url_lower for keyword in puppy_keywords):
+            return "puppy"
+            
+        if any(keyword in url_lower for keyword in senior_keywords):
+            return "senior"
+        
+        return "adult"
+        
+    except Exception:
+        return "adult"
+
 @app.route('/')
 def index():
     """Main page"""
@@ -885,35 +1134,30 @@ def scrape_url():
             # This is a direct image URL
             brand = extract_brand_from_url(url) or "Brand not found"
             image_url = url
-            # For direct images, only extract pet type and food type from URL
+            # For direct images, only extract pet type, food type, and life stage from URL
             pet_type = extract_pet_type_from_url(url)
             food_type = extract_food_type_from_url(url)
+            life_stage = extract_life_stage_from_url(url)
         else:
             # Parse HTML for regular web pages
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Extract brand, image, pet type, and food type
+            # Extract brand, image, pet type, food type, and life stage
             brand = extract_brand(soup, url)
             image_url = extract_image_url(soup, url)
             pet_type = extract_pet_type(soup, url)
             food_type = extract_food_type(soup, url)
+            life_stage = extract_life_stage(soup, url)
         
         # Debug: Count total images found on page
-        if is_direct_image:
-            total_images = 1
-            images_with_src = 1
-            images_with_data_src = 0
-            debug_message = "Direct image URL detected"
-        else:
-            total_images = len(soup.find_all('img'))
-            images_with_src = len(soup.find_all('img', src=True))
-            images_with_data_src = len(soup.find_all('img', {'data-src': True}))
-            total_image_sources = images_with_src + images_with_data_src
-            
-            if total_image_sources == 0:
-                debug_message = f'Found {total_image_sources}/{total_images} images - trying advanced detection (CSS, JavaScript, data attributes)'
-            else:
-                debug_message = f'Found {total_image_sources}/{total_images} images on page (including data-src)'
+        total_images = len(soup.find_all('img'))
+        images_with_src = len(soup.find_all('img', src=True))
+        images_with_data_src = len(soup.find_all('img', attrs={'data-src': True}))
+        
+        # Store debug message with image strategy info
+        debug_message = f"Found {total_images}/{images_with_src + images_with_data_src} images on page (including data-src)"
+        if image_url != "Image not found":
+            debug_message += f" - Using strategy: {extract_image_url._last_strategy}"
         
         # Save to data file
         data = load_data()
@@ -924,6 +1168,7 @@ def scrape_url():
             'imageURL': image_url,
             'petType': pet_type,
             'foodType': food_type,
+            'lifeStage': life_stage,
             'timestamp': datetime.now().isoformat(),
             'domain': parsed.netloc,
             'debug_info': {
@@ -941,8 +1186,9 @@ def scrape_url():
             'imageURL': image_url,
             'petType': pet_type,
             'foodType': food_type,
-            'url': url,
+            'lifeStage': life_stage,
             'id': new_entry['id'],
+            'url': url,
             'debug_info': debug_message
         })
         

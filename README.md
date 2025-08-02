@@ -4,34 +4,19 @@ A web-based application that scrapes brand information from pet food product URL
 
 ## Features
 
-- **URL Scraping**: Enter any pet food product URL OR direct image URL to extract brand and image information
-- **Smart Brand Detection**: Uses multiple strategies to find brand names including:
-  - Meta tags (product:brand, brand, itemprop)
-  - JSON-LD structured data
-  - CSS class patterns
-  - Common pet food brand recognition
-  - **URL-based extraction** - extracts brand names directly from URLs as fallback
-  - **Brand exceptions** - automatically formats "Friskies" as "Purina Friskies"
-- **Pet Type Detection**: Automatically determines whether products are for cats or dogs based on:
-  - URL analysis (keywords like 'cat', 'dog', 'canine', 'feline')
-  - Page title and meta descriptions
-  - Open Graph metadata
-  - Content headings analysis
-- **Food Type Classification**: Automatically classifies food as wet, dry, raw, or treats based on:
-  - URL keywords ('wet', 'canned', 'dry', 'kibble', 'raw', 'frozen', 'treat', 'snack')
-  - Page content analysis
-  - Product descriptions and titles
-- **Smart Image Detection**: Finds the first reasonable image using:
-  - **Direct image URL support** - handles .jpg, .png, .gif, .webp, .pdf URLs directly
-  - Open Graph and Twitter meta tags (highest priority)
-  - Structured data (JSON-LD)
-  - **First reasonable image on page** - skips only obvious logos/icons
-  - Automatic filtering of tiny images and common icon patterns
-  - Converts relative URLs to absolute URLs automatically
-- **Data Storage**: All scraped data is automatically saved with timestamps
-- **App Export**: Format and export data in app-ready JavaScript object format
-- **Data Management**: View, browse, and delete stored data entries
-- **Responsive Design**: Works on desktop and mobile devices
+- **Brand Detection**: Advanced extraction from meta tags, JSON-LD data, CSS classes, page content, and URLs
+- **Pet Type Detection**: Automatically determines if the product is for cats, dogs, or unknown based on URL and page content
+- **Food Type Classification**: Categorizes food as wet, dry, raw, or treats based on URL keywords and page content  
+- **Life Stage Detection**: Determines target life stage (kitten/puppy, adult, senior, or all) from URL and page content
+- **Image URL Scraping**: Multiple strategies to find the best product image
+- **Direct Image Support**: Can scrape data from direct image URLs (.jpg, .png, .pdf)
+- **Brand Exceptions**: Special handling for specific brands (e.g., "Purina Friskies")
+- **Web Interface**: User-friendly browser interface
+- **Data Storage**: JSON file storage for scraped data
+- **Bulk Operations**: Select and delete multiple entries at once
+- **App Export**: Format data for easy integration into other applications
+- **Clear Search**: Reset the scraper interface
+- **Debug Information**: Helpful debugging info when scraping fails
 
 ## Quick Start
 
@@ -50,42 +35,43 @@ A web-based application that scrapes brand information from pet food product URL
    http://localhost:8000
    ```
 
-## How to Use
+## Usage
 
-### Scraping URLs
-1. Navigate to the **Scraper** tab
-2. Enter a pet food product URL OR direct image URL (.jpg, .png, .pdf, etc.) in the input field
-3. Click "Scrape Brand" or press Enter
-4. View the extracted brand and image information in the results
-5. Use the "Clear" button to reset the search and start fresh
+1. **Scrape Data**: 
+   - Enter a pet food product URL or direct image URL
+   - Click "Scrape Brand" 
+   - View extracted brand, pet type, food type, life stage, and image URL
+   - Use "Clear" to reset and try another URL
 
-**Tip**: You can right-click any image → "Open image in new tab" and use that direct image URL!
+2. **View Stored Data**: 
+   - Switch to "Stored Data" tab
+   - See all previously scraped products with timestamps
+   - Select multiple items for bulk deletion
+   - Each entry shows brand, pet type, food type, life stage, and image URL
 
-### Managing Data
-1. Switch to the **Stored Data** tab
-2. View all previously scraped entries with timestamps and domains
-3. Use the "Refresh Data" button to reload the list
-4. Click "Export for App" to get formatted data for your application
-5. Delete individual entries using the red "Delete" button
+3. **Export for App**: 
+   - Click "Export for App" to get formatted data
+   - Copy the generated JavaScript object format
+   - Integrate directly into your application
 
-### Exporting Data for Apps
-The "Export for App" feature formats your scraped data perfectly for use in applications:
+**Example Export Format:**
 ```javascript
 {
-  brand: 'Viva Raw',
-  petType: 'dog',
-  foodType: 'raw',
+  brand: 'Purina Friskies',
+  petType: 'cat',
+  foodType: 'wet',
+  lifeStage: 'adult',
   imageURL: 'https://example.com/product-image.jpg',
-},
+}
 
 {
-  brand: 'Hill\'s Science Diet',
-  petType: 'cat',
+  brand: 'Blue Buffalo',
+  petType: 'dog', 
   foodType: 'dry',
-  imageURL: 'https://example.com/hills-product.jpg',
+  lifeStage: 'puppy',
+  imageURL: 'https://example.com/another-image.jpg',
 }
 ```
-The export modal includes a "Copy to Clipboard" button for easy integration.
 
 ## Project Structure
 
@@ -127,33 +113,57 @@ The scraper uses multiple methods to find brand information:
 - E-commerce sites with structured data
 - Product pages with CSS-based layouts
 
-## Troubleshooting
+### Life Stage Detection
+The scraper automatically determines the target life stage for pet food products:
+
+**Detection Strategy:**
+- Analyzes URL, page title, meta descriptions, Open Graph data, headings, main content, and page body
+- Comprehensive search through entire page content to catch "all life stages" declarations
+- Searches for specific life stage keywords throughout the page
+
+**Life Stage Categories:**
+- **For Cats**: kitten, adult, senior, all
+- **For Dogs**: puppy, adult, senior, all
+
+**Keywords Detected:**
+- **Kitten/Puppy**: "kitten", "kittens", "puppy", "puppies"
+- **Senior**: "senior", "seniors", "mature", "aged", "7+", "8+", "9+", "10+", "11+", "12+"
+- **All Life Stages**: "all life stages", "all ages", "all stages", "life stages", "any age", "every stage", "AAFCO Cat Food Nutrient Profiles for All Life Stages", "formulated for all life stages", "complete and balanced for all life stages"
+- **Default**: "adult" (when no specific life stage is mentioned)
+
+### Pet Type Detection
+The scraper automatically determines whether products are for cats or dogs:
+
+**Detection Strategy:**
+- Comprehensive search through URL, page title, meta descriptions, Open Graph data, headings, breadcrumbs, navigation, main content areas, and page body
+- Enhanced keyword matching with expanded vocabulary
+- Multiple fallback strategies to ensure accurate detection
+
+**Keywords Detected:**
+- **Cat**: "cat", "cats", "feline", "felines", "kitten", "kittens", "kitty", "kitties"
+- **Dog**: "dog", "dogs", "canine", "canines", "puppy", "puppies", "pup", "pups"
+- **Fallback**: "unknown" (only when no pet type keywords are found anywhere on the page)
+
+### Brand Exceptions
+- **Purina Friskies**: Automatically formats "Friskies" products as "Purina Friskies"
+
+### Troubleshooting
+
+### "Brand not found"
+- **URL-based extraction**: The scraper can extract brand names directly from URLs as a fallback
+- **Enhanced image detection**: Multiple strategies ensure higher success rates
+- **Direct image URLs**: The scraper now supports direct image URLs (.jpg, .png, etc.)
+
+### "Image not found" 
+- **Enhanced detection**: The scraper now uses multiple image detection strategies
+- **Direct image support**: Can handle direct image URLs (e.g., .jpg, .png, .pdf files)
+- **Content compression**: Fixed issue with Brotli compression causing parsing failures
+- **Purina images**: For Purina.com, the scraper returns high-quality social share images to ensure reliability
 
 ### Common Issues
-
-**"Brand not found"**: This can happen when:
-- The page doesn't contain standard brand markup
-- The site uses JavaScript to load content dynamically
-- The brand information is in images or non-text elements
-- **Note**: The scraper now extracts brands from URLs as a fallback - if the brand name appears in the URL (like "instinctpetfood.com" → "Instinct"), it should be detected automatically
-
-**Network errors**: Check that:
-- The URL is accessible
-- Your internet connection is working
-- The target site isn't blocking automated requests
-
-**"Image not found"**: The scraper now includes multiple advanced detection methods:
-- Open Graph meta tags (`og:image`)
-- CSS background images
-- JavaScript and data attributes
-- Aggressive pattern matching
-- **Fixed**: Content compression issues that previously prevented image detection
-
-**403 Forbidden errors**: Some sites block automated requests:
-- The scraper tries multiple user agents and retry attempts
-- Try different product pages on the same site
-- Some e-commerce sites have strong anti-bot protection
-- Government, educational, and smaller business sites often work better
+- **Port conflicts**: Change the port in `app.py` if 8000 is already in use
+- **Dependencies**: Make sure you're using the virtual environment (`source venv/bin/activate`)
+- **Empty results**: Some websites may block automated requests - try different URLs
 
 ### Improving Results
 For better brand detection, try:
