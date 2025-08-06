@@ -525,5 +525,226 @@
       "images_with_src": 177,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 32,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-06T16:31:41.501018",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 33,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-06T16:33:29.345379",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 34,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tuna Broth, Tuna, Guar Gum, Xanthan Gum, Celery Powder, Thiamine Mononitrate (Vitamin B-1)",
+    "timestamp": "2025-08-06T16:35:21.836666",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 35,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-06T16:35:43.092422",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 36,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
+    "timestamp": "2025-08-06T16:35:51.695636",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 37,
+    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "all",
+    "ingredients": "1 of 8Enlarge ViewPreviousNextFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp By FriskiesEarn 10 points for every $1 you spend on your purchases with the myPurina appGet the AppFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - defaultFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 3.15 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 16 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 17.6 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 22 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 30 lb bag",
+    "timestamp": "2025-08-06T16:36:25.299308",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 177,
+      "images_with_src": 177,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 38,
+    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "all",
+    "ingredients": "1 of 8Enlarge ViewPreviousNextFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp By FriskiesEarn 10 points for every $1 you spend on your purchases with the myPurina appGet the AppFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - defaultFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 3.15 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 16 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 17.6 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 22 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 30 lb bag",
+    "timestamp": "2025-08-06T16:37:28.765241",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 177,
+      "images_with_src": 177,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 39,
+    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "all",
+    "ingredients": "Ground Yellow Corn, Corn Gluten Meal, Poultry By-Product Meal, Soybean Meal, Animal Fat (preserved with mixed tocopherols), Liver Flavor, Meat and Bone Meal, Ocean fish meal, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Salt, Choline Chloride, Salmon Meal, Tuna Meal, Shrimp Meal, Dehydrated seaweed meal, Taurine, Vitamin E Supplement, Niacin (Vitamin B-3), Vitamin A Supplement, Calcium Pantothenate (Vitamin B-5), Thiamine Mononitrate (Vitamin B-1), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Pyridoxine Hydrochloride (Vitamin B-6), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement, Biotin (Vitamin B-7), Menadione Sodium Bisulfite Complex (Vitamin K), Yellow 5DL-MethionineL-Tryptophan, Red 40, Blue 2, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Calcium Iodate, Sodium Selenite",
+    "timestamp": "2025-08-06T16:44:45.027016",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 177,
+      "images_with_src": 177,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 40,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tuna Broth, Tuna, Guar Gum, Xanthan Gum, Celery Powder, Thiamine Mononitrate (Vitamin B-1)",
+    "timestamp": "2025-08-06T16:45:01.939729",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 41,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-06T16:45:13.832973",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 42,
+    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "all",
+    "ingredients": "Ground Yellow Corn, Corn Gluten Meal, Poultry By-Product Meal, Soybean Meal, Animal Fat (preserved with mixed tocopherols), Liver Flavor, Meat and Bone Meal, Ocean fish meal, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Salt, Choline Chloride, Salmon Meal, Tuna Meal, Shrimp Meal, Dehydrated seaweed meal, Taurine, Vitamin E Supplement, Niacin (Vitamin B-3), Vitamin A Supplement, Calcium Pantothenate (Vitamin B-5), Thiamine Mononitrate (Vitamin B-1), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Pyridoxine Hydrochloride (Vitamin B-6), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement, Biotin (Vitamin B-7), Menadione Sodium Bisulfite Complex (Vitamin K), Yellow 5DL-MethionineL-Tryptophan, Red 40, Blue 2, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Calcium Iodate, Sodium Selenite",
+    "timestamp": "2025-08-06T16:46:12.070592",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 177,
+      "images_with_src": 177,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 43,
+    "url": "https://www.purina.com/cats/shop/friskies-surfin-turfin-favorites-dry-cat-food",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-surfin-turfin-favorites-dry-cat-food.png?h=1e66e246&itok=yfC8roZQ",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "adult",
+    "ingredients": "Ground Yellow Corn, Chicken By-Product Meal, Soybean Meal, Corn Gluten Meal, Beef Fat Preserved With Mixed-Tocopherols, Meat and Bone Meal, Liver Flavor, Ocean fish meal, Calcium Carbonate, Phosphoric Acid, Salmon Meal, Salt, Choline Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Calcium Iodate, Sodium Selenite, Potassium Chloride, TaurineDL-Methionine, Vitamin E Supplement, Niacin (Vitamin B-3), Vitamin A Supplement, Calcium Pantothenate (Vitamin B-5), Thiamine Mononitrate (Vitamin B-1), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Pyridoxine Hydrochloride (Vitamin B-6), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement, Biotin (Vitamin B-7), Menadione Sodium Bisulfite Complex (Vitamin K), Natural Filet Mignon Flavor, Red 40, Yellow 5, Blue 2",
+    "timestamp": "2025-08-06T16:46:30.279158",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 167,
+      "images_with_src": 167,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 44,
+    "url": "https://www.purina.com/cats/shop/friskies-shreds-salmon-in-sauce-wet-cat-food",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2024-05/friskies-shreds-with-salmon-in-sauce-wet-cat-food.png?h=1e66e246&itok=PK-kxW_f",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Poultry, Meat By-Products, Salmon, Wheat Gluten, Corn Starch-Modified, Soy Flour, Artificial And Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Salt, Choline Chloride, Taurine, Thiamine Mononitrate (Vitamin B-1), Vitamin E Supplement, Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-06T16:47:05.952800",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 142,
+      "images_with_src": 142,
+      "extraction_method": "html_parsing"
+    }
   }
 ]

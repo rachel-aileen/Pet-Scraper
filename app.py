@@ -1178,6 +1178,130 @@ def extract_ingredients(soup, url):
     try:
         # Look for ingredients in various common locations and formats
         
+        # PRIORITY 0: Look for "Ingredients:" label followed by actual ingredient list
+        page_text = soup.get_text()
+        
+        # Pattern to find "Ingredients:" followed by content, stopping at nutritional info or other sections
+        ingredient_label_pattern = r'ingredients?[:\s]*(.{20,2000}?)(?=\s*(?:nutritional|guaranteed|feeding|analysis|instructions|calories|kcal|crude protein|crude fat|moisture|ash content|view all ingredients|download.*ingredient|$))'
+        
+        import re
+        
+        # Find ALL matches, not just the first one
+        all_ingredient_matches = list(re.finditer(ingredient_label_pattern, page_text, re.IGNORECASE | re.DOTALL))
+        
+        # Score each match to find the best one (actual ingredient list vs marketing copy)
+        best_match = None
+        best_score = 0
+        
+        for match in all_ingredient_matches:
+            potential_ingredients = match.group(1).strip()
+            
+            # Clean up common prefixes and navigation elements that appear after "Ingredients:"
+            prefixes_to_remove = [
+                r'^\d+\s+of\s+\d+',  # "1 of 8"
+                r'^enlarge\s+view',   # "Enlarge View"
+                r'^previous',         # "Previous"
+                r'^next',            # "Next"
+                r'^view\s+all',      # "View All"
+                r'^expand',          # "Expand"
+                r'^show\s+more',     # "Show More"
+            ]
+            
+            for prefix in prefixes_to_remove:
+                potential_ingredients = re.sub(prefix, '', potential_ingredients, flags=re.IGNORECASE).strip()
+            
+            # Score this match based on how likely it is to be an actual ingredient list
+            score = 0
+            potential_lower = potential_ingredients.lower()
+            
+            # VERY high score for actual ingredient starters (common first ingredients)
+            primary_starters = [
+                'ground yellow corn', 'ground corn', 'chicken', 'beef', 'salmon', 'tuna', 
+                'water sufficient for processing', 'corn meal', 'rice', 'wheat', 'turkey',
+                'lamb', 'fish meal', 'chicken meal', 'poultry meal', 'meat and bone meal'
+            ]
+            for starter in primary_starters:
+                if potential_lower.startswith(starter):
+                    score += 100  # Very high score for likely first ingredients
+                    break
+            
+            # High score for technical ingredient terms (these appear in real ingredient lists)
+            technical_terms = [
+                'sodium selenite', 'thiamine mononitrate', 'pyridoxine hydrochloride', 
+                'riboflavin supplement', 'biotin', 'folic acid', 'choline chloride',
+                'zinc sulfate', 'ferrous sulfate', 'manganese sulfate', 'copper sulfate',
+                'potassium iodide', 'calcium carbonate', 'tricalcium phosphate',
+                'dicalcium phosphate', 'monocalcium phosphate', 'vitamin e supplement',
+                'vitamin a supplement', 'vitamin d-3 supplement', 'menadione sodium bisulfite',
+                'natural flavor', 'artificial flavor', 'mixed tocopherols', 'citric acid',
+                'rosemary extract', 'bha', 'bht', 'ethoxyquin'
+            ]
+            for term in technical_terms:
+                if term in potential_lower:
+                    score += 15  # High score for technical vitamin/mineral terms
+            
+            # Medium score for common ingredient terms
+            common_ingredients = [
+                'broth', 'gum', 'powder', 'vitamin', 'mineral', 'supplement', 'extract', 
+                'oil', 'starch', 'flour', 'meal', 'by-product', 'gluten', 'protein',
+                'concentrate', 'isolate', 'digest', 'hydrolysate'
+            ]
+            for term in common_ingredients:
+                if term in potential_lower:
+                    score += 8
+            
+            # NEGATIVE score for marketing language (these indicate marketing copy, not ingredients)
+            marketing_terms = [
+                'tempt', 'delicate', 'flavorful', 'extraordinary', 'convenient', 'serve', 
+                'indulgence', 'recipe', 'featuring', 'gourmet', 'perfect', 'delicious',
+                'appetizing', 'irresistible', 'savory', 'tender', 'wholesome', 'nutritious',
+                'complete and balanced', 'specially formulated', 'premium', 'quality',
+                'authentic', 'restaurant', 'chef', 'culinary', 'artisan', 'handcrafted',
+                'natural goodness', 'real taste', 'mouth-watering', 'delectable'
+            ]
+            for term in marketing_terms:
+                if term in potential_lower:
+                    score -= 15  # Heavy penalty for marketing language
+            
+            # VERY negative score for promotional content
+            promotional_terms = [
+                'earn points', 'purchase', 'app', 'discount', 'offer', 'sale', 'buy',
+                'shop', 'store', 'retailer', 'order', 'shipping', 'delivery', 'cart'
+            ]
+            for term in promotional_terms:
+                if term in potential_lower:
+                    score -= 50  # Very heavy penalty for promotional content
+            
+            # Positive score for proper ingredient list characteristics
+            # Real ingredient lists tend to be concise and technical
+            if len(potential_ingredients) < 1000:  # Not too long
+                score += 5
+            if potential_ingredients.count(',') >= 5:  # Has many comma-separated items
+                score += 10
+            if len(potential_ingredients.split()) < 200:  # Not too wordy (marketing copy is wordy)
+                score += 5
+            
+            # If this is the best scoring match so far
+            if score > best_score and score > 0:
+                best_score = score
+                best_match = potential_ingredients
+        
+        # Use the best match if we found one
+        if best_match:
+                         # Only proceed if it looks like an actual ingredient list
+             if (best_match and 
+                 len(best_match) > 10 and  # Substantial content (reduced threshold)
+                 (',' in best_match or  # Has comma separation OR
+                  any(ingredient in best_match.lower() for ingredient in ['tuna', 'chicken', 'beef', 'salmon', 'broth', 'gum', 'vitamin', 'water sufficient for processing']) or  # Contains actual ingredients OR
+                  (len(best_match) < 200 and best_score > 30))):  # Short text with high ingredient score
+                
+                # Validate using our existing validation function
+                if is_likely_ingredient_list(best_match):
+                    formatted_content = format_ingredient_list(best_match)
+                    formatted_content = clean_extra_content(formatted_content)
+                    if len(formatted_content) > 50:
+                        return formatted_content
+        
         # PRIORITY 1: Look for specific ingredient patterns found in debug
         # Look for <p> tags with class 'p1' (Applaws specific)
         p1_elements = soup.find_all('p', class_='p1')
@@ -1690,13 +1814,38 @@ def is_likely_ingredient_list(text):
 
     ingredient_count = sum(1 for ingredient in ingredient_indicators if ingredient in text_lower)
 
-    # Valid ingredient list criteria:
+    # Enhanced validation for ingredient lists
+    # Check for technical ingredient terms that are strong indicators
+    technical_indicators = [
+        'sodium selenite', 'thiamine mononitrate', 'pyridoxine hydrochloride', 
+        'riboflavin supplement', 'biotin', 'folic acid', 'choline chloride',
+        'zinc sulfate', 'ferrous sulfate', 'manganese sulfate', 'copper sulfate',
+        'vitamin e supplement', 'vitamin a supplement', 'vitamin d-3 supplement'
+    ]
+    
+    # Check for common first ingredients
+    common_first_ingredients = [
+        'ground yellow corn', 'ground corn', 'chicken', 'beef', 'salmon', 'tuna',
+        'water sufficient for processing', 'corn meal', 'rice', 'wheat', 'turkey',
+        'lamb', 'fish meal', 'chicken meal', 'poultry meal'
+    ]
+    
+    has_technical_terms = any(term in text_lower for term in technical_indicators)
+    starts_with_ingredient = any(text_lower.startswith(ingredient) for ingredient in common_first_ingredients)
+    
+    # Valid ingredient list criteria (more comprehensive):
     # 1. Starts with an actual ingredient AND has commas
     # 2. Has "water sufficient for processing" (Purina wet food pattern)
     # 3. Has many ingredient terms AND proper formatting
+    # 4. Short list with multiple ingredient terms (for compact lists)
+    # 5. Contains technical vitamin/mineral terms (strong indicator)
+    # 6. Starts with common first ingredient (even without commas initially)
     if (any(actual_ingredient_patterns) and has_commas) or \
        ('water sufficient for processing' in text_lower) or \
-       (ingredient_count >= 5 and has_commas and word_count >= 20):
+       (ingredient_count >= 5 and has_commas and word_count >= 20) or \
+       (ingredient_count >= 3 and word_count <= 50 and any(term in text_lower for term in ['tuna', 'chicken', 'salmon', 'beef', 'broth', 'gum', 'vitamin'])) or \
+       (has_technical_terms and ingredient_count >= 3) or \
+       (starts_with_ingredient and ingredient_count >= 3):
         return True
 
     return False
