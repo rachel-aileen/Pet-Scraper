@@ -1,33 +1,528 @@
 [
   {
     "id": 1,
-    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "url": "https://vivarawpets.com/products/beef-for-cats",
+    "brand": "Viva Raw",
+    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Beef_Cat_Bowl_176b5067-d71f-4643-ac4e-5853f22e3cfb.png",
     "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "timestamp": "2025-08-01T18:20:48.557774",
-    "domain": "applaws.com",
+    "foodType": "raw",
+    "lifeStage": "all",
+    "ingredients": "Where does Viva source from & how is the food made? We're proud to be sourcing high quality, USDA-inspected meat from smaller farms. These are the same farms that stock your local Whole Foods & favorite restaurants. We only work with farms that never administer hormones & growth promoting antibiotics (a huge step up from conventional) & are certified humane through third-party audits like G.A.P. or the American Humane Program. By not relying on chemicals, our farmers focus on providing high quality food and a clean environment to raise healthy, happy animals.We grind, mix & package all of your cat's meals in our kitchens\u2014where we are the first and only pet food made in our facility that also produces human food. And you better believe we\u2019re proud of it. Everything is made in small batches (each package is hand-labeled & checked for quality) and tested for pathogens, because your kitty deserves the freshest food from farm-to-bowl.",
+    "timestamp": "2025-08-04T17:25:50.809545",
+    "domain": "vivarawpets.com",
     "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
+      "total_images": 23,
+      "images_with_src": 23,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 2,
-    "url": "https://applaws.com/us/products/natural-wet-kitten-food-tuna-fillet-salmon-in-broth/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1058US-A_FOP_3000px.png",
+    "url": "https://instinctpetfood.com/products/raw-meals-freeze-dried-chicken-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--zUBSOf98--/t2vfuzopnmfhf6phybrt.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken (including Ground Chicken Bone), Chicken Liver, Chicken Heart, Pumpkinseeds, Ground Flaxseed, Montmorillonite Clay, Salmon Oil, Carrots, Apples, Butternut Squash, Vitamins (Vitamin E Supplement, Thiamine Mononitrate, Vitamin D3 Supplement), Potassium Chloride, Tricalcium Phosphate, Choline Chloride, Taurine, Yeast Culture, Salt, Minerals (Zinc Proteinate, Copper Proteinate, Manganese Proteinate, Calcium Iodate), DL-Methionine, Mixed Tocopherols (for freshness), Blueberries, Spinach, Rosemary Extract",
+    "timestamp": "2025-08-04T17:26:52.644205",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 3,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
     "petType": "cat",
     "foodType": "wet",
-    "lifeStage": "kitten",
-    "timestamp": "2025-08-04T12:57:08.300119",
+    "lifeStage": "adult",
+    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
+    "timestamp": "2025-08-04T17:28:53.737360",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 4,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
+    "timestamp": "2025-08-04T17:30:54.935651",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 5,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
+    "timestamp": "2025-08-04T17:34:35.992849",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 6,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Pro Plan Essentials Tuna, Shrimp & Rice Wet Cat Food | Purina USSkip to Main ContentWhere to BuyWhere to BuyBuy With RetailersShop Brand StoresFor ProfessionalsContact UsUS (Espa\u00f1ol)DogsDogsDog FoodDry Dog FoodWet Dog FoodPuppy FoodSenior Dog FoodGrain Free Dog FoodPet Food FinderAnalysis KitsOpen in new windowSee All Dog FoodDog TreatsDog ChewsDog Dental ChewsDog Jerky & StripsRawhides & RollhidesDog SupplementsSee All Dog TreatsDog InformationDog ArticlesDog BreedsDog BrandsCatsCatsCat FoodDry Cat FoodWet Cat FoodKitten FoodSenior Cat FoodPet Food FinderAnalysis KitsOpen in new windowSee All Cat FoodCat TreatsDry Cat TreatsWet Cat TreatsDental Cat TreatsCat Toppers & ComplementsCat SupplementsSee All Cat TreatsCat LitterClumping LitterLightweight LitterNon-Clumping LitterUnscented LitterLitter Box SystemsLitter Box MonitorScented LitterSee All Cat LitterCat InformationCat ArticlesCat BreedsCat BrandsWhy PurinaWhy PurinaAbout UsOur CompanyFAQsNewsOpen in new windowOur Pet ExpertsPet C",
+    "timestamp": "2025-08-04T17:35:14.852779",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 7,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for ProcessingTunaWheat GlutenChickenLiverShrimpMeat By-ProductsLong Grain RiceCorn Starch-ModifiedCorn OilSaltSoy Protein ConcentrateNatural FlavorsTricalcium PhosphatePotassium ChlorideZinc SulfateFerrous SulfateManganese SulfateCopper SulfatePotassium IodideCholine ChlorideTaurineVitamin E SupplementThiamine Mononitrate (Vitamin B-1)Niacin (Vitamin B-3)Calcium Pantothenate (Vitamin B-5)Vitamin A SupplementMenadione Sodium Bisulfite Complex (Vitamin K)Pyridoxine Hydrochloride (Vitamin B-6)Riboflavin Supplement (Vitamin B-2)Vitamin B-12 SupplementBiotin (Vitamin B-7)Folic Acid (Vitamin B-9)Vitamin D-3 SupplementView All IngredientsDownload the full ingredient list (PDF)Open in new windowFeeding and NutritionFeeding GuideFind Your Pet\u2019s Perfect PortionUse our pet food calculator to get a personalized feeding guide for your dog or cat.Calculate NowOpen in new window",
+    "timestamp": "2025-08-04T17:36:01.200214",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 8,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-04T17:36:46.314115",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 9,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-04T17:39:35.103813",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 10,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum.",
+    "timestamp": "2025-08-04T17:39:47.279877",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 26,
       "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 11,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-04T17:40:28.728400",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 12,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Reviews, Discover similar products, Purina Pro Plan Adult Weight Management Turkey & Rice Entr\u00e9e in Gravy Wet Cat Food Purina Pro Plan Adult Weight Management Salmon & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Tuna & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Ocean Whitefish & Rice Entr\u00e9e in Sauce Wet Cat Food, Contact Us, International Sites, Sitemap, Navigate to our Facebook page, Navigate to our Twitter page, Navigate to our You, Tube page, Navigate to our Instagram page, All Nestl\u00e9 Purina trademarks owned by Soci\u00e9t\u00e9 des Produits Nestl\u00e9 S",
+    "timestamp": "2025-08-04T17:41:10.939221",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 13,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Reviews, Discover similar products, Purina Pro Plan Adult Weight Management Turkey & Rice Entr\u00e9e in Gravy Wet Cat Food Purina Pro Plan Adult Weight Management Salmon & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Tuna & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Ocean Whitefish & Rice Entr\u00e9e in Sauce Wet Cat Food, Contact Us, International Sites, Sitemap, Navigate to our Facebook page, Navigate to our Twitter page, Navigate to our You, Tube page, Navigate to our Instagram page, All Nestl\u00e9 Purina trademarks owned by Soci\u00e9t\u00e9 des Produits Nestl\u00e9 S",
+    "timestamp": "2025-08-04T17:42:10.574561",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 14,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "ChickenRicePoultry By-Product MealCorn Protein MealSoybean MealSoy Protein IsolateBeef Fat Preserved With Mixed-TocopherolsPowdered CelluloseOat MealEgg Product (Dried)Liver FlavorSoybean HullsFish MealChicory Root InulinPhosphoric AcidCalcium CarbonatePotassium ChlorideSodium BisulfateSaltCholine ChlorideView All IngredientsDownload the full ingredient list (PDF)Open in new window",
+    "timestamp": "2025-08-04T17:44:31.599113",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 15,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Chicken, Rice, Poultry By-Product Meal, Corn Protein Meal, Soybean Meal, Soy Protein Isolate, Beef Fat Preserved With Mixed-Tocopherols, Powdered Cellulose, Oat Meal, Egg Product (Dried), Liver Flavor, Soybean Hulls, Fish Meal, Chicory Root Inulin, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Sodium Bisulfate, Salt, Choline Chloride",
+    "timestamp": "2025-08-04T17:47:08.548462",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 16,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
+    "timestamp": "2025-08-04T17:48:08.445549",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 17,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-04T17:50:59.422133",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 18,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Chicken, Rice, Poultry By-Product Meal, Corn Protein Meal, Soybean Meal, Soy Protein Isolate, Beef Fat Preserved With Mixed-Tocopherols, Powdered Cellulose, Oat Meal, Egg Product (Dried), Liver Flavor, Soybean Hulls, Fish Meal, Chicory Root Inulin, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Sodium Bisulfate, Salt, Choline Chloride",
+    "timestamp": "2025-08-04T17:52:37.221957",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 19,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Chicken, Rice, Poultry By-Product Meal, Corn Protein Meal, Soybean Meal, Soy Protein Isolate, Beef Fat Preserved With Mixed-Tocopherols, Powdered Cellulose, Oat Meal, Egg Product (Dried), Liver Flavor, Soybean Hulls, Fish Meal, Chicory Root Inulin, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Sodium Bisulfate, Salt, Choline Chloride",
+    "timestamp": "2025-08-04T17:53:28.308188",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 20,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tantalize your cat\u2019s tastebuds with Purina Fancy Feast Appetizers Flaked Tongol Tuna Appetizer gourmet adult cat food complement. Our hand-crafted cat food toppers offer the perfect way to add delicious flavor to her menu. Tender bites with real tongol tuna in a savory broth for cats invite your cat to experience gourmet taste at its most refined. Made with real, high-quality ingredients, this Fancy Feast flaked wet cat food appetizer looks good enough for you but is crafted especially for her. This limited ingredient cat food complement is made to meet your ingredient criteria with no grains, meat by-products or fillers. Serve Fancy Feast grain free cat food appetizers for cats alone or over her favorite Fancy Feast cat food. This single-serve adult cat food complement tray is just the right size for a delicious between-meal cat snack. Fancy Feast seafood gourmet cat food complement is crafted with attention to detail for a unique taste cats love.",
+    "timestamp": "2025-08-04T17:54:00.540787",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 21,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-04T17:56:56.301943",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 22,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-04T17:57:28.398777",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 23,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-04T17:59:16.056564",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 24,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-04T18:05:54.252210",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 25,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-04T18:11:06.569239",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 26,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Nurture your beloved indoor senior cat\u2019s unique nutritional needs with the exceptional Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food. This specialized cat food is not only rich in high-quality protein but is also designed to help support your feline friend\u2019s energy levels and maintain a healthy weight. With real chicken being the first ingredient among the protein sources, you can rest assured that your cat is receiving the essential nutrients they deserve. This formula contains natural prebiotic fiber, which promotes digestive health and ensures a complete and balanced meal for your senior cat. Additionally, it provides your indoor cat with taurine and vitamin A for optimal vision, along with antioxidants for cat immune support. Importantly, it contains no artificial colors or flavors. With Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food, you can be confident that your senior cat will enjoy a nutritious and delicious dining experience",
+    "timestamp": "2025-08-04T18:11:19.671452",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 27,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Nurture your beloved indoor senior cat\u2019s unique nutritional needs with the exceptional Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food. This specialized cat food is not only rich in high-quality protein but is also designed to help support your feline friend\u2019s energy levels and maintain a healthy weight. With real chicken being the first ingredient among the protein sources, you can rest assured that your cat is receiving the essential nutrients they deserve. This formula contains natural prebiotic fiber, which promotes digestive health and ensures a complete and balanced meal for your senior cat. Additionally, it provides your indoor cat with taurine and vitamin A for optimal vision, along with antioxidants for cat immune support. Importantly, it contains no artificial colors or flavors. With Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food, you can be confident that your senior cat will enjoy a nutritious and delicious dining experience",
+    "timestamp": "2025-08-06T16:24:49.074712",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 28,
+    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "senior",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-06T16:25:48.938773",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 120,
+      "images_with_src": 120,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 29,
+    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-06T16:26:01.341446",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 151,
+      "images_with_src": 151,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 30,
+    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
+    "brand": "Purina",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Ingredients not found",
+    "timestamp": "2025-08-06T16:26:13.692033",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 57,
+      "images_with_src": 57,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 31,
+    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
+    "petType": "cat",
+    "foodType": "dry",
+    "lifeStage": "all",
+    "ingredients": "1 of 8Enlarge ViewPreviousNextFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp By FriskiesEarn 10 points for every $1 you spend on your purchases with the myPurina appGet the AppFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - defaultFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 3.15 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 16 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 17.6 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 22 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 30 lb bag",
+    "timestamp": "2025-08-06T16:27:28.326289",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 177,
+      "images_with_src": 177,
       "extraction_method": "html_parsing"
     }
   }

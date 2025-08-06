@@ -5,18 +5,38 @@ A web-based application that scrapes brand information from pet food product URL
 ## Features
 
 - **Brand Detection**: Advanced extraction from meta tags, JSON-LD data, CSS classes, page content, and URLs
-- **Pet Type Detection**: Automatically determines if the product is for cats, dogs, or unknown based on URL and page content
-- **Food Type Classification**: Categorizes food as wet, dry, raw, or treats based on URL keywords and page content  
-- **Life Stage Detection**: Determines target life stage (kitten/puppy, adult, senior, or all) from URL and page content
-- **Image URL Scraping**: Multiple strategies to find the best product image
-- **Direct Image Support**: Can scrape data from direct image URLs (.jpg, .png, .pdf)
-- **Brand Exceptions**: Special handling for specific brands (e.g., "Purina Friskies")
-- **Web Interface**: User-friendly browser interface
-- **Data Storage**: JSON file storage for scraped data
-- **Bulk Operations**: Select and delete multiple entries at once
-- **App Export**: Format data for easy integration into other applications
-- **Clear Search**: Reset the scraper interface
-- **Debug Information**: Helpful debugging info when scraping fails
+- **Pet Type Detection**: Identifies whether products are for cats or dogs based on URL and page content
+- **Food Type Classification**: Categorizes food as wet, dry, raw, or treats
+- **Life Stage Detection**: Determines if food is for kitten/puppy, adult, senior, or all life stages
+- **Ingredient Extraction**: Comprehensively extracts product ingredients, including from dropdowns and collapsed content
+- **Image URL Scraping**: Finds and extracts product image URLs, prioritizing high-quality images
+- **Bulk Data Management**: Select and delete multiple stored entries at once
+- **Export for App Integration**: Copy data in a formatted structure for easy integration
+- **Clear Search**: Reset the scraper interface quickly
+- **Debug Information**: View extraction details and troubleshooting info
+- **Responsive Design**: Works on desktop and mobile devices
+
+### Ingredient Extraction
+The scraper uses advanced techniques to find ingredients even when hidden behind dropdowns or accordion interfaces:
+
+**Detection Strategy:**
+- Searches for explicit "Ingredients" sections and headings
+- Looks inside collapsed dropdowns, accordions, and tabs
+- Extracts from JSON-LD structured data
+- Analyzes data attributes and element classes
+- Uses pattern matching to identify ingredient lists
+- Validates content using ingredient-specific keywords
+
+**Dropdown/Accordion Support:**
+- Automatically finds content in collapsed elements
+- Searches common dropdown classes (`accordion`, `collapse`, `dropdown`, `expandable`, `toggle`, `tab-content`, `panel`)
+- No need to manually click dropdowns - content is extracted directly from the HTML
+
+**Ingredient Validation:**
+- Identifies likely ingredient lists using food-specific keywords
+- Filters out non-ingredient content
+- Handles various formats (comma-separated, bullet lists, paragraphs)
+- Cleans and formats the final ingredient text
 
 ## Quick Start
 
@@ -62,6 +82,7 @@ A web-based application that scrapes brand information from pet food product URL
   foodType: 'wet',
   lifeStage: 'adult',
   imageURL: 'https://example.com/product-image.jpg',
+  ingredients: 'Chicken, chicken broth, liver, meat by-products, turkey, vitamins, minerals'
 }
 
 {
@@ -70,6 +91,7 @@ A web-based application that scrapes brand information from pet food product URL
   foodType: 'dry',
   lifeStage: 'puppy',
   imageURL: 'https://example.com/another-image.jpg',
+  ingredients: 'Deboned chicken, chicken meal, brown rice, oatmeal, sweet potatoes, fish meal'
 }
 ```
 

@@ -76,17 +76,16 @@ function showResult(data) {
     
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
+    document.getElementById('result-image').textContent = data.imageURL;
     document.getElementById('result-pet-type').textContent = data.petType;
     document.getElementById('result-food-type').textContent = data.foodType;
     document.getElementById('result-life-stage').textContent = data.lifeStage;
-    document.getElementById('result-image').textContent = data.imageURL;
+    document.getElementById('result-ingredients').textContent = data.ingredients;
     
     // Show debug info if available
     if (data.debug_info) {
-        const debugDiv = document.getElementById('debug-info');
-        const debugDetails = document.getElementById('debug-details');
-        debugDetails.textContent = data.debug_info;
-        debugDiv.style.display = 'block';
+        document.getElementById('debug-details').textContent = data.debug_info;
+        document.getElementById('debug-info').style.display = 'block';
     }
     
     document.getElementById('result').classList.remove('hidden');
@@ -168,6 +167,7 @@ function displayData(data) {
                 <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
                 <div class="data-item-food-type">Food Type: ${escapeHtml(item.foodType || 'unknown')}</div>
                 <div class="data-item-life-stage">Life Stage: ${escapeHtml(item.lifeStage || 'adult')}</div>
+                <div class="data-item-ingredients">Ingredients: ${escapeHtml(item.ingredients || 'Not found')}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
                 <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
@@ -222,22 +222,22 @@ function escapeHtml(text) {
 
 // Clear search functionality
 function clearSearch() {
-    // Clear input
-    document.getElementById('url-input').value = '';
-    
-    // Hide result, error, loading, and debug info
+    document.getElementById('url').value = '';
     document.getElementById('result').classList.add('hidden');
     document.getElementById('error').classList.add('hidden');
     document.getElementById('loading').classList.add('hidden');
-    document.getElementById('debug-info').style.display = 'none';
     
     // Clear all result fields
     document.getElementById('result-url').textContent = '';
     document.getElementById('result-brand').textContent = '';
+    document.getElementById('result-image').textContent = '';
     document.getElementById('result-pet-type').textContent = '';
     document.getElementById('result-food-type').textContent = '';
     document.getElementById('result-life-stage').textContent = '';
-    document.getElementById('result-image').textContent = '';
+    document.getElementById('result-ingredients').textContent = '';
+    
+    // Hide debug info
+    document.getElementById('debug-info').style.display = 'none';
 }
 
 // Export functionality
@@ -251,11 +251,11 @@ async function exportForApp() {
             return;
         }
         
-        // Format data for app use - brand, petType, foodType, and imageURL fields
+        // Format data for app use - brand, petType, foodType, lifeStage, imageURL, and ingredients fields
         const formattedData = data.map((item, index) => {
             const isLast = index === data.length - 1;
             const comma = isLast ? '' : ',';
-            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: '${item.foodType || 'unknown'}',\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: '${item.foodType || 'unknown'}',\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal
