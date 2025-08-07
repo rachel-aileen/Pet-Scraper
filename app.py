@@ -1283,11 +1283,17 @@ def extract_ingredients(soup, url):
             'appetizing', 'irresistible', 'savory', 'tender', 'wholesome', 'nutritious',
             'complete and balanced', 'specially formulated', 'premium', 'quality',
             'authentic', 'restaurant', 'chef', 'culinary', 'artisan', 'handcrafted',
-            'natural goodness', 'real taste', 'mouth-watering', 'delectable'
+            'natural goodness', 'real taste', 'mouth-watering', 'delectable',
+            'packed with animal protein', 'strong lean muscles', 'freeze-dried raw',
+            'minimally processed bites', 'burn fat', 'healthy metabolism', 'feel fuller',
+            'made without', 'made in the usa', 'finest ingredients', 'from around the world',
+            'available in', 'lb bags', 'more about', 'high protein kibble', 'same bag',
+            'raw pieces', 'raw nutrition', 'boosted nutrition', 'support healthy',
+            'immune health', 'perfect for any pet', 'tailored nutrition', 'life stages'
         ]
         for term in marketing_terms:
             if term in potential_lower:
-                score -= 15  # Heavy penalty for marketing language
+                score -= 25  # Heavy penalty for marketing language (increased from -15)
         
         # VERY negative score for promotional content
         promotional_terms = [
@@ -1327,6 +1333,210 @@ def extract_ingredients(soup, url):
                 formatted_content = clean_extra_content(formatted_content)
                 if len(formatted_content) > 50:
                     return formatted_content
+
+    # PRIORITY 0.5: Special handling for "Our Ingredients" pattern (like Instinct)
+    # Look specifically for "Our Ingredients" followed by the actual ingredient list
+    # Use a more robust pattern that captures complete lists ending with final ingredients
+    our_ingredients_pattern = r'our\s+ingredients[:\s]*([A-Z][^.]*?(?:rosemary\s+extract|ethylenediamine\s+dihydriodide|dried\s+bacillus\s+coagulans\s+fermentation\s+product)\.?)'
+    our_ingredients_matches = list(re.finditer(our_ingredients_pattern, page_text, re.IGNORECASE | re.DOTALL))
+    
+    for match in our_ingredients_matches:
+        potential_ingredients = match.group(1).strip()
+        
+        # Check if this starts with an actual ingredient and has proper structure
+        if (any(starter in potential_ingredients.lower()[:50] for starter in ['chicken', 'beef', 'salmon', 'tuna', 'ground', 'water sufficient']) and
+            potential_ingredients.count(',') >= 5 and  # Has multiple ingredients
+            len(potential_ingredients) < 3000):  # Increased length limit for complete lists
+            
+            # Validate this is actually an ingredient list, not marketing copy
+            if is_likely_ingredient_list(potential_ingredients):
+                formatted_content = format_ingredient_list(potential_ingredients)
+                formatted_content = clean_extra_content(formatted_content)
+                if len(formatted_content) > 50:
+                    return formatted_content
+    
+    # PRIORITY 0.6: More aggressive "Our Ingredients" pattern for complete lists
+    # Try to capture everything from "Our Ingredients" until we hit nutritional info or other sections
+    # Use a greedy approach to get the complete list and find the actual end
+    extended_ingredients_pattern = r'our\s+ingredients[:\s]*([A-Z].*?)(?=\s*(?:guaranteed\s+analysis|nutritional\s+info|feeding\s+instructions|calorie\s+content|crude\s+protein|crude\s+fat|moisture|kcal|feeding\s+guide|available\s+sizes|product\s+details|feeding\s+amounts|directions\s+for\s+use|$))'
+    extended_matches = list(re.finditer(extended_ingredients_pattern, page_text, re.IGNORECASE | re.DOTALL))
+    
+    for match in extended_matches:
+        potential_ingredients = match.group(1).strip()
+        
+        # Clean up the content by finding the natural end of the ingredient list
+        # Look for the LAST occurrence of "Rosemary Extract" which is typically the final ingredient
+        rosemary_matches = list(re.finditer(r'rosemary\s+extract\.?', potential_ingredients, re.IGNORECASE))
+        if rosemary_matches:
+            # Take the last occurrence
+            last_rosemary = rosemary_matches[-1]
+            potential_ingredients = potential_ingredients[:last_rosemary.end()].rstrip('.')
+        else:
+            # If no Rosemary Extract, look for other common final ingredients
+            best_ending_pos = 0
+            for ending_pattern in [r'ethylenediamine\s+dihydriodide\.?', r'dried\s+bacillus\s+coagulans\s+fermentation\s+product\.?', r'sodium\s+selenite\.?']:
+                ending_matches = list(re.finditer(ending_pattern, potential_ingredients, re.IGNORECASE))
+                if ending_matches:
+                    # Take the last occurrence of this ending
+                    best_ending_pos = max(best_ending_pos, ending_matches[-1].end())
+            
+            if best_ending_pos > 0:
+                potential_ingredients = potential_ingredients[:best_ending_pos].rstrip('.')
+        
+        # Check if this looks like a complete ingredient list
+        if (any(starter in potential_ingredients.lower()[:50] for starter in ['chicken', 'beef', 'salmon', 'tuna', 'ground', 'water sufficient']) and
+            potential_ingredients.count(',') >= 15 and  # Should have many ingredients for a complete list
+            len(potential_ingredients) > 500 and  # Should be substantial
+            len(potential_ingredients) < 4000):  # Increased limit for complete lists
+            
+            # Validate this is actually an ingredient list, not marketing copy
+            if is_likely_ingredient_list(potential_ingredients):
+                formatted_content = format_ingredient_list(potential_ingredients)
+                formatted_content = clean_extra_content(formatted_content)
+                if len(formatted_content) > 200:  # Should be substantial
+                    return formatted_content
+
+    # PRIORITY 0.7: Fallback - look for any long ingredient list starting with common proteins
+    # This catches cases where "Our Ingredients" might not be present
+    fallback_pattern = r'((?:Chicken|Beef|Salmon|Tuna|Turkey|Ground [A-Za-z ]+)[^.]*?(?:rosemary\s+extract|ethylenediamine\s+dihydriodide|dried\s+bacillus\s+coagulans\s+fermentation\s+product)\.?)'
+    fallback_matches = list(re.finditer(fallback_pattern, page_text, re.IGNORECASE | re.DOTALL))
+    
+    for match in fallback_matches:
+        potential_ingredients = match.group(1).strip()
+        
+        # Only consider substantial lists
+        if (potential_ingredients.count(',') >= 15 and  # Many ingredients
+            len(potential_ingredients) > 500 and  # Substantial length
+            len(potential_ingredients) < 3000 and  # But not too long
+            any(starter in potential_ingredients.lower()[:50] for starter in ['chicken', 'beef', 'salmon', 'tuna', 'ground']) and
+            # Check for technical ingredient terms that indicate a complete list
+            sum(1 for term in ['vitamin', 'mineral', 'supplement', 'extract', 'proteinate', 'chloride'] if term in potential_ingredients.lower()) >= 3):
+            
+            # Make sure it's not marketing copy
+            marketing_count = sum(1 for term in ['packed with', 'strong lean', 'freeze-dried raw', 'burn fat', 'healthy metabolism'] if term in potential_ingredients.lower())
+            if marketing_count < 2:  # Allow minimal marketing terms
+                if is_likely_ingredient_list(potential_ingredients):
+                    formatted_content = format_ingredient_list(potential_ingredients)
+                    formatted_content = clean_extra_content(formatted_content)
+                    if len(formatted_content) > 200:  # Should be substantial
+                        return formatted_content
+
+    # PRIORITY 0.8: Most comprehensive approach - capture everything from "Our Ingredients" to clear section breaks
+    # This should get the complete ingredient list including all final ingredients
+    comprehensive_pattern = r'our\s+ingredients[:\s]*([A-Z].*?)(?=\s*(?:guaranteed\s+analysis|nutritional\s+adequacy|feeding\s+instructions|calorie\s+content|crude\s+protein|crude\s+fat|moisture\s+content|kcal\s*\/|feeding\s+guide|available\s+sizes|product\s+details|feeding\s+amounts|directions\s+for\s+use|transition\s+instructions|storage\s+instructions|net\s+weight|manufactured|distributed\s+by|$))'
+    comprehensive_matches = list(re.finditer(comprehensive_pattern, page_text, re.IGNORECASE | re.DOTALL))
+    
+    for match in comprehensive_matches:
+        raw_content = match.group(1).strip()
+        
+        # Remove obvious non-ingredient content that might have been captured
+        # Split by common separators and clean each part
+        lines = raw_content.split('\n')
+        ingredient_lines = []
+        
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+                
+            # Skip lines that are clearly not ingredients
+            if any(skip_term in line.lower() for skip_term in [
+                'guaranteed analysis', 'crude protein', 'crude fat', 'moisture', 'feeding guide',
+                'calorie content', 'kcal/', 'net weight', 'manufactured', 'distributed by',
+                'storage instructions', 'transition', 'available sizes', 'product details'
+            ]):
+                break  # Stop when we hit these sections
+                
+            ingredient_lines.append(line)
+        
+        # Rejoin the clean ingredient lines
+        potential_ingredients = ' '.join(ingredient_lines).strip()
+        
+        # Clean up any remaining junk at the end
+        # Look for natural ingredient list endings and cut there
+        for ending_term in ['rosemary extract.', 'rosemary extract', 'dried bacillus coagulans fermentation product.', 'dried bacillus coagulans fermentation product', 'ethylenediamine dihydriodide.', 'ethylenediamine dihydriodide']:
+            if ending_term in potential_ingredients.lower():
+                end_pos = potential_ingredients.lower().rfind(ending_term) + len(ending_term)
+                potential_ingredients = potential_ingredients[:end_pos].rstrip('.')
+                break
+        
+        # Check if this looks like a complete ingredient list
+        if (any(starter in potential_ingredients.lower()[:50] for starter in ['chicken', 'beef', 'salmon', 'tuna', 'ground', 'water sufficient']) and
+            potential_ingredients.count(',') >= 20 and  # Should have many ingredients for a complete list
+            len(potential_ingredients) > 800 and  # Should be substantial for a complete list
+            len(potential_ingredients) < 5000):  # But not too long
+            
+            # Validate this is actually an ingredient list, not marketing copy
+            if is_likely_ingredient_list(potential_ingredients):
+                formatted_content = format_ingredient_list(potential_ingredients)
+                formatted_content = clean_extra_content(formatted_content)
+                if len(formatted_content) > 300:  # Should be a very substantial list
+                    return formatted_content
+
+    # PRIORITY 0.9: Fallback approach - look for ingredient content in multiple ways and combine
+    # Try to find the complete list by looking for continuation patterns
+    continuation_pattern = r'(?:ethylenediamine\s+dihydriodide|sodium\s+selenite)[^.]*?([^.]*?(?:rosemary\s+extract|dried\s+bacillus\s+coagulans\s+fermentation\s+product)\.?)'
+    continuation_matches = list(re.finditer(continuation_pattern, page_text, re.IGNORECASE | re.DOTALL))
+    
+    # If we found previous ingredients but they seem incomplete, try to find the missing tail
+    if continuation_matches:
+        for match in continuation_matches:
+            continuation_text = match.group(1).strip()
+            if continuation_text and len(continuation_text) > 20:
+                # This might be the missing part - try to append it to our existing result
+                # Look for the main ingredient list again and try to combine
+                main_pattern = r'our\s+ingredients[:\s]*([A-Z].*?(?:ethylenediamine\s+dihydriodide|sodium\s+selenite))'
+                main_matches = list(re.finditer(main_pattern, page_text, re.IGNORECASE | re.DOTALL))
+                
+                for main_match in main_matches:
+                    main_ingredients = main_match.group(1).strip()
+                    # Combine the main part with the continuation
+                    complete_ingredients = main_ingredients + ", " + continuation_text
+                    
+                    # Clean up and validate the complete list
+                    if (complete_ingredients.count(',') >= 25 and  # Should have many ingredients
+                        len(complete_ingredients) > 1000 and  # Should be substantial
+                        any(starter in complete_ingredients.lower()[:50] for starter in ['chicken', 'beef', 'salmon', 'tuna', 'ground'])):
+                        
+                        if is_likely_ingredient_list(complete_ingredients):
+                            formatted_content = format_ingredient_list(complete_ingredients)
+                            formatted_content = clean_extra_content(formatted_content)
+                            if len(formatted_content) > 400:  # Should be a very complete list
+                                return formatted_content
+    
+    # PRIORITY 0.95: Last resort - manual completion for known incomplete patterns
+    # If we have a good start but missing the end, try to find missing ingredients
+    partial_pattern = r'our\s+ingredients[:\s]*([A-Z].*?ethylenediamine\s+dihydriodide)'
+    partial_matches = list(re.finditer(partial_pattern, page_text, re.IGNORECASE | re.DOTALL))
+    
+    for match in partial_matches:
+        partial_ingredients = match.group(1).strip()
+        
+        # Look for the missing ingredients that typically come after Ethylenediamine Dihydriodide
+        missing_pattern = r'(?:taurine|dried\s+kelp|salmon\s+oil|blueberries|dried\s+bacillus\s+coagulans\s+fermentation\s+product|rosemary\s+extract)'
+        missing_ingredients = []
+        
+        # Search for these ingredients in the page text
+        for missing_match in re.finditer(missing_pattern, page_text, re.IGNORECASE):
+            ingredient = missing_match.group(0)
+            if ingredient.lower() not in partial_ingredients.lower():
+                # Format ingredient name properly
+                ingredient = ingredient.title().replace('_', ' ')
+                if ingredient not in missing_ingredients:
+                    missing_ingredients.append(ingredient)
+        
+        if missing_ingredients and len(partial_ingredients) > 500:
+            # Add the missing ingredients
+            complete_with_missing = partial_ingredients + ", " + ", ".join(missing_ingredients)
+            
+            if (complete_with_missing.count(',') >= 20 and
+                len(complete_with_missing) > 800):
+                
+                if is_likely_ingredient_list(complete_with_missing):
+                    formatted_content = format_ingredient_list(complete_with_missing)
+                    formatted_content = clean_extra_content(formatted_content)
+                    if len(formatted_content) > 300:
+                        return formatted_content
 
     # PRIORITY 1: Look for specific high-quality ingredient containers
     # Check for <p class="p1"> tags which often contain complete ingredient lists (Applaws)
@@ -1384,8 +1594,6 @@ def extract_ingredients(soup, url):
                                 formatted_content = clean_extra_content(formatted_content)
                                 if len(formatted_content) > 50:
                                     return formatted_content
-
-    # ... existing code ...
 
 def extract_ingredients_after_element(element):
     """Extract ingredients from content following a heading element"""
@@ -1505,7 +1713,17 @@ def is_likely_ingredient_list(text):
         'complete and balanced meal', 'optimal vision', 'immune support',
         'nutritious and delicious dining experience', 'beloved indoor', 'exceptional',
         'feline friend', 'nurture your', 'with real chicken being the first ingredient',
-        'among the protein sources', 'this formula contains', 'additionally, it provides'
+        'among the protein sources', 'this formula contains', 'additionally, it provides',
+        # Add Instinct-specific marketing phrases
+        'packed with animal protein', 'strong lean muscles', 'freeze-dried raw',
+        'minimally processed bites', 'burn fat to support', 'healthy metabolism',
+        'feel fuller longer', 'made without', 'made in the usa',
+        'finest ingredients from around the world', 'available in', 'lb bags',
+        'more about raw', 'high protein kibble', 'freeze-dried raw together',
+        'same bag', 'all natural', 'protein packed', 'raw pieces for raw nutrition',
+        'boosted nutrition recipes', 'support healthy digestion', 'healthy skin',
+        'immune health', 'perfect for any pet', 'tailored nutrition',
+        'variety of healthy solutions', 'life stages'
     ]
 
     # Check for description patterns - these are NOT ingredient lists
@@ -1513,7 +1731,19 @@ def is_likely_ingredient_list(text):
     if description_count >= 2:  # If it has multiple description phrases, it's marketing copy
         return False
 
-    # Immediately reject marketing descriptions
+    # Enhanced marketing detection - reject text that starts with marketing phrases
+    marketing_starters = [
+        '- packed with', 'freeze-dried raw -', 'all natural,', 'protein packed,',
+        'minimally processed', 'l-carnitine to help', 'made without -', 'made in the usa with',
+        'available in', 'more about', 'raw + kibble', '100% raw pieces',
+        'boosted nutrition', 'perfect for any pet'
+    ]
+    
+    for starter in marketing_starters:
+        if text_lower.startswith(starter):
+            return False
+
+    # Reject text that contains too much marketing language relative to actual ingredients
     marketing_indicators = [
         'tantalize', 'tastebuds', 'gourmet', 'delicious flavor', 'perfect way',
         'hand-crafted', 'toppers offer', 'invite your cat', 'experience gourmet',
@@ -1521,7 +1751,11 @@ def is_likely_ingredient_list(text):
         'unique taste cats love', 'tender bites', 'savory broth', 'most refined',
         'between-meal snack', 'complement tray', 'single-serve', 'adult cat food complement',
         'made to meet your', 'ingredient criteria', 'serve fancy feast', 'favorite fancy feast',
-        'add delicious flavor to her menu', 'real high quality ingredients'
+        'add delicious flavor to her menu', 'real high quality ingredients',
+        'strong lean muscles', 'burn fat', 'healthy metabolism', 'feel fuller',
+        'finest ingredients', 'from around the world', 'high protein kibble',
+        'raw nutrition and taste', 'boosted nutrition', 'immune health',
+        'tailored nutrition', 'healthy solutions'
     ]
 
     marketing_count = sum(1 for marketing_term in marketing_indicators if marketing_term in text_lower)
@@ -1552,9 +1786,10 @@ def is_likely_ingredient_list(text):
 
     # Immediately reject page titles/product names
     title_indicators = [
-        '| applaws', 'oz can', 'lb bag', 'wet cat food', 'dry cat food',
-        'cat treats', 'dog food', 'pet food', '- amazon', '- chewy',
-        '- petco', '- petsmart', 'product page', 'buy online'
+        '| applaws', '| purina', '| hill\'s', '| royal canin', '| blue buffalo', '| instinct',
+        'oz can', 'oz bag', 'lb bag', 'kg bag', 'pouches', 'pack of',
+        'wet cat food', 'dry cat food', 'cat treats', 'dog food', 'pet food', 
+        '- amazon', '- chewy', '- petco', '- petsmart', 'product page', 'buy online'
     ]
 
     for title in title_indicators:
@@ -1564,15 +1799,13 @@ def is_likely_ingredient_list(text):
     # For actual ingredient lists, look for specific patterns
     # Real ingredient lists typically start with ingredients and are comma-separated
     actual_ingredient_patterns = [
-        text_lower.startswith('chicken'),
-        text_lower.startswith('beef'),
-        text_lower.startswith('salmon'),
-        text_lower.startswith('tuna'),
+        text_lower.startswith('chicken'), text_lower.startswith('beef'),
+        text_lower.startswith('salmon'), text_lower.startswith('tuna'),
         text_lower.startswith('turkey'),
+        text_lower.startswith('ground yellow corn'), text_lower.startswith('ground corn'),
         text_lower.startswith('water sufficient for processing'),
-        text_lower.startswith('corn'),
-        text_lower.startswith('rice'),
-        text_lower.startswith('wheat')
+        text_lower.startswith('corn'), text_lower.startswith('rice'),
+        text_lower.startswith('wheat'), text_lower.startswith('corn meal')
     ]
 
     # Check for comma separation and multiple ingredients
@@ -1592,7 +1825,6 @@ def is_likely_ingredient_list(text):
 
     ingredient_count = sum(1 for ingredient in ingredient_indicators if ingredient in text_lower)
 
-    # Enhanced validation for ingredient lists
     # Check for technical ingredient terms that are strong indicators
     technical_indicators = [
         'sodium selenite', 'thiamine mononitrate', 'pyridoxine hydrochloride', 
@@ -1736,9 +1968,9 @@ def clean_ingredients_text(text):
                 text = text[len(prefix):].strip()
                 break
         
-        # Limit length to avoid overly long ingredient lists
-        if len(text) > 1000:
-            text = text[:1000] + "..."
+        # Limit length to avoid overly long ingredient lists (but allow for complete lists)
+        if len(text) > 2500:  # Increased from 1000 to 2500 to accommodate complete ingredient lists
+            text = text[:2500] + "..."
         
         return text.strip()
     except:

@@ -1,167 +1,14 @@
 [
   {
     "id": 1,
-    "url": "https://vivarawpets.com/products/beef-for-cats",
-    "brand": "Viva Raw",
-    "imageURL": "http://vivarawpets.com/cdn/shop/files/Viva_Beef_Cat_Bowl_176b5067-d71f-4643-ac4e-5853f22e3cfb.png",
-    "petType": "cat",
-    "foodType": "raw",
-    "lifeStage": "all",
-    "ingredients": "Where does Viva source from & how is the food made? We're proud to be sourcing high quality, USDA-inspected meat from smaller farms. These are the same farms that stock your local Whole Foods & favorite restaurants. We only work with farms that never administer hormones & growth promoting antibiotics (a huge step up from conventional) & are certified humane through third-party audits like G.A.P. or the American Humane Program. By not relying on chemicals, our farmers focus on providing high quality food and a clean environment to raise healthy, happy animals.We grind, mix & package all of your cat's meals in our kitchens\u2014where we are the first and only pet food made in our facility that also produces human food. And you better believe we\u2019re proud of it. Everything is made in small batches (each package is hand-labeled & checked for quality) and tested for pathogens, because your kitty deserves the freshest food from farm-to-bowl.",
-    "timestamp": "2025-08-04T17:25:50.809545",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 23,
-      "images_with_src": 23,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 2,
-    "url": "https://instinctpetfood.com/products/raw-meals-freeze-dried-chicken-cat-food/",
-    "brand": "Instinct",
-    "imageURL": "https://images.salsify.com/image/upload/s--zUBSOf98--/t2vfuzopnmfhf6phybrt.jpg",
-    "petType": "cat",
-    "foodType": "raw",
-    "lifeStage": "adult",
-    "ingredients": "Chicken (including Ground Chicken Bone), Chicken Liver, Chicken Heart, Pumpkinseeds, Ground Flaxseed, Montmorillonite Clay, Salmon Oil, Carrots, Apples, Butternut Squash, Vitamins (Vitamin E Supplement, Thiamine Mononitrate, Vitamin D3 Supplement), Potassium Chloride, Tricalcium Phosphate, Choline Chloride, Taurine, Yeast Culture, Salt, Minerals (Zinc Proteinate, Copper Proteinate, Manganese Proteinate, Calcium Iodate), DL-Methionine, Mixed Tocopherols (for freshness), Blueberries, Spinach, Rosemary Extract",
-    "timestamp": "2025-08-04T17:26:52.644205",
-    "domain": "instinctpetfood.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 3,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
-    "timestamp": "2025-08-04T17:28:53.737360",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 4,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
-    "timestamp": "2025-08-04T17:30:54.935651",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 5,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
-    "timestamp": "2025-08-04T17:34:35.992849",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 6,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Pro Plan Essentials Tuna, Shrimp & Rice Wet Cat Food | Purina USSkip to Main ContentWhere to BuyWhere to BuyBuy With RetailersShop Brand StoresFor ProfessionalsContact UsUS (Espa\u00f1ol)DogsDogsDog FoodDry Dog FoodWet Dog FoodPuppy FoodSenior Dog FoodGrain Free Dog FoodPet Food FinderAnalysis KitsOpen in new windowSee All Dog FoodDog TreatsDog ChewsDog Dental ChewsDog Jerky & StripsRawhides & RollhidesDog SupplementsSee All Dog TreatsDog InformationDog ArticlesDog BreedsDog BrandsCatsCatsCat FoodDry Cat FoodWet Cat FoodKitten FoodSenior Cat FoodPet Food FinderAnalysis KitsOpen in new windowSee All Cat FoodCat TreatsDry Cat TreatsWet Cat TreatsDental Cat TreatsCat Toppers & ComplementsCat SupplementsSee All Cat TreatsCat LitterClumping LitterLightweight LitterNon-Clumping LitterUnscented LitterLitter Box SystemsLitter Box MonitorScented LitterSee All Cat LitterCat InformationCat ArticlesCat BreedsCat BrandsWhy PurinaWhy PurinaAbout UsOur CompanyFAQsNewsOpen in new windowOur Pet ExpertsPet C",
-    "timestamp": "2025-08-04T17:35:14.852779",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 7,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for ProcessingTunaWheat GlutenChickenLiverShrimpMeat By-ProductsLong Grain RiceCorn Starch-ModifiedCorn OilSaltSoy Protein ConcentrateNatural FlavorsTricalcium PhosphatePotassium ChlorideZinc SulfateFerrous SulfateManganese SulfateCopper SulfatePotassium IodideCholine ChlorideTaurineVitamin E SupplementThiamine Mononitrate (Vitamin B-1)Niacin (Vitamin B-3)Calcium Pantothenate (Vitamin B-5)Vitamin A SupplementMenadione Sodium Bisulfite Complex (Vitamin K)Pyridoxine Hydrochloride (Vitamin B-6)Riboflavin Supplement (Vitamin B-2)Vitamin B-12 SupplementBiotin (Vitamin B-7)Folic Acid (Vitamin B-9)Vitamin D-3 SupplementView All IngredientsDownload the full ingredient list (PDF)Open in new windowFeeding and NutritionFeeding GuideFind Your Pet\u2019s Perfect PortionUse our pet food calculator to get a personalized feeding guide for your dog or cat.Calculate NowOpen in new window",
-    "timestamp": "2025-08-04T17:36:01.200214",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 8,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-04T17:36:46.314115",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 9,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-04T17:39:35.103813",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 10,
-    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "url": "https://applaws.com/us/products/chicken-breast-turkey-recipe-gravy/",
     "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/1240US-A_DOI_CAN_FOP_5000px-1024x1024.png",
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "adult",
-    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum.",
-    "timestamp": "2025-08-04T17:39:47.279877",
+    "ingredients": "Chicken Broth, Chicken Breast, Turkey, Potato Starch, Guar Gum",
+    "timestamp": "2025-08-06T18:33:38.404949",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 26,
@@ -170,576 +17,15 @@
     }
   },
   {
-    "id": 11,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-04T17:40:28.728400",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 12,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Reviews, Discover similar products, Purina Pro Plan Adult Weight Management Turkey & Rice Entr\u00e9e in Gravy Wet Cat Food Purina Pro Plan Adult Weight Management Salmon & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Tuna & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Ocean Whitefish & Rice Entr\u00e9e in Sauce Wet Cat Food, Contact Us, International Sites, Sitemap, Navigate to our Facebook page, Navigate to our Twitter page, Navigate to our You, Tube page, Navigate to our Instagram page, All Nestl\u00e9 Purina trademarks owned by Soci\u00e9t\u00e9 des Produits Nestl\u00e9 S",
-    "timestamp": "2025-08-04T17:41:10.939221",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 13,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Reviews, Discover similar products, Purina Pro Plan Adult Weight Management Turkey & Rice Entr\u00e9e in Gravy Wet Cat Food Purina Pro Plan Adult Weight Management Salmon & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Tuna & Rice Entr\u00e9e in Sauce Wet Cat Food, Purina Pro Plan Adult Weight Management Ocean Whitefish & Rice Entr\u00e9e in Sauce Wet Cat Food, Contact Us, International Sites, Sitemap, Navigate to our Facebook page, Navigate to our Twitter page, Navigate to our You, Tube page, Navigate to our Instagram page, All Nestl\u00e9 Purina trademarks owned by Soci\u00e9t\u00e9 des Produits Nestl\u00e9 S",
-    "timestamp": "2025-08-04T17:42:10.574561",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 14,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "ChickenRicePoultry By-Product MealCorn Protein MealSoybean MealSoy Protein IsolateBeef Fat Preserved With Mixed-TocopherolsPowdered CelluloseOat MealEgg Product (Dried)Liver FlavorSoybean HullsFish MealChicory Root InulinPhosphoric AcidCalcium CarbonatePotassium ChlorideSodium BisulfateSaltCholine ChlorideView All IngredientsDownload the full ingredient list (PDF)Open in new window",
-    "timestamp": "2025-08-04T17:44:31.599113",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 15,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Chicken, Rice, Poultry By-Product Meal, Corn Protein Meal, Soybean Meal, Soy Protein Isolate, Beef Fat Preserved With Mixed-Tocopherols, Powdered Cellulose, Oat Meal, Egg Product (Dried), Liver Flavor, Soybean Hulls, Fish Meal, Chicory Root Inulin, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Sodium Bisulfate, Salt, Choline Chloride",
-    "timestamp": "2025-08-04T17:47:08.548462",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 16,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Pro Plan Complete Essentials Tuna, Shrimp & Rice Entr\u00e9e In Sauce Wet Cat Food - 3 oz pull-top can",
-    "timestamp": "2025-08-04T17:48:08.445549",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 17,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-04T17:50:59.422133",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 18,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Chicken, Rice, Poultry By-Product Meal, Corn Protein Meal, Soybean Meal, Soy Protein Isolate, Beef Fat Preserved With Mixed-Tocopherols, Powdered Cellulose, Oat Meal, Egg Product (Dried), Liver Flavor, Soybean Hulls, Fish Meal, Chicory Root Inulin, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Sodium Bisulfate, Salt, Choline Chloride",
-    "timestamp": "2025-08-04T17:52:37.221957",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 19,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Chicken, Rice, Poultry By-Product Meal, Corn Protein Meal, Soybean Meal, Soy Protein Isolate, Beef Fat Preserved With Mixed-Tocopherols, Powdered Cellulose, Oat Meal, Egg Product (Dried), Liver Flavor, Soybean Hulls, Fish Meal, Chicory Root Inulin, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Sodium Bisulfate, Salt, Choline Chloride",
-    "timestamp": "2025-08-04T17:53:28.308188",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 20,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Tantalize your cat\u2019s tastebuds with Purina Fancy Feast Appetizers Flaked Tongol Tuna Appetizer gourmet adult cat food complement. Our hand-crafted cat food toppers offer the perfect way to add delicious flavor to her menu. Tender bites with real tongol tuna in a savory broth for cats invite your cat to experience gourmet taste at its most refined. Made with real, high-quality ingredients, this Fancy Feast flaked wet cat food appetizer looks good enough for you but is crafted especially for her. This limited ingredient cat food complement is made to meet your ingredient criteria with no grains, meat by-products or fillers. Serve Fancy Feast grain free cat food appetizers for cats alone or over her favorite Fancy Feast cat food. This single-serve adult cat food complement tray is just the right size for a delicious between-meal cat snack. Fancy Feast seafood gourmet cat food complement is crafted with attention to detail for a unique taste cats love.",
-    "timestamp": "2025-08-04T17:54:00.540787",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 21,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-04T17:56:56.301943",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 22,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-04T17:57:28.398777",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 23,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-04T17:59:16.056564",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 24,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-04T18:05:54.252210",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 25,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-04T18:11:06.569239",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 26,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Nurture your beloved indoor senior cat\u2019s unique nutritional needs with the exceptional Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food. This specialized cat food is not only rich in high-quality protein but is also designed to help support your feline friend\u2019s energy levels and maintain a healthy weight. With real chicken being the first ingredient among the protein sources, you can rest assured that your cat is receiving the essential nutrients they deserve. This formula contains natural prebiotic fiber, which promotes digestive health and ensures a complete and balanced meal for your senior cat. Additionally, it provides your indoor cat with taurine and vitamin A for optimal vision, along with antioxidants for cat immune support. Importantly, it contains no artificial colors or flavors. With Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food, you can be confident that your senior cat will enjoy a nutritious and delicious dining experience",
-    "timestamp": "2025-08-04T18:11:19.671452",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 27,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Nurture your beloved indoor senior cat\u2019s unique nutritional needs with the exceptional Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food. This specialized cat food is not only rich in high-quality protein but is also designed to help support your feline friend\u2019s energy levels and maintain a healthy weight. With real chicken being the first ingredient among the protein sources, you can rest assured that your cat is receiving the essential nutrients they deserve. This formula contains natural prebiotic fiber, which promotes digestive health and ensures a complete and balanced meal for your senior cat. Additionally, it provides your indoor cat with taurine and vitamin A for optimal vision, along with antioxidants for cat immune support. Importantly, it contains no artificial colors or flavors. With Pro Plan Adult 7+ Indoor Chicken and Rice Formula High Protein Cat Food, you can be confident that your senior cat will enjoy a nutritious and delicious dining experience",
-    "timestamp": "2025-08-06T16:24:49.074712",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 28,
-    "url": "https://www.purina.com/cats/shop/pro-plan-indoor-adult-seven-plus-chicken-dry-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/pro-plan-indoor-chicken-senior-dry-cat-food.png?h=1e66e246&itok=-nPGI1-L",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "senior",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-06T16:25:48.938773",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 120,
-      "images_with_src": 120,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 29,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-06T16:26:01.341446",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 30,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-06T16:26:13.692033",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 31,
-    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food",
+    "id": 2,
+    "url": "https://www.purina.com/cats/shop/friskies-extra-gravy-chunky-salmon-wet-cat-food",
     "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "all",
-    "ingredients": "1 of 8Enlarge ViewPreviousNextFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp By FriskiesEarn 10 points for every $1 you spend on your purchases with the myPurina appGet the AppFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - defaultFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 3.15 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 16 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 17.6 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 22 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 30 lb bag",
-    "timestamp": "2025-08-06T16:27:28.326289",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 177,
-      "images_with_src": 177,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 32,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2024-09/00050000293339_a1c1_copy.png?h=1e66e246&itok=4qBhxT0l",
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "adult",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-06T16:31:41.501018",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 33,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Ingredients not found",
-    "timestamp": "2025-08-06T16:33:29.345379",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 34,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Tuna Broth, Tuna, Guar Gum, Xanthan Gum, Celery Powder, Thiamine Mononitrate (Vitamin B-1)",
-    "timestamp": "2025-08-06T16:35:21.836666",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 35,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-06T16:35:43.092422",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 36,
-    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
-    "timestamp": "2025-08-06T16:35:51.695636",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 37,
-    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "all",
-    "ingredients": "1 of 8Enlarge ViewPreviousNextFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp By FriskiesEarn 10 points for every $1 you spend on your purchases with the myPurina appGet the AppFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - defaultFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 3.15 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 16 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 17.6 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 22 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 30 lb bag",
-    "timestamp": "2025-08-06T16:36:25.299308",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 177,
-      "images_with_src": 177,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 38,
-    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "all",
-    "ingredients": "1 of 8Enlarge ViewPreviousNextFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp By FriskiesEarn 10 points for every $1 you spend on your purchases with the myPurina appGet the AppFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - defaultFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 3.15 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 16 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 17.6 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 22 lb bagFriskies Seafood Sensations Dry Cat Food With Flavors of Salmon, Tuna & Shrimp - 30 lb bag",
-    "timestamp": "2025-08-06T16:37:28.765241",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 177,
-      "images_with_src": 177,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 39,
-    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "all",
-    "ingredients": "Ground Yellow Corn, Corn Gluten Meal, Poultry By-Product Meal, Soybean Meal, Animal Fat (preserved with mixed tocopherols), Liver Flavor, Meat and Bone Meal, Ocean fish meal, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Salt, Choline Chloride, Salmon Meal, Tuna Meal, Shrimp Meal, Dehydrated seaweed meal, Taurine, Vitamin E Supplement, Niacin (Vitamin B-3), Vitamin A Supplement, Calcium Pantothenate (Vitamin B-5), Thiamine Mononitrate (Vitamin B-1), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Pyridoxine Hydrochloride (Vitamin B-6), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement, Biotin (Vitamin B-7), Menadione Sodium Bisulfite Complex (Vitamin K), Yellow 5DL-MethionineL-Tryptophan, Red 40, Blue 2, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Calcium Iodate, Sodium Selenite",
-    "timestamp": "2025-08-06T16:44:45.027016",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 177,
-      "images_with_src": 177,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 40,
-    "url": "https://www.purina.com/cats/shop/fancy-feast-flaked-tongol-tuna-appetizer-wet-cat-food#ingredients",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2023-10/fancy-feast-appetizers-tuna.png?h=1e66e246&itok=vaZwYYHa",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Tuna Broth, Tuna, Guar Gum, Xanthan Gum, Celery Powder, Thiamine Mononitrate (Vitamin B-1)",
-    "timestamp": "2025-08-06T16:45:01.939729",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 57,
-      "images_with_src": 57,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 41,
-    "url": "https://www.purina.com/cats/shop/pro-plan-complete-essentials-tuna-shrimp-rice-sauce-wet-cat-food",
-    "brand": "Purina",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/pro-plan-tuna-shrimp-rice-sauce-wet-cat-food.png?h=c8ae330f&itok=YhZIkHDm",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Tuna, Wheat Gluten, Chicken, Liver, Shrimp, Meat By-Products, Long Grain Rice, Corn Starch-Modified, Corn Oil, Salt, Soy Protein Concentrate, Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Choline Chloride, Taurine, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B-1), Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-06T16:45:13.832973",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 151,
-      "images_with_src": 151,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 42,
-    "url": "https://www.purina.com/cats/shop/friskies-seafood-sensations-dry-cat-food#ingredients",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-seafood-sensations-dry-cat-food.png?h=1e66e246&itok=zg7Z_0Qh",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "all",
-    "ingredients": "Ground Yellow Corn, Corn Gluten Meal, Poultry By-Product Meal, Soybean Meal, Animal Fat (preserved with mixed tocopherols), Liver Flavor, Meat and Bone Meal, Ocean fish meal, Phosphoric Acid, Calcium Carbonate, Potassium Chloride, Salt, Choline Chloride, Salmon Meal, Tuna Meal, Shrimp Meal, Dehydrated seaweed meal, Taurine, Vitamin E Supplement, Niacin (Vitamin B-3), Vitamin A Supplement, Calcium Pantothenate (Vitamin B-5), Thiamine Mononitrate (Vitamin B-1), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Pyridoxine Hydrochloride (Vitamin B-6), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement, Biotin (Vitamin B-7), Menadione Sodium Bisulfite Complex (Vitamin K), Yellow 5DL-MethionineL-Tryptophan, Red 40, Blue 2, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Calcium Iodate, Sodium Selenite",
-    "timestamp": "2025-08-06T16:46:12.070592",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 177,
-      "images_with_src": 177,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 43,
-    "url": "https://www.purina.com/cats/shop/friskies-surfin-turfin-favorites-dry-cat-food",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2025-05/friskies-surfin-turfin-favorites-dry-cat-food.png?h=1e66e246&itok=yfC8roZQ",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "adult",
-    "ingredients": "Ground Yellow Corn, Chicken By-Product Meal, Soybean Meal, Corn Gluten Meal, Beef Fat Preserved With Mixed-Tocopherols, Meat and Bone Meal, Liver Flavor, Ocean fish meal, Calcium Carbonate, Phosphoric Acid, Salmon Meal, Salt, Choline Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Calcium Iodate, Sodium Selenite, Potassium Chloride, TaurineDL-Methionine, Vitamin E Supplement, Niacin (Vitamin B-3), Vitamin A Supplement, Calcium Pantothenate (Vitamin B-5), Thiamine Mononitrate (Vitamin B-1), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Pyridoxine Hydrochloride (Vitamin B-6), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement, Biotin (Vitamin B-7), Menadione Sodium Bisulfite Complex (Vitamin K), Natural Filet Mignon Flavor, Red 40, Yellow 5, Blue 2",
-    "timestamp": "2025-08-06T16:46:30.279158",
-    "domain": "www.purina.com",
-    "debug_info": {
-      "total_images": 167,
-      "images_with_src": 167,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 44,
-    "url": "https://www.purina.com/cats/shop/friskies-shreds-salmon-in-sauce-wet-cat-food",
-    "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2024-05/friskies-shreds-with-salmon-in-sauce-wet-cat-food.png?h=1e66e246&itok=PK-kxW_f",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Poultry, Meat By-Products, Salmon, Wheat Gluten, Corn Starch-Modified, Soy Flour, Artificial And Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Salt, Choline Chloride, Taurine, Thiamine Mononitrate (Vitamin B-1), Vitamin E Supplement, Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-06T16:47:05.952800",
+    "ingredients": "Water Sufficient for Processing, Poultry, Liver, Meat By-Products, Wheat Gluten, Salmon, Soy Flour, Corn Starch-Modified, Artificial And Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Taurine, Salt, Choline Chloride, Thiamine Mononitrate (Vitamin B-1), Vitamin E Supplement, Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-06T18:34:35.793026",
     "domain": "www.purina.com",
     "debug_info": {
       "total_images": 142,
@@ -748,177 +34,92 @@
     }
   },
   {
-    "id": 45,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
-    "timestamp": "2025-08-06T16:49:42.671693",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 46,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
-    "timestamp": "2025-08-06T16:50:08.724352",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 47,
-    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
-    "timestamp": "2025-08-06T16:51:03.884827",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 48,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
-    "timestamp": "2025-08-06T16:58:07.062392",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 49,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
-    "timestamp": "2025-08-06T18:22:57.438493",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 50,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Tuna Fillet, Fish Broth, Mackerel, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Marine Microalgae Oil, Vitamins (Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid)), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Calcium Chloride, Taurine, Choline Chloride, Tricalcium Phosphate, Guar Gum, Potassium Chloride, Magnesium Amino Acid Chelate, Menadione Nicotinamide Bisulfite.",
-    "timestamp": "2025-08-06T18:25:45.271904",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 51,
-    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum.",
-    "timestamp": "2025-08-06T18:26:50.257002",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 52,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Tuna Fillet, Fish Broth, Mackerel, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Marine Microalgae Oil, Vitamins (Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid)), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Calcium Chloride, Taurine, Choline Chloride, Tricalcium Phosphate, Guar Gum, Potassium Chloride, Magnesium Amino Acid Chelate, Menadione Nicotinamide Bisulfite.",
-    "timestamp": "2025-08-06T18:27:40.791116",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 53,
-    "url": "https://www.purina.com/cats/shop/friskies-tasty-treasures-fish-tuna-scallop-sauce-wet-cat-food",
+    "id": 3,
+    "url": "https://www.purina.com/cats/shop/friskies-extra-gravy-chunky-salmon-wet-cat-food",
     "brand": "Purina Friskies",
-    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2024-09/00050000577972_a1c1_copy.png?h=1e66e246&itok=O_rWg_Hh",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2024-09/00050000293339_a1c1_copy.png?h=1e66e246&itok=4qBhxT0l",
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "adult",
-    "ingredients": "Water Sufficient for Processing, Meat By-Products, Chicken, Wheat Gluten, Soy Flour, Corn Starch-Modified, Ocean fish, Tuna, Artificial And Natural Flavors, Sodium Caseinate, Tricalcium Phosphate, Medium Chain Triglyceride Vegetable Oil (MCTS), Vegetable Starch - Modified, Corn Starch, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Salt, Dried Whey, Sodium Phosphate, Taurine, Choline Chloride, Thiamine Mononitrate (Vitamin B-1), Vitamin E Supplement, Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Vitamin A Supplement, Folic Acid (Vitamin B-9), Menadione Sodium Bisulfite Complex (Vitamin K), Vitamin D-3 Supplement",
-    "timestamp": "2025-08-06T18:29:01.048496",
+    "ingredients": "Water Sufficient for Processing, Poultry, Liver, Meat By-Products, Wheat Gluten, Salmon, Soy Flour, Corn Starch-Modified, Artificial And Natural Flavors, Tricalcium Phosphate, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Taurine, Salt, Choline Chloride, Thiamine Mononitrate (Vitamin B-1), Vitamin E Supplement, Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Vitamin A Supplement, Menadione Sodium Bisulfite Complex (Vitamin K), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Folic Acid (Vitamin B-9), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-07T14:08:15.714394",
     "domain": "www.purina.com",
     "debug_info": {
-      "total_images": 160,
-      "images_with_src": 160,
+      "total_images": 142,
+      "images_with_src": 142,
       "extraction_method": "html_parsing"
     }
   },
   {
-    "id": 54,
-    "url": "https://applaws.com/us/products/chicken-breast-turkey-recipe-gravy/",
-    "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/1240US-A_DOI_CAN_FOP_5000px-1024x1024.png",
+    "id": 4,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
     "petType": "cat",
-    "foodType": "wet",
+    "foodType": "raw",
     "lifeStage": "adult",
-    "ingredients": "Chicken Broth, Chicken Breast, Turkey, Potato Starch, Guar Gum.",
-    "timestamp": "2025-08-06T18:29:49.132390",
-    "domain": "applaws.com",
+    "ingredients": "- packed with animal protein for strong, lean muscles Freeze-Dried Raw - All natural, protein packed, minimally processed bites of real chicken L-Carnitine to help burn fat to support healthy metabolism plus the ideal fiber level to help your cat feel fuller, longer Made without - grain, potato, corn, wheat, soy, by-product meal, artificial colors or preservatives Made in the USA with the finest ingredients from around the world Available in 10 lb. & 4.5 lb. bags More About Raw + Kibble Raw + Kibble High protein kibble + freeze-dried raw together in the same bag 100% RAW Pieces All natural freeze-dried raw bites protein packed with real meat raw pieces for raw nutrition and taste Boosted Nutrition Recipes that support healthy digestion, healthy skin & coat and immune health Perfect for Any Pet Tailored nutrition in a variety of healthy solutions and life stages. Our Ingredients Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide), Taurine, Dried Kelp, Salmon Oil, Blueberries, Dried Bacillus coagulans Fermentation Product, Rosemary Extract",
+    "timestamp": "2025-08-07T14:18:26.456320",
+    "domain": "instinctpetfood.com",
     "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
+      "total_images": 22,
+      "images_with_src": 22,
       "extraction_method": "html_parsing"
     }
   },
   {
-    "id": 55,
+    "id": 5,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "- packed with animal protein for strong, lean muscles Freeze-Dried Raw - All natural, protein packed, minimally processed bites of real chicken L-Carnitine to help burn fat to support healthy metabolism plus the ideal fiber level to help your cat feel fuller, longer Made without - grain, potato, corn, wheat, soy, by-product meal, artificial colors or preservatives Made in the USA with the finest ingredients from around the world Available in 10 lb. & 4.5 lb. bags More About Raw + Kibble Raw + Kibble High protein kibble + freeze-dried raw together in the same bag 100% RAW Pieces All natural freeze-dried raw bites protein packed with real meat raw pieces for raw nutrition and taste Boosted Nutrition Recipes that support healthy digestion, healthy skin & coat and immune health Perfect for Any Pet Tailored nutrition in a variety of healthy solutions and life stages. Our Ingredients Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide), Taurine, Dried Kelp, Salmon Oil, Blueberries, Dried Bacillus coagulans Fermentation Product, Rosemary Extract",
+    "timestamp": "2025-08-07T14:20:15.476305",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 6,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid",
+    "timestamp": "2025-08-07T14:45:22.188947",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 7,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid",
+    "timestamp": "2025-08-07T14:46:55.153225",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 8,
     "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
     "brand": "Applaws",
     "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
@@ -926,7 +127,7 @@
     "foodType": "wet",
     "lifeStage": "adult",
     "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
-    "timestamp": "2025-08-06T18:32:27.554340",
+    "timestamp": "2025-08-07T14:47:13.372583",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 27,
@@ -935,15 +136,168 @@
     }
   },
   {
-    "id": 56,
-    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "id": 9,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid",
+    "timestamp": "2025-08-07T14:47:32.189581",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 10,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid",
+    "timestamp": "2025-08-07T14:49:06.970646",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 11,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid",
+    "timestamp": "2025-08-07T14:49:55.341814",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 12,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid",
+    "timestamp": "2025-08-07T14:50:26.426710",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 13,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement",
+    "timestamp": "2025-08-07T16:27:15.670592",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 14,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide",
+    "timestamp": "2025-08-07T16:28:03.543852",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 15,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide",
+    "timestamp": "2025-08-07T16:28:36.954512",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 16,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide",
+    "timestamp": "2025-08-07T16:38:59.776364",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 17,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide",
+    "timestamp": "2025-08-07T16:40:17.750333",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 18,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
     "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "adult",
-    "ingredients": "Tuna Fillet, Fish Broth, Mackerel, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Marine Microalgae Oil, Vitamins (Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid)), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Calcium Chloride, Taurine, Choline Chloride, Tricalcium Phosphate, Guar Gum, Potassium Chloride, Magnesium Amino Acid Chelate, Menadione Nicotinamide Bisulfite",
-    "timestamp": "2025-08-06T18:32:36.808736",
+    "ingredients": null,
+    "timestamp": "2025-08-07T16:42:26.263407",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 27,
@@ -952,19 +306,53 @@
     }
   },
   {
-    "id": 57,
-    "url": "https://applaws.com/us/products/chicken-breast-turkey-recipe-gravy/",
+    "id": 19,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
     "brand": "Applaws",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/1240US-A_DOI_CAN_FOP_5000px-1024x1024.png",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "adult",
-    "ingredients": "Chicken Broth, Chicken Breast, Turkey, Potato Starch, Guar Gum",
-    "timestamp": "2025-08-06T18:33:00.748245",
+    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
+    "timestamp": "2025-08-07T16:43:38.884968",
     "domain": "applaws.com",
     "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 20,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide",
+    "timestamp": "2025-08-07T16:44:02.622082",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 21,
+    "url": "https://instinctpetfood.com/products/raw-boost-healthy-weight-chicken-dry-cat-food/",
+    "brand": "Instinct",
+    "imageURL": "https://images.salsify.com/image/upload/s--KOBsIWJ5--/qkph1fi4vy7lmack5ga4.jpg",
+    "petType": "cat",
+    "foodType": "raw",
+    "lifeStage": "adult",
+    "ingredients": "Chicken, Chicken Meal, Chickpeas, Salmon Meal, Menhaden Fish Meal, Tapioca, Suncured Alfalfa Meal, Peas, Dried Tomato Pomace, Chicken Fat (preserved with Mixed Tocopherols and Citric Acid), Freeze Dried Chicken, Montmorillonite Clay, Natural Flavor, Freeze Dried Chicken Liver, Pumpkinseeds, Freeze Dried Chicken Heart, Potassium Chloride, Salt, Vitamins (Vitamin E Supplement, Niacin Supplement, L-Ascorbyl-2-Polyphosphate, Thiamine Mononitrate, d-Calcium Pantothenate, Vitamin A Supplement, Riboflavin Supplement, Menadione Sodium Bisulfite Complex, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Folic Acid, Vitamin D3 Supplement, Biotin), Carrots, Apples, Cranberries, Choline Chloride, DL-Methionine, L-Carnitine, Minerals (Zinc Proteinate, Iron Proteinate, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Ethylenediamine Dihydriodide",
+    "timestamp": "2025-08-07T16:44:56.924318",
+    "domain": "instinctpetfood.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
       "extraction_method": "html_parsing"
     }
   }
