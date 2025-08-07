@@ -916,5 +916,56 @@
       "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 55,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
+    "timestamp": "2025-08-06T18:32:27.554340",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 56,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tuna Fillet, Fish Broth, Mackerel, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Marine Microalgae Oil, Vitamins (Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid)), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Calcium Chloride, Taurine, Choline Chloride, Tricalcium Phosphate, Guar Gum, Potassium Chloride, Magnesium Amino Acid Chelate, Menadione Nicotinamide Bisulfite",
+    "timestamp": "2025-08-06T18:32:36.808736",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 57,
+    "url": "https://applaws.com/us/products/chicken-breast-turkey-recipe-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/1240US-A_DOI_CAN_FOP_5000px-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Turkey, Potato Starch, Guar Gum",
+    "timestamp": "2025-08-06T18:33:00.748245",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
   }
 ]

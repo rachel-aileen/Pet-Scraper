@@ -1124,15 +1124,31 @@ def clean_extra_content(ingredient_text):
     cleaned_text = re.sub(r',\s*$', '', cleaned_text)
     cleaned_text = cleaned_text.strip()
     
+    # Remove periods from individual ingredients and at the end
+    if ',' in cleaned_text:
+        # Split by commas, remove periods from each ingredient, then rejoin
+        ingredients = [ing.strip().rstrip('.') for ing in cleaned_text.split(',')]
+        cleaned_text = ', '.join(ingredients)
+    
+    # Remove any trailing period
+    cleaned_text = cleaned_text.rstrip('.')
+    
     return cleaned_text
 
 def format_ingredient_list(ingredient_text):
     """Universal function to format ingredient lists with proper comma separation"""
     import re
     
-    # If already has good comma separation, return as-is
+    # Remove any periods at the end of the entire text first
+    ingredient_text = ingredient_text.strip()
+    if ingredient_text.endswith('.'):
+        ingredient_text = ingredient_text[:-1].strip()
+    
+    # If already has good comma separation, clean and return
     if ', ' in ingredient_text and ingredient_text.count(',') > 3:
-        return ingredient_text.strip()
+        # Split into individual ingredients, remove periods from each, then rejoin
+        ingredients = [ing.strip().rstrip('.') for ing in ingredient_text.split(',')]
+        return ', '.join(ingredients)
     
     # Apply universal comma formatting for ingredients that run together
     formatted_text = ingredient_text
@@ -1171,7 +1187,15 @@ def format_ingredient_list(ingredient_text):
     formatted_text = re.sub(r'^,\s*', '', formatted_text)
     formatted_text = re.sub(r',\s*$', '', formatted_text)
     
-    return formatted_text.strip()
+    # Final cleanup: split ingredients, remove periods from each, then rejoin
+    if ',' in formatted_text:
+        ingredients = [ing.strip().rstrip('.') for ing in formatted_text.split(',')]
+        formatted_text = ', '.join(ingredients)
+    
+    # Remove any remaining period at the end
+    formatted_text = formatted_text.strip().rstrip('.')
+    
+    return formatted_text
 
 def extract_ingredients(soup, url):
     """Extract ingredients from the soup with multiple strategies"""
