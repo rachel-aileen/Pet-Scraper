@@ -746,5 +746,175 @@
       "images_with_src": 142,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 45,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
+    "timestamp": "2025-08-06T16:49:42.671693",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 46,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
+    "timestamp": "2025-08-06T16:50:08.724352",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 47,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum",
+    "timestamp": "2025-08-06T16:51:03.884827",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 48,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
+    "timestamp": "2025-08-06T16:58:07.062392",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 49,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Fish Broth, Mackerel, Sunflower Oil, Potato Starch",
+    "timestamp": "2025-08-06T18:22:57.438493",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 50,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tuna Fillet, Fish Broth, Mackerel, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Marine Microalgae Oil, Vitamins (Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid)), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Calcium Chloride, Taurine, Choline Chloride, Tricalcium Phosphate, Guar Gum, Potassium Chloride, Magnesium Amino Acid Chelate, Menadione Nicotinamide Bisulfite.",
+    "timestamp": "2025-08-06T18:25:45.271904",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 51,
+    "url": "https://applaws.com/us/products/chicken-breast-chicken-liver-in-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/1229US-A-Transparent-Background.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Tuna Fillet, Potato Starch, Guar Gum.",
+    "timestamp": "2025-08-06T18:26:50.257002",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 52,
+    "url": "https://applaws.com/us/products/tuna-fillet-mackerel-pate-recipe-in-broth-with-added-vitamins-minerals/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/12/1805US-AC-Front_TTL-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tuna Fillet, Fish Broth, Mackerel, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Marine Microalgae Oil, Vitamins (Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid)), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Calcium Chloride, Taurine, Choline Chloride, Tricalcium Phosphate, Guar Gum, Potassium Chloride, Magnesium Amino Acid Chelate, Menadione Nicotinamide Bisulfite.",
+    "timestamp": "2025-08-06T18:27:40.791116",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 53,
+    "url": "https://www.purina.com/cats/shop/friskies-tasty-treasures-fish-tuna-scallop-sauce-wet-cat-food",
+    "brand": "Purina Friskies",
+    "imageURL": "https://www.purina.com/sites/default/files/styles/social_share/public/products/2024-09/00050000577972_a1c1_copy.png?h=1e66e246&itok=O_rWg_Hh",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Water Sufficient for Processing, Meat By-Products, Chicken, Wheat Gluten, Soy Flour, Corn Starch-Modified, Ocean fish, Tuna, Artificial And Natural Flavors, Sodium Caseinate, Tricalcium Phosphate, Medium Chain Triglyceride Vegetable Oil (MCTS), Vegetable Starch - Modified, Corn Starch, Potassium Chloride, Zinc Sulfate, Ferrous Sulfate, Manganese Sulfate, Copper Sulfate, Potassium Iodide, Salt, Dried Whey, Sodium Phosphate, Taurine, Choline Chloride, Thiamine Mononitrate (Vitamin B-1), Vitamin E Supplement, Niacin (Vitamin B-3), Calcium Pantothenate (Vitamin B-5), Pyridoxine Hydrochloride (Vitamin B-6), Riboflavin Supplement (Vitamin B-2), Vitamin B-12 Supplement, Biotin (Vitamin B-7), Vitamin A Supplement, Folic Acid (Vitamin B-9), Menadione Sodium Bisulfite Complex (Vitamin K), Vitamin D-3 Supplement",
+    "timestamp": "2025-08-06T18:29:01.048496",
+    "domain": "www.purina.com",
+    "debug_info": {
+      "total_images": 160,
+      "images_with_src": 160,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 54,
+    "url": "https://applaws.com/us/products/chicken-breast-turkey-recipe-gravy/",
+    "brand": "Applaws",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/1240US-A_DOI_CAN_FOP_5000px-1024x1024.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Turkey, Potato Starch, Guar Gum.",
+    "timestamp": "2025-08-06T18:29:49.132390",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
   }
 ]
