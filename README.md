@@ -6,7 +6,7 @@ A web-based application that scrapes brand information from pet food product URL
 
 - **Brand Detection**: Advanced extraction from meta tags, JSON-LD data, CSS classes, page content, and URLs
 - **Pet Type Detection**: Identifies whether products are for cats or dogs based on URL and page content
-- **Food Type Classification**: Categorizes food as wet, dry, raw, or treats
+- **Food Type Classification**: Categorizes food as wet, dry, raw, treats, toppers, or pate
 - **Life Stage Detection**: Determines if food is for kitten/puppy, adult, senior, or all life stages
 - **Ingredient Extraction**: Comprehensively extracts product ingredients, including from dropdowns and collapsed content
 - **Image URL Scraping**: Finds and extracts product image URLs, prioritizing high-quality images
