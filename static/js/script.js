@@ -252,10 +252,25 @@ async function exportForApp() {
         }
         
         // Format data for app use - brand, petType, foodType, lifeStage, imageURL, and ingredients fields
+        // UPDATED: Fixed food type formatting to use individual quotes (v2)
         const formattedData = data.map((item, index) => {
             const isLast = index === data.length - 1;
             const comma = isLast ? '' : ',';
-            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: '${item.foodType || 'unknown'}',\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'\n}${comma}`;
+            
+            // Format foodType with individual quotes for each type
+            const foodType = item.foodType || 'unknown';
+            let formattedFoodType;
+            
+            if (foodType.includes(',')) {
+                // Multiple food types - split and format each with quotes
+                const types = foodType.split(',').map(type => `'${type.trim()}'`);
+                formattedFoodType = types.join(', ');
+            } else {
+                // Single food type
+                formattedFoodType = `'${foodType}'`;
+            }
+            
+            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

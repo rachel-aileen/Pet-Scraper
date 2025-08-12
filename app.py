@@ -13,6 +13,79 @@ app = Flask(__name__)
 # File to store scraped data
 DATA_FILE = 'scraped_data.json'
 
+def add_proper_brand_spacing(brand):
+    """Add proper spacing to compound brand names"""
+    if not brand or len(brand) < 3:
+        return brand
+    
+    # Dictionary of known brand names that should have spaces
+    brand_spacing_rules = {
+        # Pet food brands
+        'petnaturals': 'Pet Naturals',
+        'petco': 'Petco',  # Keep as one word - this is correct
+        'petsmart': 'PetSmart',
+        'bluebluffalo': 'Blue Buffalo',
+        'bluebuffalo': 'Blue Buffalo', 
+        'hillspet': 'Hill\'s Pet',
+        'hillsscience': 'Hill\'s Science',
+        'royalcanin': 'Royal Canin',
+        'nutronatural': 'Nutro Natural',
+        'naturalbalance': 'Natural Balance',
+        'earthborn': 'Earthborn',  # Keep as one word - this is correct
+        'solidgold': 'Solid Gold',
+        'tastewild': 'Taste of the Wild',
+        'tasteofthewild': 'Taste of the Wild',
+        'stellachewy': 'Stella & Chewy\'s',
+        'stellaandchewys': 'Stella & Chewy\'s',
+        'ziwipeak': 'ZiwiPeak',
+        'rachealray': 'Rachael Ray',
+        'rachaelray': 'Rachael Ray',
+        'bluewilderness': 'Blue Wilderness',
+        'merrickpet': 'Merrick Pet',
+        'wellnesscomplete': 'Wellness Complete',
+        'wellnesscore': 'Wellness CORE',
+    }
+    
+    # Check for exact matches first (case insensitive)
+    brand_lower = brand.lower()
+    if brand_lower in brand_spacing_rules:
+        return brand_spacing_rules[brand_lower]
+    
+    # Pattern-based spacing for common compound patterns
+    import re
+    
+    # Pattern 1: Pet + word (e.g., "PetNaturals" -> "Pet Naturals")
+    brand = re.sub(r'^([Pp])et([A-Z][a-z]+)', r'\1et \2', brand)
+    
+    # Pattern 2: Blue + word (e.g., "BlueBuffalo" -> "Blue Buffalo") 
+    brand = re.sub(r'^([Bb])lue([A-Z][a-z]+)', r'\1lue \2', brand)
+    
+    # Pattern 3: Hill's + word (e.g., "HillsScience" -> "Hill's Science")
+    brand = re.sub(r'^([Hh])ills([A-Z][a-z]+)', r'\1ill\'s \2', brand)
+    
+    # Pattern 4: Royal + word (e.g., "RoyalCanin" -> "Royal Canin")
+    brand = re.sub(r'^([Rr])oyal([A-Z][a-z]+)', r'\1oyal \2', brand)
+    
+    # Pattern 5: Natural + word (e.g., "NaturalBalance" -> "Natural Balance")
+    brand = re.sub(r'^([Nn])atural([A-Z][a-z]+)', r'\1atural \2', brand)
+    
+    # Pattern 6: Stella + word (e.g., "StellaChewy" -> "Stella Chewy")  
+    brand = re.sub(r'^([Ss])tella([A-Z][a-z]+)', r'\1tella \2', brand)
+    
+    # Pattern 7: Generic pattern for camelCase brand names (Word1Word2 -> Word1 Word2)
+    # Only apply if it results in reasonable looking words
+    if len(brand) > 6 and brand.lower() not in ['petco', 'earthborn', 'orijen', 'acana']:
+        # Look for pattern where lowercase is followed by uppercase
+        camel_pattern = r'([a-z])([A-Z][a-z]+)'
+        if re.search(camel_pattern, brand):
+            spaced_brand = re.sub(camel_pattern, r'\1 \2', brand)
+            # Only use the spaced version if both parts are reasonable length
+            parts = spaced_brand.split()
+            if len(parts) == 2 and len(parts[0]) >= 3 and len(parts[1]) >= 3:
+                brand = spaced_brand
+    
+    return brand
+
 def load_data():
     """Load existing scraped data"""
     if os.path.exists(DATA_FILE):
@@ -28,12 +101,81 @@ def save_data(data):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=2)
 
+def extract_target_brand_from_shop_all(soup, url):
+    """Extract brand from Target.com by looking for 'Show all [Brand]' or 'Shop all [Brand]' patterns"""
+    if 'target.com' not in url.lower():
+        return None
+    
+    # PRIMARY: Look for "Show all [Brand]" or "Shop all [Brand]" text patterns (most reliable for Target.com)
+    # This covers links like "Show all Pet Honesty", "Show all Meow Mix", etc.
+    show_all_patterns = [
+        r'show\s+all\s+([\w\s&\'-]{2,25})(?=\s|$|\.)',  # "Show all Pet Honesty"
+        r'shop\s+all\s+([\w\s&\'-]{2,25})(?=\s|$|\.)',  # "Shop all Pet Honesty" 
+    ]
+    
+    # Search in all text elements for these patterns
+    all_elements = soup.find_all(['a', 'span', 'div', 'button', 'li'])
+    
+    for elem in all_elements:
+        text = elem.get_text().strip()
+        
+        # Skip very long text blocks that are likely combined content
+        if len(text) > 200:
+            continue
+            
+        for pattern in show_all_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                brand = match.group(1).strip()
+                
+                # Clean up duplicated brand names (e.g., "Pet HonestyPet Honesty" -> "Pet Honesty")
+                brand = re.sub(r'\s+', ' ', brand)  # Normalize whitespace
+                
+                # Handle duplicated brand names
+                words = brand.split()
+                if len(words) >= 2 and len(words) % 2 == 0:
+                    half = len(words) // 2
+                    first_half = ' '.join(words[:half])
+                    second_half = ' '.join(words[half:])
+                    if first_half.lower() == second_half.lower():
+                        brand = first_half
+                
+                if (brand and len(brand) > 1 and 
+                    brand.lower() not in ['target', 'shop', 'all', 'items', 'products', 'brands', 'salmon', 'chicken', 'beef', 'recipe', 'flavor', 'food', 'more', 'less'] and
+                    not re.match(r'^\d+$', brand) and  # Not just numbers
+                    re.match(r'^[A-Za-z][A-Za-z0-9\s&\'-]*$', brand)):  # Valid brand format
+                    
+                    # Capitalize properly (Title Case)
+                    brand_words = brand.split()
+                    formatted_brand = ' '.join(word.capitalize() if word.lower() not in ['and', 'of', 'the', 'in', 'with'] else word.lower() for word in brand_words)
+                    return formatted_brand
+    
+    # FALLBACK 1: Try to extract brand from JSON data in script tags
+    script_tags = soup.find_all('script')
+    
+    for script in script_tags:
+        if script.string and len(script.string) > 1000 and 'primary_brand' in script.string:
+            # Get the primary_brand section and look for name (handle escaped quotes in JSON)
+            pos = script.string.find('primary_brand')
+            context = script.string[pos:pos+500]
+            name_pattern = r'\\"name\\":\\s*\\"([^"\\]+)\\"'
+            match = re.search(name_pattern, context)
+            if match:
+                brand = match.group(1).strip()
+                if brand and len(brand) > 1 and brand.lower() not in ['target', 'shop', 'all']:
+                    return brand
+    
+    return None
+
 def extract_brand(soup, url):
     """Extract brand information from the webpage"""
     brand = None
     
     # Common brand extraction strategies
     strategies = [
+        # Target.com specific: Look for "Shop all [Brand]" pattern
+        lambda: extract_target_brand_from_shop_all(soup, url),
+        
         # Look for brand in meta tags
         lambda: soup.find('meta', {'property': 'product:brand'}),
         lambda: soup.find('meta', {'name': 'brand'}),
@@ -57,7 +199,7 @@ def extract_brand(soup, url):
         lambda: extract_brand_from_url(url),
     ]
     
-    for strategy in strategies:
+    for i, strategy in enumerate(strategies):
         try:
             result = strategy()
             if result:
@@ -67,6 +209,8 @@ def extract_brand(soup, url):
                     brand = result.get_text()
                 else:
                     brand = str(result)
+                
+
                 
                 if brand and brand.strip() and brand.strip().lower() not in ['brand not found', 'not found']:
                     brand = brand.strip()
@@ -87,6 +231,9 @@ def extract_brand(soup, url):
                     elif brand_lower == "purina" and "friskies" in url_lower:
                         brand = "Purina Friskies"
                     
+                    # Apply proper spacing to compound brand names
+                    brand = add_proper_brand_spacing(brand)
+                    
                     return brand
         except Exception:
             continue
@@ -105,7 +252,8 @@ def extract_brand_from_url(url):
             'whiskas', 'temptations', 'greenies', 'dentastix', 'cesar', 'sheba',
             'viva-raw', 'viva raw', 'stella-chewy', 'stella chewy', 'ziwi-peak', 'ziwi peak',
             'fromm', 'canidae', 'diamond', 'kirkland', 'costco', 'rachael-ray', 'rachael ray',
-            'blue-wilderness', 'blue wilderness', 'nulo', 'earthborn', 'solid-gold', 'solid gold'
+            'blue-wilderness', 'blue wilderness', 'nulo', 'earthborn', 'solid-gold', 'solid gold',
+            'meow-mix', 'meow mix'
         ]
         
         # Clean URL for analysis
@@ -285,7 +433,7 @@ def extract_pet_type(soup, url):
         return 'unknown'
 
 def extract_food_type(soup, url):
-    """Extract food type from URL and page content"""
+    """Extract food type from URL and page content - supports multiple types"""
     try:
         # Get text content for analysis
         page_text = soup.get_text().lower()
@@ -308,101 +456,139 @@ def extract_food_type(soup, url):
         # Combine all text sources
         all_text = f"{url_lower} {page_text} {meta_desc_text} {title_text} {og_title_text} {og_desc_text}"
         
-        # Check for kibble indicators first - if it's kibble, it's always dry regardless of raw content
-        kibble_indicators = [
-            'kibble', 'dry food', 'dry cat food', 'dry dog food', 'biscuit', 'pellet',
-            'crunchy', 'crunch', 'nugget', 'bits', 'dry-cat-food', 'dry-dog-food'
-        ]
-        
-        # Check for raw indicators
-        raw_indicators = [
-            'raw', 'freeze dried', 'freeze-dried', 'frozen', 'raw boost',
-            'raw pieces', 'raw nutrition', 'dehydrated'
-        ]
-        
-        # Check for wet indicators
-        wet_indicators = [
-            'wet', 'canned', 'can', 'gravy', 'sauce', 'pate', 'stew', 'broth',
-            'chunks in', 'flaked', 'shredded', 'minced', 'loaf', 'in-gravy',
-            'chicken broth', 'beef broth', 'fish broth'
-        ]
-        
-        # Check for treat indicators (be more specific to avoid false positives)
-        treat_indicators = [
-            'treat', 'treats', 'snack', 'training reward', 'dental chew',
-            'biscuit treat', 'jerky', 'cookie'
-        ]
-        
-        # Check for topper indicators
-        topper_indicators = [
-            'topper', 'toppers', 'meal topper', 'food topper', 'flavor enhancer',
-            'meal enhancer', 'food enhancer', 'sprinkle', 'mix-in', 'mixins',
-            'food booster', 'meal booster', 'supplement powder', 'nutritional topper'
-        ]
-        
-        # Check for pate indicators (specific type of wet food)
-        pate_indicators = [
-            'pate', 'paté', 'pâté', 'smooth pate', 'chunky pate', 'classic pate'
-        ]
-        
-        # Count indicators in different sources with weights
-        # Give higher weight to URL indicators since they're most reliable
-        kibble_count = sum(3 if indicator in url_lower else 1 for indicator in kibble_indicators if indicator in all_text)
-        raw_count = sum(2 if indicator in url_lower else 1 for indicator in raw_indicators if indicator in all_text)
-        wet_count = sum(3 if indicator in url_lower else 1 for indicator in wet_indicators if indicator in all_text)
-        treat_count = sum(3 if indicator in url_lower else 1 for indicator in treat_indicators if indicator in all_text)
-        topper_count = sum(3 if indicator in url_lower else 1 for indicator in topper_indicators if indicator in all_text)
-        pate_count = sum(3 if indicator in url_lower else 1 for indicator in pate_indicators if indicator in all_text)
-        
-        # Special logic: If both kibble and raw indicators are present, classify as dry
-        # because kibble is always a dry food format, even if it contains freeze-dried raw
-        # BUT only if there are no strong wet indicators
-        if kibble_count > 0 and raw_count > 0 and wet_count == 0:
-            return "dry"
-        
-        # Determine food type based on highest count
-        counts = {
-            'pate': pate_count,
-            'toppers': topper_count,
-            'treats': treat_count,
-            'wet': wet_count,
-            'dry': kibble_count,
-            'raw': raw_count
+        # Define food type indicators with separate freeze-dried category
+        food_type_indicators = {
+            'dry': [
+                'kibble', 'dry food', 'dry cat food', 'dry dog food', 'biscuit', 'pellet',
+                'crunchy', 'crunch', 'nugget', 'bits', 'dry-cat-food', 'dry-dog-food'
+            ],
+            'wet': [
+                'wet', 'canned', 'can', 'gravy', 'sauce', 'stew', 'broth',
+                'chunks in', 'flaked', 'shredded', 'minced', 'loaf', 'in-gravy',
+                'chicken broth', 'beef broth', 'fish broth'
+            ],
+            'raw': [
+                'raw', 'raw boost', 'raw pieces', 'raw nutrition', 'frozen raw',
+                'fresh raw', 'raw diet', 'raw food'
+            ],
+            'freeze-dried': [
+                'freeze dried', 'freeze-dried', 'freezedried', 'freeze dry',
+                'lyophilized', 'freeze-drying', 'fd', 'freeze dried raw'
+            ],
+            'pate': [
+                'pate', 'paté', 'pâté', 'smooth pate', 'chunky pate', 'classic pate'
+            ],
+            'treats': [
+                'treat', 'treats', 'snack', 'training reward', 'dental chew',
+                'biscuit treat', 'jerky', 'cookie', 'chew', 'bone'
+            ],
+            'toppers': [
+                'topper', 'toppers', 'meal topper', 'food topper', 'flavor enhancer',
+                'meal enhancer', 'food enhancer', 'sprinkle', 'mix-in', 'mixins',
+                'food booster', 'meal booster', 'supplement powder', 'nutritional topper'
+            ],
+            'dehydrated': [
+                'dehydrated', 'dried', 'air dried', 'air-dried', 'naturally dried'
+            ]
         }
         
-        # Get the type with the highest count
-        max_count = max(counts.values())
-        if max_count == 0:
-            return "dry"  # Default fallback
+        # Count indicators for each food type with weights
+        # Give higher weight to URL indicators since they're most reliable
+        food_type_scores = {}
+        for food_type, indicators in food_type_indicators.items():
+            score = 0
+            for indicator in indicators:
+                if indicator in all_text:
+                    # Higher weight for URL/title mentions
+                    if indicator in url_lower or indicator in title_text:
+                        score += 3
+                    else:
+                        score += 1
+            food_type_scores[food_type] = score
         
-        # Return the food type with the highest count
-        for food_type, count in counts.items():
-            if count == max_count:
-                return food_type
+        # Find all food types that have a significant presence (threshold approach)
+        detected_types = []
         
-        return "dry"  # Final fallback
+        # Primary type detection - at least 2 points or strong indicator
+        for food_type, score in food_type_scores.items():
+            if score >= 2:  # Threshold for detection
+                detected_types.append(food_type)
+        
+        # Special logic for combinations and conflicts
+        if detected_types:
+            # Remove conflicts and apply business rules
+            
+            # Rule 1: If pate is detected, include wet automatically
+            if 'pate' in detected_types and 'wet' not in detected_types:
+                detected_types.append('wet')
+            
+            # Rule 2: If both dry (kibble) and raw are detected, it's likely dry with freeze-dried raw pieces
+            if 'dry' in detected_types and 'raw' in detected_types:
+                # Check if freeze-dried is also mentioned
+                if 'freeze-dried' not in detected_types and any(indicator in all_text for indicator in ['freeze dried', 'freeze-dried']):
+                    detected_types.append('freeze-dried')
+                # Keep both dry and raw in this case
+            
+            # Rule 3: If freeze-dried and raw are both detected, keep both
+            # (e.g., "freeze-dried raw" products)
+            
+            # Rule 4: Remove 'dehydrated' if 'freeze-dried' is present (freeze-dried is more specific)
+            if 'freeze-dried' in detected_types and 'dehydrated' in detected_types:
+                detected_types.remove('dehydrated')
+            
+            # Sort by priority for consistent ordering
+            priority_order = ['treats', 'toppers', 'pate', 'wet', 'dry', 'freeze-dried', 'raw', 'dehydrated']
+            detected_types = [t for t in priority_order if t in detected_types]
+            
+            # Return as comma-separated string
+            return ', '.join(detected_types)
+        
+        # Fallback: no clear indicators found
+        return "dry"  # Default fallback
         
     except Exception as e:
         return "dry"  # Safe fallback
 
 def extract_food_type_from_url(url):
-    """Extract food type from URL only (for direct image URLs)"""
+    """Extract food type from URL only (for direct image URLs) - supports multiple types"""
     try:
         url_lower = url.lower()
         
-        # Check for specific food type indicators in URL
-        if any(keyword in url_lower for keyword in ['pate', 'paté', 'pâté']):
-            return 'pate'
-        elif any(keyword in url_lower for keyword in ['topper', 'toppers', 'meal-topper', 'food-topper', 'enhancer', 'mix-in']):
-            return 'toppers'
-        elif any(keyword in url_lower for keyword in ['treat', 'treats', 'snack', 'training', 'dental', 'jerky']):
-            return 'treats'
-        elif any(keyword in url_lower for keyword in ['wet', 'canned', 'can', 'gravy', 'sauce', 'broth']):
-            return 'wet'
-        elif any(keyword in url_lower for keyword in ['dry', 'kibble', 'pellet', 'biscuit']):
-            return 'dry'
-        elif any(keyword in url_lower for keyword in ['raw', 'freeze-dried', 'frozen']):
-            return 'raw'
+        # Define food type indicators for URL checking
+        url_indicators = {
+            'pate': ['pate', 'paté', 'pâté'],
+            'toppers': ['topper', 'toppers', 'meal-topper', 'food-topper', 'enhancer', 'mix-in'],
+            'treats': ['treat', 'treats', 'snack', 'training', 'dental', 'jerky', 'chew', 'bone'],
+            'wet': ['wet', 'canned', 'can', 'gravy', 'sauce', 'broth', 'stew'],
+            'dry': ['dry', 'kibble', 'pellet', 'biscuit', 'crunchy'],
+            'freeze-dried': ['freeze-dried', 'freeze dried', 'freezedried', 'freeze-dry', 'fd'],
+            'raw': ['raw', 'frozen-raw', 'fresh-raw'],
+            'dehydrated': ['dehydrated', 'air-dried', 'dried']
+        }
+        
+        detected_types = []
+        
+        # Check each food type
+        for food_type, keywords in url_indicators.items():
+            if any(keyword in url_lower for keyword in keywords):
+                detected_types.append(food_type)
+        
+        if detected_types:
+            # Apply same business rules as main function
+            
+            # Rule 1: If pate is detected, include wet automatically
+            if 'pate' in detected_types and 'wet' not in detected_types:
+                detected_types.append('wet')
+            
+            # Rule 2: Remove 'dehydrated' if 'freeze-dried' is present
+            if 'freeze-dried' in detected_types and 'dehydrated' in detected_types:
+                detected_types.remove('dehydrated')
+            
+            # Sort by priority for consistent ordering
+            priority_order = ['treats', 'toppers', 'pate', 'wet', 'dry', 'freeze-dried', 'raw', 'dehydrated']
+            detected_types = [t for t in priority_order if t in detected_types]
+            
+            return ', '.join(detected_types)
         else:
             return 'dry'  # Default fallback
             
@@ -1105,7 +1291,30 @@ def clean_extra_content(ingredient_text):
             cleaned = ing.strip()
             while cleaned and cleaned[-1] in '.\\"\',;':
                 cleaned = cleaned[:-1].strip()
-            if cleaned:
+            
+            # Check for patterns where valid ingredient is contaminated with invalid codes
+            # Pattern 1: "Blue 2. N600123" (period + space + invalid code)
+            if '. ' in cleaned and len(cleaned.split('. ')) == 2:
+                first_part, second_part = cleaned.split('. ', 1)
+                if is_valid_ingredient(first_part) and not is_valid_ingredient(second_part):
+                    ingredients.append(first_part)
+                elif is_valid_ingredient(cleaned):
+                    ingredients.append(cleaned)
+            # Pattern 2: "Blue 2 D600724" (space + invalid code starting with letter+numbers)
+            elif ' ' in cleaned and len(cleaned.split()) >= 2:
+                parts = cleaned.split()
+                # Check if last part looks like an invalid code (letter followed by many digits)
+                last_part = parts[-1]
+                if (len(parts) >= 2 and 
+                    re.match(r'^[A-Za-z]\d{5,}$', last_part) and  # Pattern like D600724, N600123
+                    not is_valid_ingredient(last_part)):
+                    # Rejoin everything except the last invalid part
+                    clean_part = ' '.join(parts[:-1])
+                    if is_valid_ingredient(clean_part):
+                        ingredients.append(clean_part)
+                elif cleaned and is_valid_ingredient(cleaned):
+                    ingredients.append(cleaned)
+            elif cleaned and is_valid_ingredient(cleaned):
                 ingredients.append(cleaned)
         cleaned_text = ', '.join(ingredients)
     
@@ -1114,6 +1323,47 @@ def clean_extra_content(ingredient_text):
         cleaned_text = cleaned_text[:-1].strip()
     
     return cleaned_text
+
+def is_valid_ingredient(ingredient):
+    """Check if an ingredient is valid and not a website error/typo"""
+    if not ingredient or len(ingredient.strip()) < 2:
+        return False
+    
+    ingredient = ingredient.strip().lower()
+    
+    # Allow known valid patterns first (vitamins, E-numbers, etc.)
+    # But only for specific known prefixes
+    if re.match(r'^[be]\d{1,3}$', ingredient):  # B1, E300, etc. (common vitamin/additive prefixes)
+        return True
+    if re.match(r'^[a-z]{1,2}-\d+$', ingredient):  # B-12, etc.
+        return True
+    if 'vitamin' in ingredient or 'supplement' in ingredient:
+        return True
+    
+    # Exclude random alphanumeric codes (like k600323, abc123, etc.)
+    # Pattern: letters followed by many numbers (3+)
+    if re.match(r'^[a-z]{1,3}\d{3,}$', ingredient):  # e.g., k600323, ab12345
+        return False
+    # Pattern: many numbers followed by few letters
+    if re.match(r'^\d{3,}[a-z]{1,3}$', ingredient):  # e.g., 12345k, 600ab
+        return False
+    # Pattern: alternating letters and numbers (multiple digit groups)
+    if re.search(r'\d.*[a-z].*\d', ingredient) and len(ingredient) > 3:  # z2z3z4, abc123def456
+        return False
+    
+    # Exclude single characters or very short nonsensical combinations
+    if len(ingredient) <= 2 and not ingredient.isalpha():
+        return False
+    
+    # Exclude items that are mostly numbers with minimal letters (but allow vitamins/E-numbers)
+    letter_count = sum(1 for c in ingredient if c.isalpha())
+    number_count = sum(1 for c in ingredient if c.isdigit())
+    if (number_count > 0 and letter_count > 0 and 
+        number_count >= letter_count * 3 and  # More strict ratio
+        len(ingredient) > 4):  # Don't apply to short ingredients
+        return False
+    
+    return True
 
 def format_ingredient_list(ingredient_text):
     """Universal function to format ingredient lists with proper comma separation"""
@@ -1130,10 +1380,36 @@ def format_ingredient_list(ingredient_text):
         ingredients = []
         for ing in ingredient_text.split(','):
             cleaned = ing.strip()
+            
+            # Remove trailing unwanted characters
             while cleaned and cleaned[-1] in '.\\"\',;':
                 cleaned = cleaned[:-1].strip()
-            if cleaned:
+            
+            # Check for patterns where valid ingredient is contaminated with invalid codes
+            # Pattern 1: "Blue 2. N600123" (period + space + invalid code)
+            if '. ' in cleaned and len(cleaned.split('. ')) == 2:
+                first_part, second_part = cleaned.split('. ', 1)
+                if is_valid_ingredient(first_part) and not is_valid_ingredient(second_part):
+                    ingredients.append(first_part)
+                elif is_valid_ingredient(cleaned):
+                    ingredients.append(cleaned)
+            # Pattern 2: "Blue 2 D600724" (space + invalid code starting with letter+numbers)
+            elif ' ' in cleaned and len(cleaned.split()) >= 2:
+                parts = cleaned.split()
+                # Check if last part looks like an invalid code (letter followed by many digits)
+                last_part = parts[-1]
+                if (len(parts) >= 2 and 
+                    re.match(r'^[A-Za-z]\d{5,}$', last_part) and  # Pattern like D600724, N600123
+                    not is_valid_ingredient(last_part)):
+                    # Rejoin everything except the last invalid part
+                    clean_part = ' '.join(parts[:-1])
+                    if is_valid_ingredient(clean_part):
+                        ingredients.append(clean_part)
+                elif cleaned and is_valid_ingredient(cleaned):
+                    ingredients.append(cleaned)
+            elif cleaned and is_valid_ingredient(cleaned):
                 ingredients.append(cleaned)
+        
         return ', '.join(ingredients)
     
     # Apply universal comma formatting for ingredients that run together
@@ -1181,7 +1457,30 @@ def format_ingredient_list(ingredient_text):
             # Remove trailing unwanted characters (periods, slashes, quotes, etc.)
             while cleaned and cleaned[-1] in '.\\"\',;':
                 cleaned = cleaned[:-1].strip()
-            if cleaned:
+            
+            # Check for patterns where valid ingredient is contaminated with invalid codes
+            # Pattern 1: "Blue 2. N600123" (period + space + invalid code)
+            if '. ' in cleaned and len(cleaned.split('. ')) == 2:
+                first_part, second_part = cleaned.split('. ', 1)
+                if is_valid_ingredient(first_part) and not is_valid_ingredient(second_part):
+                    ingredients.append(first_part)
+                elif is_valid_ingredient(cleaned):
+                    ingredients.append(cleaned)
+            # Pattern 2: "Blue 2 D600724" (space + invalid code starting with letter+numbers)
+            elif ' ' in cleaned and len(cleaned.split()) >= 2:
+                parts = cleaned.split()
+                # Check if last part looks like an invalid code (letter followed by many digits)
+                last_part = parts[-1]
+                if (len(parts) >= 2 and 
+                    re.match(r'^[A-Za-z]\d{5,}$', last_part) and  # Pattern like D600724, N600123
+                    not is_valid_ingredient(last_part)):
+                    # Rejoin everything except the last invalid part
+                    clean_part = ' '.join(parts[:-1])
+                    if is_valid_ingredient(clean_part):
+                        ingredients.append(clean_part)
+                elif cleaned and is_valid_ingredient(cleaned):
+                    ingredients.append(cleaned)
+            elif cleaned and is_valid_ingredient(cleaned):
                 ingredients.append(cleaned)
         formatted_text = ', '.join(ingredients)
     
@@ -1195,6 +1494,30 @@ def extract_ingredients(soup, url):
     """Extract ingredients from the page with multiple strategies, prioritized"""
     
     page_text = soup.get_text()
+    fallback_json_ingredients = None  # Store suspicious JSON ingredients as fallback
+    
+    # TARGET.COM UNIVERSAL FIX: Use Selenium to extract from "Label info" dropdown 
+    # This completely bypasses all other extraction methods for Target.com
+    if 'target.com' in url.lower():
+        try:
+            from selenium_scraper import get_target_ingredients_with_selenium
+            selenium_ingredients = get_target_ingredients_with_selenium(url)
+            if selenium_ingredients and len(selenium_ingredients) > 50:
+                # Clean and return the Selenium results
+                formatted_content = format_ingredient_list(selenium_ingredients)
+                formatted_content = clean_extra_content(formatted_content)
+                if len(formatted_content) > 50:
+                    return formatted_content
+
+            # If Selenium didn't find anything valid, check if this is a supplement without detailed ingredients
+            # For supplements/vitamins, Target often only shows marketing descriptions, not ingredient lists
+            if any(word in url.lower() for word in ['vitamin', 'supplement', 'multivitamin', 'probiotic']):
+                return "Ingredient information not available - this appears to be a supplement product where Target.com only provides marketing descriptions rather than detailed ingredient lists."
+            else:
+                return "Unable to extract ingredients from Label info dropdown. Please check that the product has ingredient information available."
+        except Exception as e:
+            print(f"Warning: Selenium extraction failed: {e}")
+            return f"Error accessing Label info dropdown: {str(e)}"
     
     # PRIORITY 0: Highest-priority search using regex with scoring
     ingredient_start_patterns = [
@@ -1296,35 +1619,63 @@ def extract_ingredients(soup, url):
         if len(formatted_content) > 50:
             return formatted_content
 
-    # PRIORITY 0.3: NEW - Specific search for "Label Info" dropdowns (Target.com/Instinct style)
-    # Look for "Label Info" text and extract content that follows
+    # PRIORITY 0.3: Enhanced "Label Info" dropdown search for Target.com
+    # Look for "Label Info" sections that contain "Ingredients:" prefix
     label_info_patterns = [
-        r'label\s+info[:\s]*([^<]*?)(?=\s*(?:guaranteed\s+analysis|feeding|directions|nutritional|calories|$))',
-        r'label\s+information[:\s]*([^<]*?)(?=\s*(?:guaranteed\s+analysis|feeding|directions|nutritional|calories|$))',
-        r'product\s+label[:\s]*([^<]*?)(?=\s*(?:guaranteed\s+analysis|feeding|directions|nutritional|calories|$))'
+        # Target-specific pattern: Label info section with "Ingredients:" prefix
+        r'label\s+info[^:]*?ingredients:\s*([^.]*?(?:vitamin\s+d-?3\s+supplement|folic\s+acid|[a-z]\d{6,}\.?))',
+        # More general patterns
+        r'label\s+info[:\s]*([^<]*?)(?=\s*(?:guaranteed\s+analysis|feeding|directions|nutritional|calories|shipping|returns|$))',
+        r'label\s+information[:\s]*([^<]*?)(?=\s*(?:guaranteed\s+analysis|feeding|directions|nutritional|calories|shipping|returns|$))',
+        r'product\s+label[:\s]*([^<]*?)(?=\s*(?:guaranteed\s+analysis|feeding|directions|nutritional|calories|shipping|returns|$))'
     ]
     
-    for pattern in label_info_patterns:
+    for i, pattern in enumerate(label_info_patterns):
         matches = re.finditer(pattern, page_text, re.IGNORECASE | re.DOTALL)
         for match in matches:
             potential_content = match.group(1).strip()
             
-            # Look for ingredient content within this section
             if len(potential_content) > 50:
-                # Try to find ingredients starting with common proteins
-                ingredient_match = re.search(
-                    r'((?:chicken|beef|salmon|tuna|turkey|duck|lamb)[^.]*?(?:rosemary\s+extract|vitamin\s+e|mixed\s+tocopherols))',
-                    potential_content, 
-                    re.IGNORECASE | re.DOTALL
-                )
-                if ingredient_match:
-                    ingredient_text = ingredient_match.group(1).strip()
-                    if (len(ingredient_text) > 100 and 
-                        is_likely_ingredient_list(ingredient_text)):
-                        formatted_content = format_ingredient_list(ingredient_text)
+                # For Target-specific pattern (pattern 0), use content directly
+                if i == 0:
+                    if (potential_content.count(',') >= 8 and 
+                        is_likely_ingredient_list(potential_content)):
+                        formatted_content = format_ingredient_list(potential_content)
                         formatted_content = clean_extra_content(formatted_content)
                         if len(formatted_content) > 50:
                             return formatted_content
+                else:
+                    # For other patterns, look for ingredients within the content
+                    # Search for "Ingredients:" followed by ingredient list
+                    ingredient_match = re.search(
+                        r'ingredients:\s*([^.]*?(?:vitamin\s+d-?3\s+supplement|folic\s+acid|[a-z]\d{6,}\.?))',
+                        potential_content, 
+                        re.IGNORECASE | re.DOTALL
+                    )
+                    if ingredient_match:
+                        ingredient_text = ingredient_match.group(1).strip()
+                        if (len(ingredient_text) > 100 and 
+                            ingredient_text.count(',') >= 8 and
+                            is_likely_ingredient_list(ingredient_text)):
+                            formatted_content = format_ingredient_list(ingredient_text)
+                            formatted_content = clean_extra_content(formatted_content)
+                            if len(formatted_content) > 50:
+                                return formatted_content
+                    
+                    # Fallback: try to find ingredients starting with common proteins
+                    ingredient_match = re.search(
+                        r'((?:water|chicken|beef|salmon|tuna|turkey|duck|lamb)[^.]*?(?:rosemary\s+extract|vitamin\s+e|mixed\s+tocopherols|vitamin\s+d-?3\s+supplement))',
+                        potential_content, 
+                        re.IGNORECASE | re.DOTALL
+                    )
+                    if ingredient_match:
+                        ingredient_text = ingredient_match.group(1).strip()
+                        if (len(ingredient_text) > 100 and 
+                            is_likely_ingredient_list(ingredient_text)):
+                            formatted_content = format_ingredient_list(ingredient_text)
+                            formatted_content = clean_extra_content(formatted_content)
+                            if len(formatted_content) > 50:
+                                return formatted_content
 
     # PRIORITY 0.35: NEW - More aggressive search for any "Chicken" to "Rosemary Extract" content
     # This is specifically for the Instinct Target.com case mentioned by user
@@ -1463,8 +1814,14 @@ def extract_ingredients(soup, url):
             if script.string and len(script.string) > 1000:
                 # Multiple patterns to handle different Target.com product page structures
                 ingredient_patterns = [
+                    # SPECIFIC pattern for nutrition_facts Blue Buffalo: "nutrition_facts":{"ingredients":"Deboned Chicken..."
+                    r'"nutrition_facts":\s*\{\s*"ingredients":\s*"([^"]{100,})"',
+                    # Pattern for escaped JSON (alternative): \\"nutrition_facts\\":{\\"ingredients\\":\\"...
+                    r'\\\\"nutrition_facts\\\\":\s*\{\s*\\\\"ingredients\\\\":\s*\\\\"([^\\]{100,})\\\\"',
                     # Primary pattern: nutrition_facts structure
-                    r'nutrition_facts[^}]*\\?["\']ingredients\\?["\']\s*:\s*\\?["\']([^"\'\\]*)["\']',
+                    r'nutrition_facts[^}]*\\?["\']ingredients\\?["\']\s*:\s*\\?["\']([^"\'\\]{100,})["\']',
+                    # Enhanced pattern for Blue Buffalo with better JSON parsing
+                    r'\\?["\']nutrition_facts\\?["\']\s*:\s*\{[^}]*\\?["\']ingredients\\?["\']\s*:\s*\\?["\']([^"\'\\]{100,})["\']',
                     # Fallback patterns for different JSON structures
                     r'product_info[^}]*\\?["\']ingredients\\?["\']\s*:\s*\\?["\']([^"\'\\]*)["\']',
                     r'nutrition[^}]*\\?["\']ingredients\\?["\']\s*:\s*\\?["\']([^"\'\\]*)["\']',
@@ -1489,8 +1846,39 @@ def extract_ingredients(soup, url):
                             
                             formatted_content = format_ingredient_list(cleaned_ingredients)
                             formatted_content = clean_extra_content(formatted_content)
+                            
+                            # VALIDATION: Check if JSON ingredients seem suspicious/generic
+                            # If product mentions specific protein but JSON has generic terms, be suspicious
                             if len(formatted_content) > 50:
-                                return formatted_content
+                                page_title = soup.find('title')
+                                title_text = page_title.get_text().lower() if page_title else ''
+                                url_lower = url.lower()
+                                
+                                # Check for mismatches between title/URL and ingredients
+                                suspicious = False
+                                if ('chicken' in title_text or 'chicken' in url_lower):
+                                    if ('beef' in formatted_content.lower() and 'chicken' not in formatted_content.lower()):
+                                        suspicious = True
+                                if ('turkey' in title_text or 'turkey' in url_lower):
+                                    if ('poultry' in formatted_content.lower() and 'turkey' not in formatted_content.lower()):
+                                        suspicious = True
+                                
+                                # If ingredients seem suspicious, continue searching for better ones
+                                if not suspicious:
+                                    return formatted_content
+                                else:
+                                    # Store as fallback but keep searching
+                                    if fallback_json_ingredients is None:  # Only store first fallback
+                                        fallback_json_ingredients = formatted_content
+                
+                # For Blue Buffalo specifically, if we found JSON ingredients, return them immediately
+                if fallback_json_ingredients is not None and 'blue-buffalo' in url.lower():
+                    return fallback_json_ingredients
+                
+                # Stop searching script tags if we found valid JSON ingredients 
+                # (even if suspicious - we'll return them as fallback later)
+                if fallback_json_ingredients is not None:
+                    break
                 
                 # FALLBACK: If no structured patterns work, search for any ingredient-like content in scripts
                 # This is for cases where the JSON structure might be different or malformed
@@ -1524,6 +1912,42 @@ def extract_ingredients(soup, url):
                                     if len(formatted_content) > 100:  # Higher threshold for fallback
                                         return formatted_content
 
+    # PRIORITY 0.49: Enhanced search when JSON ingredients are suspicious 
+    # Look more aggressively for correct ingredients that match the product title
+    if fallback_json_ingredients is not None:
+        page_title = soup.find('title')
+        title_text = page_title.get_text().lower() if page_title else ''
+        url_lower = url.lower()
+        
+        # Extract expected proteins from title/URL
+        expected_proteins = []
+        if 'chicken' in title_text or 'chicken' in url_lower:
+            expected_proteins.append('chicken')
+        if 'turkey' in title_text or 'turkey' in url_lower:
+            expected_proteins.append('turkey')
+        if 'salmon' in title_text or 'salmon' in url_lower:
+            expected_proteins.append('salmon')
+        if 'beef' in title_text or 'beef' in url_lower:
+            expected_proteins.append('beef')
+            
+        if expected_proteins:
+            # Look for ANY text that contains the expected proteins and looks like ingredients
+            for protein in expected_proteins:
+                # Search for ingredients starting with water and the expected protein
+                protein_pattern = rf'(water[,\s]+{protein}[^.]*?(?:vitamin\s+[a-z]-?\d*\s+supplement|folic\s+acid|[a-z]\d{{6,}}\.?))'
+                matches = re.finditer(protein_pattern, page_text, re.IGNORECASE | re.DOTALL)
+                for match in matches:
+                    potential_ingredients = match.group(1).strip()
+                    if (len(potential_ingredients) > 100 and 
+                        potential_ingredients.count(',') >= 8 and
+                        is_likely_ingredient_list(potential_ingredients)):
+                        formatted_content = format_ingredient_list(potential_ingredients)
+                        formatted_content = clean_extra_content(formatted_content)
+                        if len(formatted_content) > 50:
+                            # Verify this is better than our fallback
+                            if protein.lower() in formatted_content.lower():
+                                return formatted_content
+
     # PRIORITY 0.5: Special handling for "Our Ingredients" pattern (like Instinct)
     our_ingredients_pattern = r'our\s+ingredients[:\s]*([A-Z][^.]*?(?:rosemary\s+extract|vitamin\s+[a-z]\d*\s+supplement|sodium\s+selenite|ethylenediamine\s+dihydriodide)\.?)'
     matches = re.finditer(our_ingredients_pattern, page_text, re.IGNORECASE | re.DOTALL)
@@ -1536,7 +1960,37 @@ def extract_ingredients(soup, url):
             if len(formatted_content) > 50:
                 return formatted_content
 
-    # ... rest of existing priorities remain the same ...
+    # FINAL FALLBACK: Try Selenium for Target.com if no other method worked or we have suspicious ingredients
+    if ('target.com' in url.lower()):
+        # Don't use Selenium for Blue Buffalo if we already have JSON ingredients
+        if 'blue-buffalo' in url.lower() and fallback_json_ingredients is not None:
+            should_use_selenium = False
+        else:
+            # Use Selenium if: we have suspicious JSON OR no ingredients found at all
+            # (If we reach this point and it's Target.com, that means no other method succeeded)
+            should_use_selenium = True  # Always try Selenium for Target.com as final fallback
+        
+        if should_use_selenium:
+            try:
+                from selenium_scraper import get_target_ingredients_with_selenium
+                selenium_ingredients = get_target_ingredients_with_selenium(url)
+                if (selenium_ingredients and 
+                    len(selenium_ingredients) > 50 and
+                    selenium_ingredients.count(',') >= 8):
+                    # Selenium found ingredients
+                    formatted_content = format_ingredient_list(selenium_ingredients)
+                    formatted_content = clean_extra_content(formatted_content)
+                    if len(formatted_content) > 50:
+                        return formatted_content
+            except Exception as e:
+                print(f"Selenium fallback failed: {e}")
+
+    # Return suspicious JSON ingredients if Selenium also failed
+    if fallback_json_ingredients is not None:
+        return fallback_json_ingredients
+    
+    # If all strategies fail, return None
+    return None
 
 def extract_ingredients_after_element(element):
     """Extract ingredients from content following a heading element"""
