@@ -10,7 +10,10 @@
     "lifeStage": "adult",
     "ingredients": "Chicken Broth, Chicken Breast, Potato Starch, Guar Gum",
     "guaranteedAnalysis": "Crude Protein (min): 8%, Crude Fat (min): 0.1%, Crude Fiber (max): 2%, Moisture (max): 93%",
-    "timestamp": "2025-08-24T14:26:10.052645",
+    "nutritionalInfo": {
+      "calories": "502 kcal/kg"
+    },
+    "timestamp": "2025-08-24T14:39:36.089602",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 26,

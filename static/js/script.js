@@ -84,6 +84,13 @@ function showResult(data) {
     document.getElementById('result-ingredients').textContent = data.ingredients;
     document.getElementById('result-guaranteed-analysis').textContent = data.guaranteedAnalysis || 'Not found';
     
+    // Handle nutritional info (nested object)
+    let nutritionalInfoText = 'Not found';
+    if (data.nutritionalInfo && data.nutritionalInfo.calories) {
+        nutritionalInfoText = `Calories: ${data.nutritionalInfo.calories}`;
+    }
+    document.getElementById('result-nutritional-info').textContent = nutritionalInfoText;
+    
     // Show debug info if available
     if (data.debug_info) {
         document.getElementById('debug-details').textContent = data.debug_info;
@@ -172,6 +179,7 @@ function displayData(data) {
                 <div class="data-item-life-stage">Life Stage: ${escapeHtml(item.lifeStage || 'adult')}</div>
                 <div class="data-item-ingredients">Ingredients: ${escapeHtml(item.ingredients || 'Not found')}</div>
                 <div class="data-item-guaranteed-analysis">Guaranteed Analysis: ${escapeHtml(item.guaranteedAnalysis || 'Not found')}</div>
+                <div class="data-item-nutritional-info">Nutritional Info: ${item.nutritionalInfo && item.nutritionalInfo.calories ? escapeHtml(`Calories: ${item.nutritionalInfo.calories}`) : 'Not found'}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
                 <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
@@ -241,6 +249,7 @@ function clearSearch() {
     document.getElementById('result-life-stage').textContent = '';
     document.getElementById('result-ingredients').textContent = '';
     document.getElementById('result-guaranteed-analysis').textContent = '';
+    document.getElementById('result-nutritional-info').textContent = '';
     
     // Hide debug info
     document.getElementById('debug-info').style.display = 'none';
@@ -276,7 +285,13 @@ async function exportForApp() {
                 formattedFoodType = `'${foodType}'`;
             }
             
-            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'\n}${comma}`;
+            // Format nutritional info for export
+            let nutritionalInfoExport = 'Not found';
+            if (item.nutritionalInfo && item.nutritionalInfo.calories) {
+                nutritionalInfoExport = `{ calories: '${item.nutritionalInfo.calories}' }`;
+            }
+            
+            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

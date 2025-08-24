@@ -1757,6 +1757,116 @@ def format_ingredient_list(ingredient_text):
     
     return formatted_text
 
+def extract_nutritional_info(soup, url):
+    """Extract nutritional information including calories from the webpage"""
+    try:
+        nutritional_info = {}
+        
+        # APPLAWS DROPDOWN DETECTION: Use Selenium to click nutritional information dropdowns
+        # Applaws hides nutritional info in clickable sections that need to be revealed
+        if 'applaws.com' in url.lower():
+            try:
+                from selenium_scraper import _get_browser
+                import time
+                from selenium.webdriver.common.by import By
+                
+                driver = _get_browser()
+                driver.get(url)
+                time.sleep(5)  # Allow page to load completely
+                
+                # Look for clickable "Nutritional Information" sections
+                nutrition_buttons = driver.find_elements(By.XPATH, "//*[contains(text(), 'Nutritional Information') or contains(text(), 'Nutrition') or contains(text(), 'Guaranteed Analysis')]")
+                
+                for i, button in enumerate(nutrition_buttons):
+                    try:
+                        element_text = button.text.strip()
+                        
+                        # Look for nutritional information dropdown text
+                        if element_text in ['Nutritional Information', 'Nutrition', 'Guaranteed Analysis']:
+                            # Click to reveal hidden nutritional content
+                            driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
+                            time.sleep(1)
+                            driver.execute_script("arguments[0].click();", button)
+                            time.sleep(5)  # Wait for content to load
+                            
+                            # Get the new page content and extract nutritional info
+                            new_source = driver.page_source
+                            soup_selenium = BeautifulSoup(new_source, 'html.parser')
+                            page_text = soup_selenium.get_text()
+                            
+                            # Look for calorie patterns directly in the page text
+                            import re
+                            
+                            # Look for kcal/kg patterns
+                            calorie_patterns = [
+                                r'(\d+(?:\.\d+)?\s*kcal/kg)',
+                                r'(\d+(?:\.\d+)?\s*kcal\s*/\s*kg)',
+                                r'(\d+(?:\.\d+)?\s*kilocalories?\s*/\s*kg)',
+                                r'(\d+(?:\.\d+)?\s*cal/kg)',
+                            ]
+                            
+                            for pattern in calorie_patterns:
+                                matches = re.findall(pattern, page_text, re.IGNORECASE)
+                                for match in matches:
+                                    # Clean up the match
+                                    match = match.strip()
+                                    # Standardize the format
+                                    match = re.sub(r'\s+', ' ', match)
+                                    match = re.sub(r'\s*/\s*', '/', match)
+                                    
+                                    # Validate it looks like a reasonable calorie value
+                                    calorie_num = re.findall(r'(\d+(?:\.\d+)?)', match)
+                                    if calorie_num and 50 <= float(calorie_num[0]) <= 10000:  # Reasonable calorie range
+                                        nutritional_info['calories'] = match
+                                        break
+                                
+                                if 'calories' in nutritional_info:
+                                    break
+                            
+                            break  # Found and clicked the nutrition button
+                            
+                    except Exception as e:
+                        continue
+                
+            except Exception as e:
+                # Fall through to regular extraction if Selenium fails
+                pass
+        
+        # Fallback: Try to extract from static HTML if Selenium didn't work
+        if not nutritional_info:
+            page_text = soup.get_text()
+            
+            # Look for calorie patterns in the static content
+            calorie_patterns = [
+                r'(\d+(?:\.\d+)?\s*kcal/kg)',
+                r'(\d+(?:\.\d+)?\s*kcal\s*/\s*kg)',
+                r'(\d+(?:\.\d+)?\s*kilocalories?\s*/\s*kg)',
+                r'(\d+(?:\.\d+)?\s*cal/kg)',
+            ]
+            
+            import re
+            for pattern in calorie_patterns:
+                matches = re.findall(pattern, page_text, re.IGNORECASE)
+                for match in matches:
+                    match = match.strip()
+                    match = re.sub(r'\s+', ' ', match)
+                    match = re.sub(r'\s*/\s*', '/', match)
+                    
+                    # Validate calorie value
+                    calorie_num = re.findall(r'(\d+(?:\.\d+)?)', match)
+                    if calorie_num and 50 <= float(calorie_num[0]) <= 10000:
+                        nutritional_info['calories'] = match
+                        break
+                
+                if 'calories' in nutritional_info:
+                    break
+        
+        # Return the nutritional info object or None if no calories found
+        return nutritional_info if nutritional_info else None
+        
+    except Exception:
+        return None
+
 def extract_guaranteed_analysis(soup, url):
     """Extract guaranteed analysis information from the webpage"""
     try:
@@ -3192,6 +3302,7 @@ def scrape_url():
             life_stage = extract_life_stage_from_url(url)
             ingredients = extract_ingredients_from_url(url)
             guaranteed_analysis = None  # Cannot extract guaranteed analysis from direct images
+            nutritional_info = None  # Cannot extract nutritional info from direct images
             
             # For direct images, extract name from URL
             name = extract_product_name_from_url(url)
@@ -3204,7 +3315,7 @@ def scrape_url():
             # Parse HTML for regular web pages
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Extract brand, image, pet type, food type, life stage, ingredients, guaranteed analysis, and product name
+            # Extract brand, image, pet type, food type, life stage, ingredients, guaranteed analysis, nutritional info, and product name
             brand = extract_brand(soup, url)
             image_url = extract_image_url(soup, url)
             pet_type = extract_pet_type(soup, url)
@@ -3212,6 +3323,7 @@ def scrape_url():
             life_stage = extract_life_stage(soup, url)
             ingredients = extract_ingredients(soup, url)
             guaranteed_analysis = extract_guaranteed_analysis(soup, url)
+            nutritional_info = extract_nutritional_info(soup, url)
             
             # Extract product name and size, then combine them
             product_name = extract_product_name(soup, url)
@@ -3246,6 +3358,7 @@ def scrape_url():
             'lifeStage': life_stage,
             'ingredients': ingredients,
             'guaranteedAnalysis': guaranteed_analysis,
+            'nutritionalInfo': nutritional_info,
             'timestamp': datetime.now().isoformat(),
             'domain': parsed.netloc,
             'debug_info': {
@@ -3267,6 +3380,7 @@ def scrape_url():
             'lifeStage': life_stage,
             'ingredients': ingredients,
             'guaranteedAnalysis': guaranteed_analysis,
+            'nutritionalInfo': nutritional_info,
             'id': new_entry['id'],
             'url': url,
             'debug_info': debug_message
