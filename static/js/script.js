@@ -76,11 +76,13 @@ function showResult(data) {
     
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
+    document.getElementById('result-name').textContent = data.name || 'Not found';
     document.getElementById('result-image').textContent = data.imageURL;
     document.getElementById('result-pet-type').textContent = data.petType;
     document.getElementById('result-food-type').textContent = data.foodType;
     document.getElementById('result-life-stage').textContent = data.lifeStage;
     document.getElementById('result-ingredients').textContent = data.ingredients;
+    document.getElementById('result-guaranteed-analysis').textContent = data.guaranteedAnalysis || 'Not found';
     
     // Show debug info if available
     if (data.debug_info) {
@@ -164,10 +166,12 @@ function displayData(data) {
                     </div>
                     <button class="delete-btn" onclick="deleteDataItem(${item.id})">Delete</button>
                 </div>
+                <div class="data-item-name">Name: ${escapeHtml(item.name || 'Not found')}</div>
                 <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
                 <div class="data-item-food-type">Food Type: ${escapeHtml(item.foodType || 'unknown')}</div>
                 <div class="data-item-life-stage">Life Stage: ${escapeHtml(item.lifeStage || 'adult')}</div>
                 <div class="data-item-ingredients">Ingredients: ${escapeHtml(item.ingredients || 'Not found')}</div>
+                <div class="data-item-guaranteed-analysis">Guaranteed Analysis: ${escapeHtml(item.guaranteedAnalysis || 'Not found')}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
                 <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
                 <div class="data-item-meta">
@@ -222,7 +226,7 @@ function escapeHtml(text) {
 
 // Clear search functionality
 function clearSearch() {
-    document.getElementById('url').value = '';
+    document.getElementById('url-input').value = '';
     document.getElementById('result').classList.add('hidden');
     document.getElementById('error').classList.add('hidden');
     document.getElementById('loading').classList.add('hidden');
@@ -230,11 +234,13 @@ function clearSearch() {
     // Clear all result fields
     document.getElementById('result-url').textContent = '';
     document.getElementById('result-brand').textContent = '';
+    document.getElementById('result-name').textContent = '';
     document.getElementById('result-image').textContent = '';
     document.getElementById('result-pet-type').textContent = '';
     document.getElementById('result-food-type').textContent = '';
     document.getElementById('result-life-stage').textContent = '';
     document.getElementById('result-ingredients').textContent = '';
+    document.getElementById('result-guaranteed-analysis').textContent = '';
     
     // Hide debug info
     document.getElementById('debug-info').style.display = 'none';
@@ -270,7 +276,7 @@ async function exportForApp() {
                 formattedFoodType = `'${foodType}'`;
             }
             
-            return `{\n  brand: '${item.brand}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

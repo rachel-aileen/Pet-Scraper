@@ -14,8 +14,23 @@ import atexit
 _browser = None
 
 def _get_browser():
-    """Get or create a reusable browser instance for SPEED"""
+    """Get or create a reusable browser instance for SPEED with session validation"""
     global _browser
+    
+    # Check if existing browser is still valid
+    if _browser is not None:
+        try:
+            # Test if browser is still connected
+            _browser.current_url
+        except Exception:
+            # Browser is disconnected, clean it up and create new one
+            try:
+                _browser.quit()
+            except:
+                pass
+            _browser = None
+    
+    # Create new browser if needed
     if _browser is None:
         chrome_options = Options()
         chrome_options.add_argument("--headless")

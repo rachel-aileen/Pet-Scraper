@@ -1,18 +1,20 @@
 [
   {
     "id": 1,
-    "url": "https://www.absolute-holistic.com/product-page/absolute-holistic-freeze-dried-raw-patties-for-dogs-salmon-tuna-12-7oz",
-    "brand": "Absolute Holistic",
-    "imageURL": "https://static.wixstatic.com/media/4e143f_78dcf24008e842228409ea0588a4bd94~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
-    "petType": "dog",
-    "foodType": "treats, dry, freeze-dried, raw",
-    "lifeStage": "all",
-    "ingredients": null,
-    "timestamp": "2025-08-12T14:44:26.204647",
-    "domain": "www.absolute-holistic.com",
+    "url": "https://applaws.com/us/products/chicken-breast-recipe-in-gravy/",
+    "brand": "Applaws",
+    "name": "Chicken Breast Recipe in Gravy",
+    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1232US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Chicken Broth, Chicken Breast, Potato Starch, Guar Gum",
+    "guaranteedAnalysis": "Crude Protein (min): 8%, Crude Fat (min): 0.1%, Crude Fiber (max): 2%, Moisture (max): 93%",
+    "timestamp": "2025-08-24T14:26:10.052645",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
+      "total_images": 26,
+      "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
   }
