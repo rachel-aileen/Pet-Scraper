@@ -1833,7 +1833,9 @@ def extract_applaws_dropdown_data(url):
                                     ',' in clean_ingredients and
                                     clean_ingredients.count(',') >= 1 and  # Should have at least 2 ingredients
                                     any(word in clean_ingredients.lower() for word in ['tuna', 'chicken', 'fish', 'beef', 'turkey', 'lamb', 'broth', 'water', 'rice', 'oil'])):
-                                    results['ingredients'] = clean_ingredients
+                                    # Convert to array format
+                                    ingredients_array = [ingredient.strip() for ingredient in clean_ingredients.split(',')]
+                                    results['ingredients'] = ingredients_array
                             
                             # If no ingredients found with main patterns, try fallback
                             if 'ingredients' not in results:
@@ -1860,7 +1862,9 @@ def extract_applaws_dropdown_data(url):
                                             match.count(',') >= 1 and
                                             not any(bad in match.lower() for bad in ['carrageenan', 'additive free', 'only', 'ingredients', 'feed with', 'complete', 'balanced diet', 'applaws']) and
                                             any(word in match.lower() for word in ['chicken', 'fish', 'tuna', 'beef', 'turkey', 'lamb', 'broth', 'water', 'rice', 'oil'])):
-                                            results['ingredients'] = match
+                                            # Convert to array format
+                                            ingredients_array = [ingredient.strip() for ingredient in match.split(',')]
+                                            results['ingredients'] = ingredients_array
                                             break
                                     
                                     if 'ingredients' in results:
@@ -2151,6 +2155,22 @@ def extract_guaranteed_analysis(soup, url):
     except Exception:
         return None
 
+def convert_ingredients_to_array(ingredients_string):
+    """Helper function to convert ingredient string to array format"""
+    if not ingredients_string or not isinstance(ingredients_string, str):
+        return ingredients_string
+    
+    # If it's an error message or special case, return as is
+    if any(phrase in ingredients_string.lower() for phrase in ['unable to extract', 'error', 'not available', 'please check']):
+        return ingredients_string
+    
+    # Split by commas and clean each ingredient
+    ingredients_array = [ingredient.strip() for ingredient in ingredients_string.split(',')]
+    # Remove empty items
+    ingredients_array = [ingredient for ingredient in ingredients_array if ingredient]
+    
+    return ingredients_array
+
 def extract_ingredients(soup, url):
     """Extract ingredients from the page with multiple strategies, prioritized"""
     
@@ -2189,7 +2209,7 @@ def extract_ingredients(soup, url):
                         # Extract ingredients from the revealed content
                         result = extract_ingredients_from_text(page_text)
                         if result and len(result) > 10:
-                            return result
+                            return convert_ingredients_to_array(result)
                         
                         # More aggressive search in the revealed content
                         # Look for ingredient patterns directly in the page text
@@ -2225,7 +2245,7 @@ def extract_ingredients(soup, url):
                                 if (len(match) > 20 and 
                                     match.count(',') >= 2 and
                                     any(word in match.lower() for word in ['chicken', 'fish', 'tuna', 'beef', 'turkey', 'lamb', 'broth', 'water', 'oil'])):
-                                    return match
+                                    return convert_ingredients_to_array(match)
                         
                         # Also try a direct search around the word "ingredients" as backup
                         if 'ingredients' in page_text.lower():
@@ -2238,7 +2258,7 @@ def extract_ingredients(soup, url):
                             match = re.search(simple_pattern, context, re.IGNORECASE)
                             if match:
                                 simple_result = match.group(1).strip()
-                                return simple_result
+                                return convert_ingredients_to_array(simple_result)
                         
                         break  # Found and clicked the ingredients button
                         
@@ -2265,7 +2285,7 @@ def extract_ingredients(soup, url):
                 formatted_content = format_ingredient_list(selenium_ingredients)
                 formatted_content = clean_extra_content(formatted_content)
                 if len(formatted_content) > 50:
-                    return formatted_content
+                    return convert_ingredients_to_array(formatted_content)
 
             # If Selenium didn't find anything valid, check if this is a supplement without detailed ingredients
             # For supplements/vitamins, Target often only shows marketing descriptions, not ingredient lists
@@ -2902,13 +2922,13 @@ def extract_ingredients(soup, url):
                     formatted_content = format_ingredient_list(selenium_ingredients)
                     formatted_content = clean_extra_content(formatted_content)
                     if len(formatted_content) > 50:
-                        return formatted_content
+                        return convert_ingredients_to_array(formatted_content)
             except Exception as e:
                 print(f"Selenium fallback failed: {e}")
 
     # Return suspicious JSON ingredients if Selenium also failed
     if fallback_json_ingredients is not None:
-        return fallback_json_ingredients
+        return convert_ingredients_to_array(fallback_json_ingredients)
     
     # If all strategies fail, return None
     return None

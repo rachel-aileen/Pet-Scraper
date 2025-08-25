@@ -81,7 +81,7 @@ function showResult(data) {
     document.getElementById('result-pet-type').textContent = data.petType;
     document.getElementById('result-food-type').textContent = data.foodType;
     document.getElementById('result-life-stage').textContent = data.lifeStage;
-    document.getElementById('result-ingredients').textContent = data.ingredients;
+    document.getElementById('result-ingredients').textContent = Array.isArray(data.ingredients) ? data.ingredients.join(', ') : (data.ingredients || 'Not found');
     document.getElementById('result-guaranteed-analysis').textContent = data.guaranteedAnalysis || 'Not found';
     
     // Handle nutritional info (nested object)
@@ -177,7 +177,7 @@ function displayData(data) {
                 <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
                 <div class="data-item-food-type">Food Type: ${escapeHtml(item.foodType || 'unknown')}</div>
                 <div class="data-item-life-stage">Life Stage: ${escapeHtml(item.lifeStage || 'adult')}</div>
-                <div class="data-item-ingredients">Ingredients: ${escapeHtml(item.ingredients || 'Not found')}</div>
+                <div class="data-item-ingredients">Ingredients: ${Array.isArray(item.ingredients) ? escapeHtml(item.ingredients.join(', ')) : escapeHtml(item.ingredients || 'Not found')}</div>
                 <div class="data-item-guaranteed-analysis">Guaranteed Analysis: ${escapeHtml(item.guaranteedAnalysis || 'Not found')}</div>
                 <div class="data-item-nutritional-info">Nutritional Info: ${item.nutritionalInfo && item.nutritionalInfo.calories ? escapeHtml(`Calories: ${item.nutritionalInfo.calories}`) : 'Not found'}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
@@ -291,7 +291,18 @@ async function exportForApp() {
                 nutritionalInfoExport = `{ calories: '${item.nutritionalInfo.calories}' }`;
             }
             
-            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: '${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
+            // Format ingredients - handle both array and string formats
+            let ingredientsExport;
+            if (Array.isArray(item.ingredients)) {
+                // Format as array with individual quotes
+                const ingredientsList = item.ingredients.map(ingredient => `'${ingredient.replace(/'/g, "\\'")}'`).join(', ');
+                ingredientsExport = `[${ingredientsList}]`;
+            } else {
+                // Fallback for string format
+                ingredientsExport = `'${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'`;
+            }
+            
+            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: ${ingredientsExport},\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

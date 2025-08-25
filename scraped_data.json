@@ -1,6 +1,6 @@
 [
   {
-    "id": 4,
+    "id": 1,
     "url": "https://applaws.com/us/products/kitten-tuna-fillet-in-broth-2/",
     "brand": "Applaws",
     "name": "Kitten Tuna Fillet in Broth",
@@ -8,144 +8,16 @@
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Rice",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Rice"
+    ],
     "guaranteedAnalysis": "Crude Fat Min 0.1%, Crude Fibre Max 2%, Moisture Max 90%, Crude Protein 11%",
     "nutritionalInfo": {
       "calories": "607 kcal/kg"
     },
-    "timestamp": "2025-08-24T17:40:53.924103",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 2,
-    "url": "https://applaws.com/us/products/kitten-chicken-breast-in-broth-3/",
-    "brand": "Applaws",
-    "name": "Kitten Chicken Breast in Broth",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/8042US-A-Transparent-Background.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken Breast, Chicken Broth, Rice",
-    "guaranteedAnalysis": "Crude Fat Min 0.1%, Crude Fibre Max 2%, Moisture Max 90%, Crude Protein 11%",
-    "nutritionalInfo": {
-      "calories": "607 kcal/kg"
-    },
-    "timestamp": "2025-08-24T17:42:01.582215",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 3,
-    "url": "https://applaws.com/us/products/kitten-chicken-breast-in-broth-2/",
-    "brand": "Applaws",
-    "name": "Kitten Chicken Breast in Broth",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1111US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken Breast, Chicken Broth, Rice, Rice Flour",
-    "guaranteedAnalysis": "Crude Protein (min): 10%, Crude Fat (min): 0.1%, Crude Fiber (max): 2%, Moisture (max): 88%",
-    "nutritionalInfo": {
-      "calories": "677 kcal/kg"
-    },
-    "timestamp": "2025-08-24T17:42:50.703582",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 4,
-    "url": "https://applaws.com/us/products/kitten-tuna-fillet-in-broth/",
-    "brand": "Applaws",
-    "name": "Kitten Tuna Fillet in Broth",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1148US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Rice",
-    "guaranteedAnalysis": "Crude Protein (min): 11%, Crude Fat (min): 0.1%, Crude Fiber (max): 2%, Moisture (max): 91%",
-    "nutritionalInfo": {
-      "calories": "572 kcal/kg"
-    },
-    "timestamp": "2025-08-24T17:46:48.542246",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 5,
-    "url": "https://applaws.com/us/products/natural-wet-kitten-food-tuna-fillet-salmon-in-broth/",
-    "brand": "Applaws",
-    "name": "Kitten Tuna Fillet & Salmon in Broth",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1058US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Salmon, Rice",
-    "guaranteedAnalysis": "Crude Protein (min): 11%, Crude Fat (min): 0.1%, Crude Fiber (max): 2%, Moisture (max): 89%",
-    "nutritionalInfo": {
-      "calories": "642 kcal/kg"
-    },
-    "timestamp": "2025-08-24T17:49:10.928717",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 6,
-    "url": "https://applaws.com/us/products/kitten-chicken-breast-in-broth/",
-    "brand": "Applaws",
-    "name": "Kitten Chicken Breast in Broth",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/1001US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken Breast, Chicken Broth, Rice, Rice Flour",
-    "guaranteedAnalysis": "Crude Protein (min): 10%, Crude Fat (min): 0.1%, Crude Fiber (max): 2%, Moisture (max): 88%",
-    "nutritionalInfo": {
-      "calories": "677 kcal/Kg"
-    },
-    "timestamp": "2025-08-24T17:49:52.062791",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 7,
-    "url": "https://applaws.com/us/products/kitten-dry-food-chicken-recipe/",
-    "brand": "Applaws",
-    "name": "Kitten Dry Food Chicken Recipe",
-    "imageURL": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/4041US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "chicken, chicken meal, peas, lentils, chickpeas, chicken fat (preserved with mixed tocopherols), dried eggs, natural flavor, flaxseed (source of omega 3 fatty acids), menhaden fish oil (source of dha-docosahexaenoic acid), salt, vitamins (vitamin a supplement, vitamin e supplement, niacin supplement, thiamine mononitrate, pyridoxine hydrochloride, calcium pantothenate, riboflavin supplement, biotin supplement, vitamin b12 supplement, vitamin d3, folic acid), taurine, potassium chloride, choline chloride, minerals (zinc proteinate, iron proteinate, copper proteinate, manganese proteinate, sodium selenite, calcium iodate), rosemary extract",
-    "guaranteedAnalysis": "Crude Protein (min): 37%, Crude Fat (min): 16%, Crude Fiber (max): 3.5%, Moisture (max): 10%",
-    "nutritionalInfo": {
-      "calories": "3977 kcal/kg"
-    },
-    "timestamp": "2025-08-24T17:50:40.629871",
+    "timestamp": "2025-08-24T18:16:21.224623",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 27,
