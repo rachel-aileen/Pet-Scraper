@@ -77,7 +77,7 @@ function showResult(data) {
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
     document.getElementById('result-name').textContent = data.name || 'Not found';
-    document.getElementById('result-image').textContent = data.imageURL;
+    document.getElementById('result-image').textContent = data.imageUrl;
     document.getElementById('result-pet-type').textContent = data.petType;
     document.getElementById('result-food-type').textContent = data.foodType;
     document.getElementById('result-life-stage').textContent = data.lifeStage;
@@ -181,7 +181,7 @@ function displayData(data) {
                 <div class="data-item-guaranteed-analysis">Guaranteed Analysis: ${escapeHtml(item.guaranteedAnalysis || 'Not found')}</div>
                 <div class="data-item-nutritional-info">Nutritional Info: ${item.nutritionalInfo && item.nutritionalInfo.calories ? escapeHtml(`Calories: ${item.nutritionalInfo.calories}`) : 'Not found'}</div>
                 <div class="data-item-url">URL: ${escapeHtml(item.url)}</div>
-                <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageURL || 'Not found')}</span></div>
+                <div class="data-item-image">Image: <span class="image-url">${escapeHtml(item.imageUrl || 'Not found')}</span></div>
                 <div class="data-item-meta">
                     <span class="data-item-timestamp">${formattedDate}</span>
                     <span class="data-item-domain">${escapeHtml(item.domain)}</span>
@@ -266,7 +266,7 @@ async function exportForApp() {
             return;
         }
         
-        // Format data for app use - brand, petType, foodType, lifeStage, imageURL, and ingredients fields
+        // Format data for app use - brand, petType, foodType, lifeStage, imageUrl, and ingredients fields
         // UPDATED: Fixed food type formatting to use individual quotes (v2)
         const formattedData = data.map((item, index) => {
             const isLast = index === data.length - 1;
@@ -302,7 +302,7 @@ async function exportForApp() {
                 ingredientsExport = `'${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'`;
             }
             
-            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageURL: '${item.imageURL}',\n  ingredients: ${ingredientsExport},\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageUrl: '${item.imageUrl}',\n  ingredients: ${ingredientsExport},\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

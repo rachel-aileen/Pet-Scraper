@@ -81,7 +81,7 @@ The scraper uses advanced techniques to find ingredients even when hidden behind
   petType: 'cat',
   foodType: 'wet',
   lifeStage: 'adult',
-  imageURL: 'https://example.com/product-image.jpg',
+  imageUrl: 'https://example.com/product-image.jpg',
   ingredients: 'Chicken, chicken broth, liver, meat by-products, turkey, vitamins, minerals'
 }
 
@@ -90,7 +90,7 @@ The scraper uses advanced techniques to find ingredients even when hidden behind
   petType: 'dog', 
   foodType: 'dry',
   lifeStage: 'puppy',
-  imageURL: 'https://example.com/another-image.jpg',
+  imageUrl: 'https://example.com/another-image.jpg',
   ingredients: 'Deboned chicken, chicken meal, brown rice, oatmeal, sweet potatoes, fish meal'
 }
 ```
