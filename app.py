@@ -1757,6 +1757,183 @@ def format_ingredient_list(ingredient_text):
     
     return formatted_text
 
+def extract_applaws_dropdown_data(url):
+    """Extract all Applaws dropdown data (ingredients, guaranteed analysis, nutritional info) in one browser session"""
+    try:
+        from selenium_scraper import _get_browser
+        import time
+        from selenium.webdriver.common.by import By
+        import re
+        
+        results = {}
+        
+        driver = _get_browser()
+        driver.get(url)
+        time.sleep(5)  # Allow page to load completely
+        
+        # Find all dropdown buttons
+        dropdown_buttons = [
+            ('ingredients', "//*[contains(text(), 'Ingredients')]"),
+            ('nutritional', "//*[contains(text(), 'Nutritional Information') or contains(text(), 'Guaranteed Analysis') or contains(text(), 'Nutrition')]")
+        ]
+        
+        for dropdown_type, xpath in dropdown_buttons:
+            try:
+                elements = driver.find_elements(By.XPATH, xpath)
+                
+                for element in elements:
+                    element_text = element.text.strip()
+                    
+                    # Click the appropriate dropdown
+                    should_click = False
+                    if dropdown_type == 'ingredients' and element_text == 'Ingredients':
+                        should_click = True
+                    elif dropdown_type == 'nutritional' and element_text in ['Nutritional Information', 'Guaranteed Analysis', 'Nutrition']:
+                        should_click = True
+                    
+                    if should_click:
+                        # Click to reveal content
+                        driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+                        time.sleep(1)
+                        driver.execute_script("arguments[0].click();", element)
+                        time.sleep(5)  # Wait for content to load
+                        
+                        # Get the revealed content
+                        new_source = driver.page_source
+                        soup_selenium = BeautifulSoup(new_source, 'html.parser')
+                        page_text = soup_selenium.get_text()
+                        
+                        if dropdown_type == 'ingredients':
+                            # Extract ingredients - find the clean list after "Ingredients" keyword
+                            
+                            # Look for the complete ingredients list after "Ingredients" keyword
+                            # Pattern: "Ingredients Chicken Breast, Chicken Broth, Rice, Rice Flour."
+                            # Look for exact match of the ingredients pattern
+                            # From debug: "Ingredients Chicken Breast, Chicken Broth, Rice, Rice Flour."
+                            # From debug: "Ingredients Tuna Fillet, Fish Broth, Rice"
+                            
+                            # Simple approach: find "Ingredients" followed by food items and stop before next section
+                            ingredients_pattern = r'ingredients\s+([a-z][a-z\s,]*(?:chicken|tuna|fish|beef|turkey|lamb|rice|flour|broth|water|oil)[a-z\s,]*?)(?=\s*\.\s*nutritional|\s*nutritional|\s*guaranteed|\s*peek|\s*$)'
+                            ingredient_match = re.search(ingredients_pattern, page_text, re.IGNORECASE)
+                            
+                            if ingredient_match:
+                                clean_ingredients = ingredient_match.group(1).strip()
+                                # Remove the "ingredients" keyword if it got captured
+                                clean_ingredients = re.sub(r'^ingredients\s*', '', clean_ingredients, flags=re.IGNORECASE)
+                                # Remove extra whitespace and newlines
+                                clean_ingredients = re.sub(r'\s+', ' ', clean_ingredients)
+                                # Remove trailing punctuation
+                                clean_ingredients = re.sub(r'[^\w\s,().-]+$', '', clean_ingredients)
+                                if clean_ingredients.endswith('.'):
+                                    clean_ingredients = clean_ingredients[:-1]
+                                clean_ingredients = clean_ingredients.strip()
+                                
+                                # Validate it's a proper ingredient list (has commas and food-related terms)
+                                if (len(clean_ingredients) > 5 and 
+                                    ',' in clean_ingredients and
+                                    clean_ingredients.count(',') >= 1 and  # Should have at least 2 ingredients
+                                    any(word in clean_ingredients.lower() for word in ['tuna', 'chicken', 'fish', 'beef', 'turkey', 'lamb', 'broth', 'water', 'rice', 'oil'])):
+                                    results['ingredients'] = clean_ingredients
+                            
+                            # If no ingredients found with main patterns, try fallback
+                            if 'ingredients' not in results:
+                                # Fallback patterns if the first approach doesn't work
+                                ingredient_patterns = [
+                                    # Pattern for "Ingredients X, Y, Z" format
+                                    r'ingredients[:\s]+([a-z][^.]*?(?:,\s*[a-z][^,]*){1,})',
+                                    # Pattern for clean ingredient lists (protein + at least 2 other items)
+                                    r'((?:chicken|fish|tuna|beef|turkey|lamb)[^,]*(?:,\s*[a-z][^,]*){1,})',
+                                    # Pattern for broth-based ingredients
+                                    r'((?:chicken|fish|tuna|beef|turkey|lamb)\s+(?:broth|fillet)[^,]*(?:,\s*[a-z][^,]*){1,})'
+                                ]
+                                
+                                for pattern in ingredient_patterns:
+                                    matches = re.findall(pattern, page_text, re.IGNORECASE)
+                                    for match in matches:
+                                        match = match.strip()
+                                        match = re.sub(r'\s+', ' ', match)
+                                        match = re.sub(r'^[^\w]+', '', match)
+                                        match = re.sub(r'[^\w\s,().-]+$', '', match)
+                                        
+                                        # Must be short enough to be just ingredients (not marketing text)
+                                        if (len(match) > 10 and len(match) < 200 and 
+                                            match.count(',') >= 1 and
+                                            not any(bad in match.lower() for bad in ['carrageenan', 'additive free', 'only', 'ingredients', 'feed with', 'complete', 'balanced diet', 'applaws']) and
+                                            any(word in match.lower() for word in ['chicken', 'fish', 'tuna', 'beef', 'turkey', 'lamb', 'broth', 'water', 'rice', 'oil'])):
+                                            results['ingredients'] = match
+                                            break
+                                    
+                                    if 'ingredients' in results:
+                                        break
+                        
+                        elif dropdown_type == 'nutritional':
+                            # Extract guaranteed analysis
+                            ga_patterns = [
+                                # Pattern for protein-first format
+                                r'(crude\s+protein[^%]+%[^,]*,\s*crude\s+fat[^%]+%[^,]*,\s*crude\s+fiber[^%]+%[^,]*,\s*moisture[^%]+%[^.]*)',
+                                r'(crude\s+protein[^.]+fat[^.]+fiber[^.]+moisture[^.]*%)',
+                                r'(protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
+                                # Pattern for fat-first format (like kitten tuna)
+                                r'(crude\s+fat[^%]+%[^,]*,\s*crude\s+fib[a-z]*[^%]+%[^,]*,\s*moisture[^%]+%[^,]*,\s*crude\s+protein[^%]+%)',
+                                # More flexible patterns that can capture in any order
+                                r'((?:crude\s+)?(?:fat|protein|fiber|fibre|moisture)[^%]*%[^,]*,\s*(?:crude\s+)?(?:fat|protein|fiber|fibre|moisture)[^%]*%[^,]*,\s*(?:crude\s+)?(?:fat|protein|fiber|fibre|moisture)[^%]*%[^,]*,\s*(?:crude\s+)?(?:fat|protein|fiber|fibre|moisture)[^%]*%)',
+                                # Simplified pattern that captures any sequence with multiple nutritional components
+                                r'((?:crude\s+)?(?:fat|protein|fib[a-z]*|moisture)[^%]*%[^.]*(?:,\s*[^.]*%[^.]*){2,})'
+                            ]
+                            
+                            for pattern in ga_patterns:
+                                matches = re.findall(pattern, page_text, re.IGNORECASE)
+                                for match in matches:
+                                    match = match.strip()
+                                    match = re.sub(r'\s+', ' ', match)
+                                    match = re.sub(r'^[^\w]+', '', match)
+                                    match = re.sub(r'[^\w\.%\)]+$', '', match)
+                                    if match.endswith('.'):
+                                        match = match[:-1]
+                                    
+                                    if (len(match) > 20 and 
+                                        'protein' in match.lower() and
+                                        match.count('%') >= 2 and  # Should have at least 2 percentages 
+                                        any(word in match.lower() for word in ['fat', 'fiber', 'fibre', 'moisture'])):
+                                        results['guaranteed_analysis'] = match
+                                        break
+                                
+                                if 'guaranteed_analysis' in results:
+                                    break
+                            
+                            # Extract nutritional info (calories)
+                            calorie_patterns = [
+                                r'(\d+(?:\.\d+)?\s*kcal/kg)',
+                                r'(\d+(?:\.\d+)?\s*kcal\s*/\s*kg)',
+                                r'(\d+(?:\.\d+)?\s*kilocalories?\s*/\s*kg)',
+                                r'(\d+(?:\.\d+)?\s*cal/kg)',
+                            ]
+                            
+                            for pattern in calorie_patterns:
+                                matches = re.findall(pattern, page_text, re.IGNORECASE)
+                                for match in matches:
+                                    match = match.strip()
+                                    match = re.sub(r'\s+', ' ', match)
+                                    match = re.sub(r'\s*/\s*', '/', match)
+                                    
+                                    calorie_num = re.findall(r'(\d+(?:\.\d+)?)', match)
+                                    if calorie_num and 50 <= float(calorie_num[0]) <= 10000:
+                                        results['nutritional_info'] = {'calories': match}
+                                        break
+                                
+                                if 'nutritional_info' in results:
+                                    break
+                        
+                        break  # Found and clicked this dropdown type
+                
+            except Exception as e:
+                continue
+        
+        return results
+        
+    except Exception as e:
+        return {}
+
 def extract_nutritional_info(soup, url):
     """Extract nutritional information including calories from the webpage"""
     try:
@@ -1868,10 +2045,10 @@ def extract_nutritional_info(soup, url):
         return None
 
 def extract_guaranteed_analysis(soup, url):
-    """Extract guaranteed analysis information from the webpage"""
+    """Extract guaranteed analysis information from the webpage using the same dropdown as nutritional info"""
     try:
-        # APPLAWS DROPDOWN DETECTION: Use Selenium to click guaranteed analysis dropdowns
-        # Applaws hides guaranteed analysis in clickable sections that need to be revealed
+        # For Applaws, we should reuse the same dropdown content that's already been clicked for nutritional info
+        # This is more efficient and avoids multiple browser instances
         if 'applaws.com' in url.lower():
             try:
                 from selenium_scraper import _get_browser
@@ -1882,16 +2059,16 @@ def extract_guaranteed_analysis(soup, url):
                 driver.get(url)
                 time.sleep(5)  # Allow page to load completely
                 
-                # Look for clickable "Guaranteed Analysis" or "Nutritional Information" sections
-                analysis_buttons = driver.find_elements(By.XPATH, "//*[contains(text(), 'Guaranteed Analysis') or contains(text(), 'Nutritional Information') or contains(text(), 'Nutrition')]")
+                # Look for clickable "Nutritional Information" or "Guaranteed Analysis" sections
+                analysis_buttons = driver.find_elements(By.XPATH, "//*[contains(text(), 'Nutritional Information') or contains(text(), 'Guaranteed Analysis') or contains(text(), 'Nutrition')]")
                 
                 for i, button in enumerate(analysis_buttons):
                     try:
                         element_text = button.text.strip()
                         
-                        # Look for exact guaranteed analysis dropdown text
-                        if element_text in ['Guaranteed Analysis', 'Nutritional Information', 'Nutrition']:
-                            # Click to reveal hidden guaranteed analysis content
+                        # Look for nutritional information dropdown text
+                        if element_text in ['Nutritional Information', 'Guaranteed Analysis', 'Nutrition']:
+                            # Click to reveal hidden content
                             driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
                             time.sleep(1)
                             driver.execute_script("arguments[0].click();", button)
@@ -1905,17 +2082,16 @@ def extract_guaranteed_analysis(soup, url):
                             # Look for guaranteed analysis patterns directly in the page text
                             import re
                             
-                            # Try multiple patterns to find guaranteed analysis after clicking (based on debug findings)
+                            # Try multiple patterns to find guaranteed analysis after clicking
                             patterns = [
-                                # Pattern that works well based on debug (captures complete analysis until period)
-                                r'(crude\s+protein[^%]+%[^.]*fat[^%]+%[^.]*fiber[^%]+%[^.]*moisture[^%]+%[^.]*\.)',
-                                # More general patterns for complete nutritional info
-                                r'(crude\s+protein[^.]+\.)',
-                                r'(protein[^.]+\.)',
-                                # Comprehensive pattern to capture multiple nutritional values
-                                r'((?:crude\s+)?protein[^.]*?%[^.]*?(?:,\s*[^.]*?%[^.]*?)*\.)',
-                                # Fallback pattern
-                                r'(protein[:\s]*[^.]*?%[^.]*?(?:,\s*[^.]*?%[^.]*?)*\.?)'
+                                # Pattern that captures the complete guaranteed analysis with all components
+                                r'(crude\s+protein[^%]+%[^,]*,\s*crude\s+fat[^%]+%[^,]*,\s*crude\s+fiber[^%]+%[^,]*,\s*moisture[^%]+%[^.]*)',
+                                # More flexible pattern for guaranteed analysis
+                                r'(crude\s+protein[^.]+fat[^.]+fiber[^.]+moisture[^.]*%)',
+                                # General pattern for nutritional analysis
+                                r'(protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
+                                # Fallback comprehensive pattern
+                                r'((?:crude\s+)?protein[^.]*?%[^.]*?(?:,\s*[^.]*?%[^.]*?){2,})'
                             ]
                             
                             for pattern in patterns:
@@ -1932,28 +2108,12 @@ def extract_guaranteed_analysis(soup, url):
                                     if match.endswith('.'):
                                         match = match[:-1]
                                     
-                                    # Validate it looks like guaranteed analysis (has protein and %)
-                                    if (len(match) > 10 and 
+                                    # Validate it looks like guaranteed analysis (has protein and multiple %)
+                                    if (len(match) > 20 and 
                                         'protein' in match.lower() and
-                                        '%' in match and
-                                        any(word in match.lower() for word in ['crude', 'fat', 'fiber', 'moisture'])):
+                                        match.count('%') >= 3 and  # Should have at least 3 percentages (protein, fat, fiber, moisture)
+                                        any(word in match.lower() for word in ['fat', 'fiber', 'moisture'])):
                                         return match
-                            
-                            # Try a more comprehensive search around nutritional terms
-                            nutrition_terms = ['crude protein', 'protein', 'guaranteed analysis', 'nutritional information']
-                            for term in nutrition_terms:
-                                if term in page_text.lower():
-                                    term_pos = page_text.lower().find(term)
-                                    context = page_text[term_pos:term_pos+800]
-                                    
-                                    # Look for comprehensive nutritional data
-                                    comprehensive_pattern = r'((?:crude\s+)?protein[^:]*:[^,]*,\s*(?:crude\s+)?fat[^:]*:[^,]*,\s*(?:crude\s+)?fiber[^:]*:[^,]*,\s*moisture[^:]*:[^.]*)'
-                                    match = re.search(comprehensive_pattern, context, re.IGNORECASE)
-                                    if match:
-                                        result = match.group(1).strip()
-                                        # Clean up the result
-                                        result = re.sub(r'\s+', ' ', result)
-                                        return result
                             
                             break  # Found and clicked the analysis button
                             
@@ -1969,17 +2129,21 @@ def extract_guaranteed_analysis(soup, url):
         
         # Look for guaranteed analysis patterns in the static content
         patterns = [
-            r'guaranteed\s+analysis[:\s]*([^.]*protein[^.]*%[^.]*)',
-            r'nutritional\s+information[:\s]*([^.]*protein[^.]*%[^.]*)',
+            r'guaranteed\s+analysis[:\s]*([^.]*protein[^.]*%[^.]*fat[^.]*%[^.]*)',
+            r'nutritional\s+information[:\s]*([^.]*protein[^.]*%[^.]*fat[^.]*%[^.]*)',
             r'(crude\s+protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
-            r'(protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)'
+            r'(protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
+            # Fat-first patterns
+            r'(crude\s+fat[^%]+%[^,]*,\s*crude\s+fib[a-z]*[^%]+%[^,]*,\s*moisture[^%]+%[^,]*,\s*crude\s+protein[^%]+%)',
+            r'((?:crude\s+)?(?:fat|protein|fiber|fibre|moisture)[^%]*%[^.]*(?:,\s*[^.]*%[^.]*){2,})'
         ]
         
+        import re
         for pattern in patterns:
             matches = re.findall(pattern, page_text, re.IGNORECASE)
             for match in matches:
                 match = match.strip()
-                if len(match) > 20 and match.count('%') >= 2:
+                if len(match) > 20 and match.count('%') >= 2:  # Should have multiple percentages
                     return match
         
         return None
@@ -3321,9 +3485,17 @@ def scrape_url():
             pet_type = extract_pet_type(soup, url)
             food_type = extract_food_type(soup, url)
             life_stage = extract_life_stage(soup, url)
-            ingredients = extract_ingredients(soup, url)
-            guaranteed_analysis = extract_guaranteed_analysis(soup, url)
-            nutritional_info = extract_nutritional_info(soup, url)
+            
+            # For Applaws, extract all dropdown content in one go to be more efficient
+            if 'applaws.com' in url.lower():
+                applaws_data = extract_applaws_dropdown_data(url)
+                ingredients = applaws_data.get('ingredients') or extract_ingredients(soup, url)
+                guaranteed_analysis = applaws_data.get('guaranteed_analysis') or extract_guaranteed_analysis(soup, url)
+                nutritional_info = applaws_data.get('nutritional_info') or extract_nutritional_info(soup, url)
+            else:
+                ingredients = extract_ingredients(soup, url)
+                guaranteed_analysis = extract_guaranteed_analysis(soup, url)
+                nutritional_info = extract_nutritional_info(soup, url)
             
             # Extract product name and size, then combine them
             product_name = extract_product_name(soup, url)
