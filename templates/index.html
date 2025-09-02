@@ -22,10 +22,29 @@
         <div id="scraper-tab" class="tab-content active">
             <div class="scraper-section">
                 <h2>Scrape Brand Information</h2>
-                <div class="input-group">
-                    <input type="url" id="url-input" placeholder="Enter product URL (e.g., https://example.com/pet-food-product)" />
-                    <button id="scrape-btn" onclick="scrapeUrl()">Scrape Brand</button>
-                    <button id="clear-btn" onclick="clearSearch()" class="clear-btn">Clear</button>
+                
+                <div class="url-inputs-container">
+                    <div class="input-group">
+                        <label for="url-input-1">URL 1:</label>
+                        <input type="url" id="url-input-1" placeholder="Enter product URL (e.g., https://example.com/pet-food-product)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-2">URL 2:</label>
+                        <input type="url" id="url-input-2" placeholder="Enter second product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-3">URL 3:</label>
+                        <input type="url" id="url-input-3" placeholder="Enter third product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-4">URL 4:</label>
+                        <input type="url" id="url-input-4" placeholder="Enter fourth product URL (optional)" />
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="scrape-btn" onclick="scrapeUrls()">Scrape All URLs</button>
+                    <button id="clear-btn" onclick="clearSearch()" class="clear-btn">Clear All</button>
                 </div>
                 
                 <div id="loading" class="loading hidden">
@@ -33,45 +52,13 @@
                     <p>Scraping website...</p>
                 </div>
 
-                <div id="result" class="result hidden">
-                    <h3>Result:</h3>
-                    <div class="result-card">
-                        <div class="result-item">
-                            <strong>URL:</strong> <span id="result-url"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Brand:</strong> <span id="result-brand"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Name:</strong> <span id="result-name"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Pet Type:</strong> <span id="result-pet-type"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Food Type:</strong> <span id="result-food-type"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Life Stage:</strong> <span id="result-life-stage"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Ingredients:</strong> <span id="result-ingredients"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Guaranteed Analysis:</strong> <span id="result-guaranteed-analysis"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Nutritional Info:</strong> <span id="result-nutritional-info"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Image URL:</strong> <span id="result-image" class="image-url"></span>
-                        </div>
-                        <div class="result-item">
-                            <strong>Status:</strong> <span class="success">Successfully scraped!</span>
-                        </div>
-                        <div class="result-item debug-info" id="debug-info" style="display: none;">
-                            <strong>Debug Info:</strong> <span id="debug-details" class="debug-text"></span>
-                        </div>
+                <div id="results" class="results hidden">
+                    <h3>Results:</h3>
+                    <div id="results-container">
+                        <!-- Results will be dynamically inserted here -->
+                    </div>
+                    <div id="batch-summary" class="batch-summary hidden">
+                        <p><strong>Batch Summary:</strong> <span id="summary-text"></span></p>
                     </div>
                 </div>
 
@@ -133,6 +120,6 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}?v=4"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=6"></script>
 </body>
 </html> 

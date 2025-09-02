@@ -23,50 +23,92 @@ function openTab(evt, tabName) {
 }
 
 // Scraping functionality
-async function scrapeUrl() {
-    const urlInput = document.getElementById('url-input');
+async function scrapeUrls() {
+    const urlInputs = [
+        document.getElementById('url-input-1'),
+        document.getElementById('url-input-2'),
+        document.getElementById('url-input-3'),
+        document.getElementById('url-input-4')
+    ];
+    
     const scrapeBtn = document.getElementById('scrape-btn');
     const loading = document.getElementById('loading');
-    const result = document.getElementById('result');
+    const results = document.getElementById('results');
     const error = document.getElementById('error');
     
-    const url = urlInput.value.trim();
+    // Collect all non-empty URLs
+    const urls = urlInputs.map(input => input.value.trim()).filter(url => url);
     
-    if (!url) {
-        showError('Please enter a URL');
+    if (urls.length === 0) {
+        showError('Please enter at least one URL');
         return;
     }
     
     // Show loading state
     loading.classList.remove('hidden');
-    result.classList.add('hidden');
+    results.classList.add('hidden');
     error.classList.add('hidden');
     scrapeBtn.disabled = true;
-    scrapeBtn.textContent = 'Scraping...';
+    scrapeBtn.textContent = `Scraping ${urls.length} URL${urls.length > 1 ? 's' : ''}...`;
+    
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.innerHTML = '';
+    
+    let successCount = 0;
+    let errorCount = 0;
+    const allResults = [];
     
     try {
-        const response = await fetch('/scrape', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ url: url })
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            showResult(data);
-        } else {
-            showError(data.error || 'Unknown error occurred');
+        // Process URLs sequentially to avoid overwhelming the server
+        for (let i = 0; i < urls.length; i++) {
+            const url = urls[i];
+            const urlNumber = i + 1;
+            
+            try {
+                // Update loading message
+                scrapeBtn.textContent = `Scraping URL ${urlNumber}/${urls.length}...`;
+                
+                const response = await fetch('/scrape', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    successCount++;
+                    allResults.push({ ...data, urlNumber, status: 'success' });
+                    addResultCard(data, urlNumber, 'success');
+                } else {
+                    errorCount++;
+                    allResults.push({ error: data.error, url, urlNumber, status: 'error' });
+                    addResultCard({ error: data.error, url }, urlNumber, 'error');
+                }
+            } catch (err) {
+                errorCount++;
+                allResults.push({ error: err.message, url, urlNumber, status: 'error' });
+                addResultCard({ error: err.message, url }, urlNumber, 'error');
+            }
+            
+            // Small delay between requests to be respectful to servers
+            if (i < urls.length - 1) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
         }
+        
+        // Show results and summary
+        showBatchResults(successCount, errorCount, urls.length);
+        
     } catch (err) {
-        showError('Network error: ' + err.message);
+        showError('Batch scraping error: ' + err.message);
     } finally {
         // Reset button state
         loading.classList.add('hidden');
         scrapeBtn.disabled = false;
-        scrapeBtn.textContent = 'Scrape Brand';
+        scrapeBtn.textContent = 'Scrape All URLs';
     }
 }
 
@@ -77,6 +119,7 @@ function showResult(data) {
     document.getElementById('result-url').textContent = data.url;
     document.getElementById('result-brand').textContent = data.brand;
     document.getElementById('result-name').textContent = data.name || 'Not found';
+    document.getElementById('result-barcode-id').textContent = data.barcodeId || 'Not found';
     document.getElementById('result-image').textContent = data.imageUrl;
     document.getElementById('result-pet-type').textContent = data.petType;
     document.getElementById('result-food-type').textContent = data.foodType;
@@ -122,6 +165,63 @@ function hideError() {
     if (error) {
         error.classList.add('hidden');
     }
+}
+
+// Batch scraping helper functions
+function addResultCard(data, urlNumber, status) {
+    const resultsContainer = document.getElementById('results-container');
+    const resultCard = document.createElement('div');
+    resultCard.className = 'result-card';
+    
+    if (status === 'success') {
+        resultCard.innerHTML = `
+            <div class="result-header">
+                <span class="result-number">URL ${urlNumber}</span>
+                <span class="result-status success">✓ Success</span>
+            </div>
+            <div class="result-item"><strong>URL:</strong> ${escapeHtml(data.url)}</div>
+            <div class="result-item"><strong>Brand:</strong> ${escapeHtml(data.brand)}</div>
+            <div class="result-item"><strong>Name:</strong> ${escapeHtml(data.name || 'Not found')}</div>
+            <div class="result-item"><strong>ID:</strong> ${escapeHtml(data.barcodeId || 'Not found')}</div>
+            <div class="result-item"><strong>Pet Type:</strong> ${escapeHtml(data.petType)}</div>
+            <div class="result-item"><strong>Food Type:</strong> ${escapeHtml(data.foodType)}</div>
+            <div class="result-item"><strong>Life Stage:</strong> ${escapeHtml(data.lifeStage)}</div>
+            <div class="result-item"><strong>Ingredients:</strong> ${Array.isArray(data.ingredients) ? escapeHtml(data.ingredients.join(', ')) : escapeHtml(data.ingredients || 'Not found')}</div>
+            <div class="result-item"><strong>Guaranteed Analysis:</strong> ${escapeHtml(data.guaranteedAnalysis || 'Not found')}</div>
+            <div class="result-item"><strong>Nutritional Info:</strong> ${data.nutritionalInfo && data.nutritionalInfo.calories ? escapeHtml(`Calories: ${data.nutritionalInfo.calories}`) : 'Not found'}</div>
+            <div class="result-item"><strong>Image URL:</strong> <span class="image-url">${escapeHtml(data.imageUrl || 'Not found')}</span></div>
+        `;
+    } else {
+        resultCard.innerHTML = `
+            <div class="result-header">
+                <span class="result-number">URL ${urlNumber}</span>
+                <span class="result-status error">✗ Error</span>
+            </div>
+            <div class="result-item"><strong>URL:</strong> ${escapeHtml(data.url)}</div>
+            <div class="result-item"><strong>Error:</strong> ${escapeHtml(data.error || 'Unknown error')}</div>
+        `;
+    }
+    
+    resultsContainer.appendChild(resultCard);
+}
+
+function showBatchResults(successCount, errorCount, totalCount) {
+    const results = document.getElementById('results');
+    const batchSummary = document.getElementById('batch-summary');
+    const summaryText = document.getElementById('summary-text');
+    
+    results.classList.remove('hidden');
+    batchSummary.classList.remove('hidden');
+    
+    let summaryMessage = `Processed ${totalCount} URL${totalCount > 1 ? 's' : ''}`;
+    if (successCount > 0) {
+        summaryMessage += ` - ${successCount} successful`;
+    }
+    if (errorCount > 0) {
+        summaryMessage += ` - ${errorCount} failed`;
+    }
+    
+    summaryText.textContent = summaryMessage;
 }
 
 // Data management functionality
@@ -174,6 +274,7 @@ function displayData(data) {
                     <button class="delete-btn" onclick="deleteDataItem(${item.id})">Delete</button>
                 </div>
                 <div class="data-item-name">Name: ${escapeHtml(item.name || 'Not found')}</div>
+                <div class="data-item-barcode-id">ID: ${escapeHtml(item.barcodeId || 'Not found')}</div>
                 <div class="data-item-pet-type">Pet Type: ${escapeHtml(item.petType || 'unknown')}</div>
                 <div class="data-item-food-type">Food Type: ${escapeHtml(item.foodType || 'unknown')}</div>
                 <div class="data-item-life-stage">Life Stage: ${escapeHtml(item.lifeStage || 'adult')}</div>
@@ -234,25 +335,25 @@ function escapeHtml(text) {
 
 // Clear search functionality
 function clearSearch() {
-    document.getElementById('url-input').value = '';
-    document.getElementById('result').classList.add('hidden');
+    // Clear all URL inputs
+    document.getElementById('url-input-1').value = '';
+    document.getElementById('url-input-2').value = '';
+    document.getElementById('url-input-3').value = '';
+    document.getElementById('url-input-4').value = '';
+    
+    // Hide results and error sections
+    document.getElementById('results').classList.add('hidden');
     document.getElementById('error').classList.add('hidden');
     document.getElementById('loading').classList.add('hidden');
     
-    // Clear all result fields
-    document.getElementById('result-url').textContent = '';
-    document.getElementById('result-brand').textContent = '';
-    document.getElementById('result-name').textContent = '';
-    document.getElementById('result-image').textContent = '';
-    document.getElementById('result-pet-type').textContent = '';
-    document.getElementById('result-food-type').textContent = '';
-    document.getElementById('result-life-stage').textContent = '';
-    document.getElementById('result-ingredients').textContent = '';
-    document.getElementById('result-guaranteed-analysis').textContent = '';
-    document.getElementById('result-nutritional-info').textContent = '';
+    // Clear results container
+    document.getElementById('results-container').innerHTML = '';
+    document.getElementById('batch-summary').classList.add('hidden');
     
-    // Hide debug info
-    document.getElementById('debug-info').style.display = 'none';
+    // Reset button text
+    const scrapeBtn = document.getElementById('scrape-btn');
+    scrapeBtn.textContent = 'Scrape All URLs';
+    scrapeBtn.disabled = false;
 }
 
 // Export functionality
@@ -302,7 +403,7 @@ async function exportForApp() {
                 ingredientsExport = `'${(item.ingredients || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}'`;
             }
             
-            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageUrl: '${item.imageUrl}',\n  ingredients: ${ingredientsExport},\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
+            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  id: '${(item.barcodeId || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  foodType: ${formattedFoodType},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageUrl: '${item.imageUrl}',\n  ingredients: ${ingredientsExport},\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
         }).join('\n\n');
         
         // Show the formatted data in modal

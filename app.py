@@ -6,12 +6,22 @@ import os
 from datetime import datetime
 import re
 import time
+import random
+import string
 from urllib.parse import urlparse, urljoin
 
 app = Flask(__name__)
 
 # File to store scraped data
 DATA_FILE = 'scraped_data.json'
+
+def generate_random_id():
+    """Generate a random ID for barcode placeholder (mix of letters and numbers)"""
+    # Generate a random 8-character ID that looks like a barcode/product ID
+    characters = string.ascii_lowercase + string.digits
+    random_part = ''.join(random.choices(characters, k=6))
+    prefix = random.choice(['applaws', 'pet', 'food', 'prod'])
+    return f"{prefix}-{random_part}"
 
 def add_proper_brand_spacing(brand):
     """Add proper spacing to compound brand names"""
@@ -3537,10 +3547,14 @@ def scrape_url():
         if image_url != "Image not found":
             debug_message += f" - Using strategy: {extract_image_url._last_strategy if hasattr(extract_image_url, '_last_strategy') else 'direct_url'}"
         
+        # Generate random barcode ID placeholder
+        barcode_id = generate_random_id()
+        
         # Save to data file
         data = load_data()
         new_entry = {
             'id': len(data) + 1,
+            'barcodeId': barcode_id,
             'url': url,
             'brand': brand,
             'name': name,
@@ -3565,6 +3579,7 @@ def scrape_url():
         return jsonify({
             'success': True,
             'brand': brand,
+            'barcodeId': barcode_id,
             'name': name,
             'imageUrl': image_url,
             'petType': pet_type,
