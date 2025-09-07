@@ -28,7 +28,13 @@ async function scrapeUrls() {
         document.getElementById('url-input-1'),
         document.getElementById('url-input-2'),
         document.getElementById('url-input-3'),
-        document.getElementById('url-input-4')
+        document.getElementById('url-input-4'),
+        document.getElementById('url-input-5'),
+        document.getElementById('url-input-6'),
+        document.getElementById('url-input-7'),
+        document.getElementById('url-input-8'),
+        document.getElementById('url-input-9'),
+        document.getElementById('url-input-10')
     ];
     
     const scrapeBtn = document.getElementById('scrape-btn');
@@ -340,6 +346,12 @@ function clearSearch() {
     document.getElementById('url-input-2').value = '';
     document.getElementById('url-input-3').value = '';
     document.getElementById('url-input-4').value = '';
+    document.getElementById('url-input-5').value = '';
+    document.getElementById('url-input-6').value = '';
+    document.getElementById('url-input-7').value = '';
+    document.getElementById('url-input-8').value = '';
+    document.getElementById('url-input-9').value = '';
+    document.getElementById('url-input-10').value = '';
     
     // Hide results and error sections
     document.getElementById('results').classList.add('hidden');

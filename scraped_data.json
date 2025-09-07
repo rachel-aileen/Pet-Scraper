@@ -1,1 +1,280 @@
-[]
+[
+  {
+    "id": 1,
+    "barcodeId": "food-ku1tsx",
+    "url": "https://applaws.com/us/products/__trashed/",
+    "brand": "Applaws",
+    "name": "Chicken Breast with Duck Recipe in Gravy",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8454US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Chicken Broth",
+      "Chicken Breast",
+      "Duck",
+      "Potato Starch",
+      "Gelling Agent",
+      "Celery Powder",
+      "Rosemary"
+    ],
+    "guaranteedAnalysis": "Crude Protein: 8%, Crude Fat: 0.1%, Crude Fiber: 2%, Moisture: 94%",
+    "nutritionalInfo": {
+      "calories": "467 kcal/Kg"
+    },
+    "timestamp": "2025-09-06T18:35:01.169870",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 2,
+    "barcodeId": "applaws-bhucbv",
+    "url": "https://applaws.com/us/products/tuna-fillet-shrimp-in-broth-4/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet & Shrimp in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8058US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Shrimp"
+    ],
+    "guaranteedAnalysis": "Crude Protein: 14%, Crude Fat: 0.1%, Crude Fiber: 2%, Moisture: 89%",
+    "nutritionalInfo": {
+      "calories": "642 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:35:22.259468",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 3,
+    "barcodeId": "food-1s3l42",
+    "url": "https://applaws.com/us/products/tuna-fillet-anchovy-seaweed-in-broth-2/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet, Anchovy & Seaweed in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8066US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Anchovy",
+      "Dried Seaweed Meal"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 88%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n \nOnly 4 Ingredients\n\n\n \nA tasty source of hydration\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
+    "nutritionalInfo": {
+      "calories": "677 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:35:56.042310",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 4,
+    "barcodeId": "applaws-z6a8oh",
+    "url": "https://applaws.com/us/products/tuna-fillet-with-crab-in-broth-2/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet with Crab in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8076US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Crab"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 90% Peek at what\u2019s inside All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love A tasty source of hydration High-quality protein is the first ingredient How much to feed my cat Feed up to 2 pouches a day depending on the size of your cat",
+    "nutritionalInfo": {
+      "calories": "607 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:36:17.894929",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 5,
+    "barcodeId": "prod-w7pk9g",
+    "url": "https://applaws.com/us/products/tuna-fillet-seabream-in-broth/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet & Seabream in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8062US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Sea Bream"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 86%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n \nNaturally rich in taurine and omega-3 fatty acids\n\n\n \nA tasty source of hydration\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
+    "nutritionalInfo": {
+      "calories": "712 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:36:51.220714",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 6,
+    "barcodeId": "prod-c6fh57",
+    "url": "https://applaws.com/us/products/tuna-fillet-salmon-in-broth-2/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet & Salmon in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8078US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Salmon"
+    ],
+    "guaranteedAnalysis": "Crude Protein: 14%, Crude Fat: 0.1%, Crude Fiber: 2%, Moisture: 89%",
+    "nutritionalInfo": {
+      "calories": "642 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:37:11.650970",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 7,
+    "barcodeId": "food-rsbrai",
+    "url": "https://applaws.com/us/products/tuna-fillet-with-salmon-in-broth/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet with Salmon in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8028US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Salmon"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 89%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n \nOnly 3 Ingredients\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n \nOnly 3 Ingredients\n\n\n\n\n\n\n\n \nA tasty source of hydration\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
+    "nutritionalInfo": {
+      "calories": "642 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:37:47.386064",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 8,
+    "barcodeId": "prod-lt07kq",
+    "url": "https://applaws.com/us/products/chicken-breast-in-broth-4/",
+    "brand": "Applaws",
+    "name": "Chicken Breast in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8052US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Chicken Breast",
+      "Chicken Broth"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 89%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n \nOnly 2 Ingredients\n\n\n \nA tasty source of hydration\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
+    "nutritionalInfo": {
+      "calories": "642 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:38:20.919886",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 9,
+    "barcodeId": "prod-v08uet",
+    "url": "https://applaws.com/us/products/chicken-breast-recipe-in-gravy-2/",
+    "brand": "Applaws",
+    "name": "Chicken Breast Recipe in Gravy",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8452US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": [
+      "Chicken Broth",
+      "Chicken Breast",
+      "Chicken Liver",
+      "Potato Starch",
+      "Gelling Agent",
+      "Celery Powder",
+      "Thyme"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 94% Peek at what\u2019s inside All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love Made with high-quality Chicken Breast for protein rich goodness Delicious gravy to add excitement to your cat\u2019s diet FAQs Popular Questions Why does my Applaws Cat Gravy can look very thick / have a Jello consistency? We have developed our Applaws Cat Gravy recipes to be 100% natural",
+    "nutritionalInfo": {
+      "calories": "467 kcal/Kg"
+    },
+    "timestamp": "2025-09-06T18:38:41.844544",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 10,
+    "barcodeId": "prod-dewurl",
+    "url": "https://applaws.com/us/products/tuna-fillet-with-crab-in-broth/",
+    "brand": "Applaws",
+    "name": "Tuna Fillet with Crab in Broth",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8026US-A_FOP_3000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "kitten",
+    "ingredients": [
+      "Tuna Fillet",
+      "Fish Broth",
+      "Crab"
+    ],
+    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 90% Peek at what\u2019s inside All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love Only 3 Ingredients High-quality protein is the first ingredient How much to feed my cat Feed up to 1 pouch a day depending on the size of your cat",
+    "nutritionalInfo": {
+      "calories": "607 kcal/kg"
+    },
+    "timestamp": "2025-09-06T18:39:02.899416",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
+  }
+]

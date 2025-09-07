@@ -1610,6 +1610,9 @@ def format_ingredient_list(ingredient_text):
     """Universal function to format ingredient lists with proper comma separation"""
     import re
     
+    # Convert British spelling "fibre" to American spelling "fiber"
+    ingredient_text = re.sub(r'\bfibre\b', 'fiber', ingredient_text, flags=re.IGNORECASE)
+    
     # Remove any unwanted characters at the end of the entire text first
     ingredient_text = ingredient_text.strip()
     while ingredient_text and ingredient_text[-1] in '.\\"\',;':
@@ -1909,6 +1912,8 @@ def extract_applaws_dropdown_data(url):
                                         'protein' in match.lower() and
                                         match.count('%') >= 2 and  # Should have at least 2 percentages 
                                         any(word in match.lower() for word in ['fat', 'fiber', 'fibre', 'moisture'])):
+                                        # Convert British spelling "fibre" to American spelling "fiber"
+                                        match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
                                         results['guaranteed_analysis'] = match
                                         break
                                 
@@ -2126,7 +2131,9 @@ def extract_guaranteed_analysis(soup, url):
                                     if (len(match) > 20 and 
                                         'protein' in match.lower() and
                                         match.count('%') >= 3 and  # Should have at least 3 percentages (protein, fat, fiber, moisture)
-                                        any(word in match.lower() for word in ['fat', 'fiber', 'moisture'])):
+                                        any(word in match.lower() for word in ['fat', 'fiber', 'fibre', 'moisture'])):
+                                        # Convert British spelling "fibre" to American spelling "fiber"
+                                        match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
                                         return match
                             
                             break  # Found and clicked the analysis button
@@ -2158,6 +2165,8 @@ def extract_guaranteed_analysis(soup, url):
             for match in matches:
                 match = match.strip()
                 if len(match) > 20 and match.count('%') >= 2:  # Should have multiple percentages
+                    # Convert British spelling "fibre" to American spelling "fiber"
+                    match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
                     return match
         
         return None
@@ -3238,6 +3247,10 @@ def clean_ingredients_text(text):
     try:
         # Remove extra whitespace and normalize
         text = ' '.join(text.split())
+        
+        # Convert British spelling "fibre" to American spelling "fiber"
+        import re
+        text = re.sub(r'\bfibre\b', 'fiber', text, flags=re.IGNORECASE)
         
         # Check if this looks like a valid ingredient list first
         # Valid ingredient lists are typically comma-separated and contain food ingredients
