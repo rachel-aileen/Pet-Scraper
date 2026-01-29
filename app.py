@@ -1772,11 +1772,13 @@ def format_ingredient_list(ingredient_text):
 
 def extract_applaws_dropdown_data(url):
     """Extract all Applaws dropdown data (ingredients, guaranteed analysis, nutritional info) in one browser session"""
+    import re
+    from bs4 import BeautifulSoup
+    
     try:
         from selenium_scraper import _get_browser
         import time
         from selenium.webdriver.common.by import By
-        import re
         
         results = {}
         
@@ -1955,6 +1957,8 @@ def extract_applaws_dropdown_data(url):
 
 def extract_nutritional_info(soup, url):
     """Extract nutritional information including calories from the webpage"""
+    import re
+    
     try:
         nutritional_info = {}
         
@@ -1991,7 +1995,6 @@ def extract_nutritional_info(soup, url):
                             page_text = soup_selenium.get_text()
                             
                             # Look for calorie patterns directly in the page text
-                            import re
                             
                             # Look for kcal/kg patterns
                             calorie_patterns = [
@@ -2065,6 +2068,8 @@ def extract_nutritional_info(soup, url):
 
 def extract_guaranteed_analysis(soup, url):
     """Extract guaranteed analysis information from the webpage using the same dropdown as nutritional info"""
+    import re
+    
     try:
         # For Applaws, we should reuse the same dropdown content that's already been clicked for nutritional info
         # This is more efficient and avoids multiple browser instances
@@ -2099,7 +2104,6 @@ def extract_guaranteed_analysis(soup, url):
                             page_text = soup_selenium.get_text()
                             
                             # Look for guaranteed analysis patterns directly in the page text
-                            import re
                             
                             # Try multiple patterns to find guaranteed analysis after clicking
                             patterns = [
@@ -2192,6 +2196,7 @@ def convert_ingredients_to_array(ingredients_string):
 
 def extract_ingredients(soup, url):
     """Extract ingredients from the page with multiple strategies, prioritized"""
+    import re
     
     # APPLAWS DROPDOWN DETECTION: Use Selenium to click ingredient dropdowns
     # Applaws hides ingredients in clickable sections that need to be revealed
@@ -3022,6 +3027,8 @@ def extract_ingredients_from_json_ld(data):
 
 def extract_ingredients_from_text(text):
     """Extract ingredients from a large text block using patterns"""
+    import re
+    
     try:
         text_lower = text.lower()
         
@@ -3609,6 +3616,10 @@ def scrape_url():
     except requests.exceptions.RequestException as e:
         return jsonify({'error': f'Failed to fetch URL: {str(e)}'}), 400
     except Exception as e:
+        import traceback
+        print(f"FLASK ERROR: {str(e)}")
+        print("Full traceback:")
+        traceback.print_exc()
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
 
 @app.route('/data')

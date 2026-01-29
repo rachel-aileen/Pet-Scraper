@@ -276,5 +276,28 @@
       "images_with_src": 31,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 11,
+    "barcodeId": "applaws-2jvdyd",
+    "url": "https://applaws.com/us/products/tuna-fillet-pumpkin-recipe-mousse/",
+    "brand": "Applaws",
+    "name": "Senior Tuna Fillet & Pumpkin Recipe Mousse",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/8633US-A_FOP_Pouch_2000px.png",
+    "petType": "cat",
+    "foodType": "wet",
+    "lifeStage": "adult",
+    "ingredients": "Tuna Fillet (A Source of Glucosamine), Fish Broth, Pumpkin, Dried Egg, Salmon Oil, Natural Fish Flavor, Potato Starch, Guar Gum, Cranberry Extract",
+    "guaranteedAnalysis": "Crude Fat Min 2%, Crude Fiber Max 1%, Moisture Max 86%, Crude Protein min 12%",
+    "nutritionalInfo": {
+      "calories": "862 kcal/kg"
+    },
+    "timestamp": "2026-01-28T18:50:40.121082",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 27,
+      "images_with_src": 31,
+      "extraction_method": "html_parsing"
+    }
   }
 ]
