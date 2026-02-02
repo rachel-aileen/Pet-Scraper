@@ -1197,8 +1197,30 @@ def clean_product_name(name):
 
 def extract_product_size(soup, url):
     """Extract product size/weight from the webpage"""
+    import re
     try:
-        # Strategy 1: Look for size in structured data (JSON-LD)
+        # Strategy 1: Look for individual package size in visible text (prioritize over total weight)
+        page_text = soup.get_text()
+        
+        # Look for package size patterns that indicate individual package weight
+        package_size_patterns = [
+            r'sold\s+(?:as\s+)?(?:two\s+)?(\d+(?:\.\d+)?\s*(?:lb|oz|g|kg))\s+packages?',
+            r'sold\s+in\s+(\d+(?:\.\d+)?\s*(?:lb|oz|g|kg))\s+packages?',
+            r'individual\s+package[:\s]*(\d+(?:\.\d+)?\s*(?:lb|oz|g|kg))',
+            r'each\s+package[:\s]*(\d+(?:\.\d+)?\s*(?:lb|oz|g|kg))',
+            r'package\s+size[:\s]*(\d+(?:\.\d+)?\s*(?:lb|oz|g|kg))',
+            r'(\d+(?:\.\d+)?\s*(?:lb|oz|g|kg))\s+packages?',
+        ]
+        
+        for pattern in package_size_patterns:
+            matches = re.findall(pattern, page_text, re.IGNORECASE)
+            for match in matches:
+                # Clean and validate the match
+                cleaned_size = clean_product_size(match)
+                if cleaned_size:
+                    return cleaned_size
+        
+        # Strategy 2: Look for size in structured data (JSON-LD)
         json_scripts = soup.find_all('script', type='application/ld+json')
         for script in json_scripts:
             try:
@@ -1208,7 +1230,19 @@ def extract_product_size(soup, url):
                     if data.get('@type') == 'Product':
                         weight = data.get('weight') or data.get('size')
                         if weight:
-                            return clean_product_size(str(weight))
+                            # Handle structured weight data (QuantitativeValue)
+                            if isinstance(weight, dict):
+                                if weight.get('@type') == 'QuantitativeValue':
+                                    value = weight.get('value')
+                                    unit = weight.get('unitCode') or weight.get('unit', '')
+                                    if value:
+                                        return clean_product_size(f"{value}{unit}")
+                                else:
+                                    # Try to extract value from other dict structures
+                                    if 'value' in weight:
+                                        return clean_product_size(str(weight['value']))
+                            else:
+                                return clean_product_size(str(weight))
                         # Look for offers with size information
                         offers = data.get('offers', [])
                         if isinstance(offers, list):
@@ -1216,7 +1250,19 @@ def extract_product_size(soup, url):
                                 if isinstance(offer, dict):
                                     weight = offer.get('weight') or offer.get('size')
                                     if weight:
-                                        return clean_product_size(str(weight))
+                                        # Handle structured weight data (QuantitativeValue)
+                                        if isinstance(weight, dict):
+                                            if weight.get('@type') == 'QuantitativeValue':
+                                                value = weight.get('value')
+                                                unit = weight.get('unitCode') or weight.get('unit', '')
+                                                if value:
+                                                    return clean_product_size(f"{value}{unit}")
+                                            else:
+                                                # Try to extract value from other dict structures
+                                                if 'value' in weight:
+                                                    return clean_product_size(str(weight['value']))
+                                        else:
+                                            return clean_product_size(str(weight))
             except:
                 continue
         
@@ -2027,11 +2073,87 @@ def extract_applaws_dropdown_data(url):
     except Exception as e:
         return {}
 
+def extract_nutritional_info_viva_raw(soup, url):
+    """Extract nutritional info from Viva Raw using page text and JavaScript metafields"""
+    import re
+    try:
+        page_text = soup.get_text()
+        page_source = str(soup)
+        
+        # Look for calories in visible text
+        calorie_patterns = [
+            r'(\d+(?:\.\d+)?\s*kcal/kg)',
+            r'(\d+(?:\.\d+)?\s*kcal\s*/\s*kg)',
+            r'(\d+(?:\.\d+)?\s*kilocalories?\s*/\s*kg)',
+            r'(\d+(?:\.\d+)?\s*cal/kg)',
+            r'(\d+(?:\.\d+)?\s*kcal)',
+        ]
+        
+        for pattern in calorie_patterns:
+            matches = re.findall(pattern, page_text, re.IGNORECASE)
+            for match in matches:
+                match = match.strip()
+                match = re.sub(r'\s+', ' ', match)
+                match = re.sub(r'\s*/\s*', '/', match)
+                
+                calorie_num = re.findall(r'(\d+(?:\.\d+)?)', match)
+                if calorie_num and 50 <= float(calorie_num[0]) <= 10000:
+                    return {'calories': match}
+        
+        # Look for calories in JavaScript metafields
+        metafields_pattern = r'"facts":\s*\[(.*?)\]'
+        metafields_match = re.search(metafields_pattern, page_source, re.DOTALL)
+        
+        if metafields_match:
+            facts_data = metafields_match.group(1)
+            fact_items = re.findall(r'"([^"]*\|[^"]*)"', facts_data)
+            
+            for fact in fact_items:
+                if '|' in fact and ('calor' in fact.lower() or 'kcal' in fact.lower()):
+                    name, value = fact.split('|', 1)
+                    if 'kcal' in value.lower():
+                        return {'calories': value}
+    except Exception:
+        pass
+    return None
+
+def extract_nutritional_info_applaws(soup, url):
+    """Extract nutritional info from Applaws using Selenium dropdown method"""
+    try:
+        applaws_data = extract_applaws_dropdown_data(url)
+        if applaws_data and 'nutritional_info' in applaws_data:
+            return applaws_data['nutritional_info']
+    except Exception:
+        pass
+    return None
+
 def extract_nutritional_info(soup, url):
-    """Extract nutritional information including calories from the webpage"""
+    """Extract nutritional info using fallback system: Brand-specific → Applaws method → Viva Raw method → Generic"""
     import re
     
     try:
+        # METHOD 1: Brand-specific detection (prioritize known patterns)
+        if 'vivarawpets.com' in url.lower():
+            result = extract_nutritional_info_viva_raw(soup, url)
+            if result:
+                return result
+        
+        if 'applaws.com' in url.lower():
+            result = extract_nutritional_info_applaws(soup, url)
+            if result:
+                return result
+        
+        # METHOD 2: Try Applaws method for any unknown brand (Selenium dropdown approach)
+        result = extract_nutritional_info_applaws(soup, url)
+        if result:
+            return result
+        
+        # METHOD 3: Try Viva Raw method for any unknown brand (JavaScript metafields)
+        result = extract_nutritional_info_viva_raw(soup, url)
+        if result:
+            return result
+        
+        # METHOD 4: Generic extraction methods (existing fallback logic)
         nutritional_info = {}
         
         # APPLAWS DROPDOWN DETECTION: Use Selenium to click nutritional information dropdowns
@@ -2138,12 +2260,111 @@ def extract_nutritional_info(soup, url):
     except Exception:
         return None
 
+def extract_guaranteed_analysis_viva_raw(soup, url):
+    """Extract guaranteed analysis from Viva Raw using JavaScript metafields"""
+    import re
+    try:
+        # Get the raw HTML to search for JavaScript data
+        page_source = str(soup)
+        
+        # Look for metafields with facts data
+        metafields_pattern = r'"facts":\s*\[(.*?)\]'
+        metafields_match = re.search(metafields_pattern, page_source, re.DOTALL)
+        
+        if metafields_match:
+            facts_data = metafields_match.group(1)
+            # Extract individual facts like "Crude Protein (min)|16.3%"
+            fact_items = re.findall(r'"([^"]*\|[^"]*)"', facts_data)
+            
+            components = []
+            for fact in fact_items:
+                if '|' in fact:
+                    name, value = fact.split('|', 1)
+                    # Format consistently with other sites
+                    if 'protein' in name.lower():
+                        components.append(f"Crude Protein (min): {value}")
+                    elif 'fat' in name.lower():
+                        components.append(f"Crude Fat (min): {value}")
+                    elif 'fiber' in name.lower() or 'fibre' in name.lower():
+                        components.append(f"Crude Fiber (max): {value}")
+                    elif 'moisture' in name.lower():
+                        components.append(f"Moisture (max): {value}")
+            
+            if components:
+                clean_analysis = ", ".join(components)
+                clean_analysis = re.sub(r'\bfibre\b', 'fiber', clean_analysis, flags=re.IGNORECASE)
+                return clean_analysis
+    except Exception:
+        pass
+    return None
+
+def extract_guaranteed_analysis_applaws(soup, url):
+    """Extract guaranteed analysis from Applaws using Selenium dropdown method"""
+    import re
+    try:
+        applaws_data = extract_applaws_dropdown_data(url)
+        if applaws_data and 'guaranteed_analysis' in applaws_data:
+            return applaws_data['guaranteed_analysis']
+    except Exception:
+        pass
+    return None
+
 def extract_guaranteed_analysis(soup, url):
-    """Extract guaranteed analysis information from the webpage using the same dropdown as nutritional info"""
+    """Extract guaranteed analysis using fallback system: Brand-specific → Applaws method → Viva Raw method → Generic"""
     import re
     
     try:
-        # For Applaws, we should reuse the same dropdown content that's already been clicked for nutritional info
+        # METHOD 1: Brand-specific detection (prioritize known patterns)
+        if 'vivarawpets.com' in url.lower():
+            result = extract_guaranteed_analysis_viva_raw(soup, url)
+            if result:
+                return result
+        
+        if 'applaws.com' in url.lower():
+            result = extract_guaranteed_analysis_applaws(soup, url)
+            if result:
+                return result
+        
+        # METHOD 2: Try Applaws method for any unknown brand (Selenium dropdown approach)
+        result = extract_guaranteed_analysis_applaws(soup, url)
+        if result:
+            return result
+        
+        # METHOD 3: Try Viva Raw method for any unknown brand (JavaScript metafields)
+        result = extract_guaranteed_analysis_viva_raw(soup, url)
+        if result:
+            return result
+        
+        # METHOD 4: Generic extraction methods (existing fallback logic)
+        page_text = soup.get_text()
+        
+        # Look for guaranteed analysis patterns in visible text
+        ga_patterns = [
+            r'Crude\s+Protein\s+\([^)]+\)\s*:?\s*(\d+(?:\.\d+)?%)',
+            r'Crude\s+Fat\s+\([^)]+\)\s*:?\s*(\d+(?:\.\d+)?%)',
+            r'(?:Crude\s+)?Fiber\s+\([^)]+\)\s*:?\s*(\d+(?:\.\d+)?%)',
+            r'Moisture\s+\([^)]+\)\s*:?\s*(\d+(?:\.\d+)?%)',
+        ]
+        
+        components = []
+        for pattern in ga_patterns:
+            matches = re.findall(pattern, page_text, re.IGNORECASE)
+            for match in matches:
+                if 'protein' in pattern.lower():
+                    components.append(f"Crude Protein (min): {match}")
+                elif 'fat' in pattern.lower():
+                    components.append(f"Crude Fat (min): {match}")
+                elif 'fiber' in pattern.lower() or 'fibre' in pattern.lower():
+                    components.append(f"Crude Fiber (max): {match}")
+                elif 'moisture' in pattern.lower():
+                    components.append(f"Moisture (max): {match}")
+        
+        if components:
+            clean_analysis = ", ".join(components)
+            clean_analysis = re.sub(r'\bfibre\b', 'fiber', clean_analysis, flags=re.IGNORECASE)
+            return clean_analysis
+        
+        # Original Applaws method as final fallback
         # This is more efficient and avoids multiple browser instances
         if 'applaws.com' in url.lower():
             try:
@@ -2266,13 +2487,117 @@ def convert_ingredients_to_array(ingredients_string):
     
     return ingredients_array
 
+def extract_ingredients_viva_raw(soup, url):
+    """Extract ingredients from Viva Raw using visible page content"""
+    import re
+    try:
+        page_text = soup.get_text()
+        # Look for the specific ingredients pattern on Viva Raw
+        viva_pattern = r'Ingredients[:\s]*([^.]*?(?:Chicken|Beef|Duck|Turkey|Rabbit)[^.]*?(?:Heart|Liver|Gizzard|Ground Bone)[^.]*?)(?:\s*Humanely|$)'
+        viva_match = re.search(viva_pattern, page_text, re.IGNORECASE | re.DOTALL)
+        if viva_match:
+            ingredients_text = viva_match.group(1).strip()
+            # Clean up the ingredients text
+            ingredients_text = re.sub(r'\s+', ' ', ingredients_text)
+            ingredients_text = ingredients_text.replace('Ingredients:', '').strip()
+            if ingredients_text and len(ingredients_text) > 10:
+                return convert_ingredients_to_array(ingredients_text)
+    except Exception:
+        pass
+    return None
+
+def extract_ingredients_applaws(soup, url):
+    """Extract ingredients from Applaws using Selenium dropdown method"""
+    import re
+    try:
+        from selenium_scraper import _get_browser
+        import time
+        from selenium.webdriver.common.by import By
+        
+        driver = _get_browser()
+        driver.get(url)
+        time.sleep(5)  # Allow page to load completely
+        
+        # Look for clickable "Ingredients" sections on Applaws
+        ingredient_buttons = driver.find_elements(By.XPATH, "//*[contains(text(), 'Ingredients') or contains(text(), 'INGREDIENTS')]")
+        
+        for i, button in enumerate(ingredient_buttons):
+            try:
+                element_text = button.text.strip()
+                
+                # Look for exact "Ingredients" dropdown (not marketing text like "100% Natural Ingredients")
+                if element_text == 'Ingredients':
+                    # Click to reveal hidden ingredient content
+                    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
+                    time.sleep(1)
+                    driver.execute_script("arguments[0].click();", button)
+                    time.sleep(5)  # Wait longer for content to load
+                    
+                    # Get the new page content and extract ingredients
+                    new_source = driver.page_source
+                    soup_selenium = BeautifulSoup(new_source, 'html.parser')
+                    page_text = soup_selenium.get_text()
+                    
+                    # Enhanced patterns for Applaws ingredients after dropdown click
+                    patterns = [
+                        r'Ingredients[:\s]*([^.]*?(?:Tuna|Chicken|Fish|Beef|Turkey|Lamb)[^.]*?(?:Broth|Oil|Starch|Gum)[^.]*?)(?:\s*\*|Nutritional|Guaranteed|$)',
+                        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*(?:,\s*[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*){3,})',
+                        r'((?:Tuna|Chicken|Fish|Beef|Turkey|Lamb)[^.]*?(?:,\s*[^.,]{3,30}){2,}[^.]*?)(?:\.|$)',
+                    ]
+                    
+                    for pattern in patterns:
+                        matches = re.findall(pattern, page_text, re.IGNORECASE)
+                        for match in matches:
+                            match = match.strip()
+                            match = re.sub(r'\s+', ' ', match)
+                            match = re.sub(r'^[^\w]+', '', match)
+                            match = re.sub(r'[^\w\.]+$', '', match)
+                            if match.endswith('.'):
+                                match = match[:-1]
+                            
+                            if (len(match) > 20 and 
+                                match.count(',') >= 2 and
+                                any(word in match.lower() for word in ['tuna', 'chicken', 'fish', 'beef', 'turkey', 'lamb', 'broth', 'water', 'oil'])):
+                                ingredients_array = format_ingredient_list(match)
+                                return convert_ingredients_to_array(ingredients_array)
+                    
+                    break  # Found and clicked the ingredients button
+                    
+            except Exception as e:
+                continue
+        
+    except Exception:
+        pass
+    return None
+
 def extract_ingredients(soup, url):
-    """Extract ingredients from the page with multiple strategies, prioritized"""
+    """Extract ingredients using fallback system: Brand-specific → Applaws method → Viva Raw method → Generic"""
     import re
     
-    # APPLAWS DROPDOWN DETECTION: Use Selenium to click ingredient dropdowns
-    # Applaws hides ingredients in clickable sections that need to be revealed
+    # METHOD 1: Brand-specific detection (prioritize known patterns)
+    if 'vivarawpets.com' in url.lower():
+        result = extract_ingredients_viva_raw(soup, url)
+        if result:
+            return result
+    
     if 'applaws.com' in url.lower():
+        result = extract_ingredients_applaws(soup, url)
+        if result:
+            return result
+    
+    # METHOD 2: Try Applaws method for any unknown brand (Selenium dropdown approach)
+    result = extract_ingredients_applaws(soup, url)
+    if result:
+        return result
+    
+    # METHOD 3: Try Viva Raw method for any unknown brand (visible page content)
+    result = extract_ingredients_viva_raw(soup, url)
+    if result:
+        return result
+    
+    # METHOD 4: Generic extraction methods (existing fallback logic)
+    # Try Target.com Selenium method
+    if 'target.com' in url.lower():
         try:
             from selenium_scraper import _get_browser
             import time
@@ -2394,7 +2719,7 @@ def extract_ingredients(soup, url):
             return f"Error accessing Label info dropdown: {str(e)}"
 
     
-    # ABSOLUTE HOLISTIC SPECIFIC: Use Selenium to extract from ingredients dropdown
+        # ABSOLUTE HOLISTIC SPECIFIC: Use Selenium to extract from ingredients dropdown
     # Use browser automation to properly handle dropdown interactions
     if 'absolute-holistic.com' in url.lower():
         try:
@@ -3655,6 +3980,57 @@ def scrape_url():
             # For direct images, extract name from URL
             name = extract_product_name_from_url(url)
             
+            # TEXTURE OVERRIDE: Check product name for specific texture keywords
+            # These take priority over general wet/dry classification
+            if name:
+                name_lower = name.lower()
+                if 'broth' in name_lower:
+                    texture = "broth"
+                elif 'freeze-dried' in name_lower or 'freeze dried' in name_lower:
+                    texture = "freeze dried"
+                elif 'gravy' in name_lower:
+                    texture = "gravy"
+                elif 'mousse' in name_lower:
+                    texture = "mousse"
+                elif 'pate' in name_lower or 'pâté' in name_lower:
+                    texture = "pate"
+                elif 'dry food' in name_lower or 'dry cat food' in name_lower or 'dry dog food' in name_lower or 'kibble' in name_lower:
+                    texture = "kibble"
+                elif 'refrigerated' in name_lower or 'frozen' in name_lower:
+                    texture = "raw"
+            
+            # RAW BRAND OVERRIDE: Check if brand is known to be exclusively raw food
+            # These brands only make raw/frozen food products
+            raw_food_brands = [
+                'viva raw',
+                'stella & chewy\'s',
+                'primal pet foods',
+                'northwest naturals',
+                'instinct raw',
+                'nature\'s variety instinct',
+                'bravo!',
+                'darwin\'s natural pet products',
+                'small batch',
+                'answers pet food',
+                'vital essentials',
+                'k9 natural',
+                'ziwi peak',
+                'honest kitchen',
+                'the honest kitchen',
+                'barf world',
+                'raw paws',
+                'tucker\'s raw frozen',
+                'big country raw',
+                'iron will raw'
+            ]
+            
+            if brand:
+                brand_lower = brand.lower()
+                for raw_brand in raw_food_brands:
+                    if raw_brand in brand_lower:
+                        texture = "raw"
+                        break
+            
             # OVERRIDE: If "Senior" appears in the product name, set life stage to "senior"
             # This takes priority over any other life stage detection (including "all life stages")
             if name and 'senior' in name.lower():
@@ -3695,6 +4071,57 @@ def scrape_url():
                 name = f"{product_name} ({product_size})"
             else:
                 name = product_name  # Just the name without size if size not found
+            
+            # TEXTURE OVERRIDE: Check product name for specific texture keywords
+            # These take priority over general wet/dry classification
+            if name:
+                name_lower = name.lower()
+                if 'broth' in name_lower:
+                    texture = "broth"
+                elif 'freeze-dried' in name_lower or 'freeze dried' in name_lower:
+                    texture = "freeze dried"
+                elif 'gravy' in name_lower:
+                    texture = "gravy"
+                elif 'mousse' in name_lower:
+                    texture = "mousse"
+                elif 'pate' in name_lower or 'pâté' in name_lower:
+                    texture = "pate"
+                elif 'dry food' in name_lower or 'dry cat food' in name_lower or 'dry dog food' in name_lower or 'kibble' in name_lower:
+                    texture = "kibble"
+                elif 'refrigerated' in name_lower or 'frozen' in name_lower:
+                    texture = "raw"
+            
+            # RAW BRAND OVERRIDE: Check if brand is known to be exclusively raw food
+            # These brands only make raw/frozen food products
+            raw_food_brands = [
+                'viva raw',
+                'stella & chewy\'s',
+                'primal pet foods',
+                'northwest naturals',
+                'instinct raw',
+                'nature\'s variety instinct',
+                'bravo!',
+                'darwin\'s natural pet products',
+                'small batch',
+                'answers pet food',
+                'vital essentials',
+                'k9 natural',
+                'ziwi peak',
+                'honest kitchen',
+                'the honest kitchen',
+                'barf world',
+                'raw paws',
+                'tucker\'s raw frozen',
+                'big country raw',
+                'iron will raw'
+            ]
+            
+            if brand:
+                brand_lower = brand.lower()
+                for raw_brand in raw_food_brands:
+                    if raw_brand in brand_lower:
+                        texture = "raw"
+                        break
             
             # OVERRIDE: If "Senior" appears in the product name, set life stage to "senior"
             # This takes priority over any other life stage detection (including "all life stages")

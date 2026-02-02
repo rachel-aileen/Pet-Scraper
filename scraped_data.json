@@ -339,5 +339,205 @@
       "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 16,
+    "barcodeId": "pet-ohoah6",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-chicken-breast-recipe-pate/",
+    "brand": "Applaws",
+    "name": "Kitten healthy start wet food with added vitamins & minerals chicken breast recipe p\u00e2t\u00e9",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1801US-AC-Product-Image.png",
+    "petType": "cat",
+    "texture": "pate",
+    "lifeStage": "kitten",
+    "ingredients": "Chicken Breast, Chicken Broth, Sunflower Oil, Potato Starch, Natural Chicken Flavor, Egg Whites, Tricalcium Phosphate, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Potassium Chloride, Guar Gum, Magnesium Amino Acid Chelate, Whey Protein, Dried Lactobacillus Plantarum Fermentation Product",
+    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 80%",
+    "nutritionalInfo": {
+      "calories": "1204 kcal/kg"
+    },
+    "timestamp": "2026-02-02T14:58:30.791012",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 17,
+    "barcodeId": "applaws-zfoo3r",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": null,
+    "guaranteedAnalysis": null,
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:16:54.209875",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 18,
+    "barcodeId": "applaws-hvi286",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:22:24.296182",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 19,
+    "barcodeId": "applaws-r782ir",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:28:34.994249",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 20,
+    "barcodeId": "food-nd9zno",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:30:06.588406",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 21,
+    "barcodeId": "pet-s7765j",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken (2.0lb)",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:36:16.287662",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 22,
+    "barcodeId": "applaws-exwzlj",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken (1lb)",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:39:51.175251",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 23,
+    "barcodeId": "food-uhyftv",
+    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
+    "brand": "Viva Raw",
+    "name": "Pure Chicken (1lb)",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": null,
+    "timestamp": "2026-02-02T15:40:49.895074",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
   }
 ]
