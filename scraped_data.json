@@ -1,28 +1,20 @@
 [
   {
-    "id": 1,
-    "barcodeId": "food-ku1tsx",
-    "url": "https://applaws.com/us/products/__trashed/",
+    "id": 2,
+    "barcodeId": "pet-nqpux1",
+    "url": "https://applaws.com/us/products/senior-chicken-pumpkin-recipe-mousse/",
     "brand": "Applaws",
-    "name": "Chicken Breast with Duck Recipe in Gravy",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8454US-A_FOP_3000px.png",
+    "name": "Senior Chicken & Pumpkin Recipe Mousse",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/8632US-A_TTL_RT-1024x1024.png",
     "petType": "cat",
     "foodType": "wet",
     "lifeStage": "adult",
-    "ingredients": [
-      "Chicken Broth",
-      "Chicken Breast",
-      "Duck",
-      "Potato Starch",
-      "Gelling Agent",
-      "Celery Powder",
-      "Rosemary"
-    ],
-    "guaranteedAnalysis": "Crude Protein: 8%, Crude Fat: 0.1%, Crude Fiber: 2%, Moisture: 94%",
+    "ingredients": "Chicken (A Source of Glucosamine & Chondroitin Sulphate), Chicken Broth, Chicken Liver, Pumpkin, Dried Egg, Salmon Oil, Natural Fish Flavor, Potato Starch, Guar Gum, Cranberry Extract",
+    "guaranteedAnalysis": "Crude Fat Min 4%, Crude fiber Max 1%, Moisture Max 86%, Crude Protein min 10%",
     "nutritionalInfo": {
-      "calories": "467 kcal/Kg"
+      "calories": "962 kcal/kg"
     },
-    "timestamp": "2025-09-06T18:35:01.169870",
+    "timestamp": "2026-01-29T12:23:03.765645",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 27,
@@ -32,24 +24,20 @@
   },
   {
     "id": 2,
-    "barcodeId": "applaws-bhucbv",
-    "url": "https://applaws.com/us/products/tuna-fillet-shrimp-in-broth-4/",
+    "barcodeId": "pet-7vsaue",
+    "url": "https://applaws.com/us/products/senior-tuna-fillet-salmon-pumpkin-recipe-mousse/",
     "brand": "Applaws",
-    "name": "Tuna Fillet & Shrimp in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8058US-A_FOP_3000px.png",
+    "name": "Senior Tuna Fillet, Salmon & Pumpkin Recipe Mousse",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/8638US-A-Transparent-Background.png",
     "petType": "cat",
     "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Shrimp"
-    ],
-    "guaranteedAnalysis": "Crude Protein: 14%, Crude Fat: 0.1%, Crude Fiber: 2%, Moisture: 89%",
+    "lifeStage": "senior",
+    "ingredients": "Tuna Fillet (A Source of Glucosamine), Fish Broth, Salmon, Pumpkin, Dried Egg, Salmon Oil, Natural Fish Flavor, Potato Starch, Guar Gum, Cranberry Extract",
+    "guaranteedAnalysis": "Crude Fat Min 3%, Crude Fiber Max 1%, Moisture Max 85%, Crude Protein 12%",
     "nutritionalInfo": {
-      "calories": "642 kcal/kg"
+      "calories": "947 kcal/kg"
     },
-    "timestamp": "2025-09-06T18:35:22.259468",
+    "timestamp": "2026-01-29T17:19:35.059990",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 27,
@@ -59,190 +47,62 @@
   },
   {
     "id": 3,
-    "barcodeId": "food-1s3l42",
-    "url": "https://applaws.com/us/products/tuna-fillet-anchovy-seaweed-in-broth-2/",
-    "brand": "Applaws",
-    "name": "Tuna Fillet, Anchovy & Seaweed in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8066US-A_FOP_3000px.png",
+    "barcodeId": "prod-9pn6di",
+    "url": "https://www.smalls.com/smallsmart/products/freeze-dried-puffy-bird-14oz",
+    "brand": "Smalls",
+    "name": "Freeze-dried Puffs",
+    "imageUrl": "Image not found",
     "petType": "cat",
-    "foodType": "wet",
+    "foodType": "freeze-dried",
     "lifeStage": "adult",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Anchovy",
-      "Dried Seaweed Meal"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 88%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n \nOnly 4 Ingredients\n\n\n \nA tasty source of hydration\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
-    "nutritionalInfo": {
-      "calories": "677 kcal/kg"
-    },
-    "timestamp": "2025-09-06T18:35:56.042310",
-    "domain": "applaws.com",
+    "ingredients": null,
+    "guaranteedAnalysis": null,
+    "nutritionalInfo": null,
+    "timestamp": "2026-01-29T17:23:08.774845",
+    "domain": "www.smalls.com",
     "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
+      "total_images": 12,
+      "images_with_src": 12,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 4,
-    "barcodeId": "applaws-z6a8oh",
-    "url": "https://applaws.com/us/products/tuna-fillet-with-crab-in-broth-2/",
-    "brand": "Applaws",
-    "name": "Tuna Fillet with Crab in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8076US-A_FOP_3000px.png",
+    "barcodeId": "prod-d10f8b",
+    "url": "https://www.weruva.com/collections/find-your-food/products/chicken-formula-au-jus-cat-can",
+    "brand": "Weruva",
+    "name": "Weruva Kitten Chicken Formula Au Jus Wet Cat Food",
+    "imageUrl": "http://www.weruva.com/cdn/shop/files/2685_810028242784_20Chicken_20Au_20Jus_2030oz_20Can_73942a60-cb24-47b0-9cc4-79716cf4d67e.png",
     "petType": "cat",
     "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Crab"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 90% Peek at what\u2019s inside All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love A tasty source of hydration High-quality protein is the first ingredient How much to feed my cat Feed up to 2 pouches a day depending on the size of your cat",
-    "nutritionalInfo": {
-      "calories": "607 kcal/kg"
-    },
-    "timestamp": "2025-09-06T18:36:17.894929",
-    "domain": "applaws.com",
+    "lifeStage": "kitten",
+    "ingredients": "Chicken, Chicken Broth, Natural Flavor, Dried Egg, Tricalcium Phosphate, Sunflower Oil, Guar Gum, Xanthan Gum, Locust Bean Gum, Fish Oil, Choline Chloride, Taurine, Zinc Sulfate, Ferrous Sulfate, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B1), Niacin Supplement (Vitamin B3), Calcium Pantothenate, Vitamin A Supplement, Manganese Sulfate, Copper Sulfate, Riboflavin Supplement (Vitamin B2), Pyridoxine Hydrochloride (Vitamin B6), Vitamin D3 Supplement, Folic Acid, Vitamin B12 Supplement, Potassium Iodide",
+    "guaranteedAnalysis": "Crude Protein (min): 12%, Crude Fat (min): 6%, Crude Fiber (max): 1%, Crude Moisture (max): 83%, Ash (max): 1",
+    "nutritionalInfo": null,
+    "timestamp": "2026-01-29T21:39:47.526596",
+    "domain": "www.weruva.com",
     "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
+      "total_images": 99,
+      "images_with_src": 114,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 5,
-    "barcodeId": "prod-w7pk9g",
-    "url": "https://applaws.com/us/products/tuna-fillet-seabream-in-broth/",
+    "barcodeId": "pet-onrmpa",
+    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
     "brand": "Applaws",
-    "name": "Tuna Fillet & Seabream in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8062US-A_FOP_3000px.png",
+    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
     "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Sea Bream"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 86%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n \nNaturally rich in taurine and omega-3 fatty acids\n\n\n \nA tasty source of hydration\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
+    "texture": "dry",
+    "lifeStage": "kitten",
+    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
+    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
     "nutritionalInfo": {
-      "calories": "712 kcal/kg"
+      "calories": "4075 kcal/kg"
     },
-    "timestamp": "2025-09-06T18:36:51.220714",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 6,
-    "barcodeId": "prod-c6fh57",
-    "url": "https://applaws.com/us/products/tuna-fillet-salmon-in-broth-2/",
-    "brand": "Applaws",
-    "name": "Tuna Fillet & Salmon in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8078US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Salmon"
-    ],
-    "guaranteedAnalysis": "Crude Protein: 14%, Crude Fat: 0.1%, Crude Fiber: 2%, Moisture: 89%",
-    "nutritionalInfo": {
-      "calories": "642 kcal/kg"
-    },
-    "timestamp": "2025-09-06T18:37:11.650970",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 7,
-    "barcodeId": "food-rsbrai",
-    "url": "https://applaws.com/us/products/tuna-fillet-with-salmon-in-broth/",
-    "brand": "Applaws",
-    "name": "Tuna Fillet with Salmon in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8028US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Salmon"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 89%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n \nOnly 3 Ingredients\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n \nOnly 3 Ingredients\n\n\n\n\n\n\n\n \nA tasty source of hydration\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
-    "nutritionalInfo": {
-      "calories": "642 kcal/kg"
-    },
-    "timestamp": "2025-09-06T18:37:47.386064",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 8,
-    "barcodeId": "prod-lt07kq",
-    "url": "https://applaws.com/us/products/chicken-breast-in-broth-4/",
-    "brand": "Applaws",
-    "name": "Chicken Breast in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8052US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Chicken Breast",
-      "Chicken Broth"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 89%\n                        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n            Peek at\n        \n\n\nwhat\u2019s inside\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \nAll our ingredients exceed the highest global standards for production and sustainability\n\n\n \nIrresistible flavors and recognizable ingredients your feline friend will love\n\n\n\n\n\n\n\n \nOnly 2 Ingredients\n\n\n \nA tasty source of hydration\n\n\n\n\n\n\n\n\n\n\n\n            How much\n        \n\n\nto feed my cat\n\n\n\n\n\n\n\n\nFeed up to 2 pouches a day depending on the size of your cat",
-    "nutritionalInfo": {
-      "calories": "642 kcal/kg"
-    },
-    "timestamp": "2025-09-06T18:38:20.919886",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 9,
-    "barcodeId": "prod-v08uet",
-    "url": "https://applaws.com/us/products/chicken-breast-recipe-in-gravy-2/",
-    "brand": "Applaws",
-    "name": "Chicken Breast Recipe in Gravy",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8452US-A_FOP_3000px.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": [
-      "Chicken Broth",
-      "Chicken Breast",
-      "Chicken Liver",
-      "Potato Starch",
-      "Gelling Agent",
-      "Celery Powder",
-      "Thyme"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 94% Peek at what\u2019s inside All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love Made with high-quality Chicken Breast for protein rich goodness Delicious gravy to add excitement to your cat\u2019s diet FAQs Popular Questions Why does my Applaws Cat Gravy can look very thick / have a Jello consistency? We have developed our Applaws Cat Gravy recipes to be 100% natural",
-    "nutritionalInfo": {
-      "calories": "467 kcal/Kg"
-    },
-    "timestamp": "2025-09-06T18:38:41.844544",
+    "timestamp": "2026-02-02T13:20:31.331645",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 26,
@@ -251,52 +111,71 @@
     }
   },
   {
-    "id": 10,
-    "barcodeId": "prod-dewurl",
-    "url": "https://applaws.com/us/products/tuna-fillet-with-crab-in-broth/",
+    "id": 6,
+    "barcodeId": "applaws-ffwyjx",
+    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
     "brand": "Applaws",
-    "name": "Tuna Fillet with Crab in Broth",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8026US-A_FOP_3000px.png",
+    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
     "petType": "cat",
-    "foodType": "wet",
+    "texture": "dry",
     "lifeStage": "kitten",
-    "ingredients": [
-      "Tuna Fillet",
-      "Fish Broth",
-      "Crab"
-    ],
-    "guaranteedAnalysis": "Crude Fat (min) 0.1%, Crude Fiber (max) 2%, Moisture (max) 90% Peek at what\u2019s inside All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love All our ingredients exceed the highest global standards for production and sustainability Irresistible flavors and recognizable ingredients your feline friend will love Only 3 Ingredients High-quality protein is the first ingredient How much to feed my cat Feed up to 1 pouch a day depending on the size of your cat",
+    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
+    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
     "nutritionalInfo": {
-      "calories": "607 kcal/kg"
+      "calories": "4075 kcal/kg"
     },
-    "timestamp": "2025-09-06T18:39:02.899416",
+    "timestamp": "2026-02-02T13:25:46.580458",
     "domain": "applaws.com",
     "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
+      "total_images": 26,
+      "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
   },
   {
-    "id": 11,
-    "barcodeId": "applaws-2jvdyd",
-    "url": "https://applaws.com/us/products/tuna-fillet-pumpkin-recipe-mousse/",
+    "id": 7,
+    "barcodeId": "applaws-3i84uj",
+    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
     "brand": "Applaws",
-    "name": "Senior Tuna Fillet & Pumpkin Recipe Mousse",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/8633US-A_FOP_Pouch_2000px.png",
+    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
     "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Tuna Fillet (A Source of Glucosamine), Fish Broth, Pumpkin, Dried Egg, Salmon Oil, Natural Fish Flavor, Potato Starch, Guar Gum, Cranberry Extract",
-    "guaranteedAnalysis": "Crude Fat Min 2%, Crude Fiber Max 1%, Moisture Max 86%, Crude Protein min 12%",
+    "texture": "dry",
+    "lifeStage": "kitten",
+    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
+    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
     "nutritionalInfo": {
-      "calories": "862 kcal/kg"
+      "calories": "4075 kcal/kg"
     },
-    "timestamp": "2026-01-28T18:50:40.121082",
+    "timestamp": "2026-02-02T13:30:05.659406",
     "domain": "applaws.com",
     "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 8,
+    "barcodeId": "food-f5oo8q",
+    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
+    "brand": "Applaws",
+    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
+    "petType": "cat",
+    "texture": "dry",
+    "lifeStage": "kitten",
+    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
+    "guaranteedAnalysis": "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%",
+    "nutritionalInfo": {
+      "calories": "4075 kcal/kg"
+    },
+    "timestamp": "2026-02-02T13:31:04.677633",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
   }

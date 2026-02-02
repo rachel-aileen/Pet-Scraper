@@ -2106,15 +2106,19 @@ def extract_guaranteed_analysis(soup, url):
                             # Look for guaranteed analysis patterns directly in the page text
                             
                             # Try multiple patterns to find guaranteed analysis after clicking
+                            # ULTRA-PRECISE: Extract ONLY the exact percentages, nothing else
                             patterns = [
-                                # Pattern that captures the complete guaranteed analysis with all components
-                                r'(crude\s+protein[^%]+%[^,]*,\s*crude\s+fat[^%]+%[^,]*,\s*crude\s+fiber[^%]+%[^,]*,\s*moisture[^%]+%[^.]*)',
-                                # More flexible pattern for guaranteed analysis
-                                r'(crude\s+protein[^.]+fat[^.]+fiber[^.]+moisture[^.]*%)',
-                                # General pattern for nutritional analysis
-                                r'(protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
-                                # Fallback comprehensive pattern
-                                r'((?:crude\s+)?protein[^.]*?%[^.]*?(?:,\s*[^.]*?%[^.]*?){2,})'
+                                # Pattern 1: Extract the exact sequence from your screenshot
+                                r'Guaranteed\s+Analysis\s+(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%(?:\s*,\s*Crude\s+Fat\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*(?:Crude\s+)?Fiber\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*Moisture\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?)',
+                                
+                                # Pattern 2: Just the percentages part without "Guaranteed Analysis" prefix
+                                r'(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%(?:\s*,\s*Crude\s+Fat\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*(?:Crude\s+)?Fiber\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*Moisture\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?)(?=\s+(?:Peek|Ideal|Added|With|Made|FAQs|Popular|$))',
+                                
+                                # Pattern 3: Very specific - match the exact format from screenshot
+                                r'(Crude\s+Protein\s+\(min\)\s+\d+%,\s+Crude\s+Fat\s+\(min\)\s+\d+%,\s+Moisture\s+\(max\)\s+\d+%)',
+                                
+                                # Pattern 4: Flexible but bounded by next sentence
+                                r'(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%[^.]*?(?:,\s*[^.]*?){0,3})\s+(?=Peek\s+at|Ideal\s+balance|Added\s+calcium|With\s+vitamins|Made\s+without|FAQs|Popular|$)'
                             ]
                             
                             for pattern in patterns:
@@ -2124,6 +2128,16 @@ def extract_guaranteed_analysis(soup, url):
                                     match = match.strip()
                                     # Remove extra whitespace and newlines
                                     match = re.sub(r'\s+', ' ', match)
+                                    
+                                    # AGGRESSIVE CLEANING: Extract only the percentage parts
+                                    # Look for pattern like "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%"
+                                    percentage_pattern = r'((?:Crude\s+)?(?:Protein|Fat|Fiber|Fibre|Moisture)\s+\([^)]+\)\s+\d+(?:\.\d+)?%)'
+                                    percentage_matches = re.findall(percentage_pattern, match, re.IGNORECASE)
+                                    
+                                    if percentage_matches and len(percentage_matches) >= 2:
+                                        # Reconstruct from clean percentage matches only
+                                        match = ', '.join(percentage_matches)
+                                    
                                     # Remove any leading/trailing punctuation except period
                                     match = re.sub(r'^[^\w]+', '', match)
                                     match = re.sub(r'[^\w\.%\)]+$', '', match)
@@ -2131,10 +2145,31 @@ def extract_guaranteed_analysis(soup, url):
                                     if match.endswith('.'):
                                         match = match[:-1]
                                     
-                                    # Validate it looks like guaranteed analysis (has protein and multiple %)
-                                    if (len(match) > 20 and 
+                                    # STRICT validation: Only accept clean guaranteed analysis format
+                                    if (len(match) > 15 and len(match) < 200 and  # Reasonable length bounds
                                         'protein' in match.lower() and
-                                        match.count('%') >= 3 and  # Should have at least 3 percentages (protein, fat, fiber, moisture)
+                                        match.count('%') >= 2 and  # At least protein and one other percentage
+                                        # Must NOT contain marketing text or ingredients
+                                        not any(bad_word in match.lower() for bad_word in [
+                                            'giving your', 'everything they need', 'grow happy', 'healthy and full',
+                                            'product code', 'where to buy', 'purr-fect', 'natural', 'added vitamins',
+                                            'high protein formula', 'supports energy', 'muscle growth', 'prebiotics',
+                                            'probiotics', 'digestive health', 'brain development', 'ingredients',
+                                            'chicken meal', 'turkey meal', 'dried egg', 'chickpeas', 'lentils',
+                                            'salmon oil', 'natural flavor', 'chicken fat', 'preserved with',
+                                            'mixed tocopherols', 'flaxseed', 'calcium carbonate', 'yeast culture',
+                                            'vitamins', 'vitamin', 'supplement', 'niacin', 'thiamine', 'riboflavin',
+                                            'biotin', 'folic acid', 'taurine', 'methionine', 'minerals', 'zinc',
+                                            'iron', 'potassium', 'copper', 'manganese', 'sodium', 'selenite',
+                                            'iodate', 'inulin', 'choline', 'rosemary', 'extract', 'nutritional information',
+                                            'kcal/kg', 'ideal balance', 'help your', 'kitten thrive', 'bone development',
+                                            'antioxidants', 'gut supporting', 'immune health', 'made without',
+                                            'grains', 'tapioca', 'corn', 'fillers', 'artificial', 'colors',
+                                            'flavors', 'preservatives', 'faqs', 'popular questions', 'week old',
+                                            'can i feed', 'applaws', 'reaches', 'complementary', 'complete',
+                                            'difference between', 'contains all', 'stay healthy'
+                                        ]) and
+                                        # Must contain typical guaranteed analysis terms
                                         any(word in match.lower() for word in ['fat', 'fiber', 'fibre', 'moisture'])):
                                         # Convert British spelling "fibre" to American spelling "fiber"
                                         match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
@@ -2152,15 +2187,16 @@ def extract_guaranteed_analysis(soup, url):
         # Fallback: Try to extract from static HTML if Selenium didn't work
         page_text = soup.get_text()
         
-        # Look for guaranteed analysis patterns in the static content
+        # Look for guaranteed analysis patterns in the static content - ULTRA-PRECISE PATTERNS ONLY
         patterns = [
-            r'guaranteed\s+analysis[:\s]*([^.]*protein[^.]*%[^.]*fat[^.]*%[^.]*)',
-            r'nutritional\s+information[:\s]*([^.]*protein[^.]*%[^.]*fat[^.]*%[^.]*)',
-            r'(crude\s+protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
-            r'(protein[^.]*%[^.]*fat[^.]*%[^.]*fiber[^.]*%[^.]*moisture[^.]*%)',
-            # Fat-first patterns
-            r'(crude\s+fat[^%]+%[^,]*,\s*crude\s+fib[a-z]*[^%]+%[^,]*,\s*moisture[^%]+%[^,]*,\s*crude\s+protein[^%]+%)',
-            r'((?:crude\s+)?(?:fat|protein|fiber|fibre|moisture)[^%]*%[^.]*(?:,\s*[^.]*%[^.]*){2,})'
+            # Pattern 1: Extract the exact sequence with "Guaranteed Analysis" prefix
+            r'Guaranteed\s+Analysis\s+(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%(?:\s*,\s*Crude\s+Fat\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*(?:Crude\s+)?Fiber\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*Moisture\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?)',
+            
+            # Pattern 2: Just the percentages part, bounded by next sentence
+            r'(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%(?:\s*,\s*Crude\s+Fat\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*(?:Crude\s+)?Fiber\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*Moisture\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?)(?=\s+(?:Peek|Ideal|Added|With|Made|FAQs|Popular|$))',
+            
+            # Pattern 3: Very specific - match exact format
+            r'(Crude\s+Protein\s+\(min\)\s+\d+%,\s+Crude\s+Fat\s+\(min\)\s+\d+%,\s+Moisture\s+\(max\)\s+\d+%)'
         ]
         
         import re
@@ -2168,10 +2204,17 @@ def extract_guaranteed_analysis(soup, url):
             matches = re.findall(pattern, page_text, re.IGNORECASE)
             for match in matches:
                 match = match.strip()
-                if len(match) > 20 and match.count('%') >= 2:  # Should have multiple percentages
+                
+                # AGGRESSIVE CLEANING: Extract only the percentage parts
+                percentage_pattern = r'((?:Crude\s+)?(?:Protein|Fat|Fiber|Fibre|Moisture)\s+\([^)]+\)\s+\d+(?:\.\d+)?%)'
+                percentage_matches = re.findall(percentage_pattern, match, re.IGNORECASE)
+                
+                if percentage_matches and len(percentage_matches) >= 2:
+                    # Reconstruct from clean percentage matches only
+                    clean_match = ', '.join(percentage_matches)
                     # Convert British spelling "fibre" to American spelling "fiber"
-                    match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
-                    return match
+                    clean_match = re.sub(r'\bfibre\b', 'fiber', clean_match, flags=re.IGNORECASE)
+                    return clean_match
         
         return None
         
@@ -2971,14 +3014,14 @@ def extract_ingredients_after_element(element):
                     content_parts.append(text)
                     # If this looks like ingredients, return it
                     if is_likely_ingredient_list(text):
-                        return clean_ingredients_text(text)
+                        return convert_ingredients_to_array(clean_ingredients_text(text))
             current = current.next_sibling
         
         # If we found content, combine it
         if content_parts:
             combined = ' '.join(content_parts)
             if is_likely_ingredient_list(combined):
-                return clean_ingredients_text(combined)
+                return convert_ingredients_to_array(clean_ingredients_text(combined))
                 
         return None
     except:
@@ -3013,7 +3056,7 @@ def extract_ingredients_from_json_ld(data):
                     if isinstance(ingredients, list):
                         return ', '.join(str(ing) for ing in ingredients)
                     elif isinstance(ingredients, str) and len(ingredients) > 10:
-                        return clean_ingredients_text(ingredients)
+                        return convert_ingredients_to_array(clean_ingredients_text(ingredients))
             
             # Recursively search nested objects
             for key, value in data.items():
@@ -3070,7 +3113,7 @@ def extract_ingredients_from_text(text):
         if all_matches:
             all_matches.sort(reverse=True)  # Sort by score descending
             best_match = all_matches[0][1]  # Get the match with highest score
-            return clean_ingredients_text(best_match)
+            return convert_ingredients_to_array(clean_ingredients_text(best_match))
         
         return None
     except:
@@ -3512,7 +3555,7 @@ def scrape_url():
             image_url = url
             # For direct images, only extract pet type, food type, and life stage from URL
             pet_type = extract_pet_type_from_url(url)
-            food_type = extract_food_type_from_url(url)
+            texture = extract_food_type_from_url(url)
             life_stage = extract_life_stage_from_url(url)
             ingredients = extract_ingredients_from_url(url)
             guaranteed_analysis = None  # Cannot extract guaranteed analysis from direct images
@@ -3520,6 +3563,11 @@ def scrape_url():
             
             # For direct images, extract name from URL
             name = extract_product_name_from_url(url)
+            
+            # OVERRIDE: If "Senior" appears in the product name, set life stage to "senior"
+            # This takes priority over any other life stage detection (including "all life stages")
+            if name and 'senior' in name.lower():
+                life_stage = "senior"
             
             # Debug info for direct images
             total_images = 1  # The direct image itself
@@ -3533,7 +3581,7 @@ def scrape_url():
             brand = extract_brand(soup, url)
             image_url = extract_image_url(soup, url)
             pet_type = extract_pet_type(soup, url)
-            food_type = extract_food_type(soup, url)
+            texture = extract_food_type(soup, url)
             life_stage = extract_life_stage(soup, url)
             
             # For Applaws, extract all dropdown content in one go to be more efficient
@@ -3556,6 +3604,11 @@ def scrape_url():
                 name = f"{product_name} ({product_size})"
             else:
                 name = product_name  # Just the name without size if size not found
+            
+            # OVERRIDE: If "Senior" appears in the product name, set life stage to "senior"
+            # This takes priority over any other life stage detection (including "all life stages")
+            if name and 'senior' in name.lower():
+                life_stage = "senior"
             
             # Debug: Count total images found on page
             total_images = len(soup.find_all('img'))
@@ -3580,7 +3633,7 @@ def scrape_url():
             'name': name,
             'imageUrl': image_url,
             'petType': pet_type,
-            'foodType': food_type,
+            'texture': texture,
             'lifeStage': life_stage,
             'ingredients': ingredients,
             'guaranteedAnalysis': guaranteed_analysis,
@@ -3603,7 +3656,7 @@ def scrape_url():
             'name': name,
             'imageUrl': image_url,
             'petType': pet_type,
-            'foodType': food_type,
+            'texture': texture,
             'lifeStage': life_stage,
             'ingredients': ingredients,
             'guaranteedAnalysis': guaranteed_analysis,
