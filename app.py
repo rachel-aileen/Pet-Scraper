@@ -1643,7 +1643,37 @@ def format_ingredient_list(ingredient_text):
         
         return text
     
+    # Remove "Minerals" wrapper and keep only the individual minerals
+    # Pattern: "Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, ...)"
+    # Should become: "Zinc Proteinate, Iron Proteinate, Potassium Chloride, ..."
+    
+    def extract_minerals_content(text):
+        # Find "Minerals (" and then match balanced parentheses
+        start_pattern = r'\bMinerals\s*\('
+        match = re.search(start_pattern, text, re.IGNORECASE)
+        if match:
+            start_pos = match.end() - 1  # Position of opening parenthesis
+            paren_count = 0
+            end_pos = start_pos
+            
+            for i, char in enumerate(text[start_pos:], start_pos):
+                if char == '(':
+                    paren_count += 1
+                elif char == ')':
+                    paren_count -= 1
+                    if paren_count == 0:
+                        end_pos = i
+                        break
+            
+            if paren_count == 0:  # Found matching closing parenthesis
+                minerals_content = text[start_pos + 1:end_pos]  # Content inside parentheses
+                # Replace the entire "Minerals (...)" with just the content
+                return text[:match.start()] + minerals_content + text[end_pos + 1:]
+        
+        return text
+    
     ingredient_text = extract_vitamins_content(ingredient_text)
+    ingredient_text = extract_minerals_content(ingredient_text)
     
     # Remove any unwanted characters at the end of the entire text first
     ingredient_text = ingredient_text.strip()
@@ -3331,7 +3361,37 @@ def clean_ingredients_text(text):
             
             return text
         
+        # Remove "Minerals" wrapper and keep only the individual minerals
+        # Pattern: "Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, ...)"
+        # Should become: "Zinc Proteinate, Iron Proteinate, Potassium Chloride, ..."
+        
+        def extract_minerals_content(text):
+            # Find "Minerals (" and then match balanced parentheses
+            start_pattern = r'\bMinerals\s*\('
+            match = re.search(start_pattern, text, re.IGNORECASE)
+            if match:
+                start_pos = match.end() - 1  # Position of opening parenthesis
+                paren_count = 0
+                end_pos = start_pos
+                
+                for i, char in enumerate(text[start_pos:], start_pos):
+                    if char == '(':
+                        paren_count += 1
+                    elif char == ')':
+                        paren_count -= 1
+                        if paren_count == 0:
+                            end_pos = i
+                            break
+                
+                if paren_count == 0:  # Found matching closing parenthesis
+                    minerals_content = text[start_pos + 1:end_pos]  # Content inside parentheses
+                    # Replace the entire "Minerals (...)" with just the content
+                    return text[:match.start()] + minerals_content + text[end_pos + 1:]
+            
+            return text
+        
         text = extract_vitamins_content(text)
+        text = extract_minerals_content(text)
         
         # Check if this looks like a valid ingredient list first
         # Valid ingredient lists are typically comma-separated and contain food ingredients

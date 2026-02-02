@@ -270,5 +270,74 @@
       "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
+  },
+  {
+    "id": 13,
+    "barcodeId": "pet-rgyo5b",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
+    "brand": "Applaws",
+    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
+    "petType": "cat",
+    "texture": "pate, wet",
+    "lifeStage": "kitten",
+    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
+    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
+    "nutritionalInfo": {
+      "calories": "1222 kcal/kg"
+    },
+    "timestamp": "2026-02-02T13:54:57.281488",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 14,
+    "barcodeId": "food-n7hrp7",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
+    "brand": "Applaws",
+    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
+    "petType": "cat",
+    "texture": "pate, wet",
+    "lifeStage": "kitten",
+    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
+    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
+    "nutritionalInfo": {
+      "calories": "1222 kcal/kg"
+    },
+    "timestamp": "2026-02-02T14:35:12.178575",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 15,
+    "barcodeId": "food-8wauvj",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
+    "brand": "Applaws",
+    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
+    "petType": "cat",
+    "texture": "pate, wet",
+    "lifeStage": "kitten",
+    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
+    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
+    "nutritionalInfo": {
+      "calories": "1222 kcal/kg"
+    },
+    "timestamp": "2026-02-02T14:38:33.378570",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
   }
 ]
