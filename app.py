@@ -1613,6 +1613,38 @@ def format_ingredient_list(ingredient_text):
     # Convert British spelling "fibre" to American spelling "fiber"
     ingredient_text = re.sub(r'\bfibre\b', 'fiber', ingredient_text, flags=re.IGNORECASE)
     
+    # Remove "Vitamins" wrapper and keep only the individual vitamins
+    # Pattern: "Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), ...)"
+    # Should become: "Vitamin E Supplement, Vitamin B3 (Niacin Supplement), ..."
+    
+    # Use a more robust approach to handle nested parentheses
+    def extract_vitamins_content(text):
+        # Find "Vitamins (" and then match balanced parentheses
+        start_pattern = r'\bVitamins\s*\('
+        match = re.search(start_pattern, text, re.IGNORECASE)
+        if match:
+            start_pos = match.end() - 1  # Position of opening parenthesis
+            paren_count = 0
+            end_pos = start_pos
+            
+            for i, char in enumerate(text[start_pos:], start_pos):
+                if char == '(':
+                    paren_count += 1
+                elif char == ')':
+                    paren_count -= 1
+                    if paren_count == 0:
+                        end_pos = i
+                        break
+            
+            if paren_count == 0:  # Found matching closing parenthesis
+                vitamins_content = text[start_pos + 1:end_pos]  # Content inside parentheses
+                # Replace the entire "Vitamins (...)" with just the content
+                return text[:match.start()] + vitamins_content + text[end_pos + 1:]
+        
+        return text
+    
+    ingredient_text = extract_vitamins_content(ingredient_text)
+    
     # Remove any unwanted characters at the end of the entire text first
     ingredient_text = ingredient_text.strip()
     while ingredient_text and ingredient_text[-1] in '.\\"\',;':
@@ -1910,13 +1942,23 @@ def extract_applaws_dropdown_data(url):
                                     if match.endswith('.'):
                                         match = match[:-1]
                                     
-                                    if (len(match) > 20 and 
-                                        'protein' in match.lower() and
-                                        match.count('%') >= 2 and  # Should have at least 2 percentages 
-                                        any(word in match.lower() for word in ['fat', 'fiber', 'fibre', 'moisture'])):
-                                        # Convert British spelling "fibre" to American spelling "fiber"
-                                        match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
-                                        results['guaranteed_analysis'] = match
+                                    # DIRECT SEARCH: Extract ONLY the specific percentages we need
+                                    # Search for the specific guaranteed analysis components in the page text
+                                    protein_match = re.search(r'Crude\s+Protein\s+\(min\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+                                    fat_match = re.search(r'Crude\s+Fat\s+\(min\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+                                    moisture_match = re.search(r'Moisture\s+\(max\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+                                    
+                                    # If we found at least protein and one other component, construct clean result
+                                    if protein_match and (fat_match or moisture_match):
+                                        components = []
+                                        components.append(f"Crude Protein (min) {protein_match.group(1)}")
+                                        if fat_match:
+                                            components.append(f"Crude Fat (min) {fat_match.group(1)}")
+                                        if moisture_match:
+                                            components.append(f"Moisture (max) {moisture_match.group(1)}")
+                                        
+                                        clean_analysis = ", ".join(components)
+                                        results['guaranteed_analysis'] = clean_analysis
                                         break
                                 
                                 if 'guaranteed_analysis' in results:
@@ -2121,59 +2163,25 @@ def extract_guaranteed_analysis(soup, url):
                                 r'(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%[^.]*?(?:,\s*[^.]*?){0,3})\s+(?=Peek\s+at|Ideal\s+balance|Added\s+calcium|With\s+vitamins|Made\s+without|FAQs|Popular|$)'
                             ]
                             
-                            for pattern in patterns:
-                                matches = re.findall(pattern, page_text, re.IGNORECASE)
-                                for match in matches:
-                                    # Clean up the match
-                                    match = match.strip()
-                                    # Remove extra whitespace and newlines
-                                    match = re.sub(r'\s+', ' ', match)
-                                    
-                                    # AGGRESSIVE CLEANING: Extract only the percentage parts
-                                    # Look for pattern like "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%"
-                                    percentage_pattern = r'((?:Crude\s+)?(?:Protein|Fat|Fiber|Fibre|Moisture)\s+\([^)]+\)\s+\d+(?:\.\d+)?%)'
-                                    percentage_matches = re.findall(percentage_pattern, match, re.IGNORECASE)
-                                    
-                                    if percentage_matches and len(percentage_matches) >= 2:
-                                        # Reconstruct from clean percentage matches only
-                                        match = ', '.join(percentage_matches)
-                                    
-                                    # Remove any leading/trailing punctuation except period
-                                    match = re.sub(r'^[^\w]+', '', match)
-                                    match = re.sub(r'[^\w\.%\)]+$', '', match)
-                                    # Remove trailing period if present
-                                    if match.endswith('.'):
-                                        match = match[:-1]
-                                    
-                                    # STRICT validation: Only accept clean guaranteed analysis format
-                                    if (len(match) > 15 and len(match) < 200 and  # Reasonable length bounds
-                                        'protein' in match.lower() and
-                                        match.count('%') >= 2 and  # At least protein and one other percentage
-                                        # Must NOT contain marketing text or ingredients
-                                        not any(bad_word in match.lower() for bad_word in [
-                                            'giving your', 'everything they need', 'grow happy', 'healthy and full',
-                                            'product code', 'where to buy', 'purr-fect', 'natural', 'added vitamins',
-                                            'high protein formula', 'supports energy', 'muscle growth', 'prebiotics',
-                                            'probiotics', 'digestive health', 'brain development', 'ingredients',
-                                            'chicken meal', 'turkey meal', 'dried egg', 'chickpeas', 'lentils',
-                                            'salmon oil', 'natural flavor', 'chicken fat', 'preserved with',
-                                            'mixed tocopherols', 'flaxseed', 'calcium carbonate', 'yeast culture',
-                                            'vitamins', 'vitamin', 'supplement', 'niacin', 'thiamine', 'riboflavin',
-                                            'biotin', 'folic acid', 'taurine', 'methionine', 'minerals', 'zinc',
-                                            'iron', 'potassium', 'copper', 'manganese', 'sodium', 'selenite',
-                                            'iodate', 'inulin', 'choline', 'rosemary', 'extract', 'nutritional information',
-                                            'kcal/kg', 'ideal balance', 'help your', 'kitten thrive', 'bone development',
-                                            'antioxidants', 'gut supporting', 'immune health', 'made without',
-                                            'grains', 'tapioca', 'corn', 'fillers', 'artificial', 'colors',
-                                            'flavors', 'preservatives', 'faqs', 'popular questions', 'week old',
-                                            'can i feed', 'applaws', 'reaches', 'complementary', 'complete',
-                                            'difference between', 'contains all', 'stay healthy'
-                                        ]) and
-                                        # Must contain typical guaranteed analysis terms
-                                        any(word in match.lower() for word in ['fat', 'fiber', 'fibre', 'moisture'])):
-                                        # Convert British spelling "fibre" to American spelling "fiber"
-                                        match = re.sub(r'\bfibre\b', 'fiber', match, flags=re.IGNORECASE)
-                                        return match
+                            # DIRECT SEARCH: Look for the exact percentages in the entire page text
+                            # This bypasses all complex patterns and just finds what we need
+                            
+                            # Search for the specific guaranteed analysis components
+                            protein_match = re.search(r'Crude\s+Protein\s+\(min\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+                            fat_match = re.search(r'Crude\s+Fat\s+\(min\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+                            moisture_match = re.search(r'Moisture\s+\(max\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+                            
+                            # If we found at least protein and one other component, construct clean result
+                            if protein_match and (fat_match or moisture_match):
+                                components = []
+                                components.append(f"Crude Protein (min) {protein_match.group(1)}")
+                                if fat_match:
+                                    components.append(f"Crude Fat (min) {fat_match.group(1)}")
+                                if moisture_match:
+                                    components.append(f"Moisture (max) {moisture_match.group(1)}")
+                                
+                                clean_analysis = ", ".join(components)
+                                return clean_analysis
                             
                             break  # Found and clicked the analysis button
                             
@@ -2187,34 +2195,25 @@ def extract_guaranteed_analysis(soup, url):
         # Fallback: Try to extract from static HTML if Selenium didn't work
         page_text = soup.get_text()
         
-        # Look for guaranteed analysis patterns in the static content - ULTRA-PRECISE PATTERNS ONLY
-        patterns = [
-            # Pattern 1: Extract the exact sequence with "Guaranteed Analysis" prefix
-            r'Guaranteed\s+Analysis\s+(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%(?:\s*,\s*Crude\s+Fat\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*(?:Crude\s+)?Fiber\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*Moisture\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?)',
-            
-            # Pattern 2: Just the percentages part, bounded by next sentence
-            r'(Crude\s+Protein\s+\([^)]+\)\s+\d+(?:\.\d+)?%(?:\s*,\s*Crude\s+Fat\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*(?:Crude\s+)?Fiber\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?(?:\s*,\s*Moisture\s+\([^)]+\)\s+\d+(?:\.\d+)?%)?)(?=\s+(?:Peek|Ideal|Added|With|Made|FAQs|Popular|$))',
-            
-            # Pattern 3: Very specific - match exact format
-            r'(Crude\s+Protein\s+\(min\)\s+\d+%,\s+Crude\s+Fat\s+\(min\)\s+\d+%,\s+Moisture\s+\(max\)\s+\d+%)'
-        ]
+        # DIRECT SEARCH in static content: Look for the exact percentages
+        # Search for the specific guaranteed analysis components in the entire page text
+        protein_match = re.search(r'Crude\s+Protein\s+\(min\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+        fat_match = re.search(r'Crude\s+Fat\s+\(min\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
+        moisture_match = re.search(r'Moisture\s+\(max\)\s+(\d+(?:\.\d+)?%)', page_text, re.IGNORECASE)
         
-        import re
-        for pattern in patterns:
-            matches = re.findall(pattern, page_text, re.IGNORECASE)
-            for match in matches:
-                match = match.strip()
-                
-                # AGGRESSIVE CLEANING: Extract only the percentage parts
-                percentage_pattern = r'((?:Crude\s+)?(?:Protein|Fat|Fiber|Fibre|Moisture)\s+\([^)]+\)\s+\d+(?:\.\d+)?%)'
-                percentage_matches = re.findall(percentage_pattern, match, re.IGNORECASE)
-                
-                if percentage_matches and len(percentage_matches) >= 2:
-                    # Reconstruct from clean percentage matches only
-                    clean_match = ', '.join(percentage_matches)
-                    # Convert British spelling "fibre" to American spelling "fiber"
-                    clean_match = re.sub(r'\bfibre\b', 'fiber', clean_match, flags=re.IGNORECASE)
-                    return clean_match
+        # If we found at least protein and one other component, construct clean result
+        if protein_match and (fat_match or moisture_match):
+            components = []
+            components.append(f"Crude Protein (min) {protein_match.group(1)}")
+            if fat_match:
+                components.append(f"Crude Fat (min) {fat_match.group(1)}")
+            if moisture_match:
+                components.append(f"Moisture (max) {moisture_match.group(1)}")
+            
+            clean_analysis = ", ".join(components)
+            # Convert British spelling "fibre" to American spelling "fiber"
+            clean_analysis = re.sub(r'\bfibre\b', 'fiber', clean_analysis, flags=re.IGNORECASE)
+            return clean_analysis
         
         return None
         
@@ -3301,6 +3300,38 @@ def clean_ingredients_text(text):
         # Convert British spelling "fibre" to American spelling "fiber"
         import re
         text = re.sub(r'\bfibre\b', 'fiber', text, flags=re.IGNORECASE)
+        
+        # Remove "Vitamins" wrapper and keep only the individual vitamins
+        # Pattern: "Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), ...)"
+        # Should become: "Vitamin E Supplement, Vitamin B3 (Niacin Supplement), ..."
+        
+        # Use a more robust approach to handle nested parentheses
+        def extract_vitamins_content(text):
+            # Find "Vitamins (" and then match balanced parentheses
+            start_pattern = r'\bVitamins\s*\('
+            match = re.search(start_pattern, text, re.IGNORECASE)
+            if match:
+                start_pos = match.end() - 1  # Position of opening parenthesis
+                paren_count = 0
+                end_pos = start_pos
+                
+                for i, char in enumerate(text[start_pos:], start_pos):
+                    if char == '(':
+                        paren_count += 1
+                    elif char == ')':
+                        paren_count -= 1
+                        if paren_count == 0:
+                            end_pos = i
+                            break
+                
+                if paren_count == 0:  # Found matching closing parenthesis
+                    vitamins_content = text[start_pos + 1:end_pos]  # Content inside parentheses
+                    # Replace the entire "Vitamins (...)" with just the content
+                    return text[:match.start()] + vitamins_content + text[end_pos + 1:]
+            
+            return text
+        
+        text = extract_vitamins_content(text)
         
         # Check if this looks like a valid ingredient list first
         # Valid ingredient lists are typically comma-separated and contain food ingredients
