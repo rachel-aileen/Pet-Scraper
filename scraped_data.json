@@ -1,542 +1,81 @@
 [
   {
+    "id": 1,
+    "barcodeId": "applaws-p1k8y4",
+    "url": "https://vivarawpets.com/products/chicken-for-cats?variant=43803432747249",
+    "brand": "Viva Raw",
+    "name": "Chicken for Cats (1lb)",
+    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Cat_Bowl_ad3979aa-2968-4b42-aff5-ae0d53b4ce6c.png",
+    "petType": "cat",
+    "texture": "raw",
+    "lifeStage": "all",
+    "ingredients": [
+      "Chicken with Ground Bone",
+      "Chicken Heart",
+      "Chicken Gizzard",
+      "Chicken Liver",
+      "Organic Psyllium Husk",
+      "Chilean Mussels",
+      "Fish Oil",
+      "Organic Egg Yolk",
+      "Taurine",
+      "Cod Liver Oil",
+      "Organic Icelandic Kelp",
+      "Nutritional Yeast",
+      "Vitamin E (Tocopherols)",
+      "Oyster Meat",
+      "Manganese Amino Acid Chelate"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "nutritionalInfo": {
+      "calories": "40.0kcal/oz"
+    },
+    "timestamp": "2026-02-02T16:41:59.089787",
+    "domain": "vivarawpets.com",
+    "debug_info": {
+      "total_images": 22,
+      "images_with_src": 22,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
     "id": 2,
-    "barcodeId": "pet-nqpux1",
-    "url": "https://applaws.com/us/products/senior-chicken-pumpkin-recipe-mousse/",
-    "brand": "Applaws",
-    "name": "Senior Chicken & Pumpkin Recipe Mousse",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2025/03/8632US-A_TTL_RT-1024x1024.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "adult",
-    "ingredients": "Chicken (A Source of Glucosamine & Chondroitin Sulphate), Chicken Broth, Chicken Liver, Pumpkin, Dried Egg, Salmon Oil, Natural Fish Flavor, Potato Starch, Guar Gum, Cranberry Extract",
-    "guaranteedAnalysis": "Crude Fat Min 4%, Crude fiber Max 1%, Moisture Max 86%, Crude Protein min 10%",
-    "nutritionalInfo": {
-      "calories": "962 kcal/kg"
-    },
-    "timestamp": "2026-01-29T12:23:03.765645",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 2,
-    "barcodeId": "pet-7vsaue",
-    "url": "https://applaws.com/us/products/senior-tuna-fillet-salmon-pumpkin-recipe-mousse/",
-    "brand": "Applaws",
-    "name": "Senior Tuna Fillet, Salmon & Pumpkin Recipe Mousse",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2025/08/8638US-A-Transparent-Background.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "senior",
-    "ingredients": "Tuna Fillet (A Source of Glucosamine), Fish Broth, Salmon, Pumpkin, Dried Egg, Salmon Oil, Natural Fish Flavor, Potato Starch, Guar Gum, Cranberry Extract",
-    "guaranteedAnalysis": "Crude Fat Min 3%, Crude Fiber Max 1%, Moisture Max 85%, Crude Protein 12%",
-    "nutritionalInfo": {
-      "calories": "947 kcal/kg"
-    },
-    "timestamp": "2026-01-29T17:19:35.059990",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 27,
-      "images_with_src": 31,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 3,
-    "barcodeId": "prod-9pn6di",
-    "url": "https://www.smalls.com/smallsmart/products/freeze-dried-puffy-bird-14oz",
-    "brand": "Smalls",
-    "name": "Freeze-dried Puffs",
-    "imageUrl": "Image not found",
-    "petType": "cat",
-    "foodType": "freeze-dried",
-    "lifeStage": "adult",
-    "ingredients": null,
-    "guaranteedAnalysis": null,
-    "nutritionalInfo": null,
-    "timestamp": "2026-01-29T17:23:08.774845",
-    "domain": "www.smalls.com",
-    "debug_info": {
-      "total_images": 12,
-      "images_with_src": 12,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 4,
-    "barcodeId": "prod-d10f8b",
-    "url": "https://www.weruva.com/collections/find-your-food/products/chicken-formula-au-jus-cat-can",
-    "brand": "Weruva",
-    "name": "Weruva Kitten Chicken Formula Au Jus Wet Cat Food",
-    "imageUrl": "http://www.weruva.com/cdn/shop/files/2685_810028242784_20Chicken_20Au_20Jus_2030oz_20Can_73942a60-cb24-47b0-9cc4-79716cf4d67e.png",
-    "petType": "cat",
-    "foodType": "wet",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Broth, Natural Flavor, Dried Egg, Tricalcium Phosphate, Sunflower Oil, Guar Gum, Xanthan Gum, Locust Bean Gum, Fish Oil, Choline Chloride, Taurine, Zinc Sulfate, Ferrous Sulfate, Vitamin E Supplement, Thiamine Mononitrate (Vitamin B1), Niacin Supplement (Vitamin B3), Calcium Pantothenate, Vitamin A Supplement, Manganese Sulfate, Copper Sulfate, Riboflavin Supplement (Vitamin B2), Pyridoxine Hydrochloride (Vitamin B6), Vitamin D3 Supplement, Folic Acid, Vitamin B12 Supplement, Potassium Iodide",
-    "guaranteedAnalysis": "Crude Protein (min): 12%, Crude Fat (min): 6%, Crude Fiber (max): 1%, Crude Moisture (max): 83%, Ash (max): 1",
-    "nutritionalInfo": null,
-    "timestamp": "2026-01-29T21:39:47.526596",
-    "domain": "www.weruva.com",
-    "debug_info": {
-      "total_images": 99,
-      "images_with_src": 114,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 5,
-    "barcodeId": "pet-onrmpa",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:20:31.331645",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 6,
-    "barcodeId": "applaws-ffwyjx",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:25:46.580458",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 7,
-    "barcodeId": "applaws-3i84uj",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:30:05.659406",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 8,
-    "barcodeId": "food-f5oo8q",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:31:04.677633",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 9,
-    "barcodeId": "applaws-r59c8m",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:40:59.783997",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 10,
-    "barcodeId": "food-m504hl",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:45:53.347046",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 11,
-    "barcodeId": "prod-7n8ba1",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "protein, giving your kitten everything they need to grow happy, healthy and full of energy. Product code: 4051US-A where to buy your purr-fect product Natural kitten food with added vitamins & minerals High protein formula supports energy & muscle growth Pre, pro and post biotics to support digestive health DHA & EPA supports healthy brain development Ingredients Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamins (Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid)), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract. Nutritional Information 4075 kcal/kg Guaranteed Analysis Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10% Peek at what\u2019s inside Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development Ideal balance of high protein, fat and vitamins to help your kitten thrive Added calcium and vitamin D to support healty bone development With vitamins, minerals and antioxidants and our unique gut supporting blend for overall immune health Made without grains, tapioca or corn and contains no fillers, artificial colors, flavors or preservatives FAQs Popular Questions I have an 11 week old kitten \u2013 can I feed them Applaws? When your kitten reaches 12 weeks old you can feed them the Applaws complementary wet kitten food with the complete dry kitten food \u2013 and they\u2019ll love it! What is the difference between complete and complementary food? Complete pet food, like Applaws dry cat food, contains all the vitamins and minerals your feline friend needs to stay healthy and happy",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:48:37.124988",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 12,
-    "barcodeId": "pet-oxz4xs",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
-    "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "dry",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken, Chicken Meal, Turkey Meal, Dried Egg, Chickpeas, Lentils, Peas, Salmon Oil, Natural Flavor, Chicken Fat (Preserved with Mixed Tocopherols), Flaxseed, Calcium Carbonate, Yeast Culture, Vitamin E Supplement, Vitamin B3 (Niacin Supplement), Vitamin B1 (Thiamine Mononitrate), Vitamin A Supplement, Vitamin B6 (Pyridoxine Hydrochloride), Vitamin B5 (Calcium Pantothenate), Vitamin B2 (Riboflavin Supplement), Vitamin B7 (Biotin Supplement), Vitamin B12 Supplement, Vitamin D3, Vitamin B9 (Folic Acid), Taurine, DL Methionine, Salt, Minerals (Zinc Proteinate, Iron Proteinate, Potassium Chloride, Copper Proteinate, Manganese Proteinate, Sodium Selenite, Calcium Iodate), Inulin, Choline Chloride, Mixed Tocopherols, Rosemary Extract",
-    "guaranteedAnalysis": "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%",
-    "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:53:32.498700",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 13,
-    "barcodeId": "pet-rgyo5b",
-    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
-    "brand": "Applaws",
-    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
-    "petType": "cat",
-    "texture": "pate, wet",
-    "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
-    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
-    "nutritionalInfo": {
-      "calories": "1222 kcal/kg"
-    },
-    "timestamp": "2026-02-02T13:54:57.281488",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 14,
-    "barcodeId": "food-n7hrp7",
-    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
-    "brand": "Applaws",
-    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
-    "petType": "cat",
-    "texture": "pate, wet",
-    "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Minerals (Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate), Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
-    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
-    "nutritionalInfo": {
-      "calories": "1222 kcal/kg"
-    },
-    "timestamp": "2026-02-02T14:35:12.178575",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 15,
-    "barcodeId": "food-8wauvj",
-    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
-    "brand": "Applaws",
-    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
-    "petType": "cat",
-    "texture": "pate, wet",
-    "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
-    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
-    "nutritionalInfo": {
-      "calories": "1222 kcal/kg"
-    },
-    "timestamp": "2026-02-02T14:38:33.378570",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 16,
-    "barcodeId": "pet-ohoah6",
-    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-chicken-breast-recipe-pate/",
-    "brand": "Applaws",
-    "name": "Kitten healthy start wet food with added vitamins & minerals chicken breast recipe p\u00e2t\u00e9",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1801US-AC-Product-Image.png",
+    "barcodeId": "food-l76dkg",
+    "url": "https://www.onlynaturalpet.com/products/only-natural-pet-powerpate-turkey-chicken-dinner?variant=40711732002852",
+    "brand": "Only Natural Pet",
+    "name": "Only Natural Pet PowerPate Grain-Free Turkey & Chicken Dinner Wet Cat Food (2.75oz)",
+    "imageUrl": "http://www.onlynaturalpet.com/cdn/shop/products/5302340_85678dd9-9cf3-4f55-9ffa-fe284d0081e8_1024x1024.jpg?v=1691081372",
     "petType": "cat",
     "texture": "pate",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken Breast, Chicken Broth, Sunflower Oil, Potato Starch, Natural Chicken Flavor, Egg Whites, Tricalcium Phosphate, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Potassium Chloride, Guar Gum, Magnesium Amino Acid Chelate, Whey Protein, Dried Lactobacillus Plantarum Fermentation Product",
-    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 80%",
+    "lifeStage": "all",
+    "ingredients": [
+      "Turkey",
+      "Chicken",
+      "Turkey Broth",
+      "Chicken Broth",
+      "Turkey Liver",
+      "Peas",
+      "Natural Flavor",
+      "Agar-Agar",
+      "Tricalcium Phosphate",
+      "Carrots",
+      "Green Beans",
+      "Ground Whole Flaxseed",
+      "Eggs",
+      "Clams",
+      "Cranberries",
+      "Blueberries",
+      "Salmon Oil"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 8.0%, Crude Fat (min): 5.0%, Crude Fiber (max): 0.75%, Moisture (max): 78.0%",
     "nutritionalInfo": {
-      "calories": "1204 kcal/kg"
+      "calories": "1214 kcal/kg, 34.4 kcal/oz"
     },
-    "timestamp": "2026-02-02T14:58:30.791012",
-    "domain": "applaws.com",
+    "timestamp": "2026-02-02T17:09:27.767690",
+    "domain": "www.onlynaturalpet.com",
     "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 17,
-    "barcodeId": "applaws-zfoo3r",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": null,
-    "guaranteedAnalysis": null,
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:16:54.209875",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 18,
-    "barcodeId": "applaws-hvi286",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:22:24.296182",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 19,
-    "barcodeId": "applaws-r782ir",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:28:34.994249",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 20,
-    "barcodeId": "food-nd9zno",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken ({'@type': 'QuantitativeValue', 'unitCode': 'lb', 'value': 2.0})",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:30:06.588406",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 21,
-    "barcodeId": "pet-s7765j",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken (2.0lb)",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:36:16.287662",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 22,
-    "barcodeId": "applaws-exwzlj",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken (1lb)",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:39:51.175251",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 23,
-    "barcodeId": "food-uhyftv",
-    "url": "https://vivarawpets.com/products/pure-chicken?variant=36695948951707",
-    "brand": "Viva Raw",
-    "name": "Pure Chicken (1lb)",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Pure_Bowl_6a8f8b84-6ac9-4b58-b1e8-23a6e5d1afa2.png",
-    "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
-    "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
-    "nutritionalInfo": null,
-    "timestamp": "2026-02-02T15:40:49.895074",
-    "domain": "vivarawpets.com",
-    "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
+      "total_images": 72,
+      "images_with_src": 72,
       "extraction_method": "html_parsing"
     }
   }

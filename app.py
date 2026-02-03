@@ -470,12 +470,15 @@ def extract_food_type(soup, url):
                 'raw', 'raw boost', 'raw pieces', 'raw nutrition', 'frozen raw',
                 'fresh raw', 'raw diet', 'raw food'
             ],
-            'freeze-dried': [
+            'freeze dried': [
                 'freeze dried', 'freeze-dried', 'freezedried', 'freeze dry',
                 'lyophilized', 'freeze-drying', 'fd', 'freeze dried raw'
             ],
-            'air-dried': [
+            'air dried': [
                 'air dried', 'air-dried', 'air dry', 'naturally dried'
+            ],
+            'dehydrated': [
+                'dehydrated', 'dehydrate', 'dried'
             ],
             'pate': [
                 'pate', 'paté', 'pâté', 'smooth pate', 'chunky pate', 'classic pate'
@@ -532,7 +535,7 @@ def extract_food_type(soup, url):
             # (e.g., "freeze-dried raw" products)
             
             # Sort by priority for consistent ordering
-            priority_order = ['treats', 'toppers', 'pate', 'wet', 'dry', 'freeze-dried', 'air-dried', 'raw']
+            priority_order = ['treats', 'toppers', 'pate', 'wet', 'dry', 'freeze dried', 'air dried', 'dehydrated', 'raw']
             detected_types = [t for t in priority_order if t in detected_types]
             
             # Return as comma-separated string
@@ -556,8 +559,9 @@ def extract_food_type_from_url(url):
             'treats': ['treat', 'treats', 'snack', 'training', 'dental', 'jerky', 'chew', 'bone'],
             'wet': ['wet', 'canned', 'can', 'gravy', 'sauce', 'broth', 'stew', 'mousse'],
             'dry': ['dry', 'kibble', 'pellet', 'biscuit', 'crunchy'],
-            'freeze-dried': ['freeze-dried', 'freeze dried', 'freezedried', 'freeze-dry', 'fd'],
-            'air-dried': ['air-dried', 'air dried', 'air-dry'],
+            'freeze dried': ['freeze-dried', 'freeze dried', 'freezedried', 'freeze-dry', 'fd'],
+            'air dried': ['air-dried', 'air dried', 'air-dry'],
+            'dehydrated': ['dehydrated', 'dehydrate', 'dried'],
             'raw': ['raw', 'frozen-raw', 'fresh-raw']
         }
         
@@ -576,7 +580,7 @@ def extract_food_type_from_url(url):
                 detected_types.append('wet')
             
             # Sort by priority for consistent ordering
-            priority_order = ['treats', 'toppers', 'pate', 'wet', 'dry', 'freeze-dried', 'air-dried', 'raw']
+            priority_order = ['treats', 'toppers', 'pate', 'wet', 'dry', 'freeze dried', 'air dried', 'dehydrated', 'raw']
             detected_types = [t for t in priority_order if t in detected_types]
             
             return ', '.join(detected_types)
@@ -2074,19 +2078,26 @@ def extract_applaws_dropdown_data(url):
         return {}
 
 def extract_nutritional_info_viva_raw(soup, url):
-    """Extract nutritional info from Viva Raw using page text and JavaScript metafields"""
+    """Extract nutritional info from Viva Raw using page text, JavaScript metafields, and image analysis"""
     import re
     try:
         page_text = soup.get_text()
         page_source = str(soup)
         
-        # Look for calories in visible text
+        # Look for calories in visible text with expanded patterns
         calorie_patterns = [
+            # Standard patterns
             r'(\d+(?:\.\d+)?\s*kcal/kg)',
             r'(\d+(?:\.\d+)?\s*kcal\s*/\s*kg)',
             r'(\d+(?:\.\d+)?\s*kilocalories?\s*/\s*kg)',
             r'(\d+(?:\.\d+)?\s*cal/kg)',
             r'(\d+(?:\.\d+)?\s*kcal)',
+            # Viva Raw specific patterns
+            r'calories\s+per\s+ounce[:\s]*(\d+(?:\.\d+)?)',
+            r'(\d+(?:\.\d+)?)\s*calories\s+per\s+ounce',
+            r'calories[:\s]*(\d+(?:\.\d+)?)\s*(?:per\s+)?(?:oz|ounce)',
+            r'(\d+(?:\.\d+)?)\s*kcal\s*/\s*oz',
+            r'(\d+(?:\.\d+)?)\s*kcal\s+per\s+oz',
         ]
         
         for pattern in calorie_patterns:
@@ -2097,8 +2108,15 @@ def extract_nutritional_info_viva_raw(soup, url):
                 match = re.sub(r'\s*/\s*', '/', match)
                 
                 calorie_num = re.findall(r'(\d+(?:\.\d+)?)', match)
-                if calorie_num and 50 <= float(calorie_num[0]) <= 10000:
-                    return {'calories': match}
+                if calorie_num:
+                    calorie_value = float(calorie_num[0])
+                    # For per-ounce values, accept lower range (20-100 typical for per oz)
+                    if 'ounce' in pattern or 'oz' in pattern:
+                        if 20 <= calorie_value <= 200:
+                            return {'calories': f"{calorie_value}kcal/oz"}
+                    # For per-kg values, use higher range
+                    elif 50 <= calorie_value <= 10000:
+                        return {'calories': match}
         
         # Look for calories in JavaScript metafields
         metafields_pattern = r'"facts":\s*\[(.*?)\]'
@@ -2113,6 +2131,67 @@ def extract_nutritional_info_viva_raw(soup, url):
                     name, value = fact.split('|', 1)
                     if 'kcal' in value.lower():
                         return {'calories': value}
+        
+        # Look for calories in script tags (Viva Raw specific) with product-specific data
+        # Try to find product-specific calorie information
+        variant_id = None
+        variant_match = re.search(r'variant[=:](\d+)', url)
+        if variant_match:
+            variant_id = variant_match.group(1)
+        
+        script_calorie_patterns = [
+            r'"info":\s*"~?(\d+(?:\.\d+)?)\s*kilocalories?\s+per\s+ounce"',
+            r'"info":\s*"~?(\d+(?:\.\d+)?)\s*kcal\s+per\s+oz"',
+            r'"info":\s*"~?(\d+(?:\.\d+)?)\s*calories?\s+per\s+ounce"',
+            # More flexible patterns
+            r'"info":\s*"[^"]*?(\d+(?:\.\d+)?)[^"]*?(?:kilocalories?|kcal)[^"]*?per\s+ounce[^"]*?"',
+        ]
+        
+        # Look for variant-specific calorie data using flexible pattern that handles large zipcode lists
+        if variant_id:
+            # Use flexible pattern that can span large distances (like zipcode lists)
+            pattern = rf'variant_id:{variant_id}.*?"info":\s*"~?(\d+(?:\.\d+)?)\s*kilocalories?\s+per\s+ounce[^"]*"'
+            match = re.search(pattern, page_source, re.IGNORECASE | re.DOTALL)
+            if match:
+                try:
+                    calorie_value = float(match.group(1))
+                    if 20 <= calorie_value <= 200:
+                        return {'calories': f"{calorie_value}kcal/oz"}
+                except ValueError:
+                    pass
+        
+        # Fallback to general script search
+        for pattern in script_calorie_patterns:
+            matches = re.findall(pattern, page_source, re.IGNORECASE)
+            for match in matches:
+                try:
+                    calorie_value = float(match)
+                    if 20 <= calorie_value <= 200:  # Reasonable range for per-ounce calories
+                        return {'calories': f"{calorie_value}kcal/oz"}
+                except ValueError:
+                    continue
+        
+        # FALLBACK: For Viva Raw, if no calories found but we know it's a Viva Raw product,
+        # check if there are nutrition-related images that might contain the info
+        # This is a placeholder for when calorie info is in images
+        images = soup.find_all('img')
+        nutrition_images = []
+        for img in images:
+            src = img.get('src', '')
+            alt = img.get('alt', '')
+            # Look for images that might contain nutrition facts
+            if any(keyword in src.lower() for keyword in ['nutrition', 'facts', 'pure_chicken', 'detail']):
+                nutrition_images.append(src)
+            if any(keyword in alt.lower() for keyword in ['nutrition', 'facts', 'detail']):
+                nutrition_images.append(src)
+        
+        # If we found potential nutrition images, we could potentially extract from them
+        # For now, we'll return a placeholder indicating the info might be in an image
+        if nutrition_images and 'vivarawpets.com' in url.lower():
+            # This is where we could implement OCR or image analysis in the future
+            # For now, return None to indicate we need to look elsewhere
+            pass
+            
     except Exception:
         pass
     return None
@@ -2133,6 +2212,11 @@ def extract_nutritional_info(soup, url):
     
     try:
         # METHOD 1: Brand-specific detection (prioritize known patterns)
+        if 'onlynaturalpet.com' in url.lower():
+            result = extract_nutritional_info_only_natural_pet(soup, url)
+            if result:
+                return result
+        
         if 'vivarawpets.com' in url.lower():
             result = extract_nutritional_info_viva_raw(soup, url)
             if result:
@@ -2261,39 +2345,59 @@ def extract_nutritional_info(soup, url):
         return None
 
 def extract_guaranteed_analysis_viva_raw(soup, url):
-    """Extract guaranteed analysis from Viva Raw using JavaScript metafields"""
+    """Extract guaranteed analysis from Viva Raw using JavaScript metafields with product-specific data"""
     import re
     try:
         # Get the raw HTML to search for JavaScript data
         page_source = str(soup)
         
-        # Look for metafields with facts data
-        metafields_pattern = r'"facts":\s*\[(.*?)\]'
-        metafields_match = re.search(metafields_pattern, page_source, re.DOTALL)
+        # Look for product-specific metafields with facts data
+        # Try to find the specific product variant data first
+        variant_id = None
+        variant_match = re.search(r'variant[=:](\d+)', url)
+        if variant_match:
+            variant_id = variant_match.group(1)
         
-        if metafields_match:
-            facts_data = metafields_match.group(1)
-            # Extract individual facts like "Crude Protein (min)|16.3%"
-            fact_items = re.findall(r'"([^"]*\|[^"]*)"', facts_data)
+        # Look for variant-specific metafields using flexible pattern that handles large zipcode lists
+        facts_data = None
+        if variant_id:
+            # Use flexible pattern that can span large distances (like zipcode lists)
+            pattern = rf'variant_id:{variant_id}.*?"facts":\s*\[(.*?)\]'
+            match = re.search(pattern, page_source, re.DOTALL)
+            if match:
+                facts_data = match.group(1)
+        
+        # If no variant-specific data found, try general metafields
+        if not facts_data:
+            metafields_pattern = r'"facts":\s*\[(.*?)\]'
+            metafields_match = re.search(metafields_pattern, page_source, re.DOTALL)
+            if metafields_match:
+                facts_data = metafields_match.group(1)
+            else:
+                return None
+        
+        # Extract individual facts like "Crude Protein (min)|16.3%"
+        fact_items = re.findall(r'"([^"]*\|[^"]*)"', facts_data)
+        
+        components = []
+        for fact in fact_items:
+            if '|' in fact:
+                name, value = fact.split('|', 1)
+                # Format consistently with other sites
+                if 'protein' in name.lower():
+                    components.append(f"Crude Protein (min): {value}")
+                elif 'fat' in name.lower():
+                    components.append(f"Crude Fat (min): {value}")
+                elif 'fiber' in name.lower() or 'fibre' in name.lower():
+                    components.append(f"Crude Fiber (max): {value}")
+                elif 'moisture' in name.lower():
+                    components.append(f"Moisture (max): {value}")
+        
+        if components:
+            clean_analysis = ", ".join(components)
+            clean_analysis = re.sub(r'\bfibre\b', 'fiber', clean_analysis, flags=re.IGNORECASE)
+            return clean_analysis
             
-            components = []
-            for fact in fact_items:
-                if '|' in fact:
-                    name, value = fact.split('|', 1)
-                    # Format consistently with other sites
-                    if 'protein' in name.lower():
-                        components.append(f"Crude Protein (min): {value}")
-                    elif 'fat' in name.lower():
-                        components.append(f"Crude Fat (min): {value}")
-                    elif 'fiber' in name.lower() or 'fibre' in name.lower():
-                        components.append(f"Crude Fiber (max): {value}")
-                    elif 'moisture' in name.lower():
-                        components.append(f"Moisture (max): {value}")
-            
-            if components:
-                clean_analysis = ", ".join(components)
-                clean_analysis = re.sub(r'\bfibre\b', 'fiber', clean_analysis, flags=re.IGNORECASE)
-                return clean_analysis
     except Exception:
         pass
     return None
@@ -2315,6 +2419,11 @@ def extract_guaranteed_analysis(soup, url):
     
     try:
         # METHOD 1: Brand-specific detection (prioritize known patterns)
+        if 'onlynaturalpet.com' in url.lower():
+            result = extract_guaranteed_analysis_only_natural_pet(soup, url)
+            if result:
+                return result
+        
         if 'vivarawpets.com' in url.lower():
             result = extract_guaranteed_analysis_viva_raw(soup, url)
             if result:
@@ -2488,20 +2597,92 @@ def convert_ingredients_to_array(ingredients_string):
     return ingredients_array
 
 def extract_ingredients_viva_raw(soup, url):
-    """Extract ingredients from Viva Raw using visible page content"""
+    """Extract ingredients from Viva Raw using visible page content with universal patterns"""
     import re
     try:
         page_text = soup.get_text()
-        # Look for the specific ingredients pattern on Viva Raw
-        viva_pattern = r'Ingredients[:\s]*([^.]*?(?:Chicken|Beef|Duck|Turkey|Rabbit)[^.]*?(?:Heart|Liver|Gizzard|Ground Bone)[^.]*?)(?:\s*Humanely|$)'
-        viva_match = re.search(viva_pattern, page_text, re.IGNORECASE | re.DOTALL)
-        if viva_match:
-            ingredients_text = viva_match.group(1).strip()
-            # Clean up the ingredients text
+        
+        # Strategy 1: Handle Pure line products (simpler format)
+        # Look for "Ingredients: Protein with Ground Bone..." without marketing text
+        pure_pattern = r'Ingredients:\s*([A-Z][^.]*?(?:Ground Bone|Heart|Liver)[^.]*?)(?:\s*Humanely|$)'
+        pure_match = re.search(pure_pattern, page_text, re.IGNORECASE | re.DOTALL)
+        if pure_match:
+            ingredients_text = pure_match.group(1).strip()
+            # Validate it's a clean ingredient list
+            if (len(ingredients_text) > 10 and 
+                any(protein in ingredients_text.lower() for protein in ['turkey', 'chicken', 'beef', 'duck', 'rabbit']) and
+                not any(marketing in ingredients_text.lower() for marketing in ['humanely raised', '97%', '3%', 'antibiotics'])):
+                return convert_ingredients_to_array(ingredients_text)
+        
+        # Strategy 2: Handle regular products with marketing text
+        # Extract ingredients between marketing text and AAFCO statement
+        marketing_end_patterns = [
+            r'3%\s+Natural\s+Supplements',
+            r'growth-promoting\s+antibiotics[^.]*?supplements',
+            r'\d+%\s+Natural\s+Supplements',
+        ]
+        
+        aafco_start_patterns = [
+            r'Formulated\s+to\s+meet',
+            r'AAFCO\s+Cat\s+Food',
+        ]
+        
+        for marketing_pattern in marketing_end_patterns:
+            marketing_match = re.search(marketing_pattern, page_text, re.IGNORECASE)
+            if marketing_match:
+                marketing_end = marketing_match.end()
+                
+                for aafco_pattern in aafco_start_patterns:
+                    aafco_match = re.search(aafco_pattern, page_text[marketing_end:], re.IGNORECASE)
+                    if aafco_match:
+                        aafco_start = marketing_end + aafco_match.start()
+                        
+                        # Extract text between marketing end and AAFCO start
+                        between_text = page_text[marketing_end:aafco_start].strip()
+                        
+                        # Clean this text to get just ingredients
+                        cleaned = re.sub(r'\s+', ' ', between_text)
+                        cleaned = cleaned.strip()
+                        
+                        # Validate it looks like ingredients
+                        if (cleaned and len(cleaned) > 20 and 
+                            any(protein in cleaned.lower() for protein in ['turkey', 'chicken', 'beef', 'duck', 'rabbit'])):
+                            return convert_ingredients_to_array(cleaned)
+        
+        # Strategy 3: Direct pattern matching for various ingredient formats
+        clean_patterns = [
+            # Standard "with Ground Bone" format
+            r'((?:Turkey|Chicken|Duck|Rabbit)\s+with\s+Ground\s+Bone[^.]*?(?:Chelate|Supplement|Extract|Acid|Oil|Yeast))',
+            # Beef format (no "with Ground Bone")
+            r'(Beef,\s+Beef\s+Heart[^.]*?(?:Chelate|Supplement|Extract|Acid|Oil|Yeast))',
+            # General protein-based format
+            r'((?:Turkey|Chicken|Beef|Duck|Rabbit)(?:\s+with\s+Ground\s+Bone)?,\s*(?:Turkey|Chicken|Beef|Duck|Rabbit)[^.]*?(?:Chelate|Supplement|Extract|Acid|Oil|Yeast))',
+        ]
+        
+        for pattern in clean_patterns:
+            matches = re.findall(pattern, page_text, re.IGNORECASE | re.DOTALL)
+            for match in matches:
+                # Clean up the match
+                cleaned = re.sub(r'\s+', ' ', match.strip())
+                if cleaned and len(cleaned) > 20:
+                    return convert_ingredients_to_array(cleaned)
+        
+        # Strategy 4: Fallback - look for any ingredient list after "Ingredients"
+        fallback_pattern = r'Ingredients[:\s]*([^.]*?(?:Chicken|Beef|Duck|Turkey|Rabbit)[^.]*?(?:Heart|Liver|Gizzard|Bone)[^.]*?)(?:\s*(?:Humanely|Formulated)|$)'
+        fallback_match = re.search(fallback_pattern, page_text, re.IGNORECASE | re.DOTALL)
+        if fallback_match:
+            ingredients_text = fallback_match.group(1).strip()
+            # Clean up the ingredients text and remove marketing content
             ingredients_text = re.sub(r'\s+', ' ', ingredients_text)
             ingredients_text = ingredients_text.replace('Ingredients:', '').strip()
+            
+            # Remove marketing text if present
+            ingredients_text = re.sub(r'\d+%\s+Humanely\s+Raised[^,]*,?\s*', '', ingredients_text, flags=re.IGNORECASE)
+            ingredients_text = re.sub(r'\d+%\s+Natural\s+Supplements\s*', '', ingredients_text, flags=re.IGNORECASE)
+            
             if ingredients_text and len(ingredients_text) > 10:
                 return convert_ingredients_to_array(ingredients_text)
+                
     except Exception:
         pass
     return None
@@ -2570,11 +2751,139 @@ def extract_ingredients_applaws(soup, url):
         pass
     return None
 
+def extract_ingredients_only_natural_pet(soup, url):
+    """Extract ingredients from Only Natural Pet using HTML-encoded content"""
+    import re
+    import html
+    
+    try:
+        print(f"DEBUG: extract_ingredients_only_natural_pet called for {url}")
+        page_source = str(soup)
+        
+        # Look for the specific Only Natural Pet ingredient pattern - more precise
+        # Target the exact ingredient list without HTML markup
+        ingredient_patterns = [
+            # Pattern 1: Look for the clean ingredient list in metafields
+            r'"ingredients":\s*"[^"]*INGREDIENTS[^:]*:\s*([^"]*Turkey[^"]*Folic Acid[^"]*)"',
+            # Pattern 2: Look for ingredients in the main content
+            r'INGREDIENTS[^:]*:\s*([A-Z][^<]*?(?:Turkey|Chicken)[^<]*?Folic Acid)',
+        ]
+        
+        for pattern in ingredient_patterns:
+            matches = re.findall(pattern, page_source, re.IGNORECASE | re.DOTALL)
+            
+            for match in matches:
+                # Decode HTML entities
+                decoded = html.unescape(match)
+                # Clean up the decoded text
+                cleaned = re.sub(r'\\u[0-9a-fA-F]{4}', '', decoded)  # Remove unicode escapes
+                cleaned = re.sub(r'\\[rn]', ' ', cleaned)  # Remove escaped newlines
+                cleaned = re.sub(r'\s+', ' ', cleaned)  # Normalize whitespace
+                cleaned = cleaned.strip()
+                
+                # Remove any remaining HTML-like content
+                cleaned = re.sub(r'<[^>]*>', '', cleaned)
+                cleaned = re.sub(r'\\/', '/', cleaned)
+                
+                # Extract just the ingredient list part (after "INGREDIENTS:")
+                if 'INGREDIENTS:' in cleaned:
+                    ingredients_part = cleaned.split('INGREDIENTS:', 1)[1].strip()
+                    
+                    # Validate this is a reasonable ingredient list
+                    print(f"DEBUG: Found ingredients_part with {ingredients_part.count(',') + 1} items: {ingredients_part[:100]}...")
+                    if (len(ingredients_part) > 50 and 
+                        ingredients_part.count(',') >= 20 and 
+                        ingredients_part.count(',') <= 60 and  # Increased limit to accommodate complete lists
+                        not any(bad in ingredients_part.lower() for bad in ['guaranteed analysis', 'calorie content', 'aafco'])):
+                        print(f"DEBUG: Validation passed, returning ingredient array")
+                        return convert_ingredients_to_array(ingredients_part)
+                    else:
+                        print(f"DEBUG: Validation failed - len={len(ingredients_part)}, commas={ingredients_part.count(',')}, bad_content={any(bad in ingredients_part.lower() for bad in ['guaranteed analysis', 'calorie content', 'aafco'])}")
+        
+        return None
+    except Exception as e:
+        print(f"Error extracting Only Natural Pet ingredients: {e}")
+        return None
+
+def extract_guaranteed_analysis_only_natural_pet(soup, url):
+    """Extract guaranteed analysis from Only Natural Pet using individual components"""
+    import re
+    
+    try:
+        page_source = str(soup)
+        
+        # Extract individual components separately for reliability
+        components = {}
+        
+        protein_match = re.search(r'Crude Protein[^<]*?(\d+(?:\.\d+)?%)', page_source, re.IGNORECASE)
+        if protein_match:
+            components['protein'] = protein_match.group(1)
+        
+        fat_match = re.search(r'Crude Fat[^<]*?(\d+(?:\.\d+)?%)', page_source, re.IGNORECASE)
+        if fat_match:
+            components['fat'] = fat_match.group(1)
+        
+        fiber_match = re.search(r'Crude Fiber[^<]*?(\d+(?:\.\d+)?%)', page_source, re.IGNORECASE)
+        if fiber_match:
+            components['fiber'] = fiber_match.group(1)
+        
+        moisture_match = re.search(r'Moisture[^<]*?(\d+(?:\.\d+)?%)', page_source, re.IGNORECASE)
+        if moisture_match:
+            components['moisture'] = moisture_match.group(1)
+        
+        # Reconstruct guaranteed analysis if we have at least 3 components
+        if len(components) >= 3:
+            ga_parts = []
+            if 'protein' in components:
+                ga_parts.append(f"Crude Protein (min): {components['protein']}")
+            if 'fat' in components:
+                ga_parts.append(f"Crude Fat (min): {components['fat']}")
+            if 'fiber' in components:
+                ga_parts.append(f"Crude Fiber (max): {components['fiber']}")
+            if 'moisture' in components:
+                ga_parts.append(f"Moisture (max): {components['moisture']}")
+            
+            return ", ".join(ga_parts)
+        
+        return None
+    except Exception as e:
+        print(f"Error extracting Only Natural Pet guaranteed analysis: {e}")
+        return None
+
+def extract_nutritional_info_only_natural_pet(soup, url):
+    """Extract nutritional info from Only Natural Pet using calorie patterns"""
+    import re
+    
+    try:
+        page_source = str(soup)
+        
+        # Look for both kcal/kg and kcal/oz values
+        kg_matches = re.findall(r'(\d+,?\d*)\s*kcal/kg', page_source, re.IGNORECASE)
+        oz_matches = re.findall(r'(\d+(?:\.\d+)?)\s*kcal/oz', page_source, re.IGNORECASE)
+        
+        if kg_matches and oz_matches:
+            # Use the first match of each (they should be consistent)
+            kg_value = kg_matches[0].replace(',', '')  # Remove comma from 1,214
+            oz_value = oz_matches[0]
+            
+            # Format as expected
+            return {'calories': f"{kg_value} kcal/kg, {oz_value} kcal/oz"}
+        
+        return None
+    except Exception as e:
+        print(f"Error extracting Only Natural Pet nutritional info: {e}")
+        return None
+
 def extract_ingredients(soup, url):
     """Extract ingredients using fallback system: Brand-specific → Applaws method → Viva Raw method → Generic"""
     import re
     
     # METHOD 1: Brand-specific detection (prioritize known patterns)
+    if 'onlynaturalpet.com' in url.lower():
+        result = extract_ingredients_only_natural_pet(soup, url)
+        if result:
+            return result
+    
     if 'vivarawpets.com' in url.lower():
         result = extract_ingredients_viva_raw(soup, url)
         if result:
@@ -3984,10 +4293,14 @@ def scrape_url():
             # These take priority over general wet/dry classification
             if name:
                 name_lower = name.lower()
-                if 'broth' in name_lower:
-                    texture = "broth"
-                elif 'freeze-dried' in name_lower or 'freeze dried' in name_lower:
+                if 'air dried' in name_lower or 'air-dried' in name_lower:
+                    texture = "air dried"
+                elif 'freeze dried' in name_lower or 'freeze-dried' in name_lower:
                     texture = "freeze dried"
+                elif 'dehydrated' in name_lower:
+                    texture = "dehydrated"
+                elif 'broth' in name_lower:
+                    texture = "broth"
                 elif 'gravy' in name_lower:
                     texture = "gravy"
                 elif 'mousse' in name_lower:
@@ -3996,8 +4309,6 @@ def scrape_url():
                     texture = "pate"
                 elif 'dry food' in name_lower or 'dry cat food' in name_lower or 'dry dog food' in name_lower or 'kibble' in name_lower:
                     texture = "kibble"
-                elif 'refrigerated' in name_lower or 'frozen' in name_lower:
-                    texture = "raw"
             
             # RAW BRAND OVERRIDE: Check if brand is known to be exclusively raw food
             # These brands only make raw/frozen food products
@@ -4076,10 +4387,14 @@ def scrape_url():
             # These take priority over general wet/dry classification
             if name:
                 name_lower = name.lower()
-                if 'broth' in name_lower:
-                    texture = "broth"
-                elif 'freeze-dried' in name_lower or 'freeze dried' in name_lower:
+                if 'air dried' in name_lower or 'air-dried' in name_lower:
+                    texture = "air dried"
+                elif 'freeze dried' in name_lower or 'freeze-dried' in name_lower:
                     texture = "freeze dried"
+                elif 'dehydrated' in name_lower:
+                    texture = "dehydrated"
+                elif 'broth' in name_lower:
+                    texture = "broth"
                 elif 'gravy' in name_lower:
                     texture = "gravy"
                 elif 'mousse' in name_lower:
@@ -4088,8 +4403,6 @@ def scrape_url():
                     texture = "pate"
                 elif 'dry food' in name_lower or 'dry cat food' in name_lower or 'dry dog food' in name_lower or 'kibble' in name_lower:
                     texture = "kibble"
-                elif 'refrigerated' in name_lower or 'frozen' in name_lower:
-                    texture = "raw"
             
             # RAW BRAND OVERRIDE: Check if brand is known to be exclusively raw food
             # These brands only make raw/frozen food products
