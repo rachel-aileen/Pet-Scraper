@@ -16,6 +16,7 @@
         <div class="tabs">
             <button class="tab-button active" onclick="openTab(event, 'scraper-tab')">Scraper</button>
             <button class="tab-button" onclick="openTab(event, 'data-tab')">Stored Data</button>
+            <button class="tab-button" onclick="openTab(event, 'sheets-tab')">Copy for Sheets</button>
         </div>
 
         <!-- Scraper Tab -->
@@ -142,8 +143,66 @@
                 </div>
             </div>
         </div>
+
+        <!-- Copy for Sheets Tab -->
+        <div id="sheets-tab" class="tab-content">
+            <div class="sheets-section">
+                <h2>📋 Copy for Google Sheets</h2>
+                <p>Copy your scraped data in the perfect format to paste directly into your Google Sheet</p>
+                
+                <!-- Instructions -->
+                <div class="copy-instructions">
+                    <h3>📖 How to Use</h3>
+                    <ol>
+                        <li><strong>Copy Headers</strong> (one-time setup) - Paste into row 1 of your Google Sheet</li>
+                        <li><strong>Copy All Data</strong> - Paste into your Google Sheet starting from row 2</li>
+                        <li><strong>Copy Individual Items</strong> - Use the "Copy for Sheets" buttons in Stored Data tab</li>
+                    </ol>
+                </div>
+
+                <!-- Copy Actions -->
+                <div class="copy-actions">
+                    <h3>🚀 Copy Actions</h3>
+                    <div class="action-buttons">
+                        <button onclick="copyHeadersForSheets()" class="headers-btn">Copy Headers</button>
+                        <button onclick="copyAllDataForSheets()" class="copy-all-btn">Copy All Data</button>
+                        <button onclick="showPreview()" class="preview-btn">Preview Format</button>
+                    </div>
+                    
+                    <div id="copy-status" class="copy-status"></div>
+                </div>
+
+                <!-- Column Layout Info -->
+                <div class="column-info">
+                    <h3>📊 Your Column Layout</h3>
+                    <p>Data will be formatted to match your Google Sheet columns:</p>
+                    <div class="columns-grid">
+                        <div class="column-item">A: productKey</div>
+                        <div class="column-item">B: brand</div>
+                        <div class="column-item">C: name</div>
+                        <div class="column-item">D: ID</div>
+                        <div class="column-item">E: petType</div>
+                        <div class="column-item">F: texture</div>
+                        <div class="column-item">G: lifeStage</div>
+                        <div class="column-item">H: ingredients</div>
+                        <div class="column-item">I: guaranteedAnalysis</div>
+                        <div class="column-item">J: calories</div>
+                        <div class="column-item">K: imageUrl</div>
+                    </div>
+                </div>
+
+                <!-- Preview Area -->
+                <div class="preview-area" id="preview-area" style="display: none;">
+                    <h3>📋 Preview</h3>
+                    <div class="preview-container">
+                        <pre id="preview-content"></pre>
+                        <button onclick="copyPreviewToClipboard()" class="copy-preview-btn">Copy This Preview</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}?v=7"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=11"></script>
 </body>
 </html> 

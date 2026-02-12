@@ -854,4 +854,457 @@ header p {
     .action-buttons button {
         width: 100%;
     }
+}
+
+/* Google Sheets Export Styles */
+.sheets-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.sheets-setup {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sheets-setup h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sheets-setup h3:before {
+    content: "🔧";
+    margin-right: 8px;
+}
+
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.setup-form .input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.setup-form label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+.setup-form input {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.setup-form small {
+    color: #6c757d;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.setup-btn {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.setup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.status-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.sheets-actions {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sheets-actions h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sheets-actions h3:before {
+    content: "🚀";
+    margin-right: 8px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.export-all-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.export-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.stats-btn {
+    background: linear-gradient(45deg, #6f42c1, #e83e8c);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stats-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.3);
+}
+
+.sheets-results {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 15px;
+    min-height: 100px;
+}
+
+.sheets-results pre {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 13px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.individual-exports {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.individual-exports h3 {
+    color: #495057;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.individual-exports h3:before {
+    content: "📤";
+    margin-right: 8px;
+}
+
+/* Google Sheets export button for individual items */
+.sheets-export-btn {
+    background: linear-gradient(45deg, #34a853, #0f9d58);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.sheets-export-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(52, 168, 83, 0.3);
+}
+
+/* Copy instructions */
+.copy-instructions {
+    background: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.copy-instructions h3 {
+    color: #1565c0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.copy-instructions h3:before {
+    content: "📖";
+    margin-right: 8px;
+}
+
+.copy-instructions ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.copy-instructions li {
+    margin-bottom: 8px;
+    color: #1565c0;
+}
+
+/* Copy actions */
+.copy-actions {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.copy-actions h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.copy-actions h3:before {
+    content: "🚀";
+    margin-right: 8px;
+}
+
+/* Headers copy button */
+.headers-btn {
+    background: linear-gradient(45deg, #4285f4, #1a73e8);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.headers-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+/* Copy all data button */
+.copy-all-btn {
+    background: linear-gradient(45deg, #34a853, #0f9d58);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+}
+
+/* Preview button */
+.preview-btn {
+    background: linear-gradient(45deg, #ff9800, #f57c00);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.preview-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+/* Copy status */
+.copy-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-height: 20px;
+}
+
+.copy-status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.copy-status.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Preview area */
+.preview-area {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.preview-area h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.preview-area h3:before {
+    content: "📋";
+    margin-right: 8px;
+}
+
+.preview-container {
+    position: relative;
+}
+
+.preview-container pre {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px 0;
+    white-space: pre;
+    overflow-x: auto;
+    font-size: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+}
+
+.copy-preview-btn {
+    background: linear-gradient(45deg, #6f42c1, #e83e8c);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-preview-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(111, 66, 193, 0.3);
+}
+
+/* Column layout info */
+.column-info {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.column-info h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.column-info h3:before {
+    content: "📋";
+    margin-right: 8px;
+}
+
+.columns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.column-item {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Mobile responsiveness for Google Sheets */
+@media (max-width: 768px) {
+    .sheets-section {
+        padding: 15px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons button {
+        width: 100%;
+    }
+    
+    .setup-form {
+        gap: 12px;
+    }
+    
+    .columns-grid {
+        grid-template-columns: 1fr;
+    }
 } 

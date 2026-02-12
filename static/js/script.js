@@ -1,5 +1,7 @@
 // Tab functionality
 function openTab(evt, tabName) {
+    console.log('Opening tab:', tabName); // Debug log
+    
     // Hide all tab contents
     const tabContents = document.getElementsByClassName('tab-content');
     for (let i = 0; i < tabContents.length; i++) {
@@ -13,7 +15,14 @@ function openTab(evt, tabName) {
     }
     
     // Show the selected tab and mark button as active
-    document.getElementById(tabName).classList.add('active');
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) {
+        targetTab.classList.add('active');
+        console.log('Tab found and activated:', tabName); // Debug log
+    } else {
+        console.error('Tab not found:', tabName); // Debug log
+    }
+    
     evt.currentTarget.classList.add('active');
     
     // Load data when switching to data tab
@@ -277,6 +286,7 @@ function displayData(data) {
                         </label>
                         <div class="data-item-brand">Brand: ${escapeHtml(item.brand)}</div>
                     </div>
+                    <button class="sheets-export-btn" onclick="copyItemForSheets(${item.id})">Copy for Sheets</button>
                     <button class="delete-btn" onclick="deleteDataItem(${item.id})">Delete</button>
                 </div>
                 <div class="data-item-name">Name: ${escapeHtml(item.name || 'Not found')}</div>
@@ -565,4 +575,169 @@ async function deleteSelected() {
     } catch (error) {
         alert('Error deleting selected items: ' + error.message);
     }
+}
+
+// Simple Copy for Google Sheets Functions
+
+async function copyHeadersForSheets() {
+    const headers = [
+        'productKey',
+        'brand', 
+        'name',
+        'ID',
+        'petType',
+        'texture',
+        'lifeStage',
+        'ingredients',
+        'guaranteedAnalysis',
+        'calories',
+        'imageUrl'
+    ];
+    
+    // Tab-separated format for Google Sheets
+    const headerText = headers.join('\t');
+    
+    try {
+        await navigator.clipboard.writeText(headerText);
+        showCopyStatus('✅ Headers copied to clipboard! Paste into row 1 of your Google Sheet.', 'success');
+    } catch (error) {
+        showCopyStatus('❌ Failed to copy headers. Please try again.', 'error');
+    }
+}
+
+async function copyAllDataForSheets() {
+    try {
+        showCopyStatus('Loading data...', 'info');
+        
+        const response = await fetch('/data');
+        const data = await response.json();
+        
+        if (!data || data.length === 0) {
+            showCopyStatus('No data to copy. Please scrape some products first.', 'info');
+            return;
+        }
+        
+        const formattedData = formatDataForSheets(data);
+        
+        await navigator.clipboard.writeText(formattedData);
+        showCopyStatus(`✅ ${data.length} products copied to clipboard! Paste into your Google Sheet starting from row 2.`, 'success');
+        
+    } catch (error) {
+        showCopyStatus('❌ Failed to copy data. Please try again.', 'error');
+    }
+}
+
+async function copyItemForSheets(itemId) {
+    try {
+        const response = await fetch('/data');
+        const data = await response.json();
+        
+        const item = data.find(item => item.id === itemId);
+        if (!item) {
+            alert('❌ Item not found');
+            return;
+        }
+        
+        const formattedData = formatDataForSheets([item]);
+        
+        await navigator.clipboard.writeText(formattedData);
+        alert('✅ Product copied to clipboard! Paste into your Google Sheet.');
+        
+    } catch (error) {
+        alert('❌ Failed to copy item. Please try again.');
+    }
+}
+
+async function showPreview() {
+    try {
+        const response = await fetch('/data');
+        const data = await response.json();
+        
+        if (!data || data.length === 0) {
+            showCopyStatus('No data to preview. Please scrape some products first.', 'info');
+            return;
+        }
+        
+        // Show preview of first 3 items
+        const previewData = data.slice(0, 3);
+        const formattedData = formatDataForSheets(previewData);
+        
+        document.getElementById('preview-content').textContent = formattedData;
+        document.getElementById('preview-area').style.display = 'block';
+        
+        showCopyStatus(`Preview showing first ${previewData.length} of ${data.length} products`, 'info');
+        
+    } catch (error) {
+        showCopyStatus('❌ Failed to load preview.', 'error');
+    }
+}
+
+async function copyPreviewToClipboard() {
+    const previewContent = document.getElementById('preview-content').textContent;
+    
+    try {
+        await navigator.clipboard.writeText(previewContent);
+        showCopyStatus('✅ Preview copied to clipboard!', 'success');
+    } catch (error) {
+        showCopyStatus('❌ Failed to copy preview.', 'error');
+    }
+}
+
+function formatDataForSheets(data) {
+    return data.map(item => {
+        // Generate productKey (brand-id format)
+        const brand = (item.brand || '').toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+        const barcode_id = item.barcodeId || '';
+        let product_key = '';
+        
+        if (barcode_id && barcode_id !== 'Not found') {
+            if (barcode_id.includes('-')) {
+                const suffix = barcode_id.split('-').pop();
+                product_key = `${brand}-${suffix}`;
+            } else {
+                product_key = `${brand}-${barcode_id}`;
+            }
+        } else {
+            product_key = `${brand}-${(item.name || '').length}`;
+        }
+        
+        // Handle ingredients - convert array to comma-separated string
+        let ingredients = '';
+        if (Array.isArray(item.ingredients)) {
+            ingredients = item.ingredients.join(', ');
+        } else if (item.ingredients) {
+            ingredients = item.ingredients.toString();
+        }
+        
+        // Handle nutritional info - extract calories
+        let calories = '';
+        if (item.nutritionalInfo && typeof item.nutritionalInfo === 'object' && item.nutritionalInfo.calories) {
+            calories = item.nutritionalInfo.calories;
+        } else if (item.nutritionalInfo && typeof item.nutritionalInfo === 'string') {
+            calories = item.nutritionalInfo;
+        }
+        
+        // Create row data in exact column order (tab-separated)
+        const rowData = [
+            product_key || '',                                    // A: productKey
+            item.brand || '',                                     // B: brand
+            item.name || '',                                      // C: name
+            item.barcodeId || '',                                 // D: ID
+            item.petType || '',                                   // E: petType
+            item.texture || '',                                   // F: texture
+            item.lifeStage || '',                                 // G: lifeStage
+            ingredients,                                          // H: ingredients
+            item.guaranteedAnalysis || '',                        // I: guaranteedAnalysis
+            calories,                                             // J: calories
+            item.imageUrl || ''                                   // K: imageUrl
+        ];
+        
+        return rowData.join('\t');
+    }).join('\n');
+}
+
+function showCopyStatus(message, type) {
+    const statusDiv = document.getElementById('copy-status');
+    statusDiv.textContent = message;
+    statusDiv.className = `copy-status ${type}`;
 } 

@@ -4520,5 +4520,7 @@ def delete_data_item(item_id):
     save_data(data)
     return jsonify({'success': True})
 
+# Simple copy-paste functionality - no complex API needed!
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8000) 
