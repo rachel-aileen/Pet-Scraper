@@ -379,74 +379,7 @@ function clearSearch() {
 }
 
 // Export functionality
-async function exportForApp() {
-    try {
-        const response = await fetch('/data');
-        const data = await response.json();
-        
-        if (data.length === 0) {
-            alert('No data to export. Please scrape some URLs first.');
-            return;
-        }
-        
-        // Format data for app use - brand, petType, foodType, lifeStage, imageUrl, and ingredients fields
-        // UPDATED: Fixed food type formatting to use individual quotes (v2)
-        const formattedData = data.map((item, index) => {
-            const isLast = index === data.length - 1;
-            const comma = isLast ? '' : ',';
-            
-            // Format texture with individual quotes for each type
-            const texture = item.texture || 'unknown';
-            let formattedTexture;
-            
-            if (texture.includes(',')) {
-                // Multiple textures - split and format each with quotes
-                const types = texture.split(',').map(type => `'${type.trim()}'`);
-                formattedTexture = types.join(', ');
-            } else {
-                // Single texture
-                formattedTexture = `'${texture}'`;
-            }
-            
-            // Format nutritional info for export
-            let nutritionalInfoExport = 'Not found';
-            if (item.nutritionalInfo && item.nutritionalInfo.calories) {
-                nutritionalInfoExport = `{ calories: '${item.nutritionalInfo.calories}' }`;
-            }
-            
-            // Format ingredients - handle both array and string formats
-            let ingredientsExport;
-            if (Array.isArray(item.ingredients)) {
-                // Format as array with individual quotes
-                const ingredientsList = item.ingredients.map(ingredient => `'${ingredient.replace(/'/g, "\\'")}'`).join(', ');
-                ingredientsExport = `[${ingredientsList}]`;
-            } else if (item.ingredients && typeof item.ingredients === 'string') {
-                // Convert string format to array format for export
-                const ingredientsString = item.ingredients.replace(/'/g, "\\'").replace(/\n/g, ' ');
-                if (ingredientsString.includes(',')) {
-                    // Split by comma and format as array
-                    const ingredientsArray = ingredientsString.split(',').map(ingredient => `'${ingredient.trim()}'`);
-                    ingredientsExport = `[${ingredientsArray.join(', ')}]`;
-                } else {
-                    // Single ingredient, still format as array
-                    ingredientsExport = `['${ingredientsString}']`;
-                }
-            } else {
-                // Fallback for missing ingredients
-                ingredientsExport = `['Not found']`;
-            }
-            
-            return `{\n  brand: '${item.brand}',\n  name: '${(item.name || 'Not found').replace(/'/g, "\\'")}',\n  id: '${(item.barcodeId || 'Not found').replace(/'/g, "\\'")}',\n  petType: '${item.petType || 'unknown'}',\n  texture: ${formattedTexture},\n  lifeStage: '${item.lifeStage || 'adult'}',\n  imageUrl: '${item.imageUrl}',\n  ingredients: ${ingredientsExport},\n  guaranteedAnalysis: '${(item.guaranteedAnalysis || 'Not found').replace(/'/g, "\\'").replace(/\n/g, ' ')}',\n  nutritionalInfo: ${nutritionalInfoExport}\n}${comma}`;
-        }).join('\n\n');
-        
-        // Show the formatted data in modal
-        document.getElementById('export-data').textContent = formattedData;
-        document.getElementById('export-modal').classList.remove('hidden');
-        
-    } catch (err) {
-        alert('Error loading data for export: ' + err.message);
-    }
-}
+// Export for App function removed - replaced with Copy All for Sheets functionality
 
 function closeExportModal() {
     document.getElementById('export-modal').classList.add('hidden');
@@ -624,6 +557,26 @@ async function copyAllDataForSheets() {
         
     } catch (error) {
         showCopyStatus('❌ Failed to copy data. Please try again.', 'error');
+    }
+}
+
+async function copyAllForSheetsFromStoredData() {
+    try {
+        const response = await fetch('/data');
+        const data = await response.json();
+        
+        if (!data || data.length === 0) {
+            alert('No data to copy. Please scrape some products first.');
+            return;
+        }
+        
+        const formattedData = formatDataForSheets(data);
+        
+        await navigator.clipboard.writeText(formattedData);
+        alert(`✅ ${data.length} products copied to clipboard!\n\nPaste into your Google Sheet starting from row 2.\nEach product will appear in its own row with the correct column format.`);
+        
+    } catch (error) {
+        alert('❌ Failed to copy data. Please try again.');
     }
 }
 

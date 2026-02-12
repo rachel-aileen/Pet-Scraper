@@ -100,7 +100,7 @@
                 <h2>Stored Scraped Data</h2>
                 <div class="data-controls">
                     <button onclick="loadStoredData()" class="refresh-btn">Refresh Data</button>
-                    <button onclick="exportForApp()" class="export-btn">Export for App</button>
+                    <button onclick="copyAllForSheetsFromStoredData()" class="copy-all-sheets-btn">Copy All for Sheets</button>
                     <span id="data-count" class="data-count">0 items</span>
                 </div>
                 
@@ -203,6 +203,6 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}?v=11"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=12"></script>
 </body>
 </html> 

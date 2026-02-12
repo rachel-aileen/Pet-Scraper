@@ -1,81 +1,147 @@
 [
   {
     "id": 1,
-    "barcodeId": "applaws-p1k8y4",
-    "url": "https://vivarawpets.com/products/chicken-for-cats?variant=43803432747249",
-    "brand": "Viva Raw",
-    "name": "Chicken for Cats (1lb)",
-    "imageUrl": "http://vivarawpets.com/cdn/shop/files/Viva_Chicken_Cat_Bowl_ad3979aa-2968-4b42-aff5-ae0d53b4ce6c.png",
+    "barcodeId": "food-d9cu6p",
+    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
+    "brand": "Applaws",
+    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe (5lb)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
     "petType": "cat",
-    "texture": "raw",
-    "lifeStage": "all",
+    "texture": "kibble",
+    "lifeStage": "kitten",
     "ingredients": [
-      "Chicken with Ground Bone",
-      "Chicken Heart",
-      "Chicken Gizzard",
-      "Chicken Liver",
-      "Organic Psyllium Husk",
-      "Chilean Mussels",
-      "Fish Oil",
-      "Organic Egg Yolk",
-      "Taurine",
-      "Cod Liver Oil",
-      "Organic Icelandic Kelp",
-      "Nutritional Yeast",
-      "Vitamin E (Tocopherols)",
-      "Oyster Meat",
-      "Manganese Amino Acid Chelate"
+      "Chicken",
+      "Chicken Meal",
+      "Turkey Meal",
+      "Dried Egg",
+      "Chickpeas",
+      "Lentils",
+      "Peas",
+      "Salmon Oil"
     ],
-    "guaranteedAnalysis": "Crude Protein (min): 16.0%, Crude Fat (min): 7.1%, Crude Fiber (max): 0.8%, Moisture (max): 73%",
+    "guaranteedAnalysis": "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%",
     "nutritionalInfo": {
-      "calories": "40.0kcal/oz"
+      "calories": "4075 kcal/kg"
     },
-    "timestamp": "2026-02-02T16:41:59.089787",
-    "domain": "vivarawpets.com",
+    "timestamp": "2026-02-12T13:16:36.302079",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 22,
-      "images_with_src": 22,
+      "total_images": 26,
+      "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
   },
   {
     "id": 2,
-    "barcodeId": "food-l76dkg",
-    "url": "https://www.onlynaturalpet.com/products/only-natural-pet-powerpate-turkey-chicken-dinner?variant=40711732002852",
-    "brand": "Only Natural Pet",
-    "name": "Only Natural Pet PowerPate Grain-Free Turkey & Chicken Dinner Wet Cat Food (2.75oz)",
-    "imageUrl": "http://www.onlynaturalpet.com/cdn/shop/products/5302340_85678dd9-9cf3-4f55-9ffa-fe284d0081e8_1024x1024.jpg?v=1691081372",
+    "barcodeId": "pet-xy26ez",
+    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe/",
+    "brand": "Applaws",
+    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe (2lb)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/02/4021US-A-Product-Image.png",
     "petType": "cat",
-    "texture": "pate",
-    "lifeStage": "all",
+    "texture": "kibble",
+    "lifeStage": "kitten",
     "ingredients": [
-      "Turkey",
       "Chicken",
-      "Turkey Broth",
-      "Chicken Broth",
-      "Turkey Liver",
+      "Chicken Meal",
+      "Turkey Meal",
+      "Dried Egg",
+      "Chickpeas",
+      "Lentils",
       "Peas",
-      "Natural Flavor",
-      "Agar-Agar",
-      "Tricalcium Phosphate",
-      "Carrots",
-      "Green Beans",
-      "Ground Whole Flaxseed",
-      "Eggs",
-      "Clams",
-      "Cranberries",
-      "Blueberries",
       "Salmon Oil"
     ],
-    "guaranteedAnalysis": "Crude Protein (min): 8.0%, Crude Fat (min): 5.0%, Crude Fiber (max): 0.75%, Moisture (max): 78.0%",
+    "guaranteedAnalysis": "Crude Protein (min): 43%, Crude Fat (min): 20%, Moisture (max): 10%",
     "nutritionalInfo": {
-      "calories": "1214 kcal/kg, 34.4 kcal/oz"
+      "calories": "4075 kcal/kg"
     },
-    "timestamp": "2026-02-02T17:09:27.767690",
-    "domain": "www.onlynaturalpet.com",
+    "timestamp": "2026-02-12T13:17:15.575407",
+    "domain": "applaws.com",
     "debug_info": {
-      "total_images": 72,
-      "images_with_src": 72,
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 3,
+    "barcodeId": "applaws-goi51e",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
+    "brand": "Applaws",
+    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9 (2.47oz)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
+    "petType": "cat",
+    "texture": "pate",
+    "lifeStage": "kitten",
+    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
+    "guaranteedAnalysis": "Crude Protein (min): 13%, Crude Fat (min): 5%, Crude Fiber (max): 2%, Moisture (max): 79%",
+    "nutritionalInfo": {
+      "calories": "1222 kcal/kg"
+    },
+    "timestamp": "2026-02-12T13:17:55.159563",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 4,
+    "barcodeId": "applaws-o1idoj",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-chicken-breast-recipe-pate/",
+    "brand": "Applaws",
+    "name": "Kitten healthy start wet food with added vitamins & minerals chicken breast recipe p\u00e2t\u00e9 (2.47oz)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1801US-AC-Product-Image.png",
+    "petType": "cat",
+    "texture": "pate",
+    "lifeStage": "kitten",
+    "ingredients": "Chicken Breast, Chicken Broth, Sunflower Oil, Potato Starch, Natural Chicken Flavor, Egg Whites, Tricalcium Phosphate, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Potassium Chloride, Guar Gum, Magnesium Amino Acid Chelate, Whey Protein, Dried Lactobacillus Plantarum Fermentation Product",
+    "guaranteedAnalysis": "Crude Protein (min): 13%, Crude Fat (min): 5%, Crude Fiber (max): 2%, Moisture (max): 80%",
+    "nutritionalInfo": {
+      "calories": "1204 kcal/kg"
+    },
+    "timestamp": "2026-02-12T13:18:34.475831",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
+      "extraction_method": "html_parsing"
+    }
+  },
+  {
+    "id": 5,
+    "barcodeId": "prod-997p47",
+    "url": "https://applaws.com/us/products/vitality-complete-balanced-adult-dry-food-chicken-and-salmon-meal-recipe-3/",
+    "brand": "Applaws",
+    "name": "Vitality Complete & Balanced Adult Dry Food Chicken and Salmon Meal Recipe (5lb)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/02/4531US-A-Product-Image.png",
+    "petType": "cat",
+    "texture": "kibble",
+    "lifeStage": "kitten",
+    "ingredients": [
+      "Chicken",
+      "Chicken Meal",
+      "Salmon Meal",
+      "Chickpeas",
+      "Lentils",
+      "Peas",
+      "Dried Egg",
+      "Chicken Fat (Preserved with Mixed Tocopherols)",
+      "Natural Flavor",
+      "Salmon Hydrolysate",
+      "Flaxseed",
+      "Salmon Oil"
+    ],
+    "guaranteedAnalysis": "Crude Protein (min): 43%, Crude Fat (min): 18%, Moisture (max): 10%",
+    "nutritionalInfo": {
+      "calories": "3923 kcal/kg"
+    },
+    "timestamp": "2026-02-12T13:19:13.602215",
+    "domain": "applaws.com",
+    "debug_info": {
+      "total_images": 26,
+      "images_with_src": 30,
       "extraction_method": "html_parsing"
     }
   }
