@@ -1,29 +1,20 @@
 [
   {
     "id": 1,
-    "barcodeId": "food-d9cu6p",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe-2/",
+    "barcodeId": "food-t6ynmr",
+    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
     "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe (5lb)",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/4051US-A-Product-Image.png",
+    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9 (2.47oz)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
     "petType": "cat",
-    "texture": "kibble",
+    "texture": "pate",
     "lifeStage": "kitten",
-    "ingredients": [
-      "Chicken",
-      "Chicken Meal",
-      "Turkey Meal",
-      "Dried Egg",
-      "Chickpeas",
-      "Lentils",
-      "Peas",
-      "Salmon Oil"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min) 43%, Crude Fat (min) 20%, Moisture (max) 10%",
+    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
+    "guaranteedAnalysis": "Crude Protein (min) 13%, Crude Fat (min) 5%, Moisture (max) 79%",
     "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
+      "calories": "1222 kcal/kg"
     },
-    "timestamp": "2026-02-12T13:16:36.302079",
+    "timestamp": "2026-02-13T19:20:57.886973",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 26,
@@ -33,111 +24,29 @@
   },
   {
     "id": 2,
-    "barcodeId": "pet-xy26ez",
-    "url": "https://applaws.com/us/products/healthy-start-complete-balanced-kitten-dry-food-chicken-recipe/",
+    "barcodeId": "applaws-ik3c5g",
+    "url": "https://applaws.com/us/products/tuna-fillet-with-mackerel-mousse/",
     "brand": "Applaws",
-    "name": "Healthy Start Complete & Balanced Kitten Dry Food Chicken Recipe (2lb)",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/02/4021US-A-Product-Image.png",
+    "name": "Tuna Fillet with Mackerel Mousse (2.47oz)",
+    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2024/05/8605US-A_FOP_3000px.png",
     "petType": "cat",
-    "texture": "kibble",
-    "lifeStage": "kitten",
+    "texture": "mousse",
+    "lifeStage": "adult",
     "ingredients": [
-      "Chicken",
-      "Chicken Meal",
-      "Turkey Meal",
+      "Tuna Fillet",
+      "Fish Broth",
+      "Mackerel",
       "Dried Egg",
-      "Chickpeas",
-      "Lentils",
-      "Peas",
-      "Salmon Oil"
+      "Sunflower Oil",
+      "Natural Fish Flavor",
+      "Potato Starch",
+      "Guar Gum"
     ],
-    "guaranteedAnalysis": "Crude Protein (min): 43%, Crude Fat (min): 20%, Moisture (max): 10%",
+    "guaranteedAnalysis": "Crude Protein (min) 12%, Crude Fat (min) 2%, Moisture (max) 85%",
     "nutritionalInfo": {
-      "calories": "4075 kcal/kg"
+      "calories": "897 kcal/kg"
     },
-    "timestamp": "2026-02-12T13:17:15.575407",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 3,
-    "barcodeId": "applaws-goi51e",
-    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-tuna-fillet-recipe-pate/",
-    "brand": "Applaws",
-    "name": "Kitten healthy start wet food with added vitamins & minerals tuna fillet recipe p\u00e2t\u00e9 (2.47oz)",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1848US-AC-Product-Image.png",
-    "petType": "cat",
-    "texture": "pate",
-    "lifeStage": "kitten",
-    "ingredients": "Tuna Fillet, Fish Broth, Sunflower Oil, Potato Starch, Natural Fish Flavor, Egg Whites, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Tricalcium Phosphate, Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Guar Gum, Potassium Chloride, Whey Protein, Magnesium Amino Acid, Dried Lactobacillus Plantarum Fermentation Product, Menadione Nicotinamide Bisulfite",
-    "guaranteedAnalysis": "Crude Protein (min): 13%, Crude Fat (min): 5%, Crude Fiber (max): 2%, Moisture (max): 79%",
-    "nutritionalInfo": {
-      "calories": "1222 kcal/kg"
-    },
-    "timestamp": "2026-02-12T13:17:55.159563",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 4,
-    "barcodeId": "applaws-o1idoj",
-    "url": "https://applaws.com/us/products/kitten-healthy-start-wet-food-with-added-vitamins-minerals-chicken-breast-recipe-pate/",
-    "brand": "Applaws",
-    "name": "Kitten healthy start wet food with added vitamins & minerals chicken breast recipe p\u00e2t\u00e9 (2.47oz)",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/01/1801US-AC-Product-Image.png",
-    "petType": "cat",
-    "texture": "pate",
-    "lifeStage": "kitten",
-    "ingredients": "Chicken Breast, Chicken Broth, Sunflower Oil, Potato Starch, Natural Chicken Flavor, Egg Whites, Tricalcium Phosphate, Fish Oil (Source of Docosahexaenoic Acid (DHA)), Marine Microalgae Oil, Vitamin A Supplement, Vitamin D3 Supplement, Vitamin E Supplement, Thiamine Mononitrate, Riboflavin, Pyridoxine Hydrochloride, Vitamin B12 Supplement, Niacin, Pantothenic Acid, Folic Acid, Biotin, Vitamin C (Ascorbic Acid), Iron Amino Acid Chelate, Zinc Amino Acid Chelate, Copper Amino Acid Chelate, Manganese Amino Acid Chelate, Calcium Iodate, Inulin, Calcium Chloride, Taurine, Choline Chloride, Potassium Chloride, Guar Gum, Magnesium Amino Acid Chelate, Whey Protein, Dried Lactobacillus Plantarum Fermentation Product",
-    "guaranteedAnalysis": "Crude Protein (min): 13%, Crude Fat (min): 5%, Crude Fiber (max): 2%, Moisture (max): 80%",
-    "nutritionalInfo": {
-      "calories": "1204 kcal/kg"
-    },
-    "timestamp": "2026-02-12T13:18:34.475831",
-    "domain": "applaws.com",
-    "debug_info": {
-      "total_images": 26,
-      "images_with_src": 30,
-      "extraction_method": "html_parsing"
-    }
-  },
-  {
-    "id": 5,
-    "barcodeId": "prod-997p47",
-    "url": "https://applaws.com/us/products/vitality-complete-balanced-adult-dry-food-chicken-and-salmon-meal-recipe-3/",
-    "brand": "Applaws",
-    "name": "Vitality Complete & Balanced Adult Dry Food Chicken and Salmon Meal Recipe (5lb)",
-    "imageUrl": "https://applaws.com/us/wp-content/uploads/sites/2/2026/02/4531US-A-Product-Image.png",
-    "petType": "cat",
-    "texture": "kibble",
-    "lifeStage": "kitten",
-    "ingredients": [
-      "Chicken",
-      "Chicken Meal",
-      "Salmon Meal",
-      "Chickpeas",
-      "Lentils",
-      "Peas",
-      "Dried Egg",
-      "Chicken Fat (Preserved with Mixed Tocopherols)",
-      "Natural Flavor",
-      "Salmon Hydrolysate",
-      "Flaxseed",
-      "Salmon Oil"
-    ],
-    "guaranteedAnalysis": "Crude Protein (min): 43%, Crude Fat (min): 18%, Moisture (max): 10%",
-    "nutritionalInfo": {
-      "calories": "3923 kcal/kg"
-    },
-    "timestamp": "2026-02-12T13:19:13.602215",
+    "timestamp": "2026-02-13T19:27:12.362573",
     "domain": "applaws.com",
     "debug_info": {
       "total_images": 26,

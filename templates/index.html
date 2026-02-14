@@ -24,6 +24,12 @@
             <div class="scraper-section">
                 <h2>Scrape Brand Information</h2>
                 
+                <!-- Top Action Buttons -->
+                <div class="action-buttons-top">
+                    <button onclick="scrapeAllUrls()" class="scrape-all-btn">Scrape All URLs</button>
+                    <button onclick="clearAllInputs()" class="clear-all-btn">Clear All</button>
+                </div>
+                
                 <div class="url-inputs-container">
                     <div class="input-group">
                         <label for="url-input-1">URL 1:</label>
@@ -65,11 +71,51 @@
                         <label for="url-input-10">URL 10:</label>
                         <input type="url" id="url-input-10" placeholder="Enter tenth product URL (optional)" />
                     </div>
+                    <div class="input-group">
+                        <label for="url-input-11">URL 11:</label>
+                        <input type="url" id="url-input-11" placeholder="Enter eleventh product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-12">URL 12:</label>
+                        <input type="url" id="url-input-12" placeholder="Enter twelfth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-13">URL 13:</label>
+                        <input type="url" id="url-input-13" placeholder="Enter thirteenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-14">URL 14:</label>
+                        <input type="url" id="url-input-14" placeholder="Enter fourteenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-15">URL 15:</label>
+                        <input type="url" id="url-input-15" placeholder="Enter fifteenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-16">URL 16:</label>
+                        <input type="url" id="url-input-16" placeholder="Enter sixteenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-17">URL 17:</label>
+                        <input type="url" id="url-input-17" placeholder="Enter seventeenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-18">URL 18:</label>
+                        <input type="url" id="url-input-18" placeholder="Enter eighteenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-19">URL 19:</label>
+                        <input type="url" id="url-input-19" placeholder="Enter nineteenth product URL (optional)" />
+                    </div>
+                    <div class="input-group">
+                        <label for="url-input-20">URL 20:</label>
+                        <input type="url" id="url-input-20" placeholder="Enter twentieth product URL (optional)" />
+                    </div>
                 </div>
                 
                 <div class="action-buttons">
-                    <button id="scrape-btn" onclick="scrapeUrls()">Scrape All URLs</button>
-                    <button id="clear-btn" onclick="clearSearch()" class="clear-btn">Clear All</button>
+                    <button id="scrape-btn" onclick="scrapeAllUrls()">Scrape All URLs</button>
+                    <button id="clear-btn" onclick="clearAllInputs()" class="clear-btn">Clear All</button>
                 </div>
                 
                 <div id="loading" class="loading hidden">
@@ -188,6 +234,7 @@
                         <div class="column-item">I: guaranteedAnalysis</div>
                         <div class="column-item">J: calories</div>
                         <div class="column-item">K: imageUrl</div>
+                        <div class="column-item">L: websiteUrl</div>
                     </div>
                 </div>
 
@@ -203,6 +250,6 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}?v=12"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=16"></script>
 </body>
 </html> 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -4189,6 +4189,7 @@ def extract_ingredients_from_json_data(json_data):
 def index():
     """Main page"""
     return render_template('index.html')
+
 
 @app.route('/scrape', methods=['POST'])
 def scrape_url():

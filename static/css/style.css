@@ -730,6 +730,48 @@ header p {
     box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
 }
 
+/* Top action buttons */
+.action-buttons-top {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.action-buttons-top button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-buttons-top .scrape-all-btn {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.action-buttons-top .scrape-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.action-buttons-top .clear-all-btn {
+    background: linear-gradient(45deg, #f44336, #da190b);
+    color: white;
+}
+
+.action-buttons-top .clear-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
 .action-buttons {
     display: flex;
     gap: 15px;
@@ -848,6 +890,20 @@ header p {
 
 /* Mobile responsiveness for multi-URL */
 @media (max-width: 768px) {
+    .action-buttons-top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-buttons-top button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .action-buttons-top button:last-child {
+        margin-bottom: 0;
+    }
+    
     .action-buttons {
         flex-direction: column;
         align-items: stretch;

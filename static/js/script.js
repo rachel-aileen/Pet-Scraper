@@ -32,7 +32,7 @@ function openTab(evt, tabName) {
 }
 
 // Scraping functionality
-async function scrapeUrls() {
+async function scrapeAllUrls() {
     const urlInputs = [
         document.getElementById('url-input-1'),
         document.getElementById('url-input-2'),
@@ -43,7 +43,17 @@ async function scrapeUrls() {
         document.getElementById('url-input-7'),
         document.getElementById('url-input-8'),
         document.getElementById('url-input-9'),
-        document.getElementById('url-input-10')
+        document.getElementById('url-input-10'),
+        document.getElementById('url-input-11'),
+        document.getElementById('url-input-12'),
+        document.getElementById('url-input-13'),
+        document.getElementById('url-input-14'),
+        document.getElementById('url-input-15'),
+        document.getElementById('url-input-16'),
+        document.getElementById('url-input-17'),
+        document.getElementById('url-input-18'),
+        document.getElementById('url-input-19'),
+        document.getElementById('url-input-20')
     ];
     
     const scrapeBtn = document.getElementById('scrape-btn');
@@ -350,18 +360,14 @@ function escapeHtml(text) {
 }
 
 // Clear search functionality
-function clearSearch() {
-    // Clear all URL inputs
-    document.getElementById('url-input-1').value = '';
-    document.getElementById('url-input-2').value = '';
-    document.getElementById('url-input-3').value = '';
-    document.getElementById('url-input-4').value = '';
-    document.getElementById('url-input-5').value = '';
-    document.getElementById('url-input-6').value = '';
-    document.getElementById('url-input-7').value = '';
-    document.getElementById('url-input-8').value = '';
-    document.getElementById('url-input-9').value = '';
-    document.getElementById('url-input-10').value = '';
+function clearAllInputs() {
+    // Clear all 20 URL inputs
+    for (let i = 1; i <= 20; i++) {
+        const input = document.getElementById(`url-input-${i}`);
+        if (input) {
+            input.value = '';
+        }
+    }
     
     // Hide results and error sections
     document.getElementById('results').classList.add('hidden');
@@ -524,7 +530,8 @@ async function copyHeadersForSheets() {
         'ingredients',
         'guaranteedAnalysis',
         'calories',
-        'imageUrl'
+        'imageUrl',
+        'websiteUrl'
     ];
     
     // Tab-separated format for Google Sheets
@@ -670,6 +677,17 @@ function formatDataForSheets(data) {
             calories = item.nutritionalInfo;
         }
         
+        // Handle websiteUrl - check multiple possible fields
+        let websiteUrl = '';
+        if (item.url) {
+            websiteUrl = item.url;
+        } else if (item.websiteUrl) {
+            websiteUrl = item.websiteUrl;
+        } else if (item.domain) {
+            // Fallback: construct URL from domain if available
+            websiteUrl = `https://${item.domain}`;
+        }
+        
         // Create row data in exact column order (tab-separated)
         const rowData = [
             product_key || '',                                    // A: productKey
@@ -682,8 +700,16 @@ function formatDataForSheets(data) {
             ingredients,                                          // H: ingredients
             item.guaranteedAnalysis || '',                        // I: guaranteedAnalysis
             calories,                                             // J: calories
-            item.imageUrl || ''                                   // K: imageUrl
+            item.imageUrl || '',                                  // K: imageUrl
+            websiteUrl                                            // L: websiteUrl
         ];
+        
+        // Debug logging for websiteUrl
+        console.log('Debug - Item data keys:', Object.keys(item));
+        console.log('Debug - Item URL field:', item.url);
+        console.log('Debug - Final websiteUrl:', websiteUrl);
+        console.log('Debug - Row data length:', rowData.length);
+        console.log('Debug - Last column (websiteUrl):', rowData[11]);
         
         return rowData.join('\t');
     }).join('\n');
